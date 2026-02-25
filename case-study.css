@@ -1181,4 +1181,26 @@ blockquote footer {
   .other-work-grid {
     grid-template-columns: 1fr;
   }
+
+  body {
+    cursor: auto !important;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  .studio-card,
+  .project-item,
+  .other-card,
+  .sfx-hover,
+  .sfx-click {
+    cursor: auto !important;
+  }
+
+  #cursor-spotlight,
+  body.has-cursor #cursor-spotlight {
+    display: none !important;
+  }
 }
