@@ -899,12 +899,26 @@ body.has-cursor #cursor-spotlight {
   body {
     overflow-y: auto;
     overflow-x: hidden;
-    cursor: auto;
+    cursor: auto !important;
     height: auto;
     min-height: 100vh;
   }
 
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  .studio-card,
+  .project-item,
+  .other-card,
+  .sfx-hover,
+  .sfx-click {
+    cursor: auto !important;
+  }
+
   #cursor-spotlight,
+  body.has-cursor #cursor-spotlight,
   .signature-canvas {
     display: none !important;
   }
@@ -959,5 +973,19 @@ body.has-cursor #cursor-spotlight {
     position: fixed !important;
     top: 16px !important;
     z-index: 9999 !important;
+  }
+
+  /* Make homepage footer visible on light mobile background */
+  .global-footer a,
+  .global-footer p {
+    color: var(--text-dim) !important;
+  }
+
+  .global-footer a:hover {
+    color: var(--text-main) !important;
+  }
+
+  .global-footer img {
+    filter: grayscale(100%) contrast(1.2) invert(0) !important;
   }
 }

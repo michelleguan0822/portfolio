@@ -507,7 +507,61 @@
       }
 
       .book-scene {
-        height: 500px;
+        height: auto;
+        min-height: 500px;
+        perspective: none;
+        margin-bottom: 60px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .book {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        box-shadow: none;
+        transform: none !important;
+      }
+
+      .page {
+        width: 100%;
+        height: auto;
+        position: relative;
+        transform: none !important;
+        transform-origin: unset !important;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 24px;
+        pointer-events: auto !important;
+        z-index: 1 !important;
+        background: #fff;
+      }
+
+      .page.cover {
+        display: none;
+      }
+
+      .page-face {
+        position: relative !important;
+        width: 100%;
+        height: auto;
+        transform: none !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+
+      .page-face.back {
+        display: none !important;
+      }
+
+      .log-body {
+        font-size: 14px;
+      }
+
+      .page-shadow {
+        display: none;
       }
     }
   </style>
