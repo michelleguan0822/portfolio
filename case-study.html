@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Name | Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="scroll-progress" id="bar"></div>
+  <div class="bg-glow"></div>
+
+  <header class="nav-shell">
+    <nav class="nav-inner">
+      <a href="index.html" class="nav-logo-link"
+        style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
+        <img src="image/logo.png" alt="Michelle.Design Logo"
+          style="height: 16px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.2s;"
+          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+      </a>
+      <a href="index.html">Home</a>
+      <a href="about-me.html">About Me</a>
+      <a href="resume.pdf" target="_blank">Resume</a>
+      <a href="mailto:michelleguan321@gmail.com">Contact Me</a>
+    </nav>
+  </header>
+
+  <div class="container hero">
+    <span class="hero-kicker">Category / Domain</span>
+    <h1 class="hero-title">Project Title: One Line Value Proposition</h1>
+
+    <div class="hero-meta">
+      <div class="meta-pill"><b>Role</b> Product Designer</div>
+      <div class="meta-pill"><b>Timeline</b> Duration</div>
+      <div class="meta-pill"><b>Client</b> Client Name</div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Placeholder Image -->
+      <img src="https://placehold.co/1200x675/111/444?text=Hero+Image" alt="Hero visual">
+    </div>
+  </div>
+
+  <div class="container case-grid">
+
+    <aside class="toc">
+      <a href="#overview" class="active">Overview</a>
+      <a href="#challenge">01 Challenge</a>
+      <a href="#process">02 Process</a>
+      <a href="#outcome">03 Outcome</a>
+    </aside>
+
+    <main>
+
+      <div id="overview" class="section">
+        <span class="section-label">OVERVIEW</span>
+        <h2>The Core Insight.</h2>
+        <p class="lead-text">
+          Brief summary of the project. What was the problem, what was the solution, and what was the impact?
+          Keep it to 2-3 sentences.
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num">Metric 1</div>
+            <div class="stat-label">Description of metric</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">Metric 2</div>
+            <div class="stat-label">Description of metric</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="challenge" class="section">
+        <span class="section-label">01 // THE CHALLENGE</span>
+        <h2>The Problem Statement.</h2>
+        <p>
+          Detailed description of the problem. Why does this matter? Who is it for?
+        </p>
+
+        <blockquote>
+          "Pull quote from a user or stakeholder demonstrating the pain point."
+        </blockquote>
+      </div>
+
+      <div id="process" class="section">
+        <span class="section-label">02 // PROCESS</span>
+        <h2>Strategy & Execution.</h2>
+        <p>
+          How did you approach the problem? What were the key steps?
+        </p>
+
+        <ul class="steps">
+          <li class="step-item">
+            <div class="step-num">01</div>
+            <div class="step-desc">
+              <b>Step One</b>
+              Description of the first major phase or decision.
+            </div>
+          </li>
+          <li class="step-item">
+            <div class="step-num">02</div>
+            <div class="step-desc">
+              <b>Step Two</b>
+              Description of the second major phase or decision.
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div id="outcome" class="section">
+        <span class="section-label">03 // OUTCOME</span>
+        <h2>Impact & Reflection.</h2>
+        <p>
+          What were the results? What did you learn?
+        </p>
+      </div>
+
+      <footer class="footer">
+        <h2>Ready to build something authoritative?</h2>
+        <a href="mailto:michelleguan321@gmail.com" class="cta-btn">Get in Touch</a>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    // Scroll Progress
+    window.onscroll = function () {
+      let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrolled = (winScroll / height);
+      document.getElementById("bar").style.transform = "scaleX(" + scrolled + ")";
+
+      // Active Link State
+      let sections = document.querySelectorAll('.section');
+      let navLinks = document.querySelectorAll('.toc a');
+
+      sections.forEach(sec => {
+        let top = window.scrollY;
+        let offset = sec.offsetTop - 200;
+        let height = sec.offsetHeight;
+        let id = sec.getAttribute('id');
+
+        if (top >= offset && top < offset + height) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            document.querySelector('.toc a[href*=' + id + ']').classList.add('active');
+          });
+        }
+      });
+    };
+  </script>
+</body>
+
+</html>

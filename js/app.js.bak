@@ -1,0 +1,202 @@
+/**
+ * 3D Particle Donut - Vanilla JS Implementation
+ */
+
+const DONUT_CONFIG = {
+  particleCount: 2500,
+  radius: 150,
+  thickness: 60,
+  rotationSpeed: 0.005,
+  interactionRadius: 600, // Increased to cover 70% screen
+  ease: 0.05,
+};
+
+class ParticleSystem {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.particles = [];
+    this.mouse = { x: -1000, y: -1000 };
+    this.scrollY = 0;
+    this.animationFrameId = null;
+
+    this.init();
+  }
+
+  init() {
+    this.resize();
+    this.bindEvents();
+    this.animate();
+  }
+
+  resize() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.initParticles(); // Regenerate on resize to match screen scale
+  }
+
+  bindEvents() {
+    window.addEventListener('resize', () => this.resize());
+
+    window.addEventListener('mousemove', (e) => {
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
+    });
+
+    window.addEventListener('scroll', () => {
+      this.scrollY = window.scrollY;
+      // Update canvas opacity based on scroll
+      const opacity = Math.max(0.2, 1 - this.scrollY / 500);
+      this.canvas.style.opacity = opacity;
+    });
+  }
+
+  initParticles() {
+    this.particles = [];
+
+    // 1. Setup offscreen canvas for text sampling
+    const size = 200; // Resolution grid (fixed source for consistency)
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    // 2. Draw "MG" Text
+    ctx.font = '900 140px Inter, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'white';
+    ctx.fillText('MG', size / 2, size / 2);
+
+    // 3. Calculate Scale
+    // Goal: 70% of screen width/height (whichever is smaller)
+    const screenMin = Math.min(this.canvas.width, this.canvas.height);
+    const targetSize = screenMin * 0.7;
+    const scaleFactor = targetSize / size;
+
+    // 4. Sample Pixels
+    const data = ctx.getImageData(0, 0, size, size).data;
+    const step = 3; // Density
+
+    for (let y = 0; y < size; y += step) {
+      for (let x = 0; x < size; x += step) {
+        const index = (y * size + x) * 4;
+        // If pixel is opaque enough
+        if (data[index + 3] > 128) {
+          // Create a "column" of particles in Z-space (Extrusion)
+          for (let z = -20; z <= 20; z += 10) {
+            // Add randomness to z for natural look
+            const rZ = (z + (Math.random() - 0.5) * 10) * (scaleFactor * 0.4);
+
+            // Scale X/Y to fit target size
+            const pX = (x - size / 2) * scaleFactor;
+            const pY = (y - size / 2) * scaleFactor;
+
+            this.particles.push({
+              x: pX,
+              y: pY,
+              z: rZ,
+              ox: pX, oy: pY, oz: rZ,
+              vx: 0, vy: 0, vz: 0,
+              size: Math.random() * 1.5 + 0.5
+            });
+          }
+        }
+      }
+    }
+
+    // Safety cap if too many particles (dynamic resizing might increase count effectively if logic changed, but here grid is fixed)
+    // Actually, step is fixed, so particle count is constant regardless of screen size. 
+    // Just visually spread out.
+    if (this.particles.length > 4000) {
+      this.particles = this.particles.slice(0, 4000);
+    }
+  }
+
+  rotate(p, angleX, angleY) {
+    // Y-axis rotation
+    let cosY = Math.cos(angleY);
+    let sinY = Math.sin(angleY);
+    let z1 = p.z * cosY - p.x * sinY;
+    let x1 = p.z * sinY + p.x * cosY;
+
+    // X-axis rotation
+    let cosX = Math.cos(angleX);
+    let sinX = Math.sin(angleX);
+    let y2 = p.y * cosX - z1 * sinX;
+    let z2 = p.y * sinX + z1 * cosX;
+
+    p.x = x1;
+    p.y = y2;
+    p.z = z2;
+  }
+
+  animate() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    const fov = 1000;
+    const centerX = this.canvas.width / 2;
+    const centerY = this.canvas.height / 2;
+
+    // Interaction Logic
+    const dxMouse = this.mouse.x - centerX;
+    const dyMouse = this.mouse.y - centerY;
+    const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+
+    // Hover State: If mouse is near center (< 600px) - Match config radius
+    const isHovered = distMouse < DONUT_CONFIG.interactionRadius;
+
+    // Dynamic Rotation Speed: Subtle boost (0.005 -> 0.015)
+    // Reduce amplitude as requested
+    const targetSpeed = isHovered ? 0.015 : 0.005;
+    DONUT_CONFIG.rotationSpeed += (targetSpeed - DONUT_CONFIG.rotationSpeed) * 0.05;
+
+    this.particles.sort((a, b) => b.z - a.z);
+
+    this.particles.forEach(p => {
+      this.rotate(p, DONUT_CONFIG.rotationSpeed, DONUT_CONFIG.rotationSpeed * 0.5);
+
+      const dx = (p.x + centerX) - this.mouse.x;
+      const dy = (p.y + centerY) - this.mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < DONUT_CONFIG.interactionRadius) {
+        const force = (DONUT_CONFIG.interactionRadius - dist) / DONUT_CONFIG.interactionRadius;
+        // Reduce repulsion force (0.1 -> 0.02)
+        p.vx += dx * force * 0.02;
+        p.vy += dy * force * 0.02;
+      }
+
+      p.vx *= 0.9;
+      p.vy *= 0.9;
+
+      const scale = fov / (fov + p.z);
+      const x2d = p.x * scale + centerX + p.vx;
+      const y2d = p.y * scale + centerY + p.vy;
+
+      const alpha = Math.max(0.1, (p.z + DONUT_CONFIG.thickness) / (DONUT_CONFIG.thickness * 2));
+
+      // Color shift on hover (slightly whiter)
+      if (isHovered) {
+        this.ctx.fillStyle = `rgba(255, 100, 150, ${alpha})`;
+      } else {
+        this.ctx.fillStyle = `rgba(218, 32, 90, ${alpha})`;
+      }
+
+      this.ctx.beginPath();
+      // Subtle scale up (1.05x)
+      this.ctx.arc(x2d, y2d, p.size * scale * (isHovered ? 1.05 : 1), 0, Math.PI * 2);
+      this.ctx.fill();
+    });
+
+    this.animationFrameId = requestAnimationFrame(() => this.animate());
+  }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('pixel-canvas');
+  if (canvas) {
+    new ParticleSystem(canvas);
+  }
+});

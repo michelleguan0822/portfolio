@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me | Zirong</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400&family=Press+Start+2P&display=swap"
+    rel="stylesheet">
+  <!-- Note: Kept Press Start 2P for the game/book elements -->
+
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      /* Violet */
+      --bg: #f9fafb;
+      /* Light Gray */
+      --text: #111827;
+      /* Dark Gray */
+      --text-dim: #6b7280;
+      --surface: rgba(255, 255, 255, 0.6);
+      --surface-border: rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      cursor: crosshair;
+      line-height: 1.6;
+    }
+
+    /* Background Gradients */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(1000px 1000px at 50% 0%, rgba(139, 92, 246, 0.03), transparent 70%),
+        radial-gradient(800px 800px at 80% 80%, rgba(99, 102, 241, 0.03), transparent 70%),
+        linear-gradient(180deg, #ffffff 0%, #f3f4f6 100%);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ---------------- UTILITIES ---------------- */
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .font-pixel {
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    .text-primary {
+      color: var(--primary);
+    }
+
+    /* Glows - Adjusted for Light Mode */
+    .top-glow {
+      background: conic-gradient(from 180deg at 50% 0%, #8b5cf6, transparent);
+      filter: blur(80px);
+      height: 500px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .mouse-follower {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      transition: opacity 0.3s;
+    }
+
+    /* ---------------- NAV (Synced with Index) ---------------- */
+    .switch-btn {
+      position: fixed;
+      top: 24px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      z-index: 2000;
+      pointer-events: none;
+    }
+
+    .nav-inner {
+      pointer-events: auto;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(16px);
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      gap: 6px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-link {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      transition: 0.2s;
+      color: #6b7280;
+      border-radius: 999px;
+    }
+
+    .nav-link:hover {
+      color: #111827;
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .nav-link.active {
+      background: #ffffff;
+      color: #111827;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+
+    /* ---------------- STUDIO CONTAINER ---------------- */
+    .studio-showcase {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 140px 20px 80px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ---------------- HERO PROFILE ---------------- */
+    .intro-section {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 120px;
+    }
+
+    .section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--primary);
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .huge-title {
+      font-size: clamp(48px, 5vw, 80px);
+      font-weight: 900;
+      line-height: 1;
+      margin: 0 0 30px;
+      letter-spacing: -0.04em;
+      color: #111827;
+    }
+
+    .hacker-text {
+      display: inline-block;
+      cursor: default;
+      transition: color 0.2s;
+    }
+
+    .hacker-text:hover {
+      color: var(--primary);
+    }
+
+    .intro-bio {
+      font-size: 18px;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin-bottom: 40px;
+    }
+
+    /* Stats Row */
+    .stats-row {
+      display: flex;
+      gap: 40px;
+      border-top: 1px solid var(--surface-border);
+      padding-top: 24px;
+    }
+
+    .stat-item b {
+      display: block;
+      font-size: 24px;
+      color: #111827;
+      /* Dark text */
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .stat-item span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* Avatar - Glass Circle */
+    .avatar-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      background: url('image/profile_pic.png') center/cover;
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .avatar-frame:hover .avatar-placeholder {
+      transform: scale(1.08);
+    }
+
+    /* Floating Icons */
+    .float-icon {
+      position: absolute;
+      font-size: 24px;
+      pointer-events: none;
+      animation: popUpFade 1s forwards;
+      z-index: 20;
+    }
+
+    @keyframes popUpFade {
+      0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-50%, -150%) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* ---------------- PANELS (Studio Card Style) ---------------- */
+    .studio-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .studio-card:hover {
+      border-color: rgba(139, 92, 246, 0.3);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 20px 50px rgba(139, 92, 246, 0.1);
+    }
+
+    /* Skills Pill */
+    .skills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 80px;
+    }
+
+    .skill-tag {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #6b7280;
+      cursor: pointer;
+      transition: 0.2s;
+      user-select: none;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #fff;
+    }
+
+    .skill-tag.equipped {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    }
+
+    /* ---------------- BOOK ---------------- */
+    .book-scene {
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      margin: 0 auto 120px;
+      perspective: 1500px;
+      position: relative;
+    }
+
+    .book {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .page {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      transform-origin: left center;
+      transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .page-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 40px;
+      background: #ffffff;
+      /* White Paper */
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .page-face.front {
+      border-right: 2px solid var(--primary);
+    }
+
+    .page-face.back {
+      transform: rotateY(180deg);
+      background: #f3f4f6;
+      /* Back of page */
+      border-left: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .page.flipped {
+      transform: rotateY(-180deg);
+    }
+
+    /* Stacking */
+    .page:nth-child(1) {
+      z-index: 8;
+    }
+
+    .page:nth-child(2) {
+      z-index: 7;
+    }
+
+    .page:nth-child(3) {
+      z-index: 6;
+    }
+
+    .page:nth-child(4) {
+      z-index: 5;
+    }
+
+    .page:nth-child(5) {
+      z-index: 4;
+    }
+
+    .page:nth-child(6) {
+      z-index: 3;
+    }
+
+    /* Book Content */
+    .log-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--primary);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--primary);
+    }
+
+    .log-body {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    .log-body p {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .tap-hint {
+      margin-top: auto;
+      align-self: flex-end;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #9ca3af;
+    }
+
+    /* ---------------- GAME ---------------- */
+    .game-section-wrapper {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      margin-bottom: 120px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    }
+
+    canvas#game-board {
+      background: #f3f4f6;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      max-width: 100%;
+    }
+
+    .game-btn {
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .game-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+    .contact-footer {
+      border-top: 1px solid var(--surface-border);
+      padding: 80px 0;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .contact-link {
+      font-size: 32px;
+      font-weight: 700;
+      color: #111827;
+      transition: 0.3s;
+    }
+
+    .contact-link:hover {
+      color: var(--primary);
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+    @media (max-width: 800px) {
+      .intro-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .stats-row {
+        justify-content: center;
+      }
+
+      .avatar-frame {
+        width: 200px;
+        margin: 0 auto;
+      }
+
+      .book-scene {
+        height: 500px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Elements -->
+  <div class="top-glow"></div>
+  <div class="fixed bottom-0 left-0 w-full h-1"
+    style="background: linear-gradient(90deg, transparent, #8b5cf6, transparent); opacity: 0.2;"></div>
+
+  <!-- Navigation -->
+  <header class="switch-btn">
+    <nav class="nav-inner">
+      <a href="index.html" class="nav-logo-link"
+        style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
+        <img src="image/logo.png" alt="Michelle.Design Logo"
+          style="height: 16px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.2s;"
+          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+      </a>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about-me.html" class="nav-link active">About Me</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="studio-showcase">
+
+    <!-- INTRO -->
+    <section class="intro-section">
+      <div>
+        <span class="section-title">00_PLAYER_SELECT</span>
+
+        <h1 class="huge-title">
+          <span class="hacker-text" data-value="DESIGNER">DESIGNER</span><br>
+          <span class="hacker-text" data-value="BUILDER">BUILDER</span><br>
+          <span class="hacker-text text-primary" data-value="HUMANIST">HUMANIST</span>
+        </h1>
+
+        <p class="intro-bio" id="bio-text"></p>
+
+        <div class="stats-row">
+          <div class="stat-item"><b>4+</b><span>YRS EXP</span></div>
+          <div class="stat-item"><b>12</b><span>QUESTS</span></div>
+          <div class="stat-item"><b id="coffee-counter">8842</b><span>COFFEE</span></div>
+        </div>
+      </div>
+
+      <!-- Clickable Avatar -->
+      <div class="avatar-frame sfx-click" id="avatar-clicker" title="Click to Loot">
+        <div class="avatar-placeholder"></div>
+      </div>
+    </section>
+
+
+    <!-- BOOK SECTION -->
+    <span class="section-title">01_ORIGIN_LOG (FLIP TO READ)</span>
+    <div class="book-scene">
+      <div class="book">
+        <!-- Cover -->
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-face front" style="justify-content:center; align-items:center; text-align:center;">
+            <h2 style="font-family:'JetBrains Mono'; color:var(--primary); font-size:16px; line-height:1.4;">My journey
+              into design<br><span style="font-size:11px; color:var(--text-dim);">(and how it led you here)</span></h2>
+            <div class="tap-hint">TAP TO OPEN &gt;</div>
+          </div>
+          <div class="page-face back"></div>
+        </div>
+
+        <!-- Page 1 -->
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-face front">
+            <div class="log-header"><span>PAGE 01</span><span>DREAMING</span></div>
+            <div class="log-body">
+              <p>Like most kids, I grew up wondering what I wanted to be when I got older.</p>
+              <p>At one point or another, I dreamed of being a 3D animator, an engineer, an illustrator, an influencer,
+                an architect, even starting my own fashion brand. Looking back, all these dreams had one thing in
+                common: <b>I wanted to create things that made people feel something.</b></p>
+            </div>
+            <div class="tap-hint">NEXT &gt;</div>
+          </div>
+          <div class="page-face back"></div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-face front">
+            <div class="log-header"><span>PAGE 02</span><span>STUCK</span></div>
+            <div class="log-body">
+              <p>But when it came time to choose a major in college, I found myself... stuck.</p>
+              <p>I didn’t know exactly what I wanted to do, I just knew I wanted to build things that mattered.</p>
+              <p>That clarity didn’t come until my first year at the University of Washington, when I managed to land
+                one of the last two spots in an Informatics class.</p>
+            </div>
+            <div class="tap-hint">NEXT &gt;</div>
+          </div>
+          <div class="page-face back"></div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-face front">
+            <div class="log-header"><span>PAGE 03</span><span>EPIPHANY</span></div>
+            <div class="log-body">
+              <p>That class changed everything.</p>
+              <p>For the first time, I learned that design isn’t just about aesthetics, it’s everywhere. It’s in the
+                shape of a door handle; the order of buttons in an elevator; the way subtitles appear on a screen.</p>
+              <p>Suddenly, I started seeing design all around me, not just as art, but as systems created for (and
+                sometimes against) people.</p>
+            </div>
+            <div class="tap-hint">NEXT &gt;</div>
+          </div>
+          <div class="page-face back"></div>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="page" onclick="flipPage(this)">
+          <div class="page-face front">
+            <div class="log-header"><span>PAGE 04</span><span>DISCOVERY</span></div>
+            <div class="log-body">
+              <p>That’s when I found UX.</p>
+              <p>It was the perfect blend of creativity and logic, research, systems thinking, storytelling, and
+                problem-solving all in one. I was hooked.</p>
+              <p>Since then, I’ve thrown myself into every design project I could find.</p>
+              <p>This portfolio is a reflection of my journey. Thanks for being here.</p>
+            </div>
+            <div style="margin-top:auto; font-family:'JetBrains Mono'; font-size:10px;">[END OF LOG]</div>
+          </div>
+          <div class="page-face back"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <span class="section-title">02_TECH_ARSENAL</span>
+    <div class="skills-wrapper" id="skill-tree">
+      <div class="skill-tag sfx-click">FIGMA</div>
+      <div class="skill-tag sfx-click">PROTOTYPING</div>
+      <div class="skill-tag sfx-click">SYSTEM DESIGN</div>
+      <div class="skill-tag sfx-click">USER RESEARCH</div>
+      <div class="skill-tag sfx-click">HTML/CSS</div>
+      <div class="skill-tag sfx-click">MOTION</div>
+      <div class="skill-tag sfx-click">DATA VIZ</div>
+      <div class="skill-tag sfx-click">GAMIFICATION</div>
+      <div class="skill-tag sfx-click">STRATEGY</div>
+    </div>
+
+
+    <!-- GAME SECTION -->
+    <span class="section-title">03_SIDE_QUEST: HIDE & SEEK</span>
+    <div class="game-section-wrapper">
+      <div
+        style="display:flex; justify-content:space-between; width:100%; max-width:400px; margin-bottom:10px; font-family:'JetBrains Mono'; font-size:12px; color:#aaa;">
+        <span id="seek-status">WAITING...</span>
+        <span id="seek-timer">0.0s</span>
+      </div>
+
+      <div style="position:relative;">
+        <canvas id="game-board" width="400" height="400"></canvas>
+
+        <!-- Start Overlay -->
+        <div id="game-start-screen"
+          style="position:absolute; inset:0; background:rgba(0,0,0,0.6); display:flex; flex-direction:column; align-items:center; justify-content:center;">
+          <button id="start-inline-btn" class="game-btn sfx-click">USE FLASHLIGHT</button>
+        </div>
+
+        <!-- Result Overlay -->
+        <div id="game-result-screen"
+          style="position:absolute; inset:0; background:rgba(0,0,0,0.9); display:none; flex-direction:column; align-items:center; justify-content:center;">
+          <h2
+            style="color:var(--primary); margin-bottom:20px; text-transform:uppercase; letter-spacing:2px; text-align:center; font-size:24px;">
+            FOUND ME, HIRE ME!</h2>
+          <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+            <button onclick="startGame()" class="game-btn sfx-click">PLAY AGAIN</button>
+            <a href="mailto:michelleguan321@gmail.com" class="game-btn sfx-click"
+              style="text-decoration:none; display:inline-block; background:var(--primary); color:#fff;">CONTACT ME</a>
+          </div>
+        </div>
+      </div>
+      <p class="font-mono text-dim" style="font-size:12px; margin-top:16px;">Move mouse to search in the dark.</p>
+    </div>
+
+  </main>
+
+  <footer class="contact-footer"
+    style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim);">QUEST AVAILABLE
+    </div>
+    <a href="mailto:michelleguan321@gmail.com" class="contact-link sfx-hover">ACCEPT MISSION?</a>
+
+    <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+      <img src="image/logo.png" alt="Michelle.Design Logo"
+        style="height: 32px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.3s; cursor: pointer;"
+        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+      <p
+        style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); margin: 0; letter-spacing: 0.05em;">
+        © 2026 Michelle Guan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Background Script -->
+  <script src="js/ambient-field.js"></script>
+  <script src="js/cursor.js"></script>
+
+  <script>
+    // --- LOGIC PORTED FROM OLD FILE ---
+
+    // 1. Audio Engine (Simple Beeps)
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let audioEnabled = false;
+    window.addEventListener('click', () => {
+      if (!audioEnabled && audioCtx.state !== 'running') {
+        audioCtx.resume();
+        audioEnabled = true;
+      }
+    }, { once: true });
+
+    function playTone(freq, type = 'sine', duration = 0.1) {
+      if (audioCtx.state !== 'running') return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    }
+
+    // SFX Listeners
+    document.querySelectorAll('.sfx-hover').forEach(el => {
+      el.addEventListener('mouseenter', () => playTone(800, 'triangle', 0.05));
+    });
+    document.querySelectorAll('.sfx-click').forEach(el => {
+      el.addEventListener('click', () => playTone(400, 'square', 0.1));
+    });
+
+    // 2. Typewriter Bio
+    const bioText = "I’m Michelle, a Product Designer obsessed with the intersection of complex systems and human emotion. I don't just design screens; I design the rules of play.";
+    const bioContainer = document.getElementById('bio-text');
+    let bioIndex = 0;
+    function typeWriter() {
+      if (bioIndex < bioText.length) {
+        bioContainer.innerHTML += bioText.charAt(bioIndex);
+        bioIndex++;
+        setTimeout(typeWriter, 20);
+      }
+    }
+    setTimeout(typeWriter, 500);
+
+    // 3. Hacker Text Effect
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    document.querySelectorAll('.hacker-text').forEach(item => {
+      item.onmouseover = event => {
+        let iterations = 0;
+        const interval = setInterval(() => {
+          event.target.innerText = event.target.innerText.split("")
+            .map((letter, index) => {
+              if (index < iterations) return event.target.dataset.value[index];
+              return letters[Math.floor(Math.random() * 26)];
+            })
+            .join("");
+          if (iterations >= event.target.dataset.value.length) clearInterval(interval);
+          iterations += 1 / 3;
+        }, 30);
+      }
+    });
+
+    // 4. Avatar Loot Drop & 3D Tilt
+    const avatar = document.getElementById('avatar-clicker');
+    const dropIcons = ['🎨', '💻', '☕️', '✨', '🔥'];
+
+    // 3D Tilt Effect
+    avatar.addEventListener('mousemove', (e) => {
+      const rect = avatar.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -15;
+      const rotateY = ((x - centerX) / centerX) * 15;
+
+      avatar.style.transform = `scale(1.05) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      avatar.style.boxShadow = `${-rotateY}px ${rotateX}px 40px rgba(139, 92, 246, 0.3)`;
+      avatar.style.borderColor = 'var(--primary)';
+    });
+
+    avatar.addEventListener('mouseleave', () => {
+      avatar.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease-out';
+      avatar.style.transform = 'scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      avatar.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.05)';
+      avatar.style.borderColor = 'rgba(255, 255, 255, 0.6)';
+
+      // Reset transition duration after animation
+      setTimeout(() => {
+        avatar.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out';
+      }, 500);
+    });
+
+    // Loot Drop on click
+    avatar.addEventListener('click', (e) => {
+      playTone(600 + (Math.random() * 200), 'square', 0.1);
+
+      // Shake effect, preserving current 3D rotation if possible
+      const currentTransform = avatar.style.transform || 'scale(1.05)';
+      avatar.style.transform = currentTransform + ' scale(0.9) rotate(5deg)';
+      setTimeout(() => avatar.style.transform = currentTransform, 150);
+
+      // Pop Icon
+      const icon = document.createElement('div');
+      icon.innerText = dropIcons[Math.floor(Math.random() * dropIcons.length)];
+      icon.className = 'float-icon';
+      icon.style.color = Math.random() > 0.5 ? '#8b5cf6' : '#111827';
+
+      const rect = avatar.getBoundingClientRect();
+      icon.style.left = (e.clientX - rect.left) + "px";
+      icon.style.top = (e.clientY - rect.top) + "px";
+
+      avatar.appendChild(icon);
+      setTimeout(() => icon.remove(), 1000);
+    });
+
+    // 5. Skills Equip
+    document.querySelectorAll('.skill-tag').forEach(skill => {
+      skill.addEventListener('click', function () {
+        this.classList.toggle('equipped');
+        playTone(this.classList.contains('equipped') ? 1000 : 300, 'sine', 0.1);
+      });
+    });
+
+    // 6. Page Flip
+    window.flipPage = function (el) {
+      el.classList.toggle('flipped');
+      playTone(400, 'sine', 0.1);
+    };
+
+    // 7. Hide & Seek Game
+    const startInlineBtn = document.getElementById('start-inline-btn');
+    const startScreen = document.getElementById('game-start-screen');
+    const resultScreen = document.getElementById('game-result-screen');
+    const statusEl = document.getElementById('seek-status');
+    const timerEl = document.getElementById('seek-timer');
+    const canvasGame = document.getElementById('game-board');
+    const ctxGame = canvasGame.getContext('2d');
+
+    let gameActive = false;
+    let startTime = 0;
+    let target = { x: 0, y: 0, size: 40, icon: '🐱' };
+    let mouse = { x: -100, y: -100 };
+
+    startInlineBtn.addEventListener('click', startGame);
+
+    function startGame() {
+      gameActive = true;
+      startTime = Date.now();
+      target.x = 50 + Math.random() * 300;
+      target.y = 50 + Math.random() * 300;
+
+      startScreen.style.display = 'none';
+      resultScreen.style.display = 'none';
+      statusEl.innerText = "SEARCHING...";
+      statusEl.style.color = "#8b5cf6";
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    canvasGame.addEventListener('mousemove', (e) => {
+      const rect = canvasGame.getBoundingClientRect();
+      const scaleX = canvasGame.width / rect.width;
+      const scaleY = canvasGame.height / rect.height;
+      mouse.x = (e.clientX - rect.left) * scaleX;
+      mouse.y = (e.clientY - rect.top) * scaleY;
+    });
+
+    canvasGame.addEventListener('click', () => {
+      if (!gameActive) return;
+      const dx = mouse.x - target.x;
+      const dy = mouse.y - target.y;
+      if (Math.sqrt(dx * dx + dy * dy) < 60) {
+        endGame();
+      }
+    });
+
+    function gameLoop() {
+      if (!gameActive) return;
+
+      const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+      timerEl.innerText = elapsed + "s";
+
+      // Draw
+      ctxGame.fillStyle = "#ffffff";
+      ctxGame.fillRect(0, 0, 400, 400);
+
+      // Draw Target (Hidden)
+      ctxGame.font = "30px Arial";
+      ctxGame.textAlign = "center";
+      ctxGame.textBaseline = "middle";
+      ctxGame.fillText(target.icon, target.x, target.y);
+
+      // Darkness Mask
+      ctxGame.globalCompositeOperation = 'source-over';
+      ctxGame.fillStyle = "rgba(0,0,0,0.95)";
+      ctxGame.beginPath();
+      ctxGame.rect(0, 0, 400, 400);
+      ctxGame.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2, true);
+      ctxGame.fill();
+
+      // Flashlight Ring
+      ctxGame.strokeStyle = "rgba(255,255,255,0.2)";
+      ctxGame.lineWidth = 2;
+      ctxGame.beginPath();
+      ctxGame.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
+      ctxGame.stroke();
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    function endGame() {
+      gameActive = false;
+      statusEl.innerText = "CAUGHT!";
+      resultScreen.style.display = 'flex';
+      playTone(800, 'square', 0.2);
+    }
+
+  </script>
+</body>
+
+</html>
