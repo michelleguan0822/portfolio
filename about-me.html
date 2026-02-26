@@ -520,19 +520,17 @@
     .envelope-wrapper.is-open .btn-close-letter {
       opacity: 1;
       pointer-events: auto;
-      transition-delay: 0.3s;
     }
 
-    .btn-close-letter:hover {
-      color: #111827;
-      background: rgba(0, 0, 0, 0.1);
+    .fold-btn-close:hover {
+      background: var(--primary);
+      color: #fff;
     }
 
-    .envelope-hint {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: rgba(0, 0, 0, 0.3);
-      letter-spacing: 2px;
+    /* Subtle creases on the unfolded paper */
+    .fold-middle .fold-face.front {
+      border-top: 1px dashed rgba(139, 92, 246, 0.2);
+      border-bottom: 1px dashed rgba(139, 92, 246, 0.2);
     }
 
     /* ---------------- GAME ---------------- */
@@ -633,6 +631,16 @@
         transform: translateY(-200px);
       }
 
+      .folded-scene {
+        margin: 60px auto 100px;
+        height: auto;
+      }
+
+      .folded-wrapper {
+        width: 100%;
+        max-width: 320px;
+      }
+
       body {
         cursor: auto !important;
       }
@@ -712,7 +720,7 @@
     <!-- LETTER SECTION -->
     <span class="section-title">01_ORIGIN_LOG (TAP TO OPEN)</span>
     <div class="letter-scene">
-      <div class="envelope-wrapper sfx-hover" id="letter-wrapper" onclick="openLetter(event)">
+      <div class="envelope-wrapper sfx-hover" id="letter-wrapper" onclick="openLetter(event, 'letter-wrapper')">
         <div class="env-back"></div>
         <div class="env-flap">
           <div class="env-flap-seal">
@@ -725,7 +733,7 @@
         </div>
 
         <div class="env-letter" onclick="event.stopPropagation()">
-          <button class="btn-close-letter" onclick="closeLetter(event)" title="Close">
+          <button class="btn-close-letter" onclick="closeLetter(event, 'letter-wrapper')" title="Close">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 6 6 18" />
@@ -819,6 +827,71 @@
         </div>
       </div>
       <p class="font-mono text-dim" style="font-size:12px; margin-top:16px;">Move mouse to search in the dark.</p>
+    </div>
+
+    <!-- SECRET LETTER SECTION -->
+    <span class="section-title">04_SECRET_MESSAGE (UNFOLD)</span>
+    <div class="folded-scene">
+      <div class="folded-wrapper sfx-hover" id="folded-note" onclick="toggleFolded(event)">
+
+        <!-- Top Flap -->
+        <div class="fold-panel fold-top">
+          <div class="fold-face front">
+            <div class="fold-content-inner">
+              <div
+                style="font-family:'JetBrains Mono'; color:#8b5cf6; font-size:10px; margin-bottom: 12px; background:white; display:inline-block; padding:2px 6px; border-radius:4px;">
+                CLASSIFIED // LOG END</div>
+              <p>Stay curious, and keep exploring!</p>
+              <div style="text-align: right; margin-top: 15px; font-weight: bold; color: #111827;">- Michelle Guan</div>
+            </div>
+          </div>
+          <div class="fold-face back">
+            <div class="folded-hint">PULL TO UNFOLD</div>
+            <div class="fold-seal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="m14.5 10-2-2m-3 3-2-2m-2 6 2-2m10 2 2-2m-1 7-9-9c-1.1-1.1-1.1-2.9 0-4s2.9-1.1 4 0l9 9c1.1 1.1 1.1 2.9 0 4s-2.9 1.1-4 0Z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Panel -->
+        <div class="fold-panel fold-middle">
+          <div class="fold-face front">
+            <button class="fold-btn-close" onclick="closeFolded(event)" title="Fold back">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="m18 15-6-6-6 6" />
+              </svg>
+            </button>
+            <div class="fold-content-inner">
+              <p>This is a secret space hidden down at the bottom of my portfolio.</p>
+              <p>Thank you for scrolling all the way down here and taking the time to explore.</p>
+              <p>If you're reading this, we should probably work together.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Flap -->
+        <div class="fold-panel fold-bottom">
+          <div class="fold-face front">
+            <div class="fold-content-inner">
+              <div
+                style="font-family:'JetBrains Mono'; color:#f43f5e; font-size:10px; margin-bottom: 12px; border: 1px solid #f43f5e; display:inline-block; padding:2px 6px; border-radius:4px;">
+                TOP SECRET</div>
+              <p style="font-weight:bold; font-size: 16px; color:#111827; margin:0 0 10px 0;">You found the folded note!
+                🦋</p>
+              <p style="margin: 0;">It's nice to meet you.</p>
+            </div>
+          </div>
+          <div class="fold-face back">
+            <!-- Automatically covered by top flap when folded -->
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </main>
@@ -979,9 +1052,9 @@ To rethink how things work, and never let the box define my work.`;
     });
 
     // 6. Letter Interaction
-    window.openLetter = function (event) {
+    window.openLetter = function (event, wrapperId = 'letter-wrapper') {
       if (event) event.stopPropagation();
-      const wrapper = document.getElementById('letter-wrapper');
+      const wrapper = document.getElementById(wrapperId);
       if (wrapper.classList.contains('is-open') || wrapper.classList.contains('flap-open')) return;
 
       wrapper.classList.add('flap-open');
@@ -998,9 +1071,9 @@ To rethink how things work, and never let the box define my work.`;
       }, 800);
     };
 
-    window.closeLetter = function (event) {
+    window.closeLetter = function (event, wrapperId = 'letter-wrapper') {
       if (event) event.stopPropagation();
-      const wrapper = document.getElementById('letter-wrapper');
+      const wrapper = document.getElementById(wrapperId);
       if (!wrapper.classList.contains('is-open')) return;
 
       wrapper.classList.remove('is-open');
@@ -1015,6 +1088,24 @@ To rethink how things work, and never let the box define my work.`;
         wrapper.classList.remove('flap-open');
         playTone(500, 'sine', 0.1);
       }, 800);
+    };
+
+    // Folded Note Interaction
+    window.toggleFolded = function (event) {
+      if (event) event.stopPropagation();
+      const wrapper = document.getElementById('folded-note');
+      if (wrapper.classList.contains('is-open')) return;
+      wrapper.classList.add('is-open');
+      playTone(700, 'sine', 0.1);
+      setTimeout(() => playTone(800, 'sine', 0.1), 400);
+    };
+
+    window.closeFolded = function (event) {
+      if (event) event.stopPropagation();
+      const wrapper = document.getElementById('folded-note');
+      wrapper.classList.remove('is-open');
+      playTone(600, 'sine', 0.1);
+      setTimeout(() => playTone(500, 'sine', 0.1), 400);
     };
 
     // 7. Hide & Seek Game
