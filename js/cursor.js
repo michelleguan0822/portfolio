@@ -99,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     '.sfx-click',
     '.sfx-hover',
     '.page',
-    '.hero-title-dark span',
     '.section-title'
   ];
 
