@@ -735,6 +735,90 @@
       color: #fff;
     }
 
+    /* ---------------- PHOTOGRAPHY GRID ---------------- */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 120px;
+    }
+
+    .photo-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 16px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+    }
+
+    .photo-card.wide {
+      grid-column: span 2;
+    }
+
+    .photo-card:hover {
+      background: rgba(255, 255, 255, 0.8);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .photo-img-wrapper {
+      width: 100%;
+      height: 240px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      background: #f3f4f6;
+    }
+
+    .photo-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .photo-card:hover .photo-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .photo-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    .photo-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: #8b5cf6;
+      background: rgba(139, 92, 246, 0.1);
+      padding: 4px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .photo-loc {
+      font-size: 12px;
+      font-weight: 500;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .photo-card.wide {
+        grid-column: span 1;
+      }
+    }
+
     /* ---------------- FOOTER ---------------- */
     .contact-footer {
       border-top: 1px solid var(--surface-border);
@@ -955,6 +1039,60 @@
       <div class="skill-tag sfx-click">DATA VIZ</div>
       <div class="skill-tag sfx-click">GAMIFICATION</div>
       <div class="skill-tag sfx-click">STRATEGY</div>
+    </div>
+    <!-- PHOTOGRAPHY SECTION -->
+    <span class="section-title">02_PHOTOGRAPHY_LOG</span>
+    <div class="photo-grid">
+      <!-- Photo Card 1 -->
+      <div class="photo-card sfx-hover">
+        <div class="photo-img-wrapper">
+          <img src="image/gallery/photo1.jpg" alt="Photography 1" onerror="this.src='image/TMS/background.png'">
+        </div>
+        <div class="photo-meta">
+          <span class="photo-tag">URBAN</span>
+          <span class="photo-loc">TOKYO, JP</span>
+        </div>
+      </div>
+      <!-- Photo Card 2 -->
+      <div class="photo-card sfx-hover">
+        <div class="photo-img-wrapper">
+          <img src="image/gallery/photo2.jpg" alt="Photography 2" onerror="this.src='image/TMS/background.png'">
+        </div>
+        <div class="photo-meta">
+          <span class="photo-tag">NATURE</span>
+          <span class="photo-loc">KYOTO, JP</span>
+        </div>
+      </div>
+      <!-- Photo Card 3 (Wide) -->
+      <div class="photo-card wide sfx-hover">
+        <div class="photo-img-wrapper">
+          <img src="image/gallery/photo3.jpg" alt="Photography 3" onerror="this.src='image/TMS/background.png'">
+        </div>
+        <div class="photo-meta">
+          <span class="photo-tag">ARCHITECTURE</span>
+          <span class="photo-loc">SAN FRANCISCO, CA</span>
+        </div>
+      </div>
+      <!-- Photo Card 4 -->
+      <div class="photo-card sfx-hover">
+        <div class="photo-img-wrapper">
+          <img src="image/gallery/photo4.jpg" alt="Photography 4" onerror="this.src='image/TMS/background.png'">
+        </div>
+        <div class="photo-meta">
+          <span class="photo-tag">PORTRAIT</span>
+          <span class="photo-loc">NEW YORK, NY</span>
+        </div>
+      </div>
+      <!-- Photo Card 5 -->
+      <div class="photo-card sfx-hover">
+        <div class="photo-img-wrapper">
+          <img src="image/gallery/photo5.jpg" alt="Photography 5" onerror="this.src='image/TMS/background.png'">
+        </div>
+        <div class="photo-meta">
+          <span class="photo-tag">STREET</span>
+          <span class="photo-loc">SEATTLE, WA</span>
+        </div>
+      </div>
     </div>
 
 
