@@ -69,9 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   function updateCursor() {
-    // Interpolation for slight smooth lag, ~0.2 is very responsive but smooth
-    mouseX += (targetX - mouseX) * 0.25;
-    mouseY += (targetY - mouseY) * 0.25;
+    // Interpolation for slight smooth lag.
+    // 0.8 is extremely snappy and responsive, almost 1:1 with the mouse.
+    mouseX += (targetX - mouseX) * 0.8;
+    mouseY += (targetY - mouseY) * 0.8;
 
     spotlight.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0) scale(1)`;
 
