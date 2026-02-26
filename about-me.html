@@ -8,8 +8,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400&family=Press+Start+2P&display=swap"
     rel="stylesheet">
-  <!-- Note: Kept Press Start 2P for the game/book elements -->
-
+  <link rel="stylesheet" href="styles.css">
   <style>
     :root {
       --primary: #8b5cf6;
@@ -91,49 +90,7 @@
     }
 
     /* ---------------- NAV (Synced with Index) ---------------- */
-    .switch-btn {
-      position: fixed;
-      top: 24px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      z-index: 2000;
-      pointer-events: none;
-    }
-
-    .nav-inner {
-      pointer-events: auto;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(16px);
-      padding: 6px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      display: flex;
-      gap: 6px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    }
-
-    .nav-link {
-      padding: 8px 16px;
-      font-size: 13px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      transition: 0.2s;
-      color: #6b7280;
-      border-radius: 999px;
-    }
-
-    .nav-link:hover {
-      color: #111827;
-      background: rgba(0, 0, 0, 0.03);
-    }
-
-    .nav-link.active {
-      background: #ffffff;
-      color: #111827;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
+    /* Removed redundant nav CSS; using styles.css instead */
 
 
     /* ---------------- STUDIO CONTAINER ---------------- */
@@ -318,117 +275,264 @@
       box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
     }
 
-    /* ---------------- BOOK ---------------- */
-    .book-scene {
+    /* ---------------- LETTER ---------------- */
+    .letter-scene {
       width: 100%;
       max-width: 600px;
-      height: 400px;
+      height: 440px;
       margin: 0 auto 120px;
-      perspective: 1500px;
       position: relative;
-    }
-
-    .book {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-    }
-
-    .page {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      top: 0;
-      right: 0;
-      transform-origin: left center;
-      transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-      transform-style: preserve-3d;
-      cursor: pointer;
-    }
-
-    .page-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
       display: flex;
-      flex-direction: column;
-      padding: 40px;
-      background: #ffffff;
-      /* White Paper */
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      justify-content: center;
+      align-items: center;
     }
 
-    .page-face.front {
-      border-right: 2px solid var(--primary);
+    .envelope-wrapper {
+      position: relative;
+      width: 360px;
+      height: 240px;
+      cursor: pointer;
+      transition: transform 0.4s ease;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      z-index: 10;
     }
 
-    .page-face.back {
-      transform: rotateY(180deg);
+    .envelope-wrapper:hover {
+      transform: translateY(-5px);
+    }
+
+    .envelope-wrapper.is-open,
+    .envelope-wrapper.flap-open,
+    .envelope-wrapper.letter-up {
+      cursor: default;
+      transform: none;
+    }
+
+    .env-back {
+      position: absolute;
+      inset: 0;
+      background: #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      z-index: 1;
+    }
+
+    .env-letter {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 220px;
+      background: #fdfbf7;
+      /* subtle paper texture feel */
+      background-image: repeating-linear-gradient(translate, #fdfbf7, #fdfbf7 26px, #e5e7eb 27px, #fdfbf7 28px);
+      border-radius: 4px;
+      z-index: 2;
+      padding: 30px 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .env-letter-title {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--primary);
+      opacity: 1;
+      transition: opacity 0.3s;
+      z-index: 10;
+    }
+
+    .env-letter-content {
+      position: relative;
+      opacity: 0;
+      transition: opacity 0.4s;
+      font-size: 13px;
+      color: #374151;
+      line-height: 28px;
+      /* Match repeating gradient size */
+      height: 100%;
+      overflow-y: auto;
+      pointer-events: none;
+    }
+
+    .env-letter-content p {
+      margin-top: 0;
+      margin-bottom: 28px;
+    }
+
+    .env-letter-content b {
+      color: #111827;
+      background: rgba(255, 255, 255, 0.5);
+      /* subtle highlight on text so lines don't distract */
+    }
+
+    .env-front-left {
+      position: absolute;
+      inset: 0;
       background: #f3f4f6;
-      /* Back of page */
-      border-left: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .page.flipped {
-      transform: rotateY(-180deg);
-    }
-
-    /* Stacking */
-    .page:nth-child(1) {
-      z-index: 8;
-    }
-
-    .page:nth-child(2) {
-      z-index: 7;
-    }
-
-    .page:nth-child(3) {
-      z-index: 6;
-    }
-
-    .page:nth-child(4) {
-      z-index: 5;
-    }
-
-    .page:nth-child(5) {
-      z-index: 4;
-    }
-
-    .page:nth-child(6) {
+      border-radius: 8px;
+      clip-path: polygon(0 0, 50% 50%, 0 100%);
       z-index: 3;
     }
 
-    /* Book Content */
-    .log-header {
+    .env-front-right {
+      position: absolute;
+      inset: 0;
+      background: #f3f4f6;
+      border-radius: 8px;
+      clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+      z-index: 3;
+    }
+
+    .env-front-bottom {
+      position: absolute;
+      inset: 0;
+      background: #f9fafb;
+      border-radius: 8px;
+      clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+      z-index: 4;
       display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--primary);
-      padding-bottom: 10px;
-      margin-bottom: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--primary);
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 24px;
     }
 
-    .log-body {
-      font-size: 13px;
-      color: #374151;
-      line-height: 1.5;
+    .env-stamp {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 54px;
+      background: #fff;
+      border: 2px dashed #d1d5db;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 5;
+      opacity: 1;
+      transition: opacity 0.3s;
     }
 
-    .log-body p {
-      margin-top: 0;
-      margin-bottom: 10px;
+    .env-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background: #e5e7eb;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-radius: 8px 8px 0 0;
+      transform-origin: top;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      pointer-events: none;
+      /* Let clicks pass through when folded */
     }
 
-    .tap-hint {
-      margin-top: auto;
-      align-self: flex-end;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
+    .env-flap-seal {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-bottom: -15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(168, 85, 247, 0.4);
+    }
+
+    /* STATES */
+    .envelope-wrapper.flap-open .env-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+
+    .envelope-wrapper.flap-open .env-back {
+      z-index: 0;
+    }
+
+    .envelope-wrapper.flap-open .env-letter {
+      z-index: 2;
+      /* Put letter above the open flap but under the front panels */
+    }
+
+    .envelope-wrapper.letter-up .env-letter {
+      transform: translateY(-240px);
+      z-index: 2;
+    }
+
+    .envelope-wrapper.is-open .env-letter {
+      transform: translateY(-80px);
+      left: -40px;
+      width: calc(100% + 80px);
+      height: 480px;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      pointer-events: auto;
+      user-select: auto;
+      z-index: 50;
+      /* Bring fully to front when open */
+    }
+
+    .envelope-wrapper.is-open .env-letter-title {
+      opacity: 0;
+    }
+
+    .envelope-wrapper.is-open .env-letter-content {
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: 0.3s;
+    }
+
+    .btn-close-letter {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
       color: #9ca3af;
+      opacity: 0;
+      transition: opacity 0.3s, background 0.2s;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .envelope-wrapper.is-open .btn-close-letter {
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: 0.3s;
+    }
+
+    .btn-close-letter:hover {
+      color: #111827;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .envelope-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.3);
+      letter-spacing: 2px;
     }
 
     /* ---------------- GAME ---------------- */
@@ -506,62 +610,27 @@
         margin: 0 auto;
       }
 
-      .book-scene {
+      .letter-scene {
         height: auto;
         min-height: 500px;
-        perspective: none;
         margin-bottom: 60px;
-        display: flex;
-        justify-content: center;
       }
 
-      .book {
+      .envelope-wrapper {
         width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        box-shadow: none;
-        transform: none !important;
+        max-width: 320px;
+        margin: 0 auto;
       }
 
-      .page {
+      .envelope-wrapper.is-open .env-letter {
+        left: 0;
         width: 100%;
-        height: auto;
-        position: relative;
-        transform: none !important;
-        transform-origin: unset !important;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        padding: 24px;
-        pointer-events: auto !important;
-        z-index: 1 !important;
-        background: #fff;
+        transform: translateY(-80px);
+        height: 520px;
       }
 
-      .page.cover {
-        display: none;
-      }
-
-      .page-face {
-        position: relative !important;
-        width: 100%;
-        height: auto;
-        transform: none !important;
-        border: none !important;
-        padding: 0 !important;
-      }
-
-      .page-face.back {
-        display: none !important;
-      }
-
-      .log-body {
-        font-size: 14px;
-      }
-
-      .page-shadow {
-        display: none;
+      .envelope-wrapper.letter-up .env-letter {
+        transform: translateY(-200px);
       }
 
       body {
@@ -596,17 +665,17 @@
   <div class="fixed bottom-0 left-0 w-full h-1"
     style="background: linear-gradient(90deg, transparent, #8b5cf6, transparent); opacity: 0.2;"></div>
 
-  <!-- Navigation -->
-  <header class="switch-btn">
+  <!-- Navigation Bar -->
+  <header class="nav-shell">
     <nav class="nav-inner">
-      <a href="index.html" class="nav-logo-link"
+      <a href="index.html" class="nav-logo-link "
         style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
         <img src="image/logo.png" alt="Michelle.Design Logo"
           style="height: 16px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.2s;"
           onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
       </a>
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about-me.html" class="nav-link active">About Me</a>
+      <a href="index.html">Home</a>
+      <a href="about-me.html" class="active">About Me</a>
     </nav>
   </header>
 
@@ -640,82 +709,66 @@
     </section>
 
 
-    <!-- BOOK SECTION -->
-    <span class="section-title">01_ORIGIN_LOG (FLIP TO READ)</span>
-    <div class="book-scene">
-      <div class="book">
-        <!-- Cover -->
-        <div class="page" onclick="flipPage(this)">
-          <div class="page-face front" style="justify-content:center; align-items:center; text-align:center;">
-            <h2 style="font-family:'JetBrains Mono'; color:var(--primary); font-size:16px; line-height:1.4;">My journey
-              into design<br><span style="font-size:11px; color:var(--text-dim);">(and how it led you here)</span></h2>
-            <div class="tap-hint">TAP TO OPEN &gt;</div>
+    <!-- LETTER SECTION -->
+    <span class="section-title">01_ORIGIN_LOG (TAP TO OPEN)</span>
+    <div class="letter-scene">
+      <div class="envelope-wrapper sfx-hover" id="letter-wrapper" onclick="openLetter(event)">
+        <div class="env-back"></div>
+        <div class="env-flap">
+          <div class="env-flap-seal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" style="color:white;">
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
           </div>
-          <div class="page-face back"></div>
         </div>
 
-        <!-- Page 1 -->
-        <div class="page" onclick="flipPage(this)">
-          <div class="page-face front">
-            <div class="log-header"><span>PAGE 01</span><span>DREAMING</span></div>
-            <div class="log-body">
-              <p>Like most kids, I grew up wondering what I wanted to be when I got older.</p>
-              <p>At one point or another, I dreamed of being a 3D animator, an engineer, an illustrator, an influencer,
-                an architect, even starting my own fashion brand. Looking back, all these dreams had one thing in
-                common: <b>I wanted to create things that made people feel something.</b></p>
-            </div>
-            <div class="tap-hint">NEXT &gt;</div>
+        <div class="env-letter" onclick="event.stopPropagation()">
+          <button class="btn-close-letter" onclick="closeLetter(event)" title="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+          <div class="env-letter-title">A Letter from Michelle</div>
+          <div class="env-letter-content">
+            <div style="font-family:'JetBrains Mono'; color:var(--primary); font-size:10px; margin-bottom: 24px;">
+              ORIGIN_LOG // RECORDED</div>
+            <p>Like most kids, I grew up wondering what I wanted to be when I got older.</p>
+            <p>At one point or another, I dreamed of being a 3D animator, an engineer, an illustrator, an influencer, an
+              architect, even starting my own fashion brand. Looking back, all these dreams had one thing in common:
+              <b>I wanted to create things that made people feel something.</b>
+            </p>
+            <p>But when it came time to choose a major in college, I found myself... stuck.</p>
+            <p>I didn’t know exactly what I wanted to do, I just knew I wanted to build things that mattered.</p>
+            <p>That clarity didn’t come until my first year at the University of Washington, when I managed to land one
+              of the last two spots in an Informatics class.</p>
+            <p>That class changed everything.</p>
+            <p>For the first time, I learned that design isn’t just about aesthetics, it’s everywhere. It’s in the shape
+              of a door handle; the order of buttons in an elevator; the way subtitles appear on a screen.</p>
+            <p>Suddenly, I started seeing design all around me, not just as art, but as systems created for (and
+              sometimes against) people.</p>
+            <p>That’s when I found UX.</p>
+            <p>It was the perfect blend of creativity and logic, research, systems thinking, storytelling, and
+              problem-solving all in one. I was hooked.</p>
+            <p>Since then, I’ve thrown myself into every design project I could find.</p>
+            <p>This portfolio is a reflection of my journey. Thanks for being here.</p>
+            <div style="margin-top:24px; font-family:'JetBrains Mono'; font-size:10px; color:#aaa;">[END OF LOG]</div>
           </div>
-          <div class="page-face back"></div>
         </div>
 
-        <!-- Page 2 -->
-        <div class="page" onclick="flipPage(this)">
-          <div class="page-face front">
-            <div class="log-header"><span>PAGE 02</span><span>STUCK</span></div>
-            <div class="log-body">
-              <p>But when it came time to choose a major in college, I found myself... stuck.</p>
-              <p>I didn’t know exactly what I wanted to do, I just knew I wanted to build things that mattered.</p>
-              <p>That clarity didn’t come until my first year at the University of Washington, when I managed to land
-                one of the last two spots in an Informatics class.</p>
-            </div>
-            <div class="tap-hint">NEXT &gt;</div>
-          </div>
-          <div class="page-face back"></div>
+        <div class="env-front-left"></div>
+        <div class="env-front-right"></div>
+        <div class="env-front-bottom">
+          <div class="envelope-hint">OPEN ME</div>
         </div>
-
-        <!-- Page 3 -->
-        <div class="page" onclick="flipPage(this)">
-          <div class="page-face front">
-            <div class="log-header"><span>PAGE 03</span><span>EPIPHANY</span></div>
-            <div class="log-body">
-              <p>That class changed everything.</p>
-              <p>For the first time, I learned that design isn’t just about aesthetics, it’s everywhere. It’s in the
-                shape of a door handle; the order of buttons in an elevator; the way subtitles appear on a screen.</p>
-              <p>Suddenly, I started seeing design all around me, not just as art, but as systems created for (and
-                sometimes against) people.</p>
-            </div>
-            <div class="tap-hint">NEXT &gt;</div>
-          </div>
-          <div class="page-face back"></div>
+        <div class="env-stamp">
+          <div
+            style="font-size:12px; color:#aaa; font-family:'JetBrains Mono'; transform:rotate(12deg); font-weight:bold;">
+            M.G</div>
         </div>
-
-        <!-- Page 4 -->
-        <div class="page" onclick="flipPage(this)">
-          <div class="page-face front">
-            <div class="log-header"><span>PAGE 04</span><span>DISCOVERY</span></div>
-            <div class="log-body">
-              <p>That’s when I found UX.</p>
-              <p>It was the perfect blend of creativity and logic, research, systems thinking, storytelling, and
-                problem-solving all in one. I was hooked.</p>
-              <p>Since then, I’ve thrown myself into every design project I could find.</p>
-              <p>This portfolio is a reflection of my journey. Thanks for being here.</p>
-            </div>
-            <div style="margin-top:auto; font-family:'JetBrains Mono'; font-size:10px;">[END OF LOG]</div>
-          </div>
-          <div class="page-face back"></div>
-        </div>
-
       </div>
     </div>
 
@@ -772,9 +825,6 @@
 
   <footer class="contact-footer"
     style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;">
-    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim);">QUEST AVAILABLE
-    </div>
-    <a href="mailto:michelleguan321@gmail.com" class="contact-link sfx-hover">ACCEPT MISSION?</a>
 
     <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
       <img src="image/logo.png" alt="Michelle.Design Logo"
@@ -826,12 +876,20 @@
     });
 
     // 2. Typewriter Bio
-    const bioText = "I’m Michelle, a Product Designer obsessed with the intersection of complex systems and human emotion. I don't just design screens; I design the rules of play.";
+    const bioText = `"Think Different" — Apple has always been one of my favorite quotes.
+    
+It inspires me not just to think differently, but to be the different one.
+    
+To rethink how things work, and never let the box define my work.`;
     const bioContainer = document.getElementById('bio-text');
     let bioIndex = 0;
     function typeWriter() {
       if (bioIndex < bioText.length) {
-        bioContainer.innerHTML += bioText.charAt(bioIndex);
+        if (bioText.charAt(bioIndex) === '\n') {
+          bioContainer.innerHTML += '<br>';
+        } else {
+          bioContainer.innerHTML += bioText.charAt(bioIndex);
+        }
         bioIndex++;
         setTimeout(typeWriter, 20);
       }
@@ -920,10 +978,43 @@
       });
     });
 
-    // 6. Page Flip
-    window.flipPage = function (el) {
-      el.classList.toggle('flipped');
-      playTone(400, 'sine', 0.1);
+    // 6. Letter Interaction
+    window.openLetter = function (event) {
+      if (event) event.stopPropagation();
+      const wrapper = document.getElementById('letter-wrapper');
+      if (wrapper.classList.contains('is-open') || wrapper.classList.contains('flap-open')) return;
+
+      wrapper.classList.add('flap-open');
+      playTone(600, 'sine', 0.1);
+
+      setTimeout(() => {
+        wrapper.classList.add('letter-up');
+        playTone(700, 'sine', 0.1);
+      }, 400);
+
+      setTimeout(() => {
+        wrapper.classList.add('is-open');
+        playTone(800, 'triangle', 0.15);
+      }, 800);
+    };
+
+    window.closeLetter = function (event) {
+      if (event) event.stopPropagation();
+      const wrapper = document.getElementById('letter-wrapper');
+      if (!wrapper.classList.contains('is-open')) return;
+
+      wrapper.classList.remove('is-open');
+      playTone(700, 'sine', 0.1);
+
+      setTimeout(() => {
+        wrapper.classList.remove('letter-up');
+        playTone(600, 'sine', 0.1);
+      }, 400);
+
+      setTimeout(() => {
+        wrapper.classList.remove('flap-open');
+        playTone(500, 'sine', 0.1);
+      }, 800);
     };
 
     // 7. Hide & Seek Game

@@ -4,31 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MICHELLE.GUAN | Chaos Navigator</title>
+    <title>Play | ROBO.SYS</title>
 
+    <!-- Tailwind CSS for rapid styling matching the Next.js prototype -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Spline Web Component -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@latest/build/spline-viewer.js"></script>
+
+    <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap"
         rel="stylesheet">
 
+    <!-- Base Custom Styles for Nav and Cursor -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cursor-styles.css">
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Nav adjustment for play page so it fits cleanly over black */
+        .nav-shell {
+            z-index: 50;
+        }
+
+        spline-viewer {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Hide Spline Watermark */
+        spline-viewer::part(logo) {
+            display: none !important;
+        }
+
+        /* Prevent global styles.css white gradient overlay from hiding the Spline scene */
+        body::before {
+            display: none !important;
+        }
+
+        /* Glassmorphism custom tailwind overrides to match the prototype exact values if needed */
+        .glass-card {
+            background-color: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px) scale(1.05);
+        }
+    </style>
 </head>
 
-<body>
-
-    <!-- Ambient Pixel Layer -->
-    <canvas id="pixel-canvas"></canvas>
-
-    <!-- Custom Cursor Spotlight -->
-    <div id="cursor-spotlight"></div>
-
-    <!-- Global Noise Background -->
-    <div class="noise-overlay"></div>
-
-    <!-- Ambient Glow -->
-    <div class="ambient-glow"></div>
+<body class="relative w-screen h-screen overflow-hidden text-white font-sans bg-black">
 
     <!-- Navigation Bar -->
     <header class="nav-shell">
@@ -36,7 +78,7 @@
             <a href="index.html" class="nav-logo-link"
                 style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
                 <img src="image/logo.png" alt="Michelle.Design Logo"
-                    style="height: 16px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.2s;"
+                    style="height: 16px; filter: grayscale(100%) contrast(1.2) invert(1); opacity: 0.8; transition: opacity 0.2s;"
                     onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
             </a>
             <a href="index.html" class="active">Home</a>
@@ -44,188 +86,219 @@
         </nav>
     </header>
 
-    <!-- 1. LOADING SCREEN -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loader-content">
-            <div class="loader-meta">
-                <span>Sys.Boot</span>
-                <span id="boot-percent">0%</span>
-            </div>
-
-            <div class="loader-track">
-                <div id="loader-bar" class="loader-bar"></div>
-                <div id="loader-glitch" class="loader-glitch"></div>
-            </div>
-
-            <div class="loader-log">
-                <p id="boot-text" class="animate-pulse">INITIALIZING KERNEL...</p>
-            </div>
-        </div>
+    <!-- Background Spline Scene -->
+    <div class="absolute inset-0 z-0 pointer-events-auto">
+        <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"></spline-viewer>
     </div>
 
-    <!-- 2. MAIN INTERFACE -->
-    <div id="main-interface" class="main-interface hidden">
+    <!-- Center Title -->
+    <div class="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none mt-12 md:mt-2">
+        <style>
+            .hero-title-dark {
+                display: flex;
+                justify-content: center;
+                margin: 0;
+                cursor: default;
+                z-index: 10;
+                pointer-events: auto;
+                /* Allow hover */
+            }
 
-        <!-- Hero Header -->
-        <header class="hero">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span>M</span><span>I</span><span>C</span><span>H</span><span>E</span><span>L</span><span>L</span><span>E</span><span>.</span><span>D</span><span>E</span><span>S</span><span>I</span><span>G</span><span>N</span>
-                </h1>
-                <div class="hero-tags">
-                    <span class="hero-tag">AI/Healthcare</span>
-                    <span class="hero-tag">Global Design Experience</span>
-                    <span class="hero-tag">3x App Store Launches</span>
-                </div>
-                <p class="hero-subtitle">Partnering with bold teams to design fast, ship smart.</p>
-            </div>
-            <button id="btn-profile" class="btn-profile group">
-                <span class="status-dot"></span>
-                Profile
-            </button>
-        </header>
+            .hero-title-dark span {
+                font-family: 'Roboto Flex', sans-serif;
+                font-size: 5rem;
+                /* Smaller for mobile, adjusted below for md */
+                font-variation-settings: "wdth" 25, "wght" 100;
+                letter-spacing: normal;
+                line-height: 0.95;
+                color: #ffffff;
+                /* White base for dark theme */
+                transition: font-variation-settings 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+            }
 
-        <!-- Work Deck (Cards Container) -->
-        <div id="work-deck" class="work-deck">
-            <div class="deck-hint">SYSTEM READY // DRAG TO DECODE</div>
-            <!-- Cards injected by JS -->
+            @media (min-width: 768px) {
+                .hero-title-dark span {
+                    font-size: 8rem;
+                    /* Match text-8xl */
+                }
+            }
+
+            .hero-title-dark span:hover {
+                font-variation-settings: "wdth" 120, "wght" 800;
+                color: #7D9CB8;
+            }
+
+            .hero-title-dark span:hover+span,
+            .hero-title-dark span:has(+ span:hover) {
+                font-variation-settings: "wdth" 70, "wght" 400;
+                color: #5A7E9D;
+            }
+
+            .hero-tags-dark {
+                display: flex;
+                gap: 12px;
+                margin-top: 16px;
+                margin-bottom: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+                pointer-events: auto;
+            }
+
+            .hero-tag-dark {
+                padding: 6px 16px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 999px;
+                font-family: 'Inter', sans-serif;
+                font-size: 13px;
+                font-weight: 500;
+                color: rgba(255, 255, 255, 0.8);
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(8px);
+                transition: all 0.3s ease;
+            }
+
+            .hero-tag-dark:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: #ffffff;
+            }
+        </style>
+        <h1 class="hero-title-dark" style="mix-blend-mode: plus-lighter;">
+            <span>M</span><span>I</span><span>C</span><span>H</span><span>E</span><span>L</span><span>L</span><span>E</span><span>.</span><span>D</span><span>E</span><span>S</span><span>I</span><span>G</span><span>N</span>
+        </h1>
+        <div class="hero-tags-dark">
+            <span class="hero-tag-dark">AI/Healthcare</span>
+            <span class="hero-tag-dark">Global Design Experience</span>
+            <span class="hero-tag-dark">3x App Store Launches</span>
         </div>
-
-        <!-- Reader Unit (Bottom Center) -->
-        <div id="reader-unit" class="reader-unit" aria-label="Reader">
-            <div class="reader-beam"></div>
-            <div class="reader-back"></div>
-            <div class="reader-slot"></div>
-            <div class="reader-front">
-                <div class="reader-texture"></div>
-                <div class="reader-logo">
-                    <i data-lucide="scan"></i>
-                </div>
-                <div class="reader-status">
-                    <i data-lucide="sparkles" class="status-icon left"></i>
-                    <span id="reader-text">INSERT CARD</span>
-                    <i data-lucide="sparkles" class="status-icon right"></i>
-                </div>
-            </div>
-        </div>
-
-        <!-- Global Footer -->
-        <footer class="global-footer"
-            style="padding: 160px 24px 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 20; position: relative; pointer-events: auto;">
-            <div
-                style="display: flex; flex-direction: column; align-items: center; gap: 24px; width: 100%; max-width: 800px;">
-                <img src="image/logo.png" alt="Michelle.Design Logo"
-                    style="height: 32px; opacity: 0.8; filter: grayscale(100%) contrast(1.2) invert(1); transition: opacity 0.3s; cursor: none;"
-                    class="sfx-hover" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
-                <div style="display: flex; gap: 24px;">
-                    <a href="mailto:michelleguan321@gmail.com" class="sfx-hover"
-                        style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; cursor: none;"
-                        onmouseover="this.style.color='#fff'"
-                        onmouseout="this.style.color='rgba(255,255,255,0.7)'">Email</a>
-                    <a href="#" class="sfx-hover"
-                        style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; cursor: none;"
-                        onmouseover="this.style.color='#fff'"
-                        onmouseout="this.style.color='rgba(255,255,255,0.7)'">LinkedIn</a>
-                </div>
-                <p
-                    style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.4); margin: 0; letter-spacing: 0.05em;">
-                    © 2026 Michelle Guan. All rights reserved.</p>
-            </div>
-        </footer>
-
+        <p class="text-[18px] text-white/70 max-w-[600px] text-center font-[Inter] pointer-events-auto">
+            Partnering with bold teams to design fast, ship smart.
+        </p>
     </div>
 
-    <!-- 3. PROJECT MODAL (optional) -->
-    <div id="project-modal" class="modal-backdrop hidden">
-        <div class="modal-card">
-            <button id="btn-close-modal" class="btn-close">
-                <i data-lucide="x"></i>
-            </button>
-
-            <div id="modal-visual" class="modal-visual">
-                <h2 id="modal-title">Project Title</h2>
-            </div>
-
-            <div class="modal-content">
-                <div class="modal-meta">
-                    <span id="modal-category" class="tag">UI/UX</span>
-                    <span id="modal-id" class="case-id">CASE #001</span>
+    <!-- 4 Corner Projects -->
+    <div class="absolute inset-0 z-20 pointer-events-none mt-20 md:mt-0">
+        <!-- Top Left -->
+        <div
+            class="absolute top-24 md:top-14 left-4 md:left-14 pointer-events-auto group -rotate-[3deg] hover:rotate-0 transition-transform duration-500">
+            <a href="unimo.html"
+                class="block w-72 md:w-80 p-5 rounded-3xl glass-card transition-all duration-500 cursor-pointer overflow-hidden relative">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 </div>
-
-                <h3 class="section-title">Brief</h3>
-                <p id="modal-desc" class="modal-body">Description...</p>
-
-                <div class="modal-footer">
-                    <h4 class="section-subtitle">Deliverables</h4>
-                    <ul class="deliverables-list">
-                        <li><span class="dot"></span>UI Design</li>
-                        <li><span class="dot"></span>Design System</li>
-                        <li><span class="dot"></span>Prototyping</li>
-                        <li><span class="dot"></span>User Research</li>
-                    </ul>
-
-                    <button class="btn-link">
-                        View Live Prototype <i data-lucide="arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. ABOUT DRAWER -->
-    <aside id="about-drawer" class="drawer-backdrop hidden">
-        <div class="drawer-panel">
-            <div class="drawer-header">
-                <h2>Profile.</h2>
-                <button id="btn-close-drawer" class="btn-icon">
-                    <i data-lucide="x"></i>
-                </button>
-            </div>
-
-            <div class="drawer-body">
-                <section>
-                    <h3>Bio</h3>
-                    <p>Digital product designer obsessed with the intersection of chaos and order. I build systems that
-                        feel organic and interactions that feel physical.</p>
-                </section>
-
-                <section>
-                    <h3>Connect</h3>
-                    <nav class="connect-links">
-                        <a href="mailto:michelleguan321@gmail.com" class="connect-item">
-                            <i data-lucide="mail"></i> hello@alex.design
-                        </a>
-                        <a href="#" class="connect-item">
-                            <i data-lucide="linkedin"></i> LinkedIn
-                        </a>
-                        <a href="#" class="connect-item">
-                            <i data-lucide="github"></i> GitHub
-                        </a>
-                    </nav>
-                </section>
-
-                <section>
-                    <h3>Resume</h3>
-                    <a href="#" class="resume-card">
-                        <div class="row">
-                            <i data-lucide="file-text"></i>
-                            <span>Download CV (PDF)</span>
+                <div class="relative z-10 flex flex-col gap-4">
+                    <img src="image/Unimo/hero.jpg" alt="Unimo UI"
+                        class="w-full h-36 object-cover rounded-xl opacity-90 shadow-lg pointer-events-none">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="text-xl font-bold text-white/95 group-hover:text-white transition-colors">UNIMO
+                            </h3>
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 text-white/0 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white/90 transition-all duration-300"></i>
                         </div>
-                        <i data-lucide="arrow-right"></i>
-                    </a>
-                </section>
-            </div>
-
-            <div class="drawer-footer">
-                SYSTEM STATUS: ONLINE <br> LATENCY: 12ms
-            </div>
+                        <p class="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">AI Companion &
+                            Emotional Expression</p>
+                    </div>
+                </div>
+            </a>
         </div>
-    </aside>
 
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="js/waterfall.js"></script>
-    <script src="js/app.js"></script>
+        <!-- Top Right -->
+        <div
+            class="absolute top-24 md:top-14 right-4 md:right-14 pointer-events-auto group rotate-[2deg] hover:rotate-0 transition-transform duration-500">
+            <a href="TMS.html"
+                class="block w-72 md:w-80 p-5 rounded-3xl glass-card transition-all duration-500 cursor-pointer overflow-hidden relative">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                </div>
+                <div class="relative z-10 flex flex-col gap-4">
+                    <img src="image/TMS/hero.png" alt="TMS Dashboard"
+                        class="w-full h-36 object-cover object-top rounded-xl opacity-90 shadow-lg pointer-events-none">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="text-xl font-bold text-white/95 group-hover:text-white transition-colors">TMS
+                                Dashboard</h3>
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 text-white/0 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white/90 transition-all duration-300"></i>
+                        </div>
+                        <p class="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">Clinical System &
+                            Data Visualization</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Bottom Left -->
+        <div
+            class="absolute bottom-8 lg:bottom-14 left-4 md:left-14 pointer-events-auto group rotate-[3deg] hover:rotate-0 transition-transform duration-500">
+            <a href="oltiva.html"
+                class="block w-72 md:w-80 p-5 rounded-3xl glass-card transition-all duration-500 cursor-pointer overflow-hidden relative">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                </div>
+                <div class="relative z-10 flex flex-col gap-4">
+                    <img src="image/avanade/hero_mockup.png" alt="Oltiva AI"
+                        class="w-full h-36 object-cover object-top rounded-xl opacity-90 shadow-lg pointer-events-none">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="text-xl font-bold text-white/95 group-hover:text-white transition-colors">Oltiva
+                                Insights</h3>
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 text-white/0 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white/90 transition-all duration-300"></i>
+                        </div>
+                        <p class="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">Enterprise AI
+                            Workflow & Docs</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Bottom Right -->
+        <div
+            class="absolute bottom-8 lg:bottom-14 right-4 md:right-14 pointer-events-auto group -rotate-[2deg] hover:rotate-0 transition-transform duration-500">
+            <a href="index.html"
+                class="block w-72 md:w-80 p-5 rounded-3xl glass-card transition-all duration-500 cursor-pointer overflow-hidden relative">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                </div>
+                <div class="relative z-10 flex flex-col gap-4">
+                    <img src="image/TMS/background.png" alt="Interface"
+                        class="w-full h-36 object-cover rounded-xl opacity-90 shadow-lg pointer-events-none">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <h3 class="text-xl font-bold text-white/95 group-hover:text-white transition-colors">
+                                Interface Design</h3>
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 text-white/0 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white/90 transition-all duration-300"></i>
+                        </div>
+                        <p class="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">Robotic systems &
+                            Web Environments</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Initialize Lucide icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <script>
+        // Remove Spline Watermark from Shadow DOM robustly
+        const hideSplineLogo = setInterval(() => {
+            const viewer = document.querySelector('spline-viewer');
+            if (viewer && viewer.shadowRoot) {
+                const logo = viewer.shadowRoot.querySelector('#logo');
+                if (logo) {
+                    logo.remove();
+                    clearInterval(hideSplineLogo);
+                }
+            }
+        }, 100);
+
+        // Safety fallback to clear interval after 10 seconds just in case
+        setTimeout(() => clearInterval(hideSplineLogo), 10000);
+    </script>
+    <script src="js/cursor.js"></script>
 </body>
 
 </html>
