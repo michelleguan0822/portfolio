@@ -83,6 +83,14 @@ class AmbientField {
         this.canvas.width = this.width;
         this.canvas.height = this.height;
         this.generateTargets(); // Regenerate targets based on new size
+
+        // Optimize: Cache the gradient instead of creating it every frame
+        this.bgGradient = this.ctx.createRadialGradient(
+            this.width * 0.8, this.height * 0.7, 0,
+            this.width * 0.8, this.height * 0.7, this.width * 0.6
+        );
+        this.bgGradient.addColorStop(0, 'rgba(139, 92, 246, 0.05)');
+        this.bgGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
     }
 
     generateTargets() {
@@ -163,16 +171,11 @@ class AmbientField {
     draw() {
         this.ctx.clearRect(0, 0, this.width, this.height);
 
-        // Optional: Very subtle deep red gradient glow on one side
-        // "subtle deep red gradient glow on one side" - likely right/bottom
-        const gradient = this.ctx.createRadialGradient(
-            this.width * 0.8, this.height * 0.7, 0,
-            this.width * 0.8, this.height * 0.7, this.width * 0.6
-        );
-        gradient.addColorStop(0, 'rgba(139, 92, 246, 0.05)'); // Extremely subtle
-        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-        this.ctx.fillStyle = gradient;
-        this.ctx.fillRect(0, 0, this.width, this.height);
+        // Use cached gradient
+        if (this.bgGradient) {
+            this.ctx.fillStyle = this.bgGradient;
+            this.ctx.fillRect(0, 0, this.width, this.height);
+        }
 
         this.particles.forEach(p => p.draw(this.ctx));
     }

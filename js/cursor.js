@@ -3,9 +3,9 @@
  * Matches the index.html cursor and expands on hover.
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Inject CSS for the cursor
-    const style = document.createElement('style');
-    style.innerHTML = `
+  // 1. Inject CSS for the cursor
+  const style = document.createElement('style');
+  style.innerHTML = `
       body {
         cursor: none !important;
       }
@@ -23,13 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
         pointer-events: none;
         mix-blend-mode: difference;
         z-index: 999999;
-        transform: translate(-50%, -50%) scale(0);
-        transition: transform 0.15s ease-out, opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
+        /* Use hardware acceleration */
+        will-change: transform, width, height;
+        transform: translate3d(-50%, -50%, 0) scale(0);
+        /* Note: remove transition from transform position to avoid laggy chasing,
+           we'll update translate3d instantly in JS frame, but transition scale/size */
+        transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
         opacity: 0;
       }
       body.has-cursor #cursor-spotlight {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate3d(-50%, -50%, 0) scale(1);
       }
       #cursor-spotlight.active {
         width: 80px;
@@ -37,53 +41,77 @@ document.addEventListener('DOMContentLoaded', () => {
         background: rgba(255, 255, 255, 0.8);
       }
     `;
-    document.head.appendChild(style);
+  document.head.appendChild(style);
 
-    // 2. Create cursor element
-    let spotlight = document.getElementById('cursor-spotlight');
-    if (!spotlight) {
-        spotlight = document.createElement('div');
-        spotlight.id = 'cursor-spotlight';
-        document.body.appendChild(spotlight);
+  // 2. Create cursor element
+  let spotlight = document.getElementById('cursor-spotlight');
+  if (!spotlight) {
+    spotlight = document.createElement('div');
+    spotlight.id = 'cursor-spotlight';
+    document.body.appendChild(spotlight);
+  }
+  document.body.classList.add("has-cursor");
+
+  // 3. Mouse Move Listener via requestAnimationFrame
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let targetX = mouseX;
+  let targetY = mouseY;
+  let isMoving = false;
+
+  window.addEventListener("mousemove", (e) => {
+    targetX = e.clientX;
+    targetY = e.clientY;
+    if (!isMoving) {
+      isMoving = true;
+      requestAnimationFrame(updateCursor);
     }
-    document.body.classList.add("has-cursor");
+  }, { passive: true });
 
-    // 3. Mouse Move Listener
-    window.addEventListener("mousemove", (e) => {
-        spotlight.style.left = e.clientX + "px";
-        spotlight.style.top = e.clientY + "px";
-    });
+  function updateCursor() {
+    // Interpolation for slight smooth lag, ~0.2 is very responsive but smooth
+    mouseX += (targetX - mouseX) * 0.25;
+    mouseY += (targetY - mouseY) * 0.25;
 
-    // 4. Hide cursor when leaving window
-    document.addEventListener("mouseleave", () => {
-        spotlight.style.opacity = "0";
-    });
-    document.addEventListener("mouseenter", () => {
-        spotlight.style.opacity = "1";
-    });
+    spotlight.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0) scale(1)`;
 
-    // 5. Hover Effects
-    const interactiveSelectors = [
-        'a',
-        'button',
-        '.studio-card',
-        '.nav-inner a',
-        '.cta-btn',
-        '.project-item',
-        '.work-card',
-        '.other-card',
-        '.sfx-click',
-        '.sfx-hover',
-        '.page'
-    ];
+    if (Math.abs(targetX - mouseX) > 0.1 || Math.abs(targetY - mouseY) > 0.1) {
+      requestAnimationFrame(updateCursor);
+    } else {
+      isMoving = false;
+    }
+  }
 
-    const interactives = document.querySelectorAll(interactiveSelectors.join(','));
-    interactives.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            spotlight.classList.add('active');
-        });
-        el.addEventListener('mouseleave', () => {
-            spotlight.classList.remove('active');
-        });
+  // 4. Hide cursor when leaving window
+  document.addEventListener("mouseleave", () => {
+    spotlight.style.opacity = "0";
+  });
+  document.addEventListener("mouseenter", () => {
+    spotlight.style.opacity = "1";
+  });
+
+  // 5. Hover Effects
+  const interactiveSelectors = [
+    'a',
+    'button',
+    '.studio-card',
+    '.nav-inner a',
+    '.cta-btn',
+    '.project-item',
+    '.work-card',
+    '.other-card',
+    '.sfx-click',
+    '.sfx-hover',
+    '.page'
+  ];
+
+  const interactives = document.querySelectorAll(interactiveSelectors.join(','));
+  interactives.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      spotlight.classList.add('active');
     });
+    el.addEventListener('mouseleave', () => {
+      spotlight.classList.remove('active');
+    });
+  });
 });
