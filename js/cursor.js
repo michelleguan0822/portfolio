@@ -23,17 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         pointer-events: none;
         mix-blend-mode: difference;
         z-index: 999999;
-        /* Use hardware acceleration */
-        will-change: transform, width, height;
-        transform: translate3d(-50%, -50%, 0) scale(0);
-        /* Note: remove transition from transform position to avoid laggy chasing,
-           we'll update translate3d instantly in JS frame, but transition scale/size */
+        /* Removed hardware acceleration to fix Safari mix-blend-mode bug over DOM text */
+        transform: translate(-50%, -50%) scale(0);
         transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
         opacity: 0;
       }
       body.has-cursor #cursor-spotlight {
         opacity: 1;
-        transform: translate3d(-50%, -50%, 0) scale(1);
+        transform: translate(-50%, -50%) scale(1);
       }
       #cursor-spotlight.active {
         width: 80px;
@@ -74,7 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     mouseX += (targetX - mouseX) * 0.8;
     mouseY += (targetY - mouseY) * 0.8;
 
-    spotlight.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0) scale(1)`;
+    spotlight.style.left = mouseX + 'px';
+    spotlight.style.top = mouseY + 'px';
 
     if (Math.abs(targetX - mouseX) > 0.1 || Math.abs(targetY - mouseY) > 0.1) {
       requestAnimationFrame(updateCursor);
