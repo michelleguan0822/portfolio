@@ -6,10 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Inject CSS for the cursor
   const style = document.createElement('style');
   style.innerHTML = `
-      body {
-        cursor: none !important;
-      }
-      a, button, input, textarea, select, .studio-card, .project-item, .other-card, .sfx-hover, .sfx-click {
+      * {
         cursor: none !important;
       }
       #cursor-spotlight {
@@ -101,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
     '.other-card',
     '.sfx-click',
     '.sfx-hover',
-    '.page'
+    '.page',
+    '.hero-title-dark span',
+    '.section-title'
   ];
 
   const interactives = document.querySelectorAll(interactiveSelectors.join(','));
