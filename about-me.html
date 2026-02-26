@@ -522,6 +522,169 @@
       pointer-events: auto;
     }
 
+    /* ---------------- FOLDED LETTER ---------------- */
+    .folded-scene {
+      width: 100%;
+      height: 160px;
+      position: relative;
+      margin: 100px auto 160px;
+    }
+
+    .folded-wrapper {
+      perspective: 1500px;
+      width: 320px;
+      height: 160px;
+      margin: 0 auto;
+      position: relative;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .fold-panel {
+      position: absolute;
+      width: 100%;
+      height: 160px;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .fold-middle {
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .fold-top {
+      top: -160px;
+      left: 0;
+      transform-origin: bottom;
+      transform: rotateX(-179.9deg);
+      /* Folded DOWN over the middle */
+      z-index: 4;
+    }
+
+    .fold-bottom {
+      bottom: -160px;
+      left: 0;
+      transform-origin: top;
+      transform: rotateX(179.9deg);
+      /* Folded UP over the middle */
+      z-index: 3;
+    }
+
+    .fold-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: #fdfbf7;
+      /* Grid paper lines */
+      background-image: linear-gradient(0deg, transparent 24%, rgba(139, 92, 246, 0.08) 25%, rgba(139, 92, 246, 0.08) 26%, transparent 27%, transparent 74%, rgba(139, 92, 246, 0.08) 75%, rgba(139, 92, 246, 0.08) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(139, 92, 246, 0.08) 25%, rgba(139, 92, 246, 0.08) 26%, transparent 27%, transparent 74%, rgba(139, 92, 246, 0.08) 75%, rgba(139, 92, 246, 0.08) 76%, transparent 77%, transparent);
+      background-size: 20px 20px;
+      padding: 24px 30px;
+      color: #374151;
+      font-size: 13px;
+      line-height: 1.6;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.01) inset;
+    }
+
+    /* Back faces are visible when folded */
+    .fold-face.back {
+      transform: rotateX(180deg);
+      background: #111827;
+      /* Dark elegant fold */
+      background-image: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 60%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .fold-top .fold-face.back {
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .fold-seal {
+      position: absolute;
+      top: -24px;
+      /* Hangs over the visible bottom edge of the folded top block */
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 48px;
+      height: 48px;
+      background: #8b5cf6;
+      border: 2px solid white;
+      border-radius: 8px;
+      /* Diamond shape */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      transition: opacity 0.3s 0.2s, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .fold-seal svg {
+      transform: rotate(-45deg);
+    }
+
+    .folded-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* OPEN STATES */
+    .folded-wrapper.is-open {
+      cursor: default;
+    }
+
+    .folded-wrapper.is-open .fold-top {
+      transform: rotateX(0deg);
+    }
+
+    .folded-wrapper.is-open .fold-bottom {
+      transform: rotateX(0deg);
+    }
+
+    .folded-wrapper.is-open .fold-seal {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) rotate(45deg) scale(0);
+    }
+
+    .fold-content-inner {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s 0.4s, transform 0.4s 0.4s;
+    }
+
+    .folded-wrapper.is-open .fold-content-inner {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fold-btn-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(139, 92, 246, 0.1);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      color: var(--primary);
+      transition: 0.3s;
+      z-index: 20;
+    }
+
     .fold-btn-close:hover {
       background: var(--primary);
       color: #fff;
