@@ -101,14 +101,49 @@ document.addEventListener('DOMContentLoaded', () => {
     '.page',
     '.section-title'
   ];
+  // --- Global UI Audio Engine (Subtle High-end Tech Ticks) ---
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  let audioEnabled = false;
+
+  // Enable audio context on first user interaction
+  window.addEventListener('click', () => {
+    if (!audioEnabled && audioCtx.state !== 'running') {
+      audioCtx.resume();
+      audioEnabled = true;
+    }
+  }, { passive: true });
+
+  function playUITick(freq = 1200, type = 'sine', duration = 0.02, vol = 0.015) {
+    if (!audioEnabled || audioCtx.state !== 'running') return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+    gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  }
 
   const interactives = document.querySelectorAll(interactiveSelectors.join(','));
   interactives.forEach(el => {
     el.addEventListener('mouseenter', () => {
       spotlight.classList.add('active');
+      // Hover tick: very fast, high pitch
+      playUITick(1200, 'sine', 0.02, 0.015);
     });
     el.addEventListener('mouseleave', () => {
       spotlight.classList.remove('active');
+    });
+    el.addEventListener('click', () => {
+      // Click tick: slightly lower, sharper edge
+      playUITick(400, 'square', 0.05, 0.02);
     });
   });
 });
