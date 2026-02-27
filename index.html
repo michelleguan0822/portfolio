@@ -95,7 +95,7 @@
     </div>
 
     <!-- Center Title -->
-    <div class="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none mt-12 md:mt-2">
+    <div class="fixed inset-0 z-10 flex flex-col items-center justify-center pointer-events-none mt-12 md:mt-2">
         <style>
             .hero-title-dark {
                 display: flex;
@@ -179,7 +179,7 @@
     </div>
 
     <!-- 4 Corner Projects -->
-    <div class="absolute inset-0 z-20 pointer-events-none mt-20 md:mt-0">
+    <div class="fixed inset-0 z-20 pointer-events-none mt-20 md:mt-0">
         <!-- Top Left -->
         <div
             class="absolute top-24 md:top-14 left-4 md:left-14 pointer-events-auto group -rotate-[3deg] hover:rotate-0 transition-transform duration-500">
@@ -282,77 +282,87 @@
     </div>
 
     <!-- Experience Section (Scroll Down) -->
-    <div class="relative z-20 w-full max-w-4xl mx-auto px-6 mt-[100vh] pb-32">
-        <h2 class="text-3xl font-bold text-white mb-12 flex items-center gap-4">
-            <span class="text-zinc-500 font-mono text-sm tracking-widest uppercase">01_</span>
-            Experience
-        </h2>
+    <div class="relative z-30 w-full bg-black/60 backdrop-blur-3xl mt-[100vh] pt-32 pb-48 border-t border-white/10">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12 flex items-center gap-4">
+                <span class="text-zinc-500 font-mono text-sm tracking-widest uppercase">01_</span>
+                Experience
+            </h2>
 
-        <div class="flex flex-col gap-6">
-            <!-- UNIMO -->
-            <div
-                class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
-                <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
-                    <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">UNIMO</h3>
-                    <span class="font-mono text-sm text-zinc-500 tracking-wider">2025—2026</span>
+            <div class="flex flex-col gap-6">
+                <!-- UNIMO -->
+                <div
+                    class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">UNIMO
+                        </h3>
+                        <span class="font-mono text-sm text-zinc-500 tracking-wider">2025—2026</span>
+                    </div>
+                    <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
+                        Designing an AI-native emotional asset system, transforming private feelings into visible,
+                        playable
+                        social artifacts that reshape how Gen-Z expresses and connects.
+                    </p>
                 </div>
-                <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                    Designing an AI-native emotional asset system, transforming private feelings into visible, playable
-                    social artifacts that reshape how Gen-Z expresses and connects.
-                </p>
-            </div>
 
-            <!-- Clinical Brain Dashboard -->
-            <div
-                class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
-                <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
-                    <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Clinical
-                        Brain Dashboard</h3>
-                    <span class="font-mono text-sm text-zinc-500 tracking-wider">2025</span>
+                <!-- Clinical Brain Dashboard -->
+                <div
+                    class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Clinical
+                            Brain Dashboard</h3>
+                        <span class="font-mono text-sm text-zinc-500 tracking-wider">2025</span>
+                    </div>
+                    <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
+                        Reconstructing a clinical data cockpit for TMS treatment visualization, turning fragmented
+                        medical
+                        signals into a trustworthy, real-time decision interface.
+                    </p>
                 </div>
-                <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                    Reconstructing a clinical data cockpit for TMS treatment visualization, turning fragmented medical
-                    signals into a trustworthy, real-time decision interface.
-                </p>
-            </div>
 
-            <!-- Impulse -->
-            <div
-                class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
-                <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
-                    <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Impulse</h3>
-                    <span class="font-mono text-sm text-zinc-500 tracking-wider">2024—25</span>
+                <!-- Impulse -->
+                <div
+                    class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Impulse
+                        </h3>
+                        <span class="font-mono text-sm text-zinc-500 tracking-wider">2024—25</span>
+                    </div>
+                    <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
+                        Redefining accountability in social habit systems, simplifying multi-step goal flows into
+                        behavior-driven product loops that increase retention and engagement.
+                    </p>
                 </div>
-                <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                    Redefining accountability in social habit systems, simplifying multi-step goal flows into
-                    behavior-driven product loops that increase retention and engagement.
-                </p>
-            </div>
 
-            <!-- Avanade -->
-            <div
-                class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
-                <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
-                    <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Avanade</h3>
-                    <span class="font-mono text-sm text-zinc-500 tracking-wider">2023</span>
+                <!-- Avanade -->
+                <div
+                    class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Avanade
+                        </h3>
+                        <span class="font-mono text-sm text-zinc-500 tracking-wider">2023</span>
+                    </div>
+                    <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
+                        Designing an AI-powered enterprise assistant with Azure OpenAI, reducing document analysis
+                        friction
+                        and accelerating decision cycles for sales teams.
+                    </p>
                 </div>
-                <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                    Designing an AI-powered enterprise assistant with Azure OpenAI, reducing document analysis friction
-                    and accelerating decision cycles for sales teams.
-                </p>
-            </div>
 
-            <!-- Smash -->
-            <div
-                class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
-                <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
-                    <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Smash</h3>
-                    <span class="font-mono text-sm text-zinc-500 tracking-wider">2023</span>
+                <!-- Smash -->
+                <div
+                    class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">Smash
+                        </h3>
+                        <span class="font-mono text-sm text-zinc-500 tracking-wider">2023</span>
+                    </div>
+                    <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
+                        Building a coding-learning game from concept to wireframe, aligning gameplay loops with
+                        educational
+                        outcomes to transform how beginners engage with programming.
+                    </p>
                 </div>
-                <p class="text-[15px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                    Building a coding-learning game from concept to wireframe, aligning gameplay loops with educational
-                    outcomes to transform how beginners engage with programming.
-                </p>
             </div>
         </div>
     </div>
