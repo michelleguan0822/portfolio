@@ -29,9 +29,9 @@
         html {
             margin: 0;
             padding: 0;
-            overflow: hidden;
             background-color: black;
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
         /* Nav adjustment for play page so it fits cleanly over black */
@@ -42,6 +42,9 @@
         spline-viewer {
             width: 100vw;
             height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         /* Hide Spline Watermark */
@@ -70,7 +73,7 @@
     </style>
 </head>
 
-<body class="relative w-screen h-screen overflow-hidden text-white font-sans bg-black">
+<body class="relative w-screen text-white font-sans bg-black">
 
     <!-- Navigation Bar -->
     <header class="nav-shell">
@@ -87,7 +90,7 @@
     </header>
 
     <!-- Background Spline Scene -->
-    <div class="absolute inset-0 z-0 pointer-events-auto">
+    <div class="fixed inset-0 z-0 pointer-events-auto bg-black">
         <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"></spline-viewer>
     </div>
 
