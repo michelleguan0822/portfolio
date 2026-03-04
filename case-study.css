@@ -730,6 +730,17 @@ blockquote footer {
   flex: 1;
   display: flex;
   overflow: hidden;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.phone-mockup-row {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 40px 0;
+  flex-wrap: wrap;
 }
 
 .phone-mockup::before {

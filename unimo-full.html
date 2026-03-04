@@ -160,9 +160,6 @@
       <div id="shift" class="section">
         <span class="section-label">04 // THE DESIGN SHIFT</span>
         <h2>I realized the goal was not simply to make the chat experience feel more empathetic</h2>
-        <p>The bigger opportunity was to redesign what happens after a meaningful emotional exchange.</p>
-        <p>Instead of treating that moment as just another part of an endless chat thread, I explored how it could
-          become something separate, personal, and worth returning to.</p>
         <p>That shifted the product direction from:</p>
         <div class="shift-layout">
           <div class="shift-item shift-from">
@@ -186,55 +183,123 @@
         <h2>Exploring the Right Format to Preserve Emotional Memory</h2>
 
         <style>
-          .format-grid-top {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 40px;
-          }
-
-          .format-grid-bottom {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-top: 24px;
-            width: 66.666%;
-            margin-left: auto;
-            margin-right: auto;
-          }
-
-          .format-opt-card {
-            background: rgba(255, 255, 255, 0.02);
+          .format-explorer {
+            display: flex;
+            gap: 32px;
+            background: var(--surface-alt);
             border: 1px solid var(--surface-border);
             border-radius: 24px;
-            padding: 24px;
+            padding: 32px;
+            margin-top: 40px;
+            align-items: stretch;
+          }
+
+          .format-tabs {
+            flex: 0 0 240px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            transition: transform 0.2s, background 0.2s;
+            gap: 12px;
           }
 
-          .format-opt-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-4px);
+          .format-tab {
+            padding: 16px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-dim);
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            text-align: left;
+            user-select: none;
           }
 
-          .format-opt-card.highlight {
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.04);
-          }
-
-          .format-opt-card h4 {
-            margin: 0;
-            font-size: 18px;
+          .format-tab:hover {
+            background: rgba(255, 255, 255, 0.02);
             color: var(--text-main);
           }
 
-          .opt-point {
+          .format-tab.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          }
+
+          .format-content {
+            flex: 1;
+            min-width: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            position: relative;
+            min-height: 600px;
+            align-items: start;
+          }
+
+          .format-pane {
+            grid-column: 1 / -1;
+            grid-row: 1 / -1;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 24px;
+            width: 100%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 0;
+            transition: opacity 0.25s ease;
+          }
+
+          .format-pane.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 1;
+          }
+
+          .format-image-wrapper {
+            width: 100%;
+            height: 340px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .format-image-wrapper img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            padding: 24px;
+          }
+
+          .format-placeholder {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 14px;
+          }
+
+          .format-details {
+            display: flex;
+            gap: 24px;
+            margin-top: auto;
+            align-items: stretch;
+          }
+
+          .format-detail-box {
+            flex: 1;
+            min-width: 0;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--surface-border);
+            display: flex;
+            flex-direction: column;
           }
 
           .opt-label {
@@ -243,6 +308,8 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
           }
 
           .opt-label.strength {
@@ -261,90 +328,151 @@
           }
 
           @media (max-width: 900px) {
+            .format-explorer {
+              flex-direction: column;
+              padding: 24px;
+            }
 
-            .format-grid-top,
-            .format-grid-bottom {
-              grid-template-columns: 1fr;
-              width: 100%;
+            .format-tabs {
+              flex: none;
+              flex-direction: row;
+              overflow-x: auto;
+              padding-bottom: 8px;
+              -webkit-overflow-scrolling: touch;
+              overscroll-behavior-x: contain;
+              scrollbar-width: none;
+            }
+
+            .format-tabs::-webkit-scrollbar {
+              display: none;
+            }
+
+            .format-tab {
+              flex-shrink: 0;
+              white-space: nowrap;
+            }
+
+            .format-details {
+              flex-direction: column;
             }
           }
         </style>
 
-        <div class="format-grid-top">
-          <!-- Card 1 -->
-          <div class="format-opt-card">
-            <h4>Emotion-based outfits</h4>
-            <div class="opt-point">
-              <span class="opt-label strength">Strength</span>
-              <p class="opt-text">Playful, visually expressive, and able to turn emotion into identity in a way that
-                felt creative and fun.</p>
-            </div>
-            <div class="opt-point">
-              <span class="opt-label limitation">Limitation</span>
-              <p class="opt-text">Felt more like styling than emotional support, with a weaker connection to a specific
-                meaningful interaction.</p>
-            </div>
+        <div class="format-explorer">
+          <div class="format-tabs">
+            <div class="format-tab active" onclick="switchFormat(0)">1. Emotion-based outfits</div>
+            <div class="format-tab" onclick="switchFormat(1)">2. Emotion data visuals</div>
+            <div class="format-tab" onclick="switchFormat(2)">3. Favorites folder</div>
+            <div class="format-tab" onclick="switchFormat(3)">4. Public community sharing</div>
+            <div class="format-tab" onclick="switchFormat(4)">5. Collectable cards</div>
           </div>
-          <!-- Card 2 -->
-          <div class="format-opt-card">
-            <h4>Emotion data visuals</h4>
-            <div class="opt-point">
-              <span class="opt-label strength">Strength</span>
-              <p class="opt-text">Made emotional patterns easier to see over time and supported reflection and
-                self-awareness.</p>
+
+          <div class="format-content">
+            <!-- Pane 1 -->
+            <div class="format-pane active" id="format-pane-0">
+              <div class="format-image-wrapper">
+                <img src="image/Unimo/outfit.png" alt="Emotion outfits" />
+              </div>
+              <div class="format-details">
+                <div class="format-detail-box">
+                  <span class="opt-label strength">Strength</span>
+                  <p class="opt-text">Playful, visually expressive, and able to turn emotion into identity in a way that
+                    felt creative and fun.</p>
+                </div>
+                <div class="format-detail-box">
+                  <span class="opt-label limitation">Limitation</span>
+                  <p class="opt-text">Felt more like styling than emotional support, with a weaker connection to a
+                    specific meaningful interaction.</p>
+                </div>
+              </div>
             </div>
-            <div class="opt-point">
-              <span class="opt-label limitation">Limitation</span>
-              <p class="opt-text">Felt too analytical, which made the experience less emotionally warm and more
-                informational.</p>
+
+            <!-- Pane 2 -->
+            <div class="format-pane" id="format-pane-1">
+              <div class="format-image-wrapper">
+                <img src="image/Unimo/summary.png" alt="Emotion data visuals" />
+              </div>
+              <div class="format-details">
+                <div class="format-detail-box">
+                  <span class="opt-label strength">Strength</span>
+                  <p class="opt-text">Made emotional patterns easier to see over time and supported reflection and
+                    self-awareness.</p>
+                </div>
+                <div class="format-detail-box">
+                  <span class="opt-label limitation">Limitation</span>
+                  <p class="opt-text">Felt too analytical, which made the experience less emotionally warm and more
+                    informational.</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <!-- Card 3 -->
-          <div class="format-opt-card">
-            <h4>Favorites folder</h4>
-            <div class="opt-point">
-              <span class="opt-label strength">Strength</span>
-              <p class="opt-text">Simple, familiar, and low-friction, making meaningful exchanges easy to save and find
-                later.</p>
+
+            <!-- Pane 3 -->
+            <div class="format-pane" id="format-pane-2">
+              <div class="format-image-wrapper">
+                <div class="format-placeholder">[ Format iterated without visual mockup ]</div>
+              </div>
+              <div class="format-details">
+                <div class="format-detail-box">
+                  <span class="opt-label strength">Strength</span>
+                  <p class="opt-text">Simple, familiar, and low-friction, making meaningful exchanges easy to save and
+                    find later.</p>
+                </div>
+                <div class="format-detail-box">
+                  <span class="opt-label limitation">Limitation</span>
+                  <p class="opt-text">Improved retrieval, but did not change the emotional feel of the interaction, so
+                    it still felt like part of chat.</p>
+                </div>
+              </div>
             </div>
-            <div class="opt-point">
-              <span class="opt-label limitation">Limitation</span>
-              <p class="opt-text">Improved retrieval, but did not change the emotional feel of the interaction, so it
-                still felt like part of chat.</p>
+
+            <!-- Pane 4 -->
+            <div class="format-pane" id="format-pane-3">
+              <div class="format-image-wrapper">
+                <div class="format-placeholder">[ Format iterated without visual mockup ]</div>
+              </div>
+              <div class="format-details">
+                <div class="format-detail-box">
+                  <span class="opt-label strength">Strength</span>
+                  <p class="opt-text">Created opportunities for resonance, relatability, and connection by making
+                    emotional experiences shareable.</p>
+                </div>
+                <div class="format-detail-box">
+                  <span class="opt-label limitation">Limitation</span>
+                  <p class="opt-text">Felt too public too early, before users had a strong enough sense of personal
+                    ownership over the interaction.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 5 -->
+            <div class="format-pane" id="format-pane-4">
+              <div class="format-image-wrapper">
+                <img src="image/Unimo/card.png" alt="Cards Format" />
+              </div>
+              <div class="format-details">
+                <div class="format-detail-box" style="border-color: rgba(168, 85, 247, 0.3);">
+                  <span class="opt-label strength">Strength</span>
+                  <p class="opt-text">Created a more personal, distinct, and revisit-worthy format that gave the
+                    interaction stronger emotional value and ownership.</p>
+                </div>
+                <div class="format-detail-box">
+                  <span class="opt-label limitation">Limitation</span>
+                  <p class="opt-text">Required careful visual and language design to avoid feeling too system-generated
+                    or purely decorative.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="format-grid-bottom">
-          <!-- Card 4 -->
-          <div class="format-opt-card">
-            <h4>Public community sharing</h4>
-            <div class="opt-point">
-              <span class="opt-label strength">Strength</span>
-              <p class="opt-text">Created opportunities for resonance, relatability, and connection by making emotional
-                experiences shareable.</p>
-            </div>
-            <div class="opt-point">
-              <span class="opt-label limitation">Limitation</span>
-              <p class="opt-text">Felt too public too early, before users had a strong enough sense of personal
-                ownership over the interaction.</p>
-            </div>
-          </div>
-          <!-- Card 5 -->
-          <div class="format-opt-card highlight">
-            <h4>Cards</h4>
-            <div class="opt-point">
-              <span class="opt-label strength">Strength</span>
-              <p class="opt-text">Created a more personal, distinct, and revisit-worthy format that gave the interaction
-                stronger emotional value and ownership.</p>
-            </div>
-            <div class="opt-point">
-              <span class="opt-label limitation">Limitation</span>
-              <p class="opt-text">Required careful visual and language design to avoid feeling too system-generated or
-                purely decorative.</p>
-            </div>
-          </div>
-        </div>
+        <script>
+          function switchFormat(index) {
+            document.querySelectorAll('.format-pane').forEach(pane => pane.classList.remove('active'));
+            document.querySelectorAll('.format-tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById('format-pane-' + index).classList.add('active');
+            document.querySelectorAll('.format-tab')[index].classList.add('active');
+          }
+        </script>
       </div>
 
       <div id="whycards" class="section">
@@ -392,7 +520,7 @@
         <p>It needed to feel structurally separate from the ongoing chat, not just visually highlighted inside it. By
           moving it out of the thread, the experience could begin to feel more intentional and distinct.</p>
 
-        <div style="display: flex; gap: 32px; justify-content: center; margin: 40px 0;">
+        <div class="phone-mockup-row">
           <div class="phone-mockup">
             <img src="image/Unimo/collection.png" alt="Card Collection" />
           </div>
@@ -415,11 +543,11 @@
         <p>A short delay already existed because the system needed time to generate the emotion card’s visual and
           summary. Instead of hiding that delay, I treated it as part of the user experience. By allowing the moment to
           unfold more slowly, the transition could feel more intentional and emotionally meaningful.</p>
-        <div style="display: flex; gap: 32px; justify-content: center; margin: 40px 0;">
-          <div class="phone-mockup" style="flex: unset; width: 300px;">
+        <div class="phone-mockup-row">
+          <div class="phone-mockup">
             <img src="image/Unimo/loading.png" alt="Loading Transition" />
           </div>
-          <div class="phone-mockup" style="flex: unset; width: 300px;">
+          <div class="phone-mockup">
             <img src="image/Unimo/new_card.png" alt="New Card Reveal" />
           </div>
         </div>
