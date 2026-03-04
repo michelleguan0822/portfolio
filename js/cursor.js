@@ -146,4 +146,30 @@ document.addEventListener('DOMContentLoaded', () => {
       playUITick(400, 'square', 0.05, 0.02);
     });
   });
+
+  // 6. Text Highlight Observer for Case Studies
+  const highlightObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -15% 0px' });
+
+  const highlightTargets = document.querySelectorAll('p b, .stat-label b, .feature-list b, .insight p b');
+  highlightTargets.forEach(el => highlightObserver.observe(el));
+
+  // 7. Section Scroll Animation Observer
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+
+  const sectionTargets = document.querySelectorAll('.section');
+  sectionTargets.forEach(el => sectionObserver.observe(el));
 });

@@ -32,14 +32,17 @@
   </header>
 
   <div class="container hero">
+    <div class="intro-callout">
+      <img src="image/face/thumb_up.png" alt="Greeting">
+      <p>
+        Hey there! I know reviewing case studies can be exhausting. But stick with me — this isn't just another design
+        story. It's about how we turned emotion logging from a heavy journaling chore into a fun, visual collectible,
+        giving Gen Z a much lighter way to reflect on their feelings.
+      </p>
+    </div>
     <span class="hero-kicker">Unimo</span>
     <h1 class="hero-title">Turning Emotional Expression into a Playful Companion Experience</h1>
 
-    <div class="hero-meta">
-      <div class="meta-pill"><b>Role</b> End-to-end Product Designer</div>
-      <div class="meta-pill"><b>Timeline</b> Jun 2025 – Present</div>
-      <div class="meta-pill"><b>Team</b> 2 PMs, 4 Engineers, 1 Product Designer</div>
-    </div>
 
     <div class="hero-visual">
       <img src="image/Unimo/hero.jpg" alt="Unimo Hero UI">
@@ -51,20 +54,45 @@
     <aside class="toc">
       <a href="#snapshot" class="active">Snapshot</a>
       <a href="#challenge">01 The Challenge</a>
-      <a href="#research">02 Research</a>
-      <a href="#solution">03 Solution</a>
-      <a href="#impact">04 Impact</a>
-      <a href="#reflection">05 Reflection</a>
+      <a href="#solution">02 Solution</a>
+      <a href="#impact">03 Impact</a>
     </aside>
 
     <main>
 
       <!-- =========================
+           META DATA
+      ========================== -->
+      <div class="hero-meta">
+        <div class="meta-pill"><b>Role</b> <span>End-to-end Product Designer</span></div>
+        <div class="meta-pill"><b>Timeline</b> <span>Jun 2025 – Present</span></div>
+        <div class="meta-pill"><b>Team</b> <span>2 PMs, 4 Engineers, 1 Product Designer</span></div>
+        <div class="meta-pill"><b>Client</b> <span>Unimo Startup</span></div>
+      </div>
+
+      <!-- Add View Full Case Study Button below metadata -->
+      <div style="margin-bottom: 40px;">
+        <a href="unimo-full.html"
+          style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--primary, #A855F7); color: white; border-radius: 999px; text-decoration: none; font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);"
+          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(168, 85, 247, 0.4)';"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(168, 85, 247, 0.3)';">
+          View Full Case Study
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- =========================
            SNAPSHOT
       ========================== -->
       <div id="snapshot" class="section">
-        <span class="section-label">30-second Snapshot</span>
-        <h2>A lighter way to express emotions.</h2>
+        <div>
+          <span class="section-label">30-second Snapshot</span>
+          <h2 style="margin-bottom: 24px;">A lighter way to express emotions.</h2>
+        </div>
         <p class="lead-text">
           Unimo is an emotional companion app for Gen Z. It offers a lighter, more visual way to express
           emotions—without heavy journaling or self-labeling.
@@ -81,22 +109,6 @@
           This gap created a clear opportunity: move emotional expression out of text-based conversations and into
           something people can see, feel, and interact with.
         </p>
-
-        <div class="insight">
-          <span class="insight-label">My Role</span>
-          <p>
-            Led the strategic redesign from "chat tool" to "emotional companion system"—including concept direction,
-            core mechanics (cards, resonance battles), and visual execution. Worked directly with PMs and engineers to
-            ship the initial launch.
-          </p>
-        </div>
-
-        <div class="insight" style="margin-top: 16px;">
-          <span class="insight-label">Core Loop</span>
-          <p>
-            Chat → Generate Emotional Card → Resonance Battle & Community
-          </p>
-        </div>
         <div style="margin: 32px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
           <img src="image/Unimo/screens.png" alt="Community Feed showing multiple cards"
             style="width: 100%; height: auto; display: block;" />
@@ -130,80 +142,10 @@
       </div>
 
       <!-- =========================
-           RESEARCH
-      ========================== -->
-      <div id="research" class="section">
-        <span class="section-label">02 // RESEARCH</span>
-        <h2>Mapping the Discontinuity</h2>
-        <p>
-          I led a small research initiative to understand where the experience was breaking down.
-        </p>
-
-        <h3>Experience Mapping</h3>
-        <p>
-          We mapped how users interacted with Unimo across multiple sessions. What we found wasn't confusion—it was
-          discontinuity:
-        </p>
-        <ul class="feature-list">
-          <li><b>Each session felt independent</b></li>
-          <li><b>Nothing visually or emotionally accumulated</b></li>
-          <li><b>Users had no sense of "where this was going"</b></li>
-        </ul>
-
-        <h3>Qualitative Insights</h3>
-        <p>When asked why they didn't return, users didn't mention features. Instead, they said things like:</p>
-        <blockquote>
-          "It feels nice, but I don't know what stays."
-        </blockquote>
-        <blockquote>
-          "Every time feels like starting over."
-        </blockquote>
-        <blockquote>
-          "I don't feel lost—just not pulled back."
-        </blockquote>
-        <p>
-          These conversations revealed the root problem: emotional attachment doesn't form through conversation alone.
-          <b>It forms when feelings leave a trace.</b>
-        </p>
-
-        <h3 style="margin-top: 60px;">Reframing the Problem</h3>
-        <p>
-          At the same time, I noticed something broader about how Gen Z engages with emotion.
-          They rarely treat feelings as something to be formally analyzed or diagnosed. Instead, they express themselves
-          through symbolic, flexible systems—MBTI types, astrology signs, inside jokes, memes.
-        </p>
-        <p>These systems share three qualities:</p>
-        <ul class="feature-list">
-          <li><b>Lightweight</b> – no heavy cognitive load</li>
-          <li><b>Interpretable</b> – open to personal meaning</li>
-          <li><b>Socially legible</b> – shareable without over-exposure</li>
-        </ul>
-        <p>
-          This reframed the question entirely. The goal wasn't to help users express more—it was to make emotional
-          expression visible, ownable, and revisit-able, without forcing explanation or self-labeling.
-          <b>Without visible emotional memory, users don't form attachment.</b>
-        </p>
-
-        <div class="insight">
-          <span class="insight-label">Design Question</span>
-          <p>
-            How might we turn private emotions into something people can engage with again—without forcing explanation,
-            exposure, or self-labeling?
-          </p>
-        </div>
-
-        <h3 style="margin-top: 40px;">Design Direction</h3>
-        <p>
-          Instead of asking users to express more, I explored how emotions could become visible, ownable, and
-          revisit-able—<b>without asking users to explain themselves.</b>
-        </p>
-      </div>
-
-      <!-- =========================
            SOLUTION
       ========================== -->
       <div id="solution" class="section">
-        <span class="section-label">03 // SOLUTION</span>
+        <span class="section-label">02 // SOLUTION</span>
         <h2>Solution Overview</h2>
         <p>
           A playful emotional system that turns feelings into visible assets—allowing users to engage, revisit, and
@@ -314,7 +256,7 @@
            IMPACT
       ========================== -->
       <div id="impact" class="section">
-        <span class="section-label">04 // IMPACT</span>
+        <span class="section-label">03 // IMPACT</span>
         <h2>Early Signals</h2>
         <p>
           The product is in early launch stage, so we're not optimizing for scale metrics yet. However, early behavioral
@@ -358,338 +300,290 @@
       </div>
 
       <!-- =========================
-           REFLECTION
+           APP STORE LAUNCH
       ========================== -->
-      <div id="reflection" class="section">
-        <span class="section-label">05 // REFLECTION</span>
-        <h2>What I learned.</h2>
+      <style>
+        .app-store-section {
+          padding: 80px 0 120px;
+          display: flex;
+          justify-content: center;
+        }
 
-        <div class="steps">
-          <div class="step-item">
-            <div class="step-num">01</div>
-            <div class="step-desc">
-              <b>In emotional design, restraint is a strength.</b>
-              The most effective solutions often come from knowing what not to design—avoiding judgment, pressure, and
-              over-interpretation. Every time I felt tempted to add more analysis or data, I asked myself: "Does this
-              help the user feel seen, or does it ask them to perform?"
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">02</div>
-            <div class="step-desc">
-              <b>AI experience design is about perceived control.</b>
-              Users don't care about system complexity. They care whether the output feels like them—and whether they
-              can influence it. The card generation feels magical, but the ability to regenerate, save, or discard gives
-              users a sense of authorship.
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">03</div>
-            <div class="step-desc">
-              <b>A feature's intention shapes the ecosystem.</b>
-              Designing Battle as resonance instead of competition wasn't semantic—it fundamentally shaped how users
-              behave in that space. We see supportive comments, not trash talk. The mechanic encodes the value.
-            </div>
-          </div>
-        </div>
+        .download-card {
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          max-width: 840px;
+          padding: 60px 80px;
+          background: rgba(255, 255, 255, 0.4);
+          backdrop-filter: blur(24px);
+          -webkit-backdrop-filter: blur(24px);
+          border-radius: 40px;
+          border: 1px solid rgba(255, 255, 255, 0.8);
+          box-shadow:
+            0 40px 80px rgba(0, 0, 0, 0.04),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+          overflow: hidden;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          text-align: left;
+          gap: 40px;
+        }
 
-        <h3>If I were to do this again:</h3>
-        <ul class="feature-list">
-          <li>I would define experiential health metrics earlier—things like "perceived emotional safety" or "sense of
-            being understood"—to complement behavioral metrics</li>
-          <li>I would run more granular tests on sharing mechanics to understand exactly where trust converts to action
-          </li>
-          <li>I would involve engineers earlier in card generation prototyping to balance creative vision with technical
-            feasibility</li>
-        </ul>
-        <style>
-          .app-store-section {
-            padding: 80px 0 120px;
-            display: flex;
-            justify-content: center;
+        .download-card::before {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.08), transparent 60%);
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .download-card:hover {
+          transform: translateY(-8px);
+        }
+
+        .download-content {
+          flex: 1;
+          position: relative;
+          z-index: 1;
+        }
+
+        .download-visual {
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+          position: relative;
+          z-index: 1;
+          animation: floatPhone 6s ease-in-out infinite;
+        }
+
+        @keyframes floatPhone {
+
+          0%,
+          100% {
+            transform: translateY(0px);
           }
 
+          50% {
+            transform: translateY(-16px);
+          }
+        }
+
+        .mockup-phone {
+          width: 220px;
+          height: 440px;
+          background: #111;
+          border-radius: 36px;
+          padding: 10px;
+          box-shadow:
+            0 30px 60px -15px rgba(0, 0, 0, 0.6),
+            inset 0 0 0 2px #444;
+          position: relative;
+          transform: rotate(6deg);
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .download-card:hover .mockup-phone {
+          transform: rotate(2deg) scale(1.02);
+        }
+
+        .mockup-phone::before {
+          content: '';
+          position: absolute;
+          top: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 90px;
+          height: 24px;
+          background: #111;
+          border-bottom-left-radius: 12px;
+          border-bottom-right-radius: 12px;
+          z-index: 2;
+        }
+
+        .mockup-screen {
+          width: 100%;
+          height: 100%;
+          background: #fff;
+          border-radius: 26px;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .mockup-screen img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top;
+          display: block;
+        }
+
+        .download-title {
+          position: relative;
+          z-index: 1;
+          font-family: var(--font-heading);
+          font-size: 36px;
+          font-weight: 800;
+          letter-spacing: -1px;
+          margin: 0 0 12px 0;
+          color: #ffffff;
+        }
+
+        .download-subtitle {
+          position: relative;
+          z-index: 1;
+          font-size: 16px;
+          color: var(--text-dim);
+          margin-bottom: 40px;
+        }
+
+        .app-store-button {
+          position: relative;
+          z-index: 1;
+          display: inline-flex;
+          background: #000;
+          border-radius: 100px;
+          text-decoration: none;
+          color: #fff;
+          padding: 3px;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-content {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          background: #000;
+          padding: 12px 28px;
+          border-radius: 100px;
+          z-index: 2;
+        }
+
+        .app-store-button svg {
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), fill 0.3s ease;
+        }
+
+        .app-store-button .text-group {
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        .app-store-button .small-text {
+          font-size: 10px;
+          font-weight: 500;
+          opacity: 0.8;
+          line-height: 1;
+          letter-spacing: 0.5px;
+        }
+
+        .app-store-button .large-text {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 1.1;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          letter-spacing: -0.5px;
+        }
+
+        .glow-wrap {
+          position: absolute;
+          inset: 0;
+          border-radius: 100px;
+          overflow: hidden;
+          z-index: 1;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+
+        .glow {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 150%;
+          height: 300%;
+          background: conic-gradient(from 0deg, transparent 0 320deg, #A855F7 360deg);
+          transform-origin: center;
+          transform: translate(-50%, -50%);
+          animation: app-spin 2.5s linear infinite;
+        }
+
+        @keyframes app-spin {
+          100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+          }
+        }
+
+        .app-store-button:hover {
+          transform: translateY(-4px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(168, 85, 247, 0.3);
+        }
+
+        .app-store-button:hover .glow-wrap {
+          opacity: 1;
+        }
+
+        .app-store-button:hover svg {
+          transform: scale(1.1) rotate(-4deg);
+          fill: #d8b4fe;
+          /* Light purple tint on hover */
+        }
+
+        @media (max-width: 768px) {
           .download-card {
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 840px;
-            padding: 60px 80px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow:
-              0 40px 80px rgba(0, 0, 0, 0.04),
-              inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-            overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            text-align: left;
-            gap: 40px;
-          }
-
-          .download-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.08), transparent 60%);
-            z-index: 0;
-            pointer-events: none;
-          }
-
-          .download-card:hover {
-            transform: translateY(-8px);
-          }
-
-          .download-content {
-            flex: 1;
-            position: relative;
-            z-index: 1;
+            flex-direction: column;
+            text-align: center;
+            padding: 40px 24px;
+            gap: 48px;
           }
 
           .download-visual {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            position: relative;
-            z-index: 1;
-            animation: floatPhone 6s ease-in-out infinite;
+            justify-content: center;
           }
+        }
+      </style>
 
-          @keyframes floatPhone {
+      <div class="app-store-section">
+        <div class="download-card">
+          <div class="download-content">
+            <h2 class="download-title">Ready to Capture Your Resonance?</h2>
+            <p class="download-subtitle">Download Unimo today and
+              start saving the moments that matter.</p>
 
-            0%,
-            100% {
-              transform: translateY(0px);
-            }
-
-            50% {
-              transform: translateY(-16px);
-            }
-          }
-
-          .mockup-phone {
-            width: 220px;
-            height: 440px;
-            background: #111;
-            border-radius: 36px;
-            padding: 10px;
-            box-shadow:
-              0 30px 60px -15px rgba(0, 0, 0, 0.6),
-              inset 0 0 0 2px #444;
-            position: relative;
-            transform: rotate(6deg);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-          }
-
-          .download-card:hover .mockup-phone {
-            transform: rotate(2deg) scale(1.02);
-          }
-
-          .mockup-phone::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90px;
-            height: 24px;
-            background: #111;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            z-index: 2;
-          }
-
-          .mockup-screen {
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            border-radius: 26px;
-            overflow: hidden;
-            position: relative;
-          }
-
-          .mockup-screen img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            display: block;
-          }
-
-          .download-title {
-            position: relative;
-            z-index: 1;
-            font-family: var(--font-heading);
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin: 0 0 12px 0;
-            background: linear-gradient(135deg, #111827 0%, #4b5563 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-          }
-
-          .download-subtitle {
-            position: relative;
-            z-index: 1;
-            font-size: 16px;
-            color: var(--text-dim);
-            margin-bottom: 40px;
-          }
-
-          .app-store-button {
-            position: relative;
-            z-index: 1;
-            display: inline-flex;
-            background: #000;
-            border-radius: 100px;
-            text-decoration: none;
-            color: #fff;
-            padding: 3px;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          }
-
-          .button-content {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #000;
-            padding: 12px 28px;
-            border-radius: 100px;
-            z-index: 2;
-          }
-
-          .app-store-button svg {
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), fill 0.3s ease;
-          }
-
-          .app-store-button .text-group {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-          }
-
-          .app-store-button .small-text {
-            font-size: 10px;
-            font-weight: 500;
-            opacity: 0.8;
-            line-height: 1;
-            letter-spacing: 0.5px;
-          }
-
-          .app-store-button .large-text {
-            font-size: 20px;
-            font-weight: 600;
-            line-height: 1.1;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            letter-spacing: -0.5px;
-          }
-
-          .glow-wrap {
-            position: absolute;
-            inset: 0;
-            border-radius: 100px;
-            overflow: hidden;
-            z-index: 1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-          }
-
-          .glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 150%;
-            height: 300%;
-            background: conic-gradient(from 0deg, transparent 0 320deg, #A855F7 360deg);
-            transform-origin: center;
-            transform: translate(-50%, -50%);
-            animation: app-spin 2.5s linear infinite;
-          }
-
-          @keyframes app-spin {
-            100% {
-              transform: translate(-50%, -50%) rotate(360deg);
-            }
-          }
-
-          .app-store-button:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.3);
-          }
-
-          .app-store-button:hover .glow-wrap {
-            opacity: 1;
-          }
-
-          .app-store-button:hover svg {
-            transform: scale(1.1) rotate(-4deg);
-            fill: #d8b4fe;
-            /* Light purple tint on hover */
-          }
-
-          @media (max-width: 768px) {
-            .download-card {
-              flex-direction: column;
-              text-align: center;
-              padding: 40px 24px;
-              gap: 48px;
-            }
-
-            .download-visual {
-              justify-content: center;
-            }
-          }
-        </style>
-
-        <div class="app-store-section">
-          <div class="download-card">
-            <div class="download-content">
-              <h2 class="download-title">Ready to Capture Your Resonance?</h2>
-              <p class="download-subtitle">Download Unimo today and
-                start saving the moments that matter.</p>
-
-              <a href="https://apps.apple.com/us/app/unimo-emotional-companion-ai/id6749435209" class="app-store-button"
-                target="_blank" rel="noopener noreferrer">
-                <span class="glow-wrap">
-                  <span class="glow"></span>
-                </span>
-                <span class="button-content">
-                  <svg viewBox="0 0 384 512" width="28" height="28" fill="currentColor">
-                    <path
-                      d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
-                  </svg>
-                  <div class="text-group">
-                    <span class="small-text">Download on the</span>
-                    <span class="large-text">App Store</span>
-                  </div>
-                </span>
-              </a>
-            </div>
-
-            <div class="download-visual">
-              <div class="mockup-phone">
-                <div class="mockup-screen">
-                  <img src="image/Unimo/home.PNG" alt="Unimo App Interface">
+            <a href="https://apps.apple.com/us/app/unimo-emotional-companion-ai/id6749435209" class="app-store-button"
+              target="_blank" rel="noopener noreferrer">
+              <span class="glow-wrap">
+                <span class="glow"></span>
+              </span>
+              <span class="button-content">
+                <svg viewBox="0 0 384 512" width="28" height="28" fill="currentColor">
+                  <path
+                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+                </svg>
+                <div class="text-group">
+                  <span class="small-text">Download on the</span>
+                  <span class="large-text">App Store</span>
                 </div>
+              </span>
+            </a>
+          </div>
+
+          <div class="download-visual">
+            <div class="mockup-phone">
+              <div class="mockup-screen">
+                <img src="image/Unimo/home.PNG" alt="Unimo App Interface">
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <!-- =========================
            OTHER WORK
       ========================== -->
@@ -716,32 +610,33 @@
           </a>
         </div>
       </div>
-
-      <footer class="footer"
-        style="padding-top: 80px; padding-bottom: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-
-
-        <div
-          style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 40px; border-top: 1px solid var(--surface-border); width: 100%; max-width: 800px;">
-          <img src="image/logo.png" alt="Michelle.Design Logo"
-            style="height: 32px; opacity: 0.8; filter: grayscale(100%) contrast(1.2); transition: opacity 0.3s; cursor: pointer;"
-            onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
-          <div style="display: flex; gap: 24px;">
-            <a href="mailto:michelleguan321@gmail.com" class="sfx-hover"
-              style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
-              onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">Email</a>
-            <a href="#" class="sfx-hover"
-              style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
-              onmouseover="this.style.color='var(--primary)'"
-              onmouseout="this.style.color='var(--text-body)'">LinkedIn</a>
-          </div>
-          <p
-            style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin: 0; letter-spacing: 0.05em;">
-            © 2026 Michelle Guan. All rights reserved.</p>
-        </div>
-      </footer>
-
     </main>
+  </div>
+
+  <footer class="footer"
+    style="padding-top: 80px; padding-bottom: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+
+    <div
+      style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 40px; border-top: 1px solid var(--surface-border); width: 100%; max-width: 800px;">
+      <img src="image/logo.png" alt="Michelle.Design Logo"
+        style="height: 32px; opacity: 0.8; filter: grayscale(100%) contrast(1.2); transition: opacity 0.3s; cursor: pointer;"
+        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+      <div style="display: flex; gap: 24px;">
+        <a href="mailto:michelleguan321@gmail.com" class="sfx-hover"
+          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
+          onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">Email</a>
+        <a href="#" class="sfx-hover"
+          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
+          onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">LinkedIn</a>
+      </div>
+      <p
+        style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin: 0; letter-spacing: 0.05em;">
+        © 2026 Michelle Guan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  </main>
   </div>
 
   <script>

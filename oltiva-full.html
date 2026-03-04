@@ -32,14 +32,6 @@
   </header>
 
   <div class="container hero" style="text-align: center;">
-    <div class="intro-callout" style="text-align: left;">
-      <img src="image/face/thumb_up.png" alt="Greeting">
-      <p>
-        Hey there! I know reviewing case studies can be exhausting. But stick with me — this isn't just another design
-        story. It's about how we took an MVP that "looked like AI" but confused users, and transformed it into a
-        predictable, guided experience that global sales teams actually trust using.
-      </p>
-    </div>
     <span class="hero-kicker">Oltiva AI Document Insights</span>
     <h1 class="hero-title" style="max-width: 900px; margin: 0 auto 60px auto;">Improving clarity, task completion, and
       workflow alignment for 2,600+ sales representatives.
@@ -56,8 +48,10 @@
     <aside class="toc">
       <a href="#snapshot" class="active">Snapshot</a>
       <a href="#challenge">01 The Challenge</a>
-      <a href="#solution">02 Solution</a>
-      <a href="#impact">03 Impact</a>
+      <a href="#discovery">02 Discovery</a>
+      <a href="#solution">03 Solution</a>
+      <a href="#impact">04 Impact</a>
+      <a href="#reflection">05 Reflection</a>
     </aside>
 
     <main>
@@ -72,18 +66,19 @@
         <div class="meta-pill"><b>Client</b> <span>Avanade (Accenture + Microsoft)</span></div>
       </div>
 
-      <!-- Add View Full Case Study Button below metadata -->
+      <!-- Add View Short Case Study Button below metadata -->
       <div style="margin-bottom: 40px;">
-        <a href="oltiva-full.html"
+        <a href="oltiva.html"
           style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--primary, #A855F7); color: white; border-radius: 999px; text-decoration: none; font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);"
           onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(168, 85, 247, 0.4)';"
           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(168, 85, 247, 0.3)';">
-          View Full Case Study
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            style="margin-right: 8px;">
+            <path d="M19 12H5" />
+            <path d="M12 19l-7-7 7-7" />
           </svg>
+          View Short Case Study
         </a>
       </div>
 
@@ -128,8 +123,6 @@
           <li><b>Sales-oriented</b> – Speak the user's language, solve their actual problems, not technical
             possibilities.</li>
         </ul>
-
-        </ul>
       </div>
 
       <!-- =========================
@@ -172,10 +165,73 @@
       </div>
 
       <!-- =========================
+           DISCOVERY
+      ========================== -->
+      <div id="discovery" class="section">
+        <span class="section-label">02 // DISCOVERY</span>
+        <h2>Understanding How Sales Reps Actually Work</h2>
+        <p>
+          Before touching any designs, I needed to understand the context. I conducted 5 moderated usability tests with
+          sales reps, observing how they approached documents and what they expected from an AI tool.
+        </p>
+
+        <div class="insight">
+          <span class="insight-label">Key Insight</span>
+          <p>
+            For Avanade sales reps, every task begins with a concrete artifact—a proposal, SOW, or contract they need to
+            understand. Their primary intent in Oltiva is not "explore the tool," but "get insights from this specific
+            document."
+            <br><br>
+            This meant: <b>uploading a file isn't one option among many—it's the core entry point of the entire
+              flow.</b> Everything else is supporting material.
+          </p>
+        </div>
+
+        <h3 style="margin-top: 60px;">Design Iterations: From Confusion to Clarity</h3>
+
+        <h4 style="margin-top: 40px; margin-bottom: 24px;">Iteration 1 — The "Everything on One Screen" Approach</h4>
+        <p>
+          <b>Hypothesis:</b> Fewer clicks = faster process. Putting all actions on one screen would simplify the
+          experience.
+          <br>
+          <b>Reality:</b> Only 70% task completion. Users repeatedly said: "I don't know where to start."
+          The screen was visually simple, but cognitively overwhelming. Without hierarchy, users couldn't distinguish
+          primary from secondary actions.
+        </p>
+        <img src="image/avanade/iteration_1.png" alt="Iteration 1: Everything on One Screen"
+          style="width: 100%; border-radius: 12px; margin: 24px 0; display: block; border: 1px solid var(--surface-border);">
+
+        <h4 style="margin-top: 40px; margin-bottom: 24px;">Iteration 2 — Adding Structure</h4>
+        <p>
+          <b>What changed:</b> Grouped related actions, introduced icon + color differentiation, reduced copy.
+          <br>
+          <b>Result:</b> Task completion improved to 75%. Users finally had a sense of where to look—but still hesitated
+          on the first click. Every option still looked equally important.
+        </p>
+        <img src="image/avanade/iteration_2.png" alt="Iteration 2: Adding Structure"
+          style="width: 100%; border-radius: 12px; margin: 24px 0; display: block; border: 1px solid var(--surface-border);">
+
+        <h4 style="margin-top: 40px; margin-bottom: 24px;">Iteration 3 — Making Upload the Hero</h4>
+        <p>
+          <b>What changed:</b> Made "Select or upload a file" visually dominant (primary button), pushed secondary
+          actions to supporting areas.
+          <br>
+          <b>Result:</b> Task completion jumped to 95%. Users no longer hesitated—they knew exactly where to begin.
+        </p>
+        <img src="image/avanade/iteration_3.png" alt="Iteration 3: Making Upload the Hero"
+          style="width: 100%; border-radius: 12px; margin: 24px 0; display: block; border: 1px solid var(--surface-border);">
+
+        <p style="margin-top: 24px;">
+          <b>The Learning:</b> The breakthrough wasn't visual—it was conceptual. Once I understood that uploading is the
+          entry point, not an option, the hierarchy became obvious.
+        </p>
+      </div>
+
+      <!-- =========================
            SOLUTION
       ========================== -->
       <div id="solution" class="section">
-        <span class="section-label">02 // SOLUTION</span>
+        <span class="section-label">03 // SOLUTION</span>
         <h2>Final Design: A Guided AI Experience</h2>
         <p>
           The final design feels less like "using a tool" and more like working with a knowledgeable assistant. Every
@@ -220,7 +276,7 @@
            IMPACT
       ========================== -->
       <div id="impact" class="section">
-        <span class="section-label">03 // IMPACT</span>
+        <span class="section-label">04 // IMPACT</span>
         <h2>From Confusion to Confidence</h2>
         <p>
           The redesign transformed both user behavior and stakeholder confidence.
@@ -256,6 +312,50 @@
       </div>
 
       <!-- =========================
+           REFLECTION
+      ========================== -->
+      <div id="reflection" class="section">
+        <span class="section-label">05 // REFLECTION</span>
+        <h2>What I learned.</h2>
+
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num">01</div>
+            <div class="step-desc">
+              <b>Hierarchy is empathy.</b>
+              Visual hierarchy isn't just about aesthetics—it's about understanding what matters to users and making
+              that unmistakable. The "hero" action should reflect the user's primary goal, not the product's feature
+              set.
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">02</div>
+            <div class="step-desc">
+              <b>Test with real context.</b>
+              The breakthrough insight came from watching reps try to use the tool with their own documents. Abstract
+              testing would have missed this. Real files revealed real workflow gaps.
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">03</div>
+            <div class="step-desc">
+              <b>Simple is hard.</b>
+              Making one thing primary means deliberately de-emphasizing everything else. That requires conviction—and
+              evidence that you're prioritizing the right thing.
+            </div>
+          </div>
+        </div>
+
+        <h3>If I were to do this again:</h3>
+        <ul class="feature-list">
+          <li>I would test even earlier—before any visual design—by walking reps through paper prototypes</li>
+          <li>I would track time-on-task alongside completion rates to measure efficiency gains</li>
+          <li>I would involve developers sooner in discussing how the "smart suggestions" could surface more dynamically
+          </li>
+        </ul>
+      </div>
+
+      <!-- =========================
            OTHER WORK
       ========================== -->
       <div class="other-work-section">
@@ -281,30 +381,32 @@
           </a>
         </div>
       </div>
+
+      <footer class="footer"
+        style="padding-top: 80px; padding-bottom: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+        <div
+          style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 40px; border-top: 1px solid var(--surface-border); width: 100%; max-width: 800px;">
+          <img src="image/logo.png" alt="Michelle.Design Logo"
+            style="height: 32px; opacity: 0.8; filter: grayscale(100%) contrast(1.2); transition: opacity 0.3s; cursor: pointer;"
+            onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+          <div style="display: flex; gap: 24px;">
+            <a href="mailto:michelleguan321@gmail.com" class="sfx-hover"
+              style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
+              onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">Email</a>
+            <a href="#" class="sfx-hover"
+              style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
+              onmouseover="this.style.color='var(--primary)'"
+              onmouseout="this.style.color='var(--text-body)'">LinkedIn</a>
+          </div>
+          <p
+            style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin: 0; letter-spacing: 0.05em;">
+            © 2026 Michelle Guan. All rights reserved.</p>
+        </div>
+      </footer>
+
     </main>
   </div>
-
-  <footer class="footer"
-    style="padding-top: 80px; padding-bottom: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-
-    <div
-      style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 40px; border-top: 1px solid var(--surface-border); width: 100%; max-width: 800px;">
-      <img src="image/logo.png" alt="Michelle.Design Logo"
-        style="height: 32px; opacity: 0.8; filter: grayscale(100%) contrast(1.2); transition: opacity 0.3s; cursor: pointer;"
-        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
-      <div style="display: flex; gap: 24px;">
-        <a href="mailto:michelleguan321@gmail.com" class="sfx-hover"
-          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
-          onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">Email</a>
-        <a href="#" class="sfx-hover"
-          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
-          onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">LinkedIn</a>
-      </div>
-      <p
-        style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin: 0; letter-spacing: 0.05em;">
-        © 2026 Michelle Guan. All rights reserved.</p>
-    </div>
-  </footer>
 
   <script>
     // Scroll Progress & TOC Active State

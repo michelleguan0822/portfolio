@@ -84,17 +84,21 @@
         </nav>
     </header>
 
-    <div class="container hero">
-        <span class="hero-kicker">Impulse</span>
-        <h1 class="hero-title">Connect, Share, and Achieve with Impulse</h1>
-
-        <div class="hero-meta">
-            <div class="meta-pill"><b>Role</b> Product Designer</div>
-            <div class="meta-pill"><b>Timeline</b> Aug 2024 – Present</div>
-            <div class="meta-pill"><b>Team</b> 6 Devs, 2 Visual Designers, 7 Product Designers</div>
+    <div class="container hero" style="text-align: center;">
+        <div class="intro-callout" style="text-align: left;">
+            <img src="image/face/thumb_up.png" alt="Greeting">
+            <p>
+                Hey there! I know reviewing case studies can be exhausting. But stick with me — this isn't just another
+                design story.
+                <br>It's about how we built a social accountability app from the ground up, turning the
+                solitary struggle of habit-building into a shared, gamified experience for young professionals.
+            </p>
         </div>
+        <span class="hero-kicker">Impulse</span>
+        <h1 class="hero-title" style="max-width: 900px; margin: 0 auto 60px auto;">Connect, Share, and Achieve with
+            Impulse</h1>
 
-        <div class="hero-visual">
+        <div class="hero-visual" style="margin-bottom: 60px;">
             <div class="img-placeholder">[ Hero / Background Image Placeholder ]</div>
         </div>
     </div>
@@ -104,13 +108,35 @@
         <aside class="toc">
             <a href="#about" class="active">Snapshot</a>
             <a href="#problem">01 The Problem</a>
-            <a href="#research">02 Discovery</a>
-            <a href="#goals">03 Design Goals</a>
-            <a href="#changes">04 Key Changes</a>
-            <a href="#reflection">05 Reflection</a>
+            <a href="#changes">02 Key Changes</a>
         </aside>
 
         <main>
+
+            <!-- =========================
+           META DATA
+      ========================== -->
+            <div class="hero-meta">
+                <div class="meta-pill"><b>Role</b> <span>Product Designer</span></div>
+                <div class="meta-pill"><b>Timeline</b> <span>Aug 2024 – Present</span></div>
+                <div class="meta-pill"><b>Team</b> <span>6 Devs, 2 Visual Designers, 7 Product Designers</span></div>
+                <div class="meta-pill"><b>Client</b> <span>Impulse App</span></div>
+            </div>
+
+            <!-- Add View Full Case Study Button below metadata -->
+            <div style="margin-bottom: 40px;">
+                <a href="impulse-full.html"
+                    style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--primary, #A855F7); color: white; border-radius: 999px; text-decoration: none; font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(168, 85, 247, 0.4)';"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(168, 85, 247, 0.3)';">
+                    View Full Case Study
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
 
             <!-- =========================
            SNAPSHOT
@@ -155,156 +181,74 @@
                         <p>Join groups and climb the leaderboard.</p>
                     </div>
                 </div>
+
             </div>
+    </div>
 
-            <hr class="section-divider">
+    <hr class="section-divider">
 
-            <!-- =========================
+    <!-- =========================
            THE PROBLEM
       ========================== -->
-            <div id="problem" class="section">
-                <span class="section-label">01 // The Problem</span>
-                <h2>High Drop-off Rates</h2>
-                <p class="lead-text">
-                    After four weeks, 69% of users dropped off.
-                </p>
-                <p>
-                    There was a clear friction in the user experience that prevented users from forming a sustained
-                    habit within the app.
-                </p>
-            </div>
+    <div id="problem" class="section">
+        <span class="section-label">01 // The Problem</span>
+        <h2>High Drop-off Rates</h2>
+        <p class="lead-text">
+            After four weeks, 69% of users dropped off.
+        </p>
+        <p>
+            There was a clear friction in the user experience that prevented users from forming a sustained
+            habit within the app.
+        </p>
+    </div>
 
-            <hr class="section-divider">
-
-            <!-- =========================
-           RESEARCH & DISCOVERY
-      ========================== -->
-            <div id="research" class="section">
-                <span class="section-label">02 // Research & Discovery</span>
-                <h2>Understanding the Friction</h2>
-                <p>
-                    Since Impulse is a B2C app, even small frustrations can cause users to stop using it. To understand
-                    the drop-off, I combined three research approaches:
-                </p>
-
-                <h3>Step 1: Listening to users</h3>
-                <p>I conducted 12 interviews and 5 usability tests with both new and returning users. These sessions
-                    revealed some of their struggles:</p>
-                <ul>
-                    <li><b>Goal logging was tedious:</b> 8-step flow took 45s, too long for daily use.</li>
-                    <li><b>Frequent misclicks:</b> Unclear layout led to 80% tapping the wrong buttons.</li>
-                    <li><b>Users forgot the app:</b> Hard to build habits without reminders.</li>
-                    <li><b>Uninspiring design:</b> The visual presentation didn't motivate users.</li>
-                </ul>
-
-                <h3>Step 2: Learning from the market</h3>
-                <p>After spotting our internal issues, I turned to competitor analysis. I studied how other successful
-                    habit tracking apps tackled similar problems:</p>
-                <ul>
-                    <li>How they structured their habit flows</li>
-                    <li>How they motivated users with nudges and streaks</li>
-                    <li>How they balanced flexibility and simplicity</li>
-                </ul>
-
-                <h3>Step 3: Observing real behavior</h3>
-                <p>I watched both new and long-term users interact with the app without guidance. This helped me:</p>
-                <ul>
-                    <li>Spot moments of hesitation or drop-off</li>
-                    <li>Notice which features they returned to (or ignored)</li>
-                    <li>Understand what motivated consistent use</li>
-                </ul>
-                <div class="insight" style="margin-top: 24px;">
-                    <p><i>"This step was key in translating research into flows and features that fit real-world
-                            habits."</i></p>
-                </div>
-            </div>
-
-            <hr class="section-divider">
-
-            <!-- =========================
-           DESIGN GOALS
-      ========================== -->
-            <div id="goals" class="section">
-                <span class="section-label">03 // Design Goals</span>
-                <h2>Setting Clear Objectives</h2>
-                <p>
-                    Based on what I learned from user feedback, competitor insights, and behavioral patterns, I set
-                    three clear design goals to guide the redesign:
-                </p>
-                <ol>
-                    <li><b>Simplify the goal logging flow</b></li>
-                    <li><b>Support users with reminders</b></li>
-                    <li><b>Build a versatile design system</b></li>
-                </ol>
-            </div>
-
-            <hr class="section-divider">
-
-            <!-- =========================
+    <!-- =========================
            KEY CHANGES
       ========================== -->
-            <div id="changes" class="section">
-                <span class="section-label">04 // Key Changes</span>
-                <h2>Designing for Real Habits</h2>
+    <div id="changes" class="section">
+        <span class="section-label">02 // Key Changes</span>
+        <h2>Designing for Real Habits</h2>
 
-                <h3>Change 1: Streamlining goal logging</h3>
-                <p>
-                    The original logging process took over 23 seconds and frustrated users. I redesigned it to support
-                    two natural mental models:
-                </p>
-                <ul>
-                    <li><b>Camera-first flow:</b> Others captured evidence first (a photo or video), then tied it to a
-                        goal.</li>
-                    <li><b>Goal-first flow:</b> Some started with a goal in mind, then logged it.</li>
-                </ul>
-                <div class="img-placeholder">[ Goal Logging UI Prototype Placeholder ]</div>
+        <h3>Change 1: Streamlining goal logging</h3>
+        <p>
+            The original logging process took over 23 seconds and frustrated users. I redesigned it to support
+            two natural mental models:
+        </p>
+        <ul>
+            <li><b>Camera-first flow:</b> Others captured evidence first (a photo or video), then tied it to a
+                goal.</li>
+            <li><b>Goal-first flow:</b> Some started with a goal in mind, then logged it.</li>
+        </ul>
+        <div class="img-placeholder">[ Goal Logging UI Prototype Placeholder ]</div>
 
-                <h3 style="margin-top: 48px;">Change 2: Smart, supportive reminders</h3>
-                <p>
-                    Users often forgot to log habits but they didn’t want generic or nagging push notifications. So I
-                    designed a system that felt supportive instead of stressful:
-                </p>
-                <ul>
-                    <li>Custom reminder schedules</li>
-                    <li>Positive, friendly tone</li>
-                    <li>Smart timing based on user behavior (e.g., when they’re likely to skip)</li>
-                </ul>
-                <div class="img-placeholder">[ Notification Flow Placeholder ]</div>
+        <h3 style="margin-top: 48px;">Change 2: Smart, supportive reminders</h3>
+        <p>
+            Users often forgot to log habits but they didn’t want generic or nagging push notifications. So I
+            designed a system that felt supportive instead of stressful:
+        </p>
+        <ul>
+            <li>Custom reminder schedules</li>
+            <li>Positive, friendly tone</li>
+            <li>Smart timing based on user behavior (e.g., when they’re likely to skip)</li>
+        </ul>
+        <div class="img-placeholder">[ Notification Flow Placeholder ]</div>
 
-                <h3 style="margin-top: 48px;">Change 3: A new visual language</h3>
-                <p>
-                    When I joined, there was no design system, which led to inconsistent styles and developer
-                    frustration. My design system improvements included:
-                </p>
-                <ul>
-                    <li>Refined color palette for energy & motivation</li>
-                    <li>Scalable UI components for faster dev handoff</li>
-                    <li>Consistent visual language across pages</li>
-                </ul>
-                <div class="img-placeholder">[ Design System Snippet Placeholder ]</div>
-            </div>
+        <h3 style="margin-top: 48px;">Change 3: A new visual language</h3>
+        <p>
+            When I joined, there was no design system, which led to inconsistent styles and developer
+            frustration. My design system improvements included:
+        </p>
+        <ul>
+            <li>Refined color palette for energy & motivation</li>
+            <li>Scalable UI components for faster dev handoff</li>
+            <li>Consistent visual language across pages</li>
+        </ul>
+        <div class="img-placeholder">[ Design System Snippet Placeholder ]</div>
+    </div>
 
-            <hr class="section-divider">
+    </div>
 
-            <!-- =========================
-           REFLECTION
-      ========================== -->
-            <div id="reflection" class="section">
-                <span class="section-label">05 // Reflection</span>
-                <h2>What I learned from designing for real-life habits</h2>
-                <p>
-                    Small changes can drive big behavior shifts. In habit-tracking apps, success doesn’t always come
-                    from flashy features, it comes from respecting users’ time, energy, and attention span.
-                </p>
-                <ul>
-                    <li>Treat every interaction as a chance to reduce friction</li>
-                    <li>Design flows that adapt to real human behavior, not just ideal scenarios</li>
-                    <li>Balance simplicity with flexibility</li>
-                    <li>Help users feel progress (not pressure)</li>
-                </ul>
-            </div>
-
-        </main>
+    </main>
     </div>
 
     <footer class="case-footer"

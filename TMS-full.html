@@ -33,14 +33,6 @@
   </header>
 
   <div class="container hero" style="text-align: center;">
-    <div class="intro-callout" style="text-align: left;">
-      <img src="image/face/thumb_up.png" alt="Greeting">
-      <p>
-        Hey there! I know reviewing case studies can be exhausting. But stick with me — this isn't just another design
-        story. It's about how we took a clinical dashboard that was rejected three times for lacking "credibility" and
-        reframed it into a highly-trusted cockpit system that secured Phase 2 funding.
-      </p>
-    </div>
     <span class="hero-kicker">Product Design</span>
     <h1 class="hero-title" style="max-width: 900px; margin: 0 auto 60px auto;">Bridging the Trust Gap for TMS Clinical
       Research</h1>
@@ -60,8 +52,12 @@
       <a href="#tldr" class="active">TL;DR</a>
       <a href="#context">01 Context</a>
       <a href="#challenge">02 The Challenge</a>
-      <a href="#solution">03 The Solution</a>
-      <a href="#impact">04 Impact & Outcome</a>
+      <a href="#insight">03 Stakeholder Interviews</a>
+      <a href="#discovery">04 Discovery</a>
+      <a href="#design-strategy">05 Design Strategy</a>
+      <a href="#solution">06 The Solution</a>
+      <a href="#impact">07 Impact & Outcome</a>
+      <a href="#reflection">08 Reflection</a>
     </aside>
 
     <main>
@@ -75,18 +71,19 @@
         <div class="meta-pill"><b>Client</b> <span>Shenzhen People’s Hospital × Stanford Mentors</span></div>
       </div>
 
-      <!-- Add View Full Case Study Button below metadata -->
+      <!-- Add View Short Case Study Button below metadata -->
       <div style="margin-bottom: 40px;">
-        <a href="TMS-full.html"
+        <a href="TMS.html"
           style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--primary, #A855F7); color: white; border-radius: 999px; text-decoration: none; font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);"
           onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(168, 85, 247, 0.4)';"
           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(168, 85, 247, 0.3)';">
-          View Full Case Study
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            style="margin-right: 8px;">
+            <path d="M19 12H5" />
+            <path d="M12 19l-7-7 7-7" />
           </svg>
+          View Short Case Study
         </a>
       </div>
 
@@ -118,7 +115,6 @@
             <div class="stat-label">Approved for live-data integration</div>
           </div>
         </div>
-
       </div>
 
       <!-- =========================
@@ -185,11 +181,130 @@
 
       </div>
 
+      <div id="insight" class="section">
+        <span class="section-label">03 // STAKEHOLDER INTERVIEWS</span>
+        <h2>Decoding “Sci-Fi”</h2>
+        <p>
+          In weekly reviews, I moved beyond surface feedback and conducted deeper interviews to understand the root of
+          their hesitation.
+        </p>
+
+
+        <blockquote>
+          "The interface looks like systems we used 10 years ago. Presenting this to young doctors makes our entire team
+          look unprofessional."
+          <footer>— Clinical Lead</footer>
+        </blockquote>
+
+        <blockquote>
+          "We just threw elements on the screen as long as the functionality worked. There was no system to how things
+          were placed." <footer>— Engineering Team</footer>
+        </blockquote>
+
+        <div class="insight">
+          <span class="insight-label">Key Insight</span>
+          <p>
+            The distrust wasn't about missing features. It was about visual outdatedness signaling lack of team
+            competence. When stakeholders asked for "sci-fi," they were really asking for an interface that matched
+            their vision of <b>"modern medical technology."</b>
+          </p>
+        </div>
+      </div>
+
+      <!-- =========================
+           DISCOVERY
+      ========================== -->
+      <div id="discovery" class="section">
+        <span class="section-label">04 // Competitive Analysis</span>
+        <h2>So what does “trust” look like?</h2>
+        <p>
+          I analyzed 5 high-precision interfaces to understand what visual language communicates authority:
+        </p>
+        <div style="margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+          <img src="image/TMS/moodboard.png" alt="Trust references and moodboard"
+            style="width: 100%; height: auto; display: block;" />
+        </div>
+
+        <table class="analysis-table">
+          <thead>
+            <tr>
+              <th>Product Category</th>
+              <th>Key Trust Signals</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Medical imaging software (GE, Siemens PACS)</td>
+              <td>Dark backgrounds reduce glare, highlight critical data, signal "professional grade"</td>
+            </tr>
+            <tr>
+              <td>Tesla driving visualization</td>
+              <td>High-contrast active states, precise animations convey control and safety</td>
+            </tr>
+            <tr>
+              <td>Aircraft cockpit displays</td>
+              <td>Information-dense but hierarchically structured—supports rapid scanning</td>
+            </tr>
+            <tr>
+              <td>Surgical robot interfaces</td>
+              <td>Restrained color palette, generous spacing around critical controls</td>
+            </tr>
+            <tr>
+              <td>Lab equipment dashboards</td>
+              <td>Clear status indicators, explicit confirmation states</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="key-findings">
+          <h3>Key Findings</h3>
+          <ul class="findings-list">
+            <li><b>Dark UI is the norm in professional medical contexts</b>—it reduces eye strain during long sessions
+              and makes critical data pop</li>
+            <li><b>Information density isn't the enemy—poor hierarchy is.</b> Experts prefer seeing more data at once,
+              as long as it's structured</li>
+            <li><b>Active states matter</b>—precise highlighting of what's currently happening builds confidence that
+              the system is responding predictably</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =========================
+           DESIGN STRATEGY
+      ========================== -->
+      <div id="design-strategy" class="section">
+        <span class="section-label">05 // DESIGN STRATEGY</span>
+        <h2>I defined three core principles:</h2>
+        <ul class="steps">
+          <li class="step-item">
+            <span class="step-num">01</span>
+            <span class="step-desc">
+              <b>Translate “Sci-Fi” into Clinical Precision</b><br />
+              Use contrast, restrained color, and precise data emphasis to signal readiness and professionalism.
+            </span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">02</span>
+            <span class="step-desc">
+              <b>Design for Cognitive Scanning</b><br />
+              Clinicians operate under time pressure. The layout must support rapid scanning.
+            </span>
+          </li>
+          <li class="step-item">
+            <span class="step-num">03</span>
+            <span class="step-desc">
+              <b>Stakeholder Alignment</b><br />
+              Turn subjective aesthetic debates into structured visual explorations.
+            </span>
+          </li>
+        </ul>
+      </div>
+
       <!-- =========================
            SOLUTION
       ========================== -->
       <div id="solution" class="section">
-        <span class="section-label">03 // THE SOLUTION</span>
+        <span class="section-label">06 // THE SOLUTION</span>
         <h2>The “Dark Cockpit” Authority System</h2>
 
         <h3 style="margin-top: 60px; margin-bottom:24px; color: var(--text-main);">Color System: Deep Navy & Electric
@@ -268,7 +383,7 @@
            IMPACT
       ========================== -->
       <div id="impact" class="section">
-        <span class="section-label">04 // IMPACT & OUTCOME</span>
+        <span class="section-label">07 // IMPACT & OUTCOME</span>
         <h2>The redesign unblocked the future.</h2>
         <p>
           The redesign did what code alone couldn’t: it shifted stakeholder perception from skepticism to confidence—and
@@ -290,6 +405,20 @@
           </div>
         </div>
       </div>
+
+      <!-- =========================
+           REFLECTION
+      ========================== -->
+      <div id="reflection" class="section">
+        <span class="section-label">08 // REFLECTION</span>
+        <h2>“Sci-Fi” is often a proxy for “competence.”</h2>
+        <p>
+          Stakeholders often lack vocabulary to describe UI trust issues. When they ask for a style (“sci-fi”), they’re
+          frequently expressing an emotional requirement.
+          My job as a designer was to translate that into a scalable visual system and a workflow-driven layout.
+        </p>
+      </div>
+
       <!-- =========================
            OTHER WORK
       ========================== -->
@@ -313,8 +442,10 @@
               <span class="other-card-tag">AI WORKFLOW · B2B SYSTEM</span>
               <h3 class="other-card-title">Oltiva - AI Document Insights</h3>
             </div>
+          </a>
         </div>
       </div>
+
     </main>
   </div>
 
