@@ -18,7 +18,7 @@
         .img-placeholder {
             width: 100%;
             height: 380px;
-            background: #f3f4f6;
+            background: #111827;
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -27,41 +27,256 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 14px;
             margin: 32px 0;
-            border: 1px dashed #d1d5db;
+            border: 1px dashed #374151;
         }
 
-        .features-grid {
+        /* New Grids */
+        .impulse-grid-2x2 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
             margin-top: 32px;
             margin-bottom: 48px;
         }
 
-        .feature-card {
-            background: #f9fafb;
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
+        .impulse-dark-card {
+            background: #FFFFFF;
+            border: transparent;
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        .feature-card h4 {
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 18px;
+        .impulse-dark-card h4 {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
             color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        .feature-card p {
+        .impulse-dark-card p {
             margin: 0;
             font-size: 15px;
-            color: #4b5563;
+            line-height: 1.6;
+            color: #4B5563;
+        }
+
+        .impulse-goals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+            margin-bottom: 48px;
+        }
+
+        .impulse-light-card {
+            background: #FFFFFF;
+            border: transparent;
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            color: #111827 !important;
+        }
+
+        .impulse-light-card h4 {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 1.4;
+            color: #111827 !important;
+            /* Force black text */
+        }
+
+        .impulse-light-card svg {
+            color: #111827 !important;
+            /* Force black icon */
+        }
+
+        /* Hero Phone Mockup Layout */
+        .hero-mockup-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            margin-top: 60px;
+            perspective: 1200px;
+            min-height: 480px;
+        }
+
+        .hero-phone {
+            width: 260px;
+            height: 520px;
+            background: #000;
+            border-radius: 40px;
+            border: 8px solid #1c1c1e;
+            box-shadow:
+                0 25px 50px -12px rgba(0, 0, 0, 0.6),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .hero-phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-phone.left {
+            transform: rotateY(15deg) translateZ(-50px);
+            height: 480px;
+            z-index: 1;
+            animation: floatLeft 6s ease-in-out infinite;
+            animation-delay: 0s;
+        }
+
+        .hero-phone.center {
+            transform: translateZ(50px);
+            z-index: 10;
+            animation: floatCenter 5s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .hero-phone.right {
+            transform: rotateY(-15deg) translateZ(-50px);
+            height: 480px;
+            z-index: 2;
+            animation: floatRight 7s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        /* Ambient Glow Effect */
+        .ambient-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 600px;
+            max-width: 1000px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(236, 72, 153, 0.1) 40%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .premium-text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 24px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Entrance Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatLeft {
+
+            0%,
+            100% {
+                transform: rotateY(15deg) translateZ(-50px) translateY(0px);
+            }
+
+            50% {
+                transform: rotateY(15deg) translateZ(-50px) translateY(-15px);
+            }
+        }
+
+        @keyframes floatCenter {
+
+            0%,
+            100% {
+                transform: translateZ(50px) translateY(0px);
+            }
+
+            50% {
+                transform: translateZ(50px) translateY(-20px);
+            }
+        }
+
+        @keyframes floatRight {
+
+            0%,
+            100% {
+                transform: rotateY(-15deg) translateZ(-50px) translateY(0px);
+            }
+
+            50% {
+                transform: rotateY(-15deg) translateZ(-50px) translateY(-15px);
+            }
         }
 
         @media (max-width: 768px) {
-            .features-grid {
+
+            .impulse-grid-2x2,
+            .impulse-goals-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .hero-mockup-wrapper {
+                flex-direction: column;
+                gap: 24px;
+                perspective: none;
+            }
+
+            .hero-phone.left,
+            .hero-phone.right {
+                transform: none;
+                height: 520px;
+                animation: none;
+            }
+
+            .hero-phone.center {
+                transform: none;
+                animation: none;
+            }
+
+            .hero-phone:hover {
+                transform: none !important;
             }
         }
     </style>
@@ -69,37 +284,150 @@
 
 <body>
     <div class="scroll-progress" id="bar"></div>
-    <div class="bg-glow"></div>
-
     <header class="nav-shell">
         <nav class="nav-inner">
             <a href="index.html" class="nav-logo-link"
                 style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
                 <img src="image/logo.png" alt="Michelle.Design Logo"
-                    style="height: 16px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.2s;"
-                    onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                    style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
+                    onmouseout="this.style.opacity='0.8'">
             </a>
             <a href="index.html">Home</a>
             <a href="about-me.html">About Me</a>
         </nav>
     </header>
 
-    <div class="container hero" style="text-align: center;">
-        <div class="intro-callout" style="text-align: left;">
-            <img src="image/face/thumb_up.png" alt="Greeting">
-            <p>
-                Hey there! I know reviewing case studies can be exhausting. But stick with me — this isn't just another
-                design story.
-                <br>It's about how we built a social accountability app from the ground up, turning the
-                solitary struggle of habit-building into a shared, gamified experience for young professionals.
-            </p>
-        </div>
-        <span class="hero-kicker">Impulse</span>
-        <h1 class="hero-title" style="max-width: 900px; margin: 0 auto 60px auto;">Connect, Share, and Achieve with
-            Impulse</h1>
+    <div class="container hero" style="text-align: center; position: relative; overflow: hidden; padding-top: 80px;">
+        <div class="ambient-glow"></div>
 
-        <div class="hero-visual" style="margin-bottom: 60px;">
-            <div class="img-placeholder">[ Hero / Background Image Placeholder ]</div>
+        <div class="fade-in-up" style="position: relative; z-index: 10;">
+            <div class="intro-callout"
+                style="text-align: left; display: inline-flex; align-items: center; gap: 8px; background: #FFFFFF; border: transparent; padding: 6px 16px 6px 6px; border-radius: 999px;">
+                <img src="image/face/thumb_up.png" alt="Trusted" style="width: 24px; height: 24px; border-radius: 50%;">
+                <p
+                    style="margin: 0; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px; color: #4B5563; letter-spacing: 0.5px;">
+                    Trusted by 600+ users
+                </p>
+            </div>
+
+            <h1 class="hero-title delay-100"
+                style="max-width: 900px; margin: 24px auto 40px auto; font-size: 56px; line-height: 1.1; letter-spacing: -2px; font-family: 'Inter', sans-serif;">
+                Connect, Share, and Achieve with Impulse
+            </h1>
+
+            <div class="delay-200" style="margin-top: 40px; margin-bottom: 80px;">
+                <a href="#"
+                    style="display: inline-flex; align-items: center; justify-content: center; padding: 16px 40px; background: #111827; color: #ffffff; font-weight: 600; font-family: 'Inter', sans-serif; border-radius: 999px; text-decoration: none; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1); letter-spacing: -0.2px;"
+                    onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)';"
+                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';">
+                    Get this App
+                </a>
+                <div
+                    style="margin-top: 24px; color: #64748b; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 500;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4" />
+                        <path d="M12 8h.01" />
+                    </svg>
+                    Available For iOS & Android
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual fade-in-up delay-300" style="margin-bottom: 60px; position: relative;">
+            <div class="hero-mockup-wrapper">
+                <div class="hero-phone left fade-in-up delay-500">
+                    <img src="image/Impulse/screens/1.png" alt="Screen 1">
+                </div>
+                <div class="hero-phone center fade-in-up delay-300">
+                    <img src="image/Impulse/screens/2.png" alt="Screen 2">
+                </div>
+                <div class="hero-phone right fade-in-up delay-500">
+                    <img src="image/Impulse/screens/3.png" alt="Screen 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Features Section -->
+    <div class="core-features-layout"
+        style="max-width: 1200px; margin: 0 auto 100px auto; padding: 0 5%; display: flex; align-items: center; gap: 60px;">
+
+        <!-- Left Column: Phone Mockup -->
+        <div
+            style="flex: 1; background: #FFFFFF; border-radius: 24px; padding: 60px 40px; display: flex; justify-content: center; align-items: center; border: transparent;">
+            <div style="background: #ffffff; border-radius: 40px; display: inline-block; border: 8px solid #f0f0f0;">
+                <img src="image/Impulse/screens/my_account.png" alt="My Account Dashboard"
+                    style="height: 500px; width: auto; border-radius: 32px; display: block; object-fit: cover;">
+            </div>
+        </div>
+
+        <!-- Right Column: Title and 2x2 Grid -->
+        <div style="flex: 1.2; display: flex; flex-direction: column; justify-content: center;">
+            <h2 style="font-size: 40px; margin-bottom: 40px; font-weight: 700; letter-spacing: -1px;">Core features of
+                Impulse</h2>
+
+            <div class="impulse-grid-2x2" style="margin: 0; gap: 16px;">
+                <div class="impulse-dark-card"
+                    style="padding: 24px; border-radius: 16px; background: #FFFFFF; border: transparent;">
+                    <h4
+                        style="font-size: 16px; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #111827;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                        Progress Sharing
+                    </h4>
+                    <p style="font-size: 14px; color: #4B5563; margin: 0;">Share photos to stay accountable.</p>
+                </div>
+
+                <div class="impulse-dark-card"
+                    style="padding: 24px; border-radius: 16px; background: #FFFFFF; border: transparent;">
+                    <h4
+                        style="font-size: 16px; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #111827;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                        Awards and Challenges
+                    </h4>
+                    <p style="font-size: 14px; color: #4B5563; margin: 0;">Earn rewards for posts, invites, and goals.
+                    </p>
+                </div>
+
+                <div class="impulse-dark-card"
+                    style="padding: 24px; border-radius: 16px; background: #FFFFFF; border: transparent;">
+                    <h4
+                        style="font-size: 16px; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #111827;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                        </svg>
+                        Real-Time Messaging
+                    </h4>
+                    <p style="font-size: 14px; color: #4B5563; margin: 0;">Stay connected with friends and groups.</p>
+                </div>
+
+                <div class="impulse-dark-card"
+                    style="padding: 24px; border-radius: 16px; background: #FFFFFF; border: transparent;">
+                    <h4
+                        style="font-size: 16px; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #111827;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        Community Groups
+                    </h4>
+                    <p style="font-size: 14px; color: #4B5563; margin: 0;">Join groups and climb the leaderboard.</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -107,8 +435,10 @@
 
         <aside class="toc">
             <a href="#about" class="active">Snapshot</a>
-            <a href="#problem">01 The Problem</a>
-            <a href="#changes">02 Key Changes</a>
+            <a href="#discovery">01 Discovery</a>
+            <a href="#design-goals">02 Design Goals</a>
+            <a href="#changes">03 Key Changes</a>
+            <a href="#reflection">04 Reflection</a>
         </aside>
 
         <main>
@@ -123,21 +453,6 @@
                 <div class="meta-pill"><b>Client</b> <span>Impulse App</span></div>
             </div>
 
-            <!-- Add View Full Case Study Button below metadata -->
-            <div style="margin-bottom: 40px;">
-                <a href="impulse-full.html"
-                    style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--primary, #A855F7); color: white; border-radius: 999px; text-decoration: none; font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);"
-                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(168, 85, 247, 0.4)';"
-                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(168, 85, 247, 0.3)';">
-                    View Full Case Study
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                    </svg>
-                </a>
-            </div>
-
             <!-- =========================
            SNAPSHOT
       ========================== -->
@@ -146,113 +461,266 @@
                 <h2>About Impulse</h2>
                 <p class="lead-text">
                     Impulse is a B2C social accountability app designed for young professionals who want to build
-                    healthier habits together.
+                    healthier habits
+                    together.
                 </p>
 
                 <p>
                     As a Product Designer at Impulse, I joined during its beta phase, right when the team noticed a
-                    critical problem: many users loved the idea of the app but quickly stopped using it.
+                    critical
+                    problem: many users loved the idea of the app but quickly stopped using it.
                 </p>
 
-                <div class="insight">
+                <div class="insight" style="margin-top: 32px;">
                     <span class="insight-label">Outcome</span>
                     <p>
                         Simplified the primary logging flow, introduced smart notifications, and established a
-                        consistent visual brand system.
+                        consistent visual
+                        brand system.
                     </p>
                 </div>
 
-                <h3 style="margin-top: 48px;">Core Features</h3>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h4>Progress Sharing</h4>
-                        <p>Share photos to stay accountable.</p>
+                <h3 style="margin-top: 60px;">The Problem</h3>
+                <p class="lead-text" style="color: #ef4444; margin-bottom: 32px;">
+                    After four weeks, 69% of users dropped off
+                </p>
+                <div
+                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; border: transparent; border-radius: 12px; padding: 40px; background: #FFFFFF;">
+                    <div style="text-align: center;">
+                        <img src="" alt="Week 1 Motivation"
+                            style="height: 160px; margin: 0 auto 32px auto; display: block; object-fit: contain;">
+                        <h4 style="font-size: 24px; margin-bottom: 16px;">Week 1</h4>
+                        <p style="font-size: 15px; color: #4B5563; line-height: 1.6; text-align: left;">Users are
+                            motivated and <span style="color: #ef4444; font-weight: 600;">excited about setting new
+                                goals.</span></p>
                     </div>
-                    <div class="feature-card">
-                        <h4>Awards & Challenges</h4>
-                        <p>Earn rewards for posts, invites, and goals.</p>
+                    <div style="text-align: center;">
+                        <img src="" alt="Week 2.5 Slipping"
+                            style="height: 160px; margin: 0 auto 32px auto; display: block; object-fit: contain;">
+                        <h4 style="font-size: 24px; margin-bottom: 16px;">Week 2.5</h4>
+                        <p style="font-size: 15px; color: #4B5563; line-height: 1.6; text-align: left;">Users or their
+                            partners <span style="color: #ef4444; font-weight: 600;">start skipping updates</span>,
+                            often due to forgetting or losing interest.</p>
                     </div>
-                    <div class="feature-card">
-                        <h4>Real-Time Messaging</h4>
-                        <p>Stay connected with friends and groups.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Community Groups</h4>
-                        <p>Join groups and climb the leaderboard.</p>
+                    <div style="text-align: center;">
+                        <img src="" alt="Week 4 Abandon"
+                            style="height: 160px; margin: 0 auto 32px auto; display: block; object-fit: contain;">
+                        <h4 style="font-size: 24px; margin-bottom: 16px;">Week 4</h4>
+                        <p style="font-size: 15px; color: #4B5563; line-height: 1.6; text-align: left;">Users <span
+                                style="color: #ef4444; font-weight: 600;">abandon</span> the app entirely.</p>
                     </div>
                 </div>
 
+                <!-- Core features moved above to hero section -->
             </div>
-    </div>
 
-    <hr class="section-divider">
+            <hr class="section-divider">
 
-    <!-- =========================
-           THE PROBLEM
+            <!-- =========================
+           RESEARCH
       ========================== -->
-    <div id="problem" class="section">
-        <span class="section-label">01 // The Problem</span>
-        <h2>High Drop-off Rates</h2>
-        <p class="lead-text">
-            After four weeks, 69% of users dropped off.
-        </p>
-        <p>
-            There was a clear friction in the user experience that prevented users from forming a sustained
-            habit within the app.
-        </p>
-    </div>
+            <div id="discovery" class="section">
+                <span class="section-label">01 // DISCOVERY</span>
+                <h2>Research & Discovery</h2>
+                <p class="lead-text">
+                    Since Impulse is a B2C app, even small frustrations can cause users to stop using it. To understand
+                    the
+                    drop-off, I combined three research approaches:
+                </p>
 
-    <!-- =========================
+                <h3 style="margin-top: 40px;">Step 1: Listening to users (12 interviews, 5 usability tests)</h3>
+                <p>I conducted 12 interviews and 5 usability tests with both new and returning users. These sessions
+                    revealed
+                    some of their struggles:</p>
+
+                <div class="impulse-grid-2x2">
+                    <div class="impulse-dark-card" style="background: #FFFFFF; border: transparent;">
+                        <h4 style="font-size: 18px; color: #111827;">Goal logging was tedious</h4>
+                        <p style="color: #4B5563;">8-step flow took 45s, too long for daily use.</p>
+                        <img src="image/Impulse/user research/logging_ tedious.png" alt="Goal logging tedious"
+                            style="width: 100%; height: auto; margin-top: 16px; border-radius: 8px;">
+                    </div>
+                    <div class="impulse-dark-card" style="background: #FFFFFF; border: transparent;">
+                        <h4 style="font-size: 18px; color: #111827;">Frequent misclicks</h4>
+                        <p style="color: #4B5563;">Unclear layout led to 80% tapping the wrong buttons.</p>
+                        <img src="image/Impulse/user research/Frequent_ misclicks.png" alt="Frequent misclicks"
+                            style="width: 100%; height: auto; margin-top: 16px; border-radius: 8px;">
+                    </div>
+                    <div class="impulse-dark-card" style="background: #FFFFFF; border: transparent;">
+                        <h4 style="font-size: 18px; color: #111827;">Users forgot the app</h4>
+                        <p style="color: #4B5563;">Hard to build habits without reminders.</p>
+                        <img src="image/Impulse/user research/Users_forgot.png" alt="Users forgot"
+                            style="width: 100%; height: auto; margin-top: 16px; border-radius: 8px;">
+                    </div>
+                    <div class="impulse-dark-card" style="background: #FFFFFF; border: transparent;">
+                        <h4 style="font-size: 18px; color: #111827;">Uninspiring design</h4>
+                        <p style="color: #4B5563;">Submit as many design requests as you need, one at a time.</p>
+                        <img src="image/Impulse/user research/Uninspiring_ design.png" alt="Uninspiring design"
+                            style="width: 100%; height: auto; margin-top: 16px; border-radius: 8px;">
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 40px;">Step 2: Learning from the market</h3>
+                <p>
+                    After spotting our internal issues, I turned to competitor analysis. I studied how other successful
+                    habit
+                    tracking apps tackled similar problems:
+                </p>
+                <div
+                    style="padding: 40px; border-radius: 12px; margin: 24px 0; border: transparent; background: #FFFFFF;">
+                    <img src="image/Impulse/market.png" alt="Market analysis"
+                        style="width: 100%; height: auto; display: block; border-radius: 8px;">
+                </div>
+                <ul class="feature-list">
+                    <li>How they structured their <b>habit flows</b></li>
+                    <li>How they motivated users with <b>nudges and streaks</b></li>
+                    <li>How they balanced <b>flexibility and simplicity</b></li>
+                </ul>
+
+                <h3 style="margin-top: 40px;">Step 3: Observing real behavior</h3>
+                <p>
+                    I watched both new and long-term users interact with the app without guidance. This helped me:
+                </p>
+                <ul class="feature-list" style="margin-top: 16px;">
+                    <li>Spot moments of <b>hesitation or drop-off</b></li>
+                    <li>Notice which features they <b>returned to (or ignored)</b></li>
+                    <li>Understand what motivated <b>consistent use</b></li>
+                </ul>
+                <p style="margin-top: 16px;"><b>This step was key in translating research into flows and features that
+                        fit real-world habits.</b></p>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- =========================
+           DESIGN GOALS
+      ========================== -->
+            <div id="design-goals" class="section">
+                <span class="section-label">02 // STRATEGY</span>
+                <div
+                    style="margin-top: 32px; display: inline-block; padding: 6px 16px; background: rgba(245, 158, 11, 0.1); color: #d97706; border-radius: 999px; font-weight: 600; font-size: 13px; font-family: 'Inter', monospace;">
+                    Design Goals
+                </div>
+                <h2 style="margin-top: 16px;">Design goals</h2>
+                <p class="lead-text">
+                    Based on what I learned from user feedback, competitor insights, and behavioral patterns, I set
+                    three clear
+                    design goals to guide the redesign.
+                </p>
+
+                <div class="impulse-goals-grid">
+                    <div class="impulse-light-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg>
+                        <h4>Simplify the goal logging flow</h4>
+                    </div>
+                    <div class="impulse-light-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                            <line x1="12" y1="22.08" x2="12" y2="12" />
+                        </svg>
+                        <h4>Support users with reminders</h4>
+                    </div>
+                    <div class="impulse-light-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                        </svg>
+                        <h4>Build a design system</h4>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- =========================
            KEY CHANGES
       ========================== -->
-    <div id="changes" class="section">
-        <span class="section-label">02 // Key Changes</span>
-        <h2>Designing for Real Habits</h2>
+            <div id="changes" class="section">
+                <span class="section-label">03 // KEY CHANGES</span>
+                <h2>Designing for Real Habits</h2>
 
-        <h3>Change 1: Streamlining goal logging</h3>
-        <p>
-            The original logging process took over 23 seconds and frustrated users. I redesigned it to support
-            two natural mental models:
-        </p>
-        <ul>
-            <li><b>Camera-first flow:</b> Others captured evidence first (a photo or video), then tied it to a
-                goal.</li>
-            <li><b>Goal-first flow:</b> Some started with a goal in mind, then logged it.</li>
-        </ul>
-        <div class="img-placeholder">[ Goal Logging UI Prototype Placeholder ]</div>
+                <h3 style="margin-top: 40px;">Change 1: Streamlining goal logging</h3>
+                <p>
+                    The original logging process took over 23 seconds and frustrated users. I redesigned it to support
+                    two natural mental models:
+                </p>
 
-        <h3 style="margin-top: 48px;">Change 2: Smart, supportive reminders</h3>
-        <p>
-            Users often forgot to log habits but they didn’t want generic or nagging push notifications. So I
-            designed a system that felt supportive instead of stressful:
-        </p>
-        <ul>
-            <li>Custom reminder schedules</li>
-            <li>Positive, friendly tone</li>
-            <li>Smart timing based on user behavior (e.g., when they’re likely to skip)</li>
-        </ul>
-        <div class="img-placeholder">[ Notification Flow Placeholder ]</div>
+                <h4 style="margin-top: 40px; font-size: 20px;">Camera-first flow</h4>
+                <p style="color: #4B5563;">Others captured <span style="color: #111827; font-weight: 600;">evidence
+                        first</span> (a photo or video), then tied it to a goal</p>
+                <img src="image/Impulse/camera_first.png" alt="Camera-first flow map"
+                    style="width: 100%; height: auto; margin-top: 24px; display: block; border: transparent; border-radius: 8px;">
 
-        <h3 style="margin-top: 48px;">Change 3: A new visual language</h3>
-        <p>
-            When I joined, there was no design system, which led to inconsistent styles and developer
-            frustration. My design system improvements included:
-        </p>
-        <ul>
-            <li>Refined color palette for energy & motivation</li>
-            <li>Scalable UI components for faster dev handoff</li>
-            <li>Consistent visual language across pages</li>
-        </ul>
-        <div class="img-placeholder">[ Design System Snippet Placeholder ]</div>
-    </div>
+                <h4 style="margin-top: 80px; font-size: 20px;">Goal-first flow</h4>
+                <p style="color: #4B5563;">Some started with a <span style="color: #111827; font-weight: 600;">goal in
+                        mind</span>, then logged it</p>
+                <img src="image/Impulse/goal_first.png" alt="Goal-first flow map"
+                    style="width: 100%; height: auto; margin-top: 24px; display: block; border: transparent; border-radius: 8px;">
 
-    </div>
+                <h3 style="margin-top: 80px;">Change 2: Smart, supportive reminders</h3>
+                <p>
+                    Users often forgot to log habits but they didn’t want generic or nagging push notifications.
+                    <br><br>
+                    So I designed a system that felt <b>supportive instead of stressful</b>:
+                </p>
+                <ul class="feature-list" style="margin-top: 16px; margin-bottom: 40px;">
+                    <li><b>Custom reminder schedules</b></li>
+                    <li><b>Positive, friendly tone</b></li>
+                    <li><b>Smart timing</b> based on user behavior (e.g., when they’re likely to skip)</li>
+                </ul>
+                <img src="image/Impulse/cover.png" alt="Smart reminders screen"
+                    style="width: 100%; height: auto; display: block; border-radius: 16px; border: transparent;">
 
-    </main>
+                <h3 style="margin-top: 80px;">Change 3: A new visual language for energy & consistency</h3>
+                <p>
+                    When I joined, there was no design system, which led to inconsistent styles and developer
+                    frustration. My design system improvements included:
+                </p>
+                <ul class="feature-list" style="margin-top: 16px;">
+                    <li><b>Refined color palette</b> for energy & motivation</li>
+                    <li><b>Scalable UI components</b> for faster dev handoff</li>
+                    <li><b>Consistent visual language</b> across pages</li>
+                </ul>
+                <div
+                    style="padding: 40px; border-radius: 24px; margin-top: 32px; border: 1px solid rgba(255,255,255,0.1); background: #0f1013;">
+                    <img src="image/Impulse/typo_colors.png" alt="Typography and colors"
+                        style="width: 100%; height: auto; display: block; border-radius: 8px;">
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+            <!-- =========================
+           REFLECTION
+      ========================== -->
+            <div id="reflection" class="section">
+                <span class="section-label">04 // REFLECTION</span>
+                <h2>What I learned from designing for real-life habits</h2>
+
+                <p class="lead-text">
+                    Small changes can drive big behavior shifts. In habit-tracking apps, success doesn’t always come
+                    from flashy features, it comes from respecting users’ time, energy, and attention span.
+                </p>
+
+                <ul class="feature-list" style="margin-top: 32px;">
+                    <li>Treat every interaction as a chance to <b>reduce friction</b></li>
+                    <li>Design flows that <b>adapt to real human behavior</b>, not just ideal scenarios</li>
+                    <li>Balance simplicity with <b>flexibility</b></li>
+                    <li>Help users feel <b>progress (not pressure)</b></li>
+                </ul>
+            </div>
+
+        </main>
     </div>
 
     <footer class="case-footer"
-        style="padding: 40px; text-align: center; border-top: 1px solid #e5e7eb; margin-top: 60px; font-size: 14px; color: #6b7280;">
+        style="padding: 40px; text-align: center; border-top: 1px solid var(--surface-border); margin-top: 60px; font-size: 14px; color: var(--text-dim);">
         © 2026 Michelle Guan. All rights reserved.
     </footer>
 

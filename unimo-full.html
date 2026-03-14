@@ -12,6 +12,109 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="case-study.css">
+
+  <!-- ✅ 性能修复样式 - 覆盖外部CSS的闪烁问题 -->
+  <style>
+    /* 全局性能优化 */
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* 禁用所有过渡动画 - 防止滚动时闪烁 */
+    a,
+    button,
+    .nav-inner,
+    .nav-inner a,
+    .toc a,
+    img {
+      transition: none !important;
+    }
+
+    /* 强制 GPU 加速所有图片 */
+    img {
+      transform: translateZ(0);
+      will-change: auto;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+
+    /* 导航栏稳定性 */
+    .nav-shell {
+      transform: translateZ(0);
+      isolation: isolate;
+      backface-visibility: hidden;
+    }
+
+    .nav-inner {
+      transform: translateZ(0);
+      isolation: isolate;
+    }
+
+    /* TOC 稳定性 */
+    .toc {
+      transform: translateZ(0);
+      isolation: isolate;
+      backface-visibility: hidden;
+    }
+
+    /* 进度条独立渲染层 */
+    .scroll-progress {
+      transform: scaleX(0) translateZ(0);
+      will-change: transform;
+      isolation: isolate;
+    }
+
+    /* 所有mockup/视觉元素独立渲染 */
+    .hero-visual,
+    .phone-mockup,
+    .mockup-phone,
+    .download-card,
+    .format-image-wrapper,
+    .compare-card,
+    .bento-main,
+    .other-card-img {
+      transform: translateZ(0);
+      isolation: isolate;
+    }
+
+    /* 懒加载图片容器预留高度 */
+    .hero-visual,
+    .format-image-wrapper,
+    .phone-mockup,
+    .mockup-screen {
+      min-height: 200px;
+    }
+
+    /* 防止动画导致的闪烁 */
+    @keyframes floatPhone {
+
+      0%,
+      100% {
+        transform: translateY(0) translateZ(0);
+      }
+
+      50% {
+        transform: translateY(-16px) translateZ(0);
+      }
+    }
+
+    @keyframes app-spin {
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateZ(0);
+      }
+    }
+
+    /* 移除所有 backdrop-filter - 性能杀手 */
+    .download-card {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    :root {
+      --primary: #A855F7;
+    }
+  </style>
 </head>
 
 <body>
@@ -22,9 +125,9 @@
     <nav class="nav-inner">
       <a href="index.html" class="nav-logo-link"
         style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
-        <img src="image/logo.png" alt="Michelle.Design Logo"
-          style="height: 16px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.2s;"
-          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+        <img src="image/logo.png" alt="Michelle.Design Logo" loading="eager"
+          style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
+          onmouseout="this.style.opacity='0.8'">
       </a>
       <a href="index.html">Home</a>
       <a href="about-me.html">About Me</a>
@@ -37,7 +140,7 @@
       Playful Companion Experience</h1>
 
     <div class="hero-visual" style="margin-bottom: 60px;">
-      <img src="image/Unimo/hero.jpg" alt="Unimo Hero UI">
+      <img src="image/Unimo/hero.jpg" alt="Unimo Hero UI" loading="eager" decoding="async">
     </div>
 
   </div>
@@ -72,18 +175,18 @@
       </div>
 
       <!-- Add View Short Case Study Button below metadata -->
-      <div style="margin-bottom: 40px;">
-        <a href="unimo.html"
-          style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--primary, #A855F7); color: white; border-radius: 999px; text-decoration: none; font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);"
-          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(168, 85, 247, 0.4)';"
-          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(168, 85, 247, 0.3)';">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            style="margin-right: 8px;">
-            <path d="M19 12H5" />
-            <path d="M12 19l-7-7 7-7" />
+      <div style="margin-bottom: 60px; margin-top: 20px;">
+        <a href="unimo.html" class="btn">
+          <div class="btn-text">View Short Case Study</div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none"
+            style="transform: rotate(180deg);">
+            <path d="M11.6801 14.62L14.2401 12.06L11.6801 9.5" stroke="white" stroke-width="2" stroke-miterlimit="10"
+              stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M4 12.0601H14.17" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path d="M12 4C16.42 4 20 7 20 12C20 17 16.42 20 12 20" stroke="white" stroke-width="2"
+              stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
-          View Short Case Study
         </a>
       </div>
 
@@ -94,9 +197,9 @@
           reflection into a lighter and more interactive experience. UNIMO helps users externalize emotions
           into collectible artifacts, emotional cards, and playful interaction loops that are easier to return to.</p>
         </p>
-        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
-          <img src="image/Unimo/unimo_intro.png" alt="Community Feed showing multiple cards"
-            style="width: 100%; height: auto; display: block;" />
+        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden;">
+          <img src="image/Unimo/unimo_intro.png" alt="Community Feed showing multiple cards" loading="lazy"
+            decoding="async" style="width: 100%; height: auto; display: block;" />
         </div>
       </div>
 
@@ -107,8 +210,8 @@
           felt.
         </p>
         <p>Sounds promising, right? But we hit a problem fast.</p>
-        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
-          <img src="image/Unimo/problem.png" alt="Community Feed showing multiple cards"
+        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden;">
+          <img src="image/Unimo/problem.png" alt="Community Feed showing multiple cards" loading="lazy" decoding="async"
             style="width: 100%; height: auto; display: block;" />
         </div>
         <p>People might open up once, but typing out feelings still felt like work, and many users did not have a
@@ -118,11 +221,11 @@
         <p>Most AI companion products are built to preserve context, but what users care about most
           is
           often not the full thread. It is the moment when they feel understood.</p>
-        <div class="avatar-callout"
-          style="margin-top: 32px; background: #0b1121; border: 1px solid #2e4066; border-radius: 4px; padding: 16px 20px;">
+        <div class="avatar-callout" style="margin-top: 32px;">
           <div class="avatar-icon" style="background: transparent; width: 64px; height: 64px; padding: 0;"><img
-              src="image/face/bingo.png" alt="Michelle's Avatar" style="border-radius: 0; object-fit: visible;"></div>
-          <p class="callout-text" style="font-size: 15px; color: #e2e8f0; line-height: 1.5;">That created a clear
+              src="image/face/bingo.png" alt="Michelle's Avatar" loading="lazy"
+              style="border-radius: 0; object-fit: visible;"></div>
+          <p class="callout-text" style="font-size: 15px; color: #4B5563; line-height: 1.5;">That created a clear
             mismatch: products were built to <b>continue conversations</b>, while users were looking for a way to
             <b>hold onto meaning</b>.
           </p>
@@ -186,8 +289,8 @@
           .format-explorer {
             display: flex;
             gap: 32px;
-            background: var(--surface-alt);
-            border: 1px solid var(--surface-border);
+            background: #FFFFFF;
+            border: transparent;
             border-radius: 24px;
             padding: 32px;
             margin-top: 40px;
@@ -208,22 +311,21 @@
             font-size: 15px;
             font-weight: 500;
             color: var(--text-dim);
-            transition: all 0.2s;
             border: 1px solid transparent;
             text-align: left;
             user-select: none;
           }
 
           .format-tab:hover {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(0, 0, 0, 0.02);
             color: var(--text-main);
           }
 
           .format-tab.active {
-            background: rgba(255, 255, 255, 0.05);
+            background: #ffffff;
             color: var(--text-main);
-            border-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #F0F0F0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
           }
 
           .format-content {
@@ -248,7 +350,6 @@
             pointer-events: none;
             z-index: 0;
             visibility: hidden;
-            transition: opacity 0.25s ease, visibility 0s linear 0.25s;
           }
 
           .format-pane.active {
@@ -256,20 +357,20 @@
             pointer-events: auto;
             z-index: 1;
             visibility: visible;
-            transition: opacity 0.25s ease, visibility 0s linear 0s;
           }
 
           .format-image-wrapper {
             width: 100%;
             height: 340px;
             border-radius: 16px;
-            background: rgba(0, 0, 0, 0.2);
+            background: #f0f0f0;
             overflow: hidden;
             position: relative;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 340px;
           }
 
           .format-image-wrapper img {
@@ -297,10 +398,10 @@
           .format-detail-box {
             flex: 1;
             min-width: 0;
-            background: rgba(255, 255, 255, 0.02);
+            background: #ffffff;
             padding: 24px;
             border-radius: 16px;
-            border: 1px solid var(--surface-border);
+            border: transparent;
             display: flex;
             flex-direction: column;
           }
@@ -488,8 +589,8 @@
           <li>Better <b>revisit value</b></li>
           <li>More natural to <b>collect and share</b></li>
         </ul>
-        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
-          <img src="image/Unimo/card.png" alt="Community Feed showing multiple cards"
+        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden;">
+          <img src="image/Unimo/card.png" alt="Community Feed showing multiple cards" loading="lazy" decoding="async"
             style="width: 100%; height: auto; display: block;" />
         </div>
       </div>
@@ -498,9 +599,9 @@
         <span class="section-label">07 // SOLUTION OVERVIEW</span>
         <h2>Shifting emotional support from conversation to something keepable</h2>
         <p>UNIMO takes an emotional exchange and turns it into a card with a short summary and a generated image.</p>
-        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
-          <img src="image/Unimo/before_after.png" alt="Community Feed showing multiple cards"
-            style="width: 100%; height: auto; display: block;" />
+        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden;">
+          <img src="image/Unimo/before_after.png" alt="Community Feed showing multiple cards" loading="lazy"
+            decoding="async" style="width: 100%; height: auto; display: block;" />
         </div>
       </div>
 
@@ -509,9 +610,9 @@
         <h2>How It Works</h2>
         <h3 style="margin-top: 40px;">A User Scenario</h3>
 
-        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.1);">
-          <img src="image/Unimo/story_board.png" alt="Community Feed showing multiple cards"
-            style="width: 100%; height: auto; display: block;" />
+        <div style="margin: 32px 0; border-radius: 24px; overflow: hidden;">
+          <img src="image/Unimo/story_board.png" alt="Community Feed showing multiple cards" loading="lazy"
+            decoding="async" style="width: 100%; height: auto; display: block;" />
         </div>
       </div>
 
@@ -525,13 +626,13 @@
 
         <div class="phone-mockup-row">
           <div class="phone-mockup">
-            <img src="image/Unimo/collection.png" alt="Card Collection" />
+            <img src="image/Unimo/collection.png" alt="Card Collection" loading="lazy" decoding="async" />
           </div>
           <div class="phone-mockup">
-            <img src="image/Unimo/card_front.png" alt="Emotion Card Front" />
+            <img src="image/Unimo/card_front.png" alt="Emotion Card Front" loading="lazy" decoding="async" />
           </div>
           <div class="phone-mockup">
-            <img src="image/Unimo/card_back.png" alt="Emotion Card Back" />
+            <img src="image/Unimo/card_back.png" alt="Emotion Card Back" loading="lazy" decoding="async" />
           </div>
         </div>
 
@@ -543,15 +644,15 @@
         </div>
 
         <h3 style="margin-top: 40px;">2. Create anticipation through delay before the card reveal</h3>
-        <p>A short delay already existed because the system needed time to generate the emotion card’s visual and
+        <p>A short delay already existed because the system needed time to generate the emotion card's visual and
           summary. Instead of hiding that delay, I treated it as part of the user experience. By allowing the moment to
           unfold more slowly, the transition could feel more intentional and emotionally meaningful.</p>
         <div class="phone-mockup-row">
           <div class="phone-mockup">
-            <img src="image/Unimo/loading.png" alt="Loading Transition" />
+            <img src="image/Unimo/loading.png" alt="Loading Transition" loading="lazy" decoding="async" />
           </div>
           <div class="phone-mockup">
-            <img src="image/Unimo/new_card.png" alt="New Card Reveal" />
+            <img src="image/Unimo/new_card.png" alt="New Card Reveal" loading="lazy" decoding="async" />
           </div>
         </div>
         <div class="insight">
@@ -564,8 +665,8 @@
 
         <h3 style="margin-top: 40px;">3. Use language that creates a sense of ownership</h3>
         <p>The emotional value did not come from the card alone, but also from how the product framed it. I avoided
-          mechanical system copy like <b>“Card generated”</b> and used more personal language like <b>“Your emotion has
-            taken form”</b> so the result felt more emotionally owned by the user.</p>
+          mechanical system copy like <b>"Card generated"</b> and used more personal language like <b>"Your emotion has
+            taken form"</b> so the result felt more emotionally owned by the user.</p>
       </div>
 
       <div id="impact" class="section">
@@ -574,7 +675,8 @@
 
         <div class="bento-layout">
           <div class="bento-main">
-            <img src="image/Unimo/community.png" alt="Community Feed showing multiple cards" />
+            <img src="image/Unimo/community.png" alt="Community Feed showing multiple cards" loading="lazy"
+              decoding="async" />
           </div>
           <div class="bento-side">
             <div class="bento-card">
@@ -599,7 +701,8 @@
           respond, I started asking what the interaction should leave behind, and that became the decision that shaped
           the entire direction of UNIMO.</p>
         <div class="avatar-callout" style="margin-top: 32px;">
-          <div class="avatar-icon"><img src="image/profile_pic.png" alt="Michelle's Avatar"></div>
+          <div class="avatar-icon"><img src="image/profile_pic.png" alt="Michelle's Avatar" loading="lazy"
+              decoding="async"></div>
           <p class="callout-text"><b>a meaningful moment should not be treated like just another message.</b></p>
         </div>
       </div>
@@ -619,16 +722,13 @@
           width: 100%;
           max-width: 840px;
           padding: 60px 80px;
-          background: rgba(255, 255, 255, 0.4);
-          backdrop-filter: blur(24px);
-          -webkit-backdrop-filter: blur(24px);
+          background: #ffffff;
           border-radius: 40px;
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          border: transparent;
           box-shadow:
-            0 20px 80px rgba(0, 0, 0, 0.1),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+            0 20px 80px rgba(0, 0, 0, 0.05),
+            inset 0 0 0 1px #ffffff;
           overflow: hidden;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           text-align: left;
           gap: 40px;
         }
@@ -661,19 +761,6 @@
           justify-content: flex-end;
           position: relative;
           z-index: 1;
-          animation: floatPhone 6s ease-in-out infinite;
-        }
-
-        @keyframes floatPhone {
-
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-
-          50% {
-            transform: translateY(-16px);
-          }
         }
 
         .mockup-phone {
@@ -687,7 +774,6 @@
             inset 0 0 0 2px #444;
           position: relative;
           transform: rotate(6deg);
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .download-card:hover .mockup-phone {
@@ -733,7 +819,7 @@
           font-weight: 800;
           letter-spacing: -1px;
           margin: 0 0 12px 0;
-          color: #ffffff;
+          color: var(--text-main);
         }
 
         .download-subtitle {
@@ -748,12 +834,11 @@
           position: relative;
           z-index: 1;
           display: inline-flex;
-          background: #000;
+          background: #111827;
           border-radius: 100px;
           text-decoration: none;
-          color: #fff;
+          color: #ffffff;
           padding: 3px;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
@@ -762,14 +847,10 @@
           display: flex;
           align-items: center;
           gap: 12px;
-          background: #000;
+          background: #111827;
           padding: 12px 28px;
           border-radius: 100px;
           z-index: 2;
-        }
-
-        .app-store-button svg {
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), fill 0.3s ease;
         }
 
         .app-store-button .text-group {
@@ -801,7 +882,6 @@
           overflow: hidden;
           z-index: 1;
           opacity: 0;
-          transition: opacity 0.4s ease;
         }
 
         .glow {
@@ -813,13 +893,6 @@
           background: conic-gradient(from 0deg, transparent 0 320deg, #A855F7 360deg);
           transform-origin: center;
           transform: translate(-50%, -50%);
-          animation: app-spin 2.5s linear infinite;
-        }
-
-        @keyframes app-spin {
-          100% {
-            transform: translate(-50%, -50%) rotate(360deg);
-          }
         }
 
         .app-store-button:hover {
@@ -834,7 +907,6 @@
         .app-store-button:hover svg {
           transform: scale(1.1) rotate(-4deg);
           fill: #d8b4fe;
-          /* Light purple tint on hover */
         }
 
         @media (max-width: 768px) {
@@ -879,7 +951,7 @@
           <div class="download-visual">
             <div class="mockup-phone">
               <div class="mockup-screen">
-                <img src="image/Unimo/home.PNG" alt="Unimo App Interface">
+                <img src="image/Unimo/home.PNG" alt="Unimo App Interface" loading="lazy" decoding="async">
               </div>
             </div>
           </div>
@@ -896,7 +968,7 @@
     <div class="other-work-grid">
       <a href="TMS.html" class="other-card">
         <div class="other-card-img">
-          <img src="image/TMS/hero.png" alt="TMS Case Study">
+          <img src="image/TMS/hero.png" alt="TMS Case Study" loading="lazy" decoding="async">
         </div>
         <div class="other-card-content">
           <span class="other-card-tag">CLINICAL SYSTEM · DATA VISUALIZATION</span>
@@ -905,7 +977,7 @@
       </a>
       <a href="oltiva.html" class="other-card">
         <div class="other-card-img">
-          <img src="image/avanade/hero_mockup.png" alt="Oltiva Case Study">
+          <img src="image/avanade/hero_mockup.png" alt="Oltiva Case Study" loading="lazy" decoding="async">
         </div>
         <div class="other-card-content">
           <span class="other-card-tag">AI WORKFLOW · B2B SYSTEM</span>
@@ -921,15 +993,15 @@
 
     <div
       style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 40px; border-top: 1px solid var(--surface-border); width: 100%; max-width: 800px;">
-      <img src="image/logo.png" alt="Michelle.Design Logo"
-        style="height: 32px; opacity: 0.8; filter: grayscale(100%) contrast(1.2); transition: opacity 0.3s; cursor: pointer;"
+      <img src="image/logo.png" alt="Michelle.Design Logo" loading="lazy" decoding="async"
+        style="height: 32px; opacity: 0.8; filter: none; transition: opacity 0.3s; cursor: pointer;"
         onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
       <div style="display: flex; gap: 24px;">
         <a href="mailto:michelleguan321@gmail.com" class="sfx-hover"
-          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
+          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none;"
           onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">Email</a>
         <a href="#" class="sfx-hover"
-          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
+          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none;"
           onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">LinkedIn</a>
       </div>
       <p
@@ -939,36 +1011,111 @@
   </footer>
 
   <script>
-    // Scroll Progress & TOC Active State
-    window.addEventListener('scroll', () => {
-      const doc = document.documentElement;
-      const scrollTotal = doc.scrollHeight - doc.clientHeight;
-      const scrollPos = doc.scrollTop;
-      const progress = scrollTotal ? (scrollPos / scrollTotal) : 0;
+    // ✅ 完全重写滚动逻辑 - 防止内存泄漏和累积闪烁
+    (function () {
+      let ticking = false;
+      let scrollTimeout = null;
+      let lastCurrentId = '';
+
+      // 缓存 DOM 引用，避免重复查询
       const bar = document.getElementById('bar');
-      if (bar) bar.style.transform = `scaleX(${progress})`;
+      const tocLinks = Array.from(document.querySelectorAll('.toc a'));
+      const sections = Array.from(document.querySelectorAll('.section'));
 
-      // TOC Highlighter
-      const sections = document.querySelectorAll('.section');
-      const tocLinks = document.querySelectorAll('.toc a');
+      function updateScrollProgress() {
+        const doc = document.documentElement;
+        const scrollTotal = doc.scrollHeight - doc.clientHeight;
+        const scrollPos = doc.scrollTop;
+        const progress = scrollTotal ? (scrollPos / scrollTotal) : 0;
+        if (bar) bar.style.transform = `scaleX(${progress}) translateZ(0)`;
+      }
 
-      let currentId = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (window.scrollY >= (sectionTop - 300)) {
-          currentId = section.getAttribute('id');
+      function updateTOC() {
+        let currentId = '';
+        const scrollY = window.scrollY;
+
+        // 找到当前激活的 section
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i];
+          if (scrollY >= section.offsetTop - 300) {
+            currentId = section.getAttribute('id');
+            break;
+          }
         }
+
+        // ✅ 只在 ID 真正改变时才更新 DOM
+        if (currentId && currentId !== lastCurrentId) {
+          lastCurrentId = currentId;
+          const targetHref = `#${currentId}`;
+
+          // 批量更新，使用 DocumentFragment 减少重绘
+          tocLinks.forEach(link => {
+            const shouldBeActive = link.getAttribute('href') === targetHref;
+            const isActive = link.classList.contains('active');
+
+            if (shouldBeActive !== isActive) {
+              link.classList.toggle('active', shouldBeActive);
+            }
+          });
+        }
+      }
+
+      function onScroll() {
+        // 标记滚动状态
+        document.body.classList.add('is-scrolling');
+
+        // ✅ 清除旧的 timeout，避免堆积
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+
+        scrollTimeout = setTimeout(() => {
+          document.body.classList.remove('is-scrolling');
+        }, 150);
+
+        // ✅ 使用 rAF 节流
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(() => {
+            updateScrollProgress();
+            updateTOC();
+            ticking = false;
+          });
+        }
+      }
+
+      // ✅ 使用 passive 监听，提升滚动性能
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // ✅ 页面卸载时清理
+      window.addEventListener('beforeunload', () => {
+        window.removeEventListener('scroll', onScroll);
+        if (scrollTimeout) clearTimeout(scrollTimeout);
       });
 
-      tocLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentId}`) {
-          link.classList.add('active');
-        }
-      });
-    });
+      // ✅ 初始化
+      updateScrollProgress();
+      updateTOC();
+    })();
   </script>
   <script src="js/cursor.js"></script>
+  <button id="backToTop" class="back-to-top" title="Back to Top">↑</button>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      }, { passive: true });
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
 </body>
 
 </html>

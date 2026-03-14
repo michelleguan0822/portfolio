@@ -12,6 +12,11 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="case-study.css">
+  <style>
+    :root {
+      --primary: #A855F7;
+    }
+  </style>
 </head>
 
 <body>
@@ -23,8 +28,8 @@
       <a href="index.html" class="nav-logo-link"
         style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
         <img src="image/logo.png" alt="Michelle.Design Logo"
-          style="height: 16px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.2s;"
-          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+          style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
+          onmouseout="this.style.opacity='0.8'">
       </a>
       <a href="index.html">Home</a>
       <a href="about-me.html">About Me</a>
@@ -73,16 +78,16 @@
       </div>
 
       <!-- Add View Full Case Study Button below metadata -->
-      <div style="margin-bottom: 40px;">
-        <a href="oltiva-full.html"
-          style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--primary, #A855F7); color: white; border-radius: 999px; text-decoration: none; font-weight: 500; font-family: 'JetBrains Mono', monospace; font-size: 14px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);"
-          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(168, 85, 247, 0.4)';"
-          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(168, 85, 247, 0.3)';">
-          View Full Case Study
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
+      <div style="margin-bottom: 60px; margin-top: 20px;">
+        <a href="oltiva-full.html" class="btn">
+          <div class="btn-text">View Full Case Study</div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
+            <path d="M11.6801 14.62L14.2401 12.06L11.6801 9.5" stroke="white" stroke-width="2" stroke-miterlimit="10"
+              stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M4 12.0601H14.17" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path d="M12 4C16.42 4 20 7 20 12C20 17 16.42 20 12 20" stroke="white" stroke-width="2"
+              stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </a>
       </div>
@@ -290,7 +295,7 @@
     <div
       style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 40px; border-top: 1px solid var(--surface-border); width: 100%; max-width: 800px;">
       <img src="image/logo.png" alt="Michelle.Design Logo"
-        style="height: 32px; opacity: 0.8; filter: grayscale(100%) contrast(1.2); transition: opacity 0.3s; cursor: pointer;"
+        style="height: 32px; opacity: 0.8; filter: none; transition: opacity 0.3s; cursor: pointer;"
         onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
       <div style="display: flex; gap: 24px;">
         <a href="mailto:michelleguan321@gmail.com" class="sfx-hover"
@@ -337,6 +342,23 @@
     });
   </script>
   <script src="js/cursor.js"></script>
+  <button id="backToTop" class="back-to-top" title="Back to Top">↑</button>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
+      }, { passive: true });
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
 </body>
 
 </html>

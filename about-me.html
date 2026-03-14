@@ -6,9 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Me | Zirong</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400&family=Press+Start+2P&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400&family=Press+Start+2P&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Three.js for 3D Interactions -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Matter.js for 2D Physics -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
   <style>
     :root {
       --primary: #8b5cf6;
@@ -103,48 +109,187 @@
     }
 
     /* ---------------- HERO PROFILE ---------------- */
-    .intro-section {
+    /* ---------------- RPG CHARACTER SELECTION ---------------- */
+    /* ---------------- BOARD GAME ILLUSTRATIVE CARD ---------------- */
+    .bg-card-section {
+      --card-base: #f5f5f0;
+      --card-border: #333;
+    }
+
+    .selection-container {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 320px 1fr;
       gap: 60px;
-      align-items: center;
       margin-bottom: 120px;
+      align-items: center;
     }
 
-    .section-title {
+    /* Simplified Board Game Side Selectors */
+    .side-selectors {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .side-group-header {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--primary);
-      letter-spacing: 2px;
-      margin-bottom: 24px;
-      display: block;
-      text-transform: uppercase;
-    }
-
-    .huge-title {
-      font-size: clamp(48px, 5vw, 80px);
-      font-weight: 900;
-      line-height: 1;
-      margin: 0 0 30px;
-      letter-spacing: -0.04em;
-      color: #111827;
-    }
-
-    .hacker-text {
-      display: inline-block;
-      cursor: default;
-      transition: color 0.2s;
-    }
-
-    .hacker-text:hover {
-      color: var(--primary);
-    }
-
-    .intro-bio {
-      font-size: 18px;
+      font-size: 11px;
+      font-weight: 700;
       color: var(--text-dim);
-      max-width: 500px;
-      margin-bottom: 40px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin: 24px 0 8px 12px;
+      opacity: 0.8;
+    }
+
+    .side-group-header:first-child {
+      margin-top: 0;
+    }
+
+    .select-btn {
+      padding: 14px 24px;
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #4b5563;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .select-btn:hover {
+      background: rgba(255, 255, 255, 0.6);
+      transform: translateX(4px);
+    }
+
+    .select-btn.active {
+      background: var(--role-color);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateX(12px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      font-weight: 800;
+    }
+
+    .select-btn .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--role-color, #333);
+      border: none;
+      transition: box-shadow 0.3s;
+    }
+
+    .select-btn.active .dot {
+      box-shadow: 0 0 10px var(--role-color);
+    }
+
+    /* Main Board Game Card */
+    .bg-card {
+      background: var(--card-base);
+      border: 4px solid var(--card-border);
+      border-radius: 40px;
+      width: 440px;
+      height: auto;
+      min-height: 480px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+    }
+
+    .portrait-wrapper {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+
+    .bg-portrait {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Card Footer / Title */
+    .bg-footer {
+      padding: 24px 8px 8px;
+      text-align: center;
+    }
+
+    .bg-role-name {
+      font-family: 'Georgia', serif;
+      font-weight: 900;
+      font-size: 32px;
+      color: var(--card-border);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .bg-role-desc {
+      font-size: 15px;
+      line-height: 1.4;
+      color: #4b5563;
+      font-style: italic;
+    }
+
+    .content-pop {
+      animation: contentPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes contentPop {
+      0% {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .selection-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .side-selectors {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+      }
+
+      .select-btn {
+        min-width: 200px;
+      }
+
+      .bg-card {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        min-height: 400px;
+      }
+
+      .bg-rank {
+        display: none;
+      }
     }
 
     /* Stats Row */
@@ -168,6 +313,83 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       color: var(--text-dim);
+    }
+
+    /* Avatar - Glass Circle */
+    .avatar-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      background: url('image/profile_pic.png') center/cover;
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .avatar-frame:hover .avatar-placeholder {
+      transform: scale(1.08);
+    }
+
+    /* Floating Icons */
+    .float-icon {
+      position: absolute;
+      font-size: 24px;
+      pointer-events: none;
+      animation: popUpFade 1s forwards;
+      z-index: 20;
+    }
+
+    @keyframes popUpFade {
+      0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-50%, -150%) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* ---------------- PANELS (Studio Card Style) ---------------- */
+    .studio-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .studio-card:hover {
+      border-color: rgba(139, 92, 246, 0.3);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 20px 50px rgba(139, 92, 246, 0.1);
+    }
+
+    .profile-avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Avatar - Glass Circle */
@@ -916,6 +1138,7 @@
 <body>
 
   <!-- Background Elements -->
+
   <div class="top-glow"></div>
   <div class="fixed bottom-0 left-0 w-full h-1"
     style="background: linear-gradient(90deg, transparent, #8b5cf6, transparent); opacity: 0.2;"></div>
@@ -926,8 +1149,8 @@
       <a href="index.html" class="nav-logo-link "
         style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
         <img src="image/logo.png" alt="Michelle.Design Logo"
-          style="height: 16px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.2s;"
-          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+          style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
+          onmouseout="this.style.opacity='0.8'">
       </a>
       <a href="index.html">Home</a>
       <a href="about-me.html" class="active">About Me</a>
@@ -938,566 +1161,253 @@
   <main class="studio-showcase">
 
     <!-- INTRO -->
-    <section class="intro-section">
-      <div>
-        <span class="section-title">00_PLAYER_SELECT</span>
+    <!-- BOARD GAME ILLUSTRATIVE SECTION -->
+    <div class="selection-container bg-card-section">
+      <!-- LEFTSIDE: Character Select Aside -->
+      <aside class="side-nav">
+        <div class="side-selectors">
+          <div class="side-group-header">Profile</div>
+          <!-- Player Profile -->
+          <button class="select-btn active" data-role="player_profile" onclick="selectCharacter('player_profile')" style="--role-color: #8b5cf6;">
+            <span class="dot"></span>
+            <span>Player Profile</span>
+          </button>
 
-        <h1 class="huge-title">
-          <span class="hacker-text" data-value="DESIGNER">DESIGNER</span><br>
-          <span class="hacker-text" data-value="BUILDER">BUILDER</span><br>
-          <span class="hacker-text text-primary" data-value="HUMANIST">HUMANIST</span>
-        </h1>
+          <div class="side-group-header">Skills</div>
+          <!-- Design Manager -->
+          <button class="select-btn" data-role="design_manager" onclick="selectCharacter('design_manager')" style="--role-color: #60a5fa;">
+            <span class="dot"></span>
+            <span>Design Manager</span>
+          </button>
+          <!-- AI Vibe Coder -->
+          <button class="select-btn" data-role="ai_vibe_coder" onclick="selectCharacter('ai_vibe_coder')" style="--role-color: #f87171;">
+            <span class="dot"></span>
+            <span>AI Vibe Coder</span>
+          </button>
 
-        <p class="intro-bio" id="bio-text"></p>
+          <div class="side-group-header">Traits</div>
+          <!-- LEGO Collector -->
+          <button class="select-btn" data-role="lego_collector" onclick="selectCharacter('lego_collector')" style="--role-color: #fbbf24;">
+            <span class="dot"></span>
+            <span>LEGO Collector</span>
+          </button>
+          <!-- Golfer -->
+          <button class="select-btn" data-role="golfer" onclick="selectCharacter('golfer')" style="--role-color: #34d399;">
+            <span class="dot"></span>
+            <span>Golfer</span>
+          </button>
+          <!-- Hamster Parent -->
+          <button class="select-btn" data-role="hamster_parent" onclick="selectCharacter('hamster_parent')" style="--role-color: #fb923c;">
+            <span class="dot"></span>
+            <span>Hamster Parent</span>
+          </button>
+        </div>
+      </aside>
 
-        <div class="stats-row">
-          <div class="stat-item"><b>4+</b><span>YRS EXP</span></div>
-          <div class="stat-item"><b>12</b><span>QUESTS</span></div>
-          <div class="stat-item"><b id="coffee-counter">8842</b><span>COFFEE</span></div>
+      <!-- RIGHTSIDE: Illustrative Board Game Card -->
+      <div class="card-root">
+        <div class="bg-card" id="bg-card">
+          <!-- Portrait -->
+          <div class="portrait-wrapper">
+            <img src="image/about_me/profile_pic.png" alt="Michelle Guan" class="bg-portrait" id="bg-portrait">
+          </div>
+
+          <!-- Bottom Footer -->
+          <div class="bg-footer">
+            <div class="bg-role-name" id="bg-role-name">Michelle Guan</div>
+            <div class="bg-role-desc" id="bg-role-desc">"Product designer exploring AI, interaction design, and playful
+              digital experiences. I enjoy building thoughtful products, experimenting with new ideas, and learning
+              through making.
+              <br>"Think Different" — Apple has always been one of my favorite quotes. It inspires me
+              not just to think differently, but to be the different one. To rethink how things work, and never let the
+              box define my work."
+            </div>
+          </div>
         </div>
       </div>
-
-      <!-- Clickable Avatar -->
-      <div class="avatar-frame sfx-click" id="avatar-clicker" title="Click to Loot">
-        <div class="avatar-placeholder"></div>
-      </div>
-    </section>
+    </div>
 
 
     <!-- LETTER SECTION -->
-    <span class="section-title">01_ORIGIN_LOG (TAP TO OPEN)</span>
-    <div class="letter-scene">
-      <div class="envelope-wrapper sfx-hover" id="letter-wrapper" onclick="openLetter(event, 'letter-wrapper')">
-        <div class="env-back"></div>
-        <div class="env-flap">
-          <div class="env-flap-seal">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" style="color:white;">
-              <rect width="20" height="16" x="2" y="4" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-          </div>
-        </div>
+    <div
+      style="background: #fdfaf6; background-image: repeating-linear-gradient(transparent, transparent 31px, #e2e8f0 31px, #e2e8f0 32px); border: 1px solid #e5e5e5; border-radius: 2px 16px 2px 2px; padding: 48px 48px 64px 48px; max-width: 600px; margin: 20px auto 120px auto; box-shadow: 2px 14px 28px rgba(0,0,0,0.06), inset 0 0 60px rgba(0,0,0,0.03); transform: rotate(-1.5deg); text-align: left; color: #2c3e50; position: relative; cursor: text;">
 
-        <div class="env-letter" onclick="event.stopPropagation()">
-          <button class="btn-close-letter" onclick="closeLetter(event, 'letter-wrapper')" title="Close">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
-          </button>
-          <div class="env-letter-title">A Letter from Michelle</div>
-          <div class="env-letter-content">
-            <div style="font-family:'JetBrains Mono'; color:var(--primary); font-size:10px; margin-bottom: 24px;">
-              ORIGIN_LOG // RECORDED</div>
-            <p>Like most kids, I grew up wondering what I wanted to be when I got older.</p>
-            <p>At one point or another, I dreamed of being a 3D animator, an engineer, an illustrator, an influencer, an
-              architect, even starting my own fashion brand. Looking back, all these dreams had one thing in common:
-              <b>I wanted to create things that made people feel something.</b>
-            </p>
-            <p>But when it came time to choose a major in college, I found myself... stuck.</p>
-            <p>I didn’t know exactly what I wanted to do, I just knew I wanted to build things that mattered.</p>
-            <p>That clarity didn’t come until my first year at the University of Washington, when I managed to land one
-              of the last two spots in an Informatics class.</p>
-            <p>That class changed everything.</p>
-            <p>For the first time, I learned that design isn’t just about aesthetics, it’s everywhere. It’s in the shape
-              of a door handle; the order of buttons in an elevator; the way subtitles appear on a screen.</p>
-            <p>Suddenly, I started seeing design all around me, not just as art, but as systems created for (and
-              sometimes against) people.</p>
-            <p>That’s when I found UX.</p>
-            <p>It was the perfect blend of creativity and logic, research, systems thinking, storytelling, and
-              problem-solving all in one. I was hooked.</p>
-            <p>Since then, I’ve thrown myself into every design project I could find.</p>
-            <p>This portfolio is a reflection of my journey. Thanks for being here.</p>
-            <div style="margin-top:24px; font-family:'JetBrains Mono'; font-size:10px; color:#aaa;">[END OF LOG]</div>
-          </div>
-        </div>
-
-        <div class="env-front-left"></div>
-        <div class="env-front-right"></div>
-        <div class="env-front-bottom">
-          <div class="envelope-hint">OPEN ME</div>
-        </div>
-        <div class="env-stamp">
-          <div
-            style="font-size:12px; color:#aaa; font-family:'JetBrains Mono'; transform:rotate(12deg); font-weight:bold;">
-            M.G</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SKILLS -->
-    <span class="section-title">02_TECH_ARSENAL</span>
-    <div class="skills-wrapper" id="skill-tree">
-      <div class="skill-tag sfx-click">FIGMA</div>
-      <div class="skill-tag sfx-click">PROTOTYPING</div>
-      <div class="skill-tag sfx-click">SYSTEM DESIGN</div>
-      <div class="skill-tag sfx-click">USER RESEARCH</div>
-      <div class="skill-tag sfx-click">HTML/CSS</div>
-      <div class="skill-tag sfx-click">MOTION</div>
-      <div class="skill-tag sfx-click">DATA VIZ</div>
-      <div class="skill-tag sfx-click">GAMIFICATION</div>
-      <div class="skill-tag sfx-click">STRATEGY</div>
-    </div>
-    <!-- PHOTOGRAPHY SECTION -->
-    <span class="section-title">02_PHOTOGRAPHY_LOG</span>
-    <div class="photo-grid">
-      <!-- Photo Card 1 -->
-      <div class="photo-card sfx-hover">
-        <div class="photo-img-wrapper">
-          <img src="image/gallery/photo1.jpg" alt="Photography 1" onerror="this.src='image/TMS/background.png'">
-        </div>
-        <div class="photo-meta">
-          <span class="photo-tag">URBAN</span>
-          <span class="photo-loc">TOKYO, JP</span>
-        </div>
-      </div>
-      <!-- Photo Card 2 -->
-      <div class="photo-card sfx-hover">
-        <div class="photo-img-wrapper">
-          <img src="image/gallery/photo2.jpg" alt="Photography 2" onerror="this.src='image/TMS/background.png'">
-        </div>
-        <div class="photo-meta">
-          <span class="photo-tag">NATURE</span>
-          <span class="photo-loc">KYOTO, JP</span>
-        </div>
-      </div>
-      <!-- Photo Card 3 (Wide) -->
-      <div class="photo-card wide sfx-hover">
-        <div class="photo-img-wrapper">
-          <img src="image/gallery/photo3.jpg" alt="Photography 3" onerror="this.src='image/TMS/background.png'">
-        </div>
-        <div class="photo-meta">
-          <span class="photo-tag">ARCHITECTURE</span>
-          <span class="photo-loc">SAN FRANCISCO, CA</span>
-        </div>
-      </div>
-      <!-- Photo Card 4 -->
-      <div class="photo-card sfx-hover">
-        <div class="photo-img-wrapper">
-          <img src="image/gallery/photo4.jpg" alt="Photography 4" onerror="this.src='image/TMS/background.png'">
-        </div>
-        <div class="photo-meta">
-          <span class="photo-tag">PORTRAIT</span>
-          <span class="photo-loc">NEW YORK, NY</span>
-        </div>
-      </div>
-      <!-- Photo Card 5 -->
-      <div class="photo-card sfx-hover">
-        <div class="photo-img-wrapper">
-          <img src="image/gallery/photo5.jpg" alt="Photography 5" onerror="this.src='image/TMS/background.png'">
-        </div>
-        <div class="photo-meta">
-          <span class="photo-tag">STREET</span>
-          <span class="photo-loc">SEATTLE, WA</span>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- GAME SECTION -->
-    <span class="section-title">03_SIDE_QUEST: HIDE & SEEK</span>
-    <div class="game-section-wrapper">
+      <!-- A piece of tape at the top -->
       <div
-        style="display:flex; justify-content:space-between; width:100%; max-width:400px; margin-bottom:10px; font-family:'JetBrains Mono'; font-size:12px; color:#aaa;">
-        <span id="seek-status">WAITING...</span>
-        <span id="seek-timer">0.0s</span>
+        style="position: absolute; top: -14px; left: 50%; width: 120px; height: 30px; background: rgba(255,255,255,0.6); transform: translateX(-50%) rotate(2deg); box-shadow: 0 1px 3px rgba(0,0,0,0.1); backdrop-filter: opacity(70%);">
       </div>
 
-      <div style="position:relative;">
-        <canvas id="game-board" width="400" height="400"></canvas>
+      <h3
+        style="font-family: 'Caveat', cursive; font-size: 42px; color: #000; margin-bottom: 20px; font-weight: 600; line-height: 1;">
+        A Letter from Michelle,</h3>
 
-        <!-- Start Overlay -->
-        <div id="game-start-screen"
-          style="position:absolute; inset:0; background:rgba(0,0,0,0.6); display:flex; flex-direction:column; align-items:center; justify-content:center;">
-          <button id="start-inline-btn" class="game-btn sfx-click">USE FLASHLIGHT</button>
-        </div>
-
-        <!-- Result Overlay -->
-        <div id="game-result-screen"
-          style="position:absolute; inset:0; background:rgba(0,0,0,0.9); display:none; flex-direction:column; align-items:center; justify-content:center;">
-          <h2
-            style="color:var(--primary); margin-bottom:20px; text-transform:uppercase; letter-spacing:2px; text-align:center; font-size:24px;">
-            FOUND ME, HIRE ME!</h2>
-          <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
-            <button onclick="startGame()" class="game-btn sfx-click">PLAY AGAIN</button>
-            <a href="mailto:michelleguan321@gmail.com" class="game-btn sfx-click"
-              style="text-decoration:none; display:inline-block; background:var(--primary); color:#fff;">CONTACT ME</a>
-          </div>
-        </div>
+      <div
+        style="font-family: 'Caveat', cursive; font-size: 26px; line-height: 32px; display: flex; flex-direction: column; gap: 0px; font-weight: 500; letter-spacing: 0.02em;">
+        <p style="margin: 0 0 32px 0;">Like most kids, I grew up wondering what I wanted to be when I got older.</p>
+        <p style="margin: 0 0 32px 0;">At one point or another, I dreamed of being a 3D animator, an engineer, an
+          illustrator, an influencer, an
+          architect, even starting my own fashion brand. Looking back, all these dreams had one thing in common: <b
+            style="font-weight: 600; color: #111;">I
+            wanted to create things that made people feel something.</b></p>
+        <p style="margin: 0 0 32px 0;">But when it came time to choose a major in college, I found myself... stuck.</p>
+        <p style="margin: 0 0 32px 0;">I didn’t know exactly what I wanted to do, I just knew I wanted to build things
+          that mattered.</p>
+        <p style="margin: 0 0 32px 0;">That clarity didn’t come until my first year at the University of Washington,
+          when I managed to land one of
+          the last two spots in an Informatics class.</p>
+        <p style="margin: 0 0 32px 0;">That class changed everything.</p>
+        <p style="margin: 0 0 32px 0;">For the first time, I learned that design isn’t just about aesthetics, it’s
+          everywhere. It’s in the shape of
+          a door handle; the order of buttons in an elevator; the way subtitles appear on a screen.</p>
+        <p style="margin: 0 0 32px 0;">Suddenly, I started seeing design all around me, not just as art, but as systems
+          created for (and sometimes
+          against) people.</p>
+        <p style="margin: 0 0 32px 0;">That’s when I found UX.</p>
+        <p style="margin: 0 0 32px 0;">It was the perfect blend of creativity and logic, research, systems thinking,
+          storytelling, and
+          problem-solving all in one. I was hooked.</p>
+        <p style="margin: 0 0 32px 0;">Since then, I’ve thrown myself into every design project I could find.</p>
+        <p style="margin: 0;">This portfolio is a reflection of my journey. Thanks for being here.</p>
       </div>
-      <p class="font-mono text-dim" style="font-size:12px; margin-top:16px;">Move mouse to search in the dark.</p>
-    </div>
 
-    <!-- SECRET LETTER SECTION -->
-    <span class="section-title">04_SECRET_MESSAGE (UNFOLD)</span>
-    <div class="folded-scene">
-      <div class="folded-wrapper sfx-hover" id="folded-note" onclick="toggleFolded(event)">
-
-        <!-- Top Flap -->
-        <div class="fold-panel fold-top">
-          <div class="fold-face front">
-            <div class="fold-content-inner">
-              <div
-                style="font-family:'JetBrains Mono'; color:#8b5cf6; font-size:10px; margin-bottom: 12px; background:white; display:inline-block; padding:2px 6px; border-radius:4px;">
-                CLASSIFIED // LOG END</div>
-              <p>Stay curious, and keep exploring!</p>
-              <div style="text-align: right; margin-top: 15px; font-weight: bold; color: #111827;">- Michelle Guan</div>
-            </div>
-          </div>
-          <div class="fold-face back">
-            <div class="folded-hint">PULL TO UNFOLD</div>
-            <div class="fold-seal">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path
-                  d="m14.5 10-2-2m-3 3-2-2m-2 6 2-2m10 2 2-2m-1 7-9-9c-1.1-1.1-1.1-2.9 0-4s2.9-1.1 4 0l9 9c1.1 1.1 1.1 2.9 0 4s-2.9 1.1-4 0Z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- Middle Panel -->
-        <div class="fold-panel fold-middle">
-          <div class="fold-face front">
-            <button class="fold-btn-close" onclick="closeFolded(event)" title="Fold back">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="m18 15-6-6-6 6" />
-              </svg>
-            </button>
-            <div class="fold-content-inner">
-              <p>This is a secret space hidden down at the bottom of my portfolio.</p>
-              <p>Thank you for scrolling all the way down here and taking the time to explore.</p>
-              <p>If you're reading this, we should probably work together.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Flap -->
-        <div class="fold-panel fold-bottom">
-          <div class="fold-face front">
-            <div class="fold-content-inner">
-              <div
-                style="font-family:'JetBrains Mono'; color:#f43f5e; font-size:10px; margin-bottom: 12px; border: 1px solid #f43f5e; display:inline-block; padding:2px 6px; border-radius:4px;">
-                TOP SECRET</div>
-              <p style="font-weight:bold; font-size: 16px; color:#111827; margin:0 0 10px 0;">You found the folded note!
-                🦋</p>
-              <p style="margin: 0;">It's nice to meet you.</p>
-            </div>
-          </div>
-          <div class="fold-face back">
-            <!-- Automatically covered by top flap when folded -->
-          </div>
-        </div>
-
+      <div
+        style="margin-top: 60px; font-family:'Caveat', cursive; font-size: 32px; font-weight: 600; text-align: right; color:#111; transform: rotate(-3deg);">
+        - Michelle
       </div>
     </div>
 
-  </main>
 
-  <footer class="contact-footer"
-    style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;">
 
-    <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
-      <img src="image/logo.png" alt="Michelle.Design Logo"
-        style="height: 32px; filter: grayscale(100%) contrast(1.2); opacity: 0.8; transition: opacity 0.3s; cursor: pointer;"
-        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
-      <p
-        style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); margin: 0; letter-spacing: 0.05em;">
-        © 2026 Michelle Guan. All rights reserved.</p>
-    </div>
-  </footer>
 
-  <!-- Background Script -->
-  <script src="js/ambient-field.js"></script>
-  <script src="js/cursor.js"></script>
 
-  <script>
-    // --- LOGIC PORTED FROM OLD FILE ---
+    <footer class="contact-footer"
+      style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;">
 
-    // 1. Audio Engine (Simple Beeps)
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    let audioEnabled = false;
-    window.addEventListener('click', () => {
-      if (!audioEnabled && audioCtx.state !== 'running') {
-        audioCtx.resume();
-        audioEnabled = true;
-      }
-    }, { once: true });
+      <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+        <img src="image/logo.png" alt="Michelle.Design Logo"
+          style="height: 32px; opacity: 0.8; filter: none; transition: opacity 0.3s; cursor: pointer;"
+          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+        <p
+          style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); margin: 0; letter-spacing: 0.05em;">
+          © 2026 Michelle Guan. All rights reserved.</p>
+      </div>
+    </footer>
 
-    function playTone(freq, type = 'sine', duration = 0.1) {
-      if (audioCtx.state !== 'running') return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + duration);
-    }
+    <!-- Background Script -->
+    <script src="js/cursor.js"></script>
 
-    // SFX Listeners
-    document.querySelectorAll('.sfx-hover').forEach(el => {
-      el.addEventListener('mouseenter', () => playTone(800, 'triangle', 0.05));
-    });
-    document.querySelectorAll('.sfx-click').forEach(el => {
-      el.addEventListener('click', () => playTone(400, 'square', 0.1));
-    });
-
-    // 2. Typewriter Bio
-    const bioText = `"Think Different" — Apple has always been one of my favorite quotes.
-    
-It inspires me not just to think differently, but to be the different one.
-    
-To rethink how things work, and never let the box define my work.`;
-    const bioContainer = document.getElementById('bio-text');
-    let bioIndex = 0;
-    function typeWriter() {
-      if (bioIndex < bioText.length) {
-        if (bioText.charAt(bioIndex) === '\n') {
-          bioContainer.innerHTML += '<br>';
-        } else {
-          bioContainer.innerHTML += bioText.charAt(bioIndex);
+    <script>
+      const roleData = {
+        player_profile: {
+          label: "Michelle Guan",
+          rank: "00",
+          icon: "👤",
+          color: "#8b5cf6",
+          image: "image/about_me/profile_pic.png",
+          desc: "Product designer exploring AI, interaction design, and playful digital experiences. I enjoy building thoughtful products, experimenting with new ideas, and learning through making.<br><br>\"Think Different\" — Apple has always been one of my favorite quotes. It inspires me not just to think differently, but to be the different one. To rethink how things work, and never let the box define my work."
+        },
+        design_manager: {
+          label: "Design Manager",
+          rank: "10",
+          icon: "★",
+          color: "#60a5fa",
+          image: "image/about_me/design.jpg",
+          desc: "I enjoy bringing ideas and people together to move a product forward. Good design management, to me, is helping teams make clearer and better decisions."
+        },
+        ai_vibe_coder: {
+          label: "AI Vibe Coder",
+          rank: "01",
+          icon: "⚡",
+          color: "#f87171",
+          image: "image/about_me/vibe_coding.png",
+          desc: "I like experimenting with AI tools and turning rough ideas into working prototypes. It’s fun to see how quickly something can go from a vibe to a real product."
+        },
+        lego_collector: {
+          label: "LEGO Collector",
+          rank: "∞",
+          icon: "⬚",
+          color: "#fbbf24",
+          image: "image/about_me/lego.jpg",
+          desc: "I love building tiny worlds with LEGO and seeing how small pieces come together into something bigger. It’s probably why I enjoy systems and structure in design so much."
+        },
+        golfer: {
+          label: "Golfer",
+          rank: "18",
+          icon: "⛳",
+          color: "#34d399",
+          image: "image/about_me/golf.jpg",
+          desc: "Golf is where I practice patience and focus outside of work. It’s a quiet reminder that improvement comes from consistency."
+        },
+        hamster_parent: {
+          label: "Hamster Parent",
+          rank: "03",
+          icon: "🐹",
+          color: "#fb923c",
+          image: "image/about_me/hamster.jpg",
+          desc: "Life with a tiny hamster is surprisingly entertaining. They’re small, curious, and somehow always in charge."
         }
-        bioIndex++;
-        setTimeout(typeWriter, 20);
+      };
+
+      function selectCharacter(key) {
+        const active = roleData[key];
+        if (!active) return;
+
+        // Update Buttons
+        document.querySelectorAll('.select-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-role') === key);
+        });
+
+        const card = document.getElementById('bg-card');
+        const name = document.getElementById('bg-role-name');
+        const desc = document.getElementById('bg-role-desc');
+
+        if (!card) return;
+
+        // Animation Pop
+        card.classList.remove('content-pop');
+        void card.offsetWidth; // Force reflow
+        card.classList.add('content-pop');
+
+        setTimeout(() => {
+          if (name) name.innerText = active.label;
+          if (desc) desc.innerText = `"${active.desc}"`;
+          if (document.getElementById('bg-portrait')) {
+            document.getElementById('bg-portrait').src = active.image;
+          }
+        }, 50);
       }
-    }
-    setTimeout(typeWriter, 500);
 
-    // 3. Hacker Text Effect
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    document.querySelectorAll('.hacker-text').forEach(item => {
-      item.onmouseover = event => {
-        let iterations = 0;
-        const interval = setInterval(() => {
-          event.target.innerText = event.target.innerText.split("")
-            .map((letter, index) => {
-              if (index < iterations) return event.target.dataset.value[index];
-              return letters[Math.floor(Math.random() * 26)];
-            })
-            .join("");
-          if (iterations >= event.target.dataset.value.length) clearInterval(interval);
-          iterations += 1 / 3;
-        }, 30);
+      // 1. Audio Engine (Simple Beeps)
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      let audioEnabled = false;
+      window.addEventListener('click', () => {
+        if (!audioEnabled && audioCtx.state !== 'running') {
+          audioCtx.resume();
+          audioEnabled = true;
+        }
+      }, { once: true });
+
+      function playTone(freq, type = 'sine', duration = 0.1) {
+        if (audioCtx.state !== 'running') return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
       }
-    });
 
-    // 4. Avatar Loot Drop & 3D Tilt
-    const avatar = document.getElementById('avatar-clicker');
-    const dropIcons = ['🎨', '💻', '☕️', '✨', '🔥'];
-
-    // 3D Tilt Effect
-    avatar.addEventListener('mousemove', (e) => {
-      const rect = avatar.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = ((y - centerY) / centerY) * -15;
-      const rotateY = ((x - centerX) / centerX) * 15;
-
-      avatar.style.transform = `scale(1.05) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      avatar.style.boxShadow = `${-rotateY}px ${rotateX}px 40px rgba(139, 92, 246, 0.3)`;
-      avatar.style.borderColor = 'var(--primary)';
-    });
-
-    avatar.addEventListener('mouseleave', () => {
-      avatar.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease-out';
-      avatar.style.transform = 'scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
-      avatar.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.05)';
-      avatar.style.borderColor = 'rgba(255, 255, 255, 0.6)';
-
-      // Reset transition duration after animation
-      setTimeout(() => {
-        avatar.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out';
-      }, 500);
-    });
-
-    // Loot Drop on click
-    avatar.addEventListener('click', (e) => {
-      playTone(600 + (Math.random() * 200), 'square', 0.1);
-
-      // Shake effect, preserving current 3D rotation if possible
-      const currentTransform = avatar.style.transform || 'scale(1.05)';
-      avatar.style.transform = currentTransform + ' scale(0.9) rotate(5deg)';
-      setTimeout(() => avatar.style.transform = currentTransform, 150);
-
-      // Pop Icon
-      const icon = document.createElement('div');
-      icon.innerText = dropIcons[Math.floor(Math.random() * dropIcons.length)];
-      icon.className = 'float-icon';
-      icon.style.color = Math.random() > 0.5 ? '#8b5cf6' : '#111827';
-
-      const rect = avatar.getBoundingClientRect();
-      icon.style.left = (e.clientX - rect.left) + "px";
-      icon.style.top = (e.clientY - rect.top) + "px";
-
-      avatar.appendChild(icon);
-      setTimeout(() => icon.remove(), 1000);
-    });
-
-    // 5. Skills Equip
-    document.querySelectorAll('.skill-tag').forEach(skill => {
-      skill.addEventListener('click', function () {
-        this.classList.toggle('equipped');
-        playTone(this.classList.contains('equipped') ? 1000 : 300, 'sine', 0.1);
+      // SFX Listeners
+      document.querySelectorAll('.select-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => playTone(800, 'triangle', 0.05));
+        el.addEventListener('click', () => playTone(400, 'square', 0.1));
       });
-    });
-
-    // 6. Letter Interaction
-    window.openLetter = function (event, wrapperId = 'letter-wrapper') {
-      if (event) event.stopPropagation();
-      const wrapper = document.getElementById(wrapperId);
-      if (wrapper.classList.contains('is-open') || wrapper.classList.contains('flap-open')) return;
-
-      wrapper.classList.add('flap-open');
-      playTone(600, 'sine', 0.1);
-
-      setTimeout(() => {
-        wrapper.classList.add('letter-up');
-        playTone(700, 'sine', 0.1);
-      }, 400);
-
-      setTimeout(() => {
-        wrapper.classList.add('is-open');
-        playTone(800, 'triangle', 0.15);
-      }, 800);
-    };
-
-    window.closeLetter = function (event, wrapperId = 'letter-wrapper') {
-      if (event) event.stopPropagation();
-      const wrapper = document.getElementById(wrapperId);
-      if (!wrapper.classList.contains('is-open')) return;
-
-      wrapper.classList.remove('is-open');
-      playTone(700, 'sine', 0.1);
-
-      setTimeout(() => {
-        wrapper.classList.remove('letter-up');
-        playTone(600, 'sine', 0.1);
-      }, 400);
-
-      setTimeout(() => {
-        wrapper.classList.remove('flap-open');
-        playTone(500, 'sine', 0.1);
-      }, 800);
-    };
-
-    // Folded Note Interaction
-    window.toggleFolded = function (event) {
-      if (event) event.stopPropagation();
-      const wrapper = document.getElementById('folded-note');
-      if (wrapper.classList.contains('is-open')) return;
-      wrapper.classList.add('is-open');
-      playTone(700, 'sine', 0.1);
-      setTimeout(() => playTone(800, 'sine', 0.1), 400);
-    };
-
-    window.closeFolded = function (event) {
-      if (event) event.stopPropagation();
-      const wrapper = document.getElementById('folded-note');
-      wrapper.classList.remove('is-open');
-      playTone(600, 'sine', 0.1);
-      setTimeout(() => playTone(500, 'sine', 0.1), 400);
-    };
-
-    // 7. Hide & Seek Game
-    const startInlineBtn = document.getElementById('start-inline-btn');
-    const startScreen = document.getElementById('game-start-screen');
-    const resultScreen = document.getElementById('game-result-screen');
-    const statusEl = document.getElementById('seek-status');
-    const timerEl = document.getElementById('seek-timer');
-    const canvasGame = document.getElementById('game-board');
-    const ctxGame = canvasGame.getContext('2d');
-
-    let gameActive = false;
-    let startTime = 0;
-    let target = { x: 0, y: 0, size: 40, icon: '🐱' };
-    let mouse = { x: -100, y: -100 };
-
-    startInlineBtn.addEventListener('click', startGame);
-
-    function startGame() {
-      gameActive = true;
-      startTime = Date.now();
-      target.x = 50 + Math.random() * 300;
-      target.y = 50 + Math.random() * 300;
-
-      startScreen.style.display = 'none';
-      resultScreen.style.display = 'none';
-      statusEl.innerText = "SEARCHING...";
-      statusEl.style.color = "#8b5cf6";
-
-      requestAnimationFrame(gameLoop);
-    }
-
-    canvasGame.addEventListener('mousemove', (e) => {
-      const rect = canvasGame.getBoundingClientRect();
-      const scaleX = canvasGame.width / rect.width;
-      const scaleY = canvasGame.height / rect.height;
-      mouse.x = (e.clientX - rect.left) * scaleX;
-      mouse.y = (e.clientY - rect.top) * scaleY;
-    });
-
-    canvasGame.addEventListener('click', () => {
-      if (!gameActive) return;
-      const dx = mouse.x - target.x;
-      const dy = mouse.y - target.y;
-      if (Math.sqrt(dx * dx + dy * dy) < 60) {
-        endGame();
-      }
-    });
-
-    function gameLoop() {
-      if (!gameActive) return;
-
-      const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-      timerEl.innerText = elapsed + "s";
-
-      // Draw
-      ctxGame.fillStyle = "#ffffff";
-      ctxGame.fillRect(0, 0, 400, 400);
-
-      // Draw Target (Hidden)
-      ctxGame.font = "30px Arial";
-      ctxGame.textAlign = "center";
-      ctxGame.textBaseline = "middle";
-      ctxGame.fillText(target.icon, target.x, target.y);
-
-      // Darkness Mask
-      ctxGame.globalCompositeOperation = 'source-over';
-      ctxGame.fillStyle = "rgba(0,0,0,0.95)";
-      ctxGame.beginPath();
-      ctxGame.rect(0, 0, 400, 400);
-      ctxGame.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2, true);
-      ctxGame.fill();
-
-      // Flashlight Ring
-      ctxGame.strokeStyle = "rgba(255,255,255,0.2)";
-      ctxGame.lineWidth = 2;
-      ctxGame.beginPath();
-      ctxGame.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
-      ctxGame.stroke();
-
-      requestAnimationFrame(gameLoop);
-    }
-
-    function endGame() {
-      gameActive = false;
-      statusEl.innerText = "CAUGHT!";
-      resultScreen.style.display = 'flex';
-      playTone(800, 'square', 0.2);
-    }
-
-  </script>
+    </script>
+    </script>
 </body>
 
 </html>

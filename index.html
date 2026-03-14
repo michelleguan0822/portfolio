@@ -81,8 +81,8 @@
             <a href="index.html" class="nav-logo-link"
                 style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
                 <img src="image/logo.png" alt="Michelle.Design Logo"
-                    style="height: 16px; filter: grayscale(100%) contrast(1.2) invert(1); opacity: 0.8; transition: opacity 0.2s;"
-                    onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                    style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
+                    onmouseout="this.style.opacity='0.8'">
             </a>
             <a href="index.html" class="active">Home</a>
             <a href="about-me.html">About Me</a>
@@ -94,35 +94,43 @@
         <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"></spline-viewer>
     </div>
 
-    <!-- Center Title -->
-    <div class="fixed inset-0 z-10 flex flex-col items-center justify-center pointer-events-none mt-12 md:mt-2">
+    <!-- Top-Left Title -->
+    <div
+        class="fixed top-32 left-8 md:left-14 z-10 flex flex-col items-start justify-start pointer-events-none max-w-2xl transition-all duration-700">
         <style>
+            html {
+                scroll-behavior: smooth;
+                scroll-snap-type: y proximity;
+                /* Proximity is gentler than mandatory for this layout */
+            }
+
+            .snap-section {
+                scroll-snap-align: start;
+                height: 100vh;
+            }
+
             .hero-title-dark {
                 display: flex;
-                justify-content: center;
+                justify-content: flex-start;
                 margin: 0;
                 cursor: default;
                 z-index: 10;
                 pointer-events: auto;
-                /* Allow hover */
             }
 
             .hero-title-dark span {
                 font-family: 'Roboto Flex', sans-serif;
-                font-size: 5rem;
-                /* Smaller for mobile, adjusted below for md */
+                font-size: 3.5rem;
                 font-variation-settings: "wdth" 25, "wght" 100;
                 letter-spacing: normal;
                 line-height: 0.95;
                 color: #ffffff;
-                /* White base for dark theme */
                 transition: font-variation-settings 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
             }
 
             @media (min-width: 768px) {
                 .hero-title-dark span {
-                    font-size: 8rem;
-                    /* Match text-8xl */
+                    font-size: 5rem;
                 }
             }
 
@@ -131,19 +139,13 @@
                 color: #7D9CB8;
             }
 
-            .hero-title-dark span:hover+span,
-            .hero-title-dark span:has(+ span:hover) {
-                font-variation-settings: "wdth" 70, "wght" 400;
-                color: #5A7E9D;
-            }
-
             .hero-tags-dark {
                 display: flex;
                 gap: 12px;
                 margin-top: 16px;
                 margin-bottom: 12px;
                 flex-wrap: wrap;
-                justify-content: center;
+                justify-content: flex-start;
                 pointer-events: auto;
             }
 
@@ -165,263 +167,223 @@
                 color: #ffffff;
             }
         </style>
-        <h1 class="hero-title-dark" style="mix-blend-mode: plus-lighter;">
+        <h1 class="hero-title-dark">
             <span>M</span><span>I</span><span>C</span><span>H</span><span>E</span><span>L</span><span>L</span><span>E</span><span>.</span><span>D</span><span>E</span><span>S</span><span>I</span><span>G</span><span>N</span>
         </h1>
         <div class="hero-tags-dark">
             <span class="hero-tag-dark">AI/Healthcare</span>
             <span class="hero-tag-dark">Global Design Experience</span>
+        </div>
+        <div class="hero-tags-dark !mt-0">
             <span class="hero-tag-dark">4x App Store Launches</span>
         </div>
-        <p class="text-[18px] text-white/70 max-w-[600px] text-center font-[Inter] pointer-events-auto">
+        <p class="text-[18px] text-white/70 max-w-[450px] text-left font-[Inter] pointer-events-auto">
             Partnering with bold teams to design fast, ship smart.
         </p>
     </div>
 
-    <!-- 4 Corner Projects -->
-    <div class="fixed inset-0 z-20 pointer-events-none mt-20 md:mt-0">
-        <!-- Top Left -->
-        <div
-            class="absolute top-24 md:top-14 left-4 md:left-14 pointer-events-auto group -rotate-[3deg] hover:rotate-0 transition-transform duration-500">
-            <a href="unimo.html"
-                class="block w-72 md:w-80 p-5 rounded-3xl glass-card transition-all duration-500 cursor-pointer overflow-hidden relative">
-                <div
-                    class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                </div>
-                <div class="relative z-10 flex flex-col gap-4">
-                    <img src="image/Unimo/hero.jpg" alt="Unimo UI"
-                        class="w-full h-36 object-cover rounded-xl opacity-90 shadow-lg pointer-events-none">
-                    <div>
-                        <div class="flex items-center justify-between mb-1">
-                            <h3 class="text-xl font-bold text-white/95 group-hover:text-white transition-colors">UNIMO
+    <!-- Dynamic Project Section (Floating Hero Showcase) -->
+    <div id="project-section"
+        class="fixed inset-0 z-20 pointer-events-none flex items-center justify-end pr-[10vw] pt-[10vh]"
+        style="perspective: 2500px;">
+
+        <div class="relative w-[400px] h-[600px] transition-transform duration-700"
+            style="transform-style: preserve-3d;">
+
+            <style>
+                .floating-hero-image {
+                    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+                    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+                    filter: brightness(1.05);
+                }
+
+                .floating-hero-image:hover {
+                    transform: scale(1.03) translateY(-10px) rotateX(2deg) rotateY(1deg);
+                    box-shadow: 0 60px 160px rgba(0, 0, 0, 0.7);
+                    filter: brightness(1.1);
+                }
+
+                .project-text-layout {
+                    margin-top: 3rem;
+                    text-align: left;
+                    opacity: 1;
+                    transition: all 0.5s ease;
+                }
+            </style>
+
+            <!-- UNIMO -->
+            <div id="card-unimo"
+                class="project-card-container absolute inset-0 pointer-events-none flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
+                <a href="unimo.html" class="pointer-events-auto block group">
+                    <img src="image/Unimo/hero.jpg"
+                        class="floating-hero-image w-[400px] object-cover rounded-[24px] md:rounded-[32px]">
+                    <div class="project-text-layout flex items-center justify-between w-full px-2">
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-1 flex items-center gap-3">
+                                UNIMO
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="text-white/30 group-hover:text-white transition-colors duration-300">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
                             </h3>
-                            <i data-lucide="arrow-right"
-                                class="w-5 h-5 text-white/0 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white/90 transition-all duration-300"></i>
-                        </div>
-                        <p class="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">AI Companion &
-                            Emotional Expression</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Top Right -->
-        <div
-            class="absolute top-24 md:top-14 right-4 md:right-14 pointer-events-auto group rotate-[2deg] hover:rotate-0 transition-transform duration-500">
-            <a href="TMS.html"
-                class="block w-72 md:w-80 p-5 rounded-3xl glass-card transition-all duration-500 cursor-pointer overflow-hidden relative">
-                <div
-                    class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                </div>
-                <div class="relative z-10 flex flex-col gap-4">
-                    <img src="image/TMS/hero.png" alt="TMS Dashboard"
-                        class="w-full h-36 object-cover object-top rounded-xl opacity-90 shadow-lg pointer-events-none">
-                    <div>
-                        <div class="flex items-center justify-between mb-1">
-                            <h3 class="text-xl font-bold text-white/95 group-hover:text-white transition-colors">TMS
-                                Dashboard</h3>
-                            <i data-lucide="arrow-right"
-                                class="w-5 h-5 text-white/0 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white/90 transition-all duration-300"></i>
-                        </div>
-                        <p class="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">Clinical System &
-                            Data Visualization</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Bottom Left -->
-        <div
-            class="absolute bottom-8 lg:bottom-14 left-4 md:left-14 pointer-events-auto group rotate-[3deg] hover:rotate-0 transition-transform duration-500">
-            <a href="oltiva.html"
-                class="block w-72 md:w-80 p-5 rounded-3xl glass-card transition-all duration-500 cursor-pointer overflow-hidden relative">
-                <div
-                    class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                </div>
-                <div class="relative z-10 flex flex-col gap-4">
-                    <img src="image/avanade/hero_mockup.png" alt="Oltiva AI"
-                        class="w-full h-36 object-cover object-top rounded-xl opacity-90 shadow-lg pointer-events-none">
-                    <div>
-                        <div class="flex items-center justify-between mb-1">
-                            <h3 class="text-xl font-bold text-white/95 group-hover:text-white transition-colors">Oltiva
-                                Insights</h3>
-                            <i data-lucide="arrow-right"
-                                class="w-5 h-5 text-white/0 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white/90 transition-all duration-300"></i>
-                        </div>
-                        <p class="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">Enterprise AI
-                            Workflow & Docs</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <!-- Bottom Right -->
-        <div
-            class="absolute bottom-8 lg:bottom-14 right-4 md:right-14 pointer-events-auto group -rotate-[2deg] hover:rotate-0 transition-transform duration-500">
-            <a href="impulse.html"
-                class="block w-72 md:w-80 p-5 rounded-3xl glass-card transition-all duration-500 cursor-pointer overflow-hidden relative">
-                <div
-                    class="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                </div>
-                <div class="relative z-10 flex flex-col gap-4">
-                    <img src="image/TMS/background.png" alt="Impulse App"
-                        class="w-full h-36 object-cover rounded-xl opacity-90 shadow-lg pointer-events-none">
-                    <div>
-                        <div class="flex items-center justify-between mb-1">
-                            <h3 class="text-xl font-bold text-white/95 group-hover:text-white transition-colors">
-                                Impulse</h3>
-                            <i data-lucide="arrow-right"
-                                class="w-5 h-5 text-white/0 -translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white/90 transition-all duration-300"></i>
-                        </div>
-                        <p class="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors">Social
-                            Accountability & Habits</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div
-        class="fixed inset-x-0 bottom-12 z-20 flex flex-col items-center gap-2 pointer-events-none text-white/40 animate-bounce">
-        <span class="font-mono text-[10px] tracking-[0.1em] pl-[0.1em] uppercase">Companies I Have Designed For</span>
-        <i data-lucide="chevron-down" class="w-4 h-4"></i>
-    </div>
-
-    <!-- Experience Section (Scroll Down) -->
-    <div class="relative z-30 w-full bg-black/40 backdrop-blur-3xl mt-[100vh] pt-32 pb-48 border-t border-white/10">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-white mb-12 flex items-center gap-4">
-                <span class="text-zinc-500 font-mono text-sm tracking-widest uppercase">01_</span>
-                Companies I Have Designed For
-            </h2>
-
-            <div
-                class="relative w-full before:absolute before:inset-y-0 before:left-1/2 before:-translate-x-1/2 before:w-px before:bg-gradient-to-b before:from-purple-500/50 before:via-white/20 before:to-transparent">
-
-                <!-- UNIMO (Left) -->
-                <div class="relative flex items-center justify-between w-full mb-16 px-4">
-                    <div class="w-[45%] flex justify-end">
-                        <div
-                            class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer text-right max-w-lg">
-                            <h3
-                                class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
-                                UNIMO</h3>
-                            <div class="font-mono text-sm text-zinc-500 tracking-wider mb-4">2025—2026</div>
-                            <p
-                                class="text-[14px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                                Designing an AI-native emotional asset system, transforming private feelings into
-                                visible, playable social artifacts that reshape how Gen-Z expresses and connects.
-                            </p>
+                            <p class="text-base text-zinc-500 font-medium">AI Companion & Emotional Expression</p>
                         </div>
                     </div>
-                    <!-- Center Timeline Node -->
-                    <div
-                        class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-black border-2 border-purple-500/50 z-10 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
-                        <div class="w-2.5 h-2.5 rounded-full bg-purple-400"></div>
-                    </div>
-                    <div class="w-[45%]"></div>
-                </div>
-
-                <!-- Clinical Brain Dashboard (Right) -->
-                <div class="relative flex items-center justify-between w-full mb-16 px-4">
-                    <div class="w-[45%]"></div>
-                    <!-- Center Timeline Node -->
-                    <div
-                        class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-black border-2 border-purple-500/50 z-10 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
-                        <div class="w-2.5 h-2.5 rounded-full bg-purple-400"></div>
-                    </div>
-                    <div class="w-[45%] flex justify-start">
-                        <div
-                            class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer text-left max-w-lg">
-                            <h3
-                                class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
-                                Clinical Brain Dashboard</h3>
-                            <div class="font-mono text-sm text-zinc-500 tracking-wider mb-4">2025</div>
-                            <p
-                                class="text-[14px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                                Reconstructing a clinical data cockpit for TMS treatment visualization, turning
-                                fragmented medical signals into a trustworthy, real-time decision interface.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Impulse (Left) -->
-                <div class="relative flex items-center justify-between w-full mb-16 px-4">
-                    <div class="w-[45%] flex justify-end">
-                        <div
-                            class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer text-right max-w-lg">
-                            <h3
-                                class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
-                                Impulse</h3>
-                            <div class="font-mono text-sm text-zinc-500 tracking-wider mb-4">2024—25</div>
-                            <p
-                                class="text-[14px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                                Redefining accountability in social habit systems, simplifying multi-step goal flows
-                                into behavior-driven product loops that increase retention and engagement.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Center Timeline Node -->
-                    <div
-                        class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-black border-2 border-zinc-700 z-10">
-                        <div class="w-2.5 h-2.5 rounded-full bg-zinc-500"></div>
-                    </div>
-                    <div class="w-[45%]"></div>
-                </div>
-
-                <!-- Avanade (Right) -->
-                <div class="relative flex items-center justify-between w-full mb-16 px-4">
-                    <div class="w-[45%]"></div>
-                    <!-- Center Timeline Node -->
-                    <div
-                        class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-black border-2 border-zinc-700 z-10">
-                        <div class="w-2.5 h-2.5 rounded-full bg-zinc-500"></div>
-                    </div>
-                    <div class="w-[45%] flex justify-start">
-                        <div
-                            class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer text-left max-w-lg">
-                            <h3
-                                class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
-                                Avanade</h3>
-                            <div class="font-mono text-sm text-zinc-500 tracking-wider mb-4">2023</div>
-                            <p
-                                class="text-[14px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                                Designing an AI-powered enterprise assistant with Azure OpenAI, reducing document
-                                analysis friction and accelerating decision cycles for sales teams.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Smash (Left) -->
-                <div class="relative flex items-center justify-between w-full mb-8 px-4">
-                    <div class="w-[45%] flex justify-end">
-                        <div
-                            class="group relative p-8 rounded-3xl glass-card transition-all duration-300 hover:bg-white/[0.08] hover:border-white/20 sfx-hover sfx-click cursor-pointer text-right max-w-lg">
-                            <h3
-                                class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors mb-2">
-                                Smash</h3>
-                            <div class="font-mono text-sm text-zinc-500 tracking-wider mb-4">2023</div>
-                            <p
-                                class="text-[14px] leading-relaxed text-zinc-400 group-hover:text-zinc-300 transition-colors">
-                                Building a coding-learning game from concept to wireframe, aligning gameplay loops with
-                                educational outcomes to transform how beginners engage with programming.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Center Timeline Node -->
-                    <div
-                        class="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-black border-2 border-zinc-700 z-10">
-                        <div class="w-2.5 h-2.5 rounded-full bg-zinc-500"></div>
-                    </div>
-                    <div class="w-[45%]"></div>
-                </div>
-
+                </a>
             </div>
+
+            <!-- TMS Dashboard -->
+            <div id="card-tms"
+                class="project-card-container absolute inset-0 pointer-events-none opacity-0 flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
+                <a href="TMS.html" class="pointer-events-auto block group">
+                    <img src="image/TMS/hero.png"
+                        class="floating-hero-image w-[400px] object-cover rounded-[24px] md:rounded-[32px]">
+                    <div class="project-text-layout flex items-center justify-between w-full px-2">
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-1 flex items-center gap-3">
+                                TMS Dashboard
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="text-white/30 group-hover:text-white transition-colors duration-300">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </h3>
+                            <p class="text-base text-zinc-500 font-medium">Clinical System & Data Visualization</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Oltiva Insights -->
+            <div id="card-oltiva"
+                class="project-card-container absolute inset-0 pointer-events-none opacity-0 flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
+                <a href="oltiva.html" class="pointer-events-auto block group">
+                    <img src="image/avanade/hero_mockup.png"
+                        class="floating-hero-image w-[400px] object-cover rounded-[24px] md:rounded-[32px]">
+                    <div class="project-text-layout flex items-center justify-between w-full px-2">
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-1 flex items-center gap-3">
+                                Oltiva Insights
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="text-white/30 group-hover:text-white transition-colors duration-300">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </h3>
+                            <p class="text-base text-zinc-500 font-medium">Enterprise AI Workflow & Docs</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Impulse (Preserved but hidden) -->
+            <div id="card-impulse"
+                class="project-card-container absolute inset-0 pointer-events-none flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] hidden">
+                <a href="impulse.html" class="pointer-events-auto block group">
+                    <img src="image/TMS/background.png"
+                        class="floating-hero-image w-[400px] object-cover rounded-[24px] md:rounded-[32px]">
+                    <div class="project-text-layout flex items-center justify-between w-full px-2">
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-1 flex items-center gap-3">
+                                Impulse
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="text-white/30 group-hover:text-white transition-colors duration-300">
+                                    <path d="M5 12h14" />
+                                    <path d="m12 5 7 7-7 7" />
+                                </svg>
+                            </h3>
+                            <p class="text-base text-zinc-500 font-medium">Social Accountability & Habits</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </div>
+
+    <!-- Scroll Down Hint -->
+    <div class="fixed bottom-12 right-12 z-30 flex flex-col items-center gap-3 animate-bounce text-zinc-400">
+        <span class="text-xs font-bold tracking-[0.2em] uppercase origin-right -rotate-90 mb-8 whitespace-nowrap">Scroll
+            Down</span>
+        <div class="w-px h-16 bg-gradient-to-b from-zinc-400 to-transparent"></div>
+    </div>
+
+    <!-- Spacer with Scroll Snap Targets -->
+    <div class="relative pointer-events-none">
+        <div class="snap-section"></div> <!-- Project 1 Focus -->
+        <div class="snap-section"></div> <!-- Project 2 Focus -->
+        <div class="snap-section"></div> <!-- Project 3 Focus -->
+    </div>
+
+    <!-- Vertical Stack Carousel Scroll Script -->
+    <script>
+        const cards = [
+            document.getElementById('card-unimo'),
+            document.getElementById('card-tms'),
+            document.getElementById('card-oltiva')
+            // document.getElementById('card-impulse') // Hidden as requested
+        ];
+
+        window.addEventListener('scroll', () => {
+            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            const activeIndex = scrollPercent * (cards.length - 1);
+
+            cards.forEach((card, index) => {
+                const distance = index - activeIndex;
+
+                // Active Project (Focal point)
+                if (Math.abs(distance) < 0.2) {
+                    // Slight upward shift for active state
+                    card.style.transform = `translateX(0px) translateY(-50px) scale(1) translateZ(0px)`;
+                    card.style.opacity = '1';
+                    card.style.zIndex = '100';
+                    card.style.pointerEvents = 'auto';
+                    card.style.filter = 'blur(0px)';
+                }
+                // Transition Orbit (Slide in from Right)
+                else if (distance > 0) {
+                    const depth = distance;
+                    // Slide in from Right along a path
+                    const xOffset = depth * 400; // Tighter offset
+                    const yOffset = depth * 80;  // Subtle downward tilt
+                    const scale = Math.max(0.6, 1 - depth * 0.4);
+                    const opacity = Math.max(0, 1 - depth * 1.5);
+                    const zOffset = -(depth * 300);
+
+                    card.style.transform = `translateX(${xOffset}px) translateY(${yOffset}px) scale(${scale}) translateZ(${zOffset}px)`;
+                    card.style.opacity = opacity;
+                    card.style.zIndex = Math.floor(50 - depth * 10);
+                    card.style.pointerEvents = 'none';
+                    card.style.filter = `blur(${depth * 2}px)`;
+                }
+                // Previous Projects (Exit Up and Left)
+                else {
+                    const depth = Math.abs(distance);
+                    const xOffset = -depth * 200;
+                    const yOffset = -depth * 180;
+                    const opacity = Math.max(0, 1 - depth * 3); // Faster exit fade
+
+                    card.style.transform = `translateX(${xOffset}px) translateY(${yOffset}px) scale(0.9) translateZ(-200px)`;
+                    card.style.opacity = opacity;
+                    card.style.zIndex = '10';
+                    card.style.pointerEvents = 'none';
+                    card.style.filter = 'blur(4px)';
+                }
+            });
+        });
+
+        // Initialize positions
+        window.dispatchEvent(new Event('scroll'));
+    </script>
 
     <!-- Initialize Lucide icons -->
     <script>
