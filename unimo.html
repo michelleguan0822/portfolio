@@ -58,6 +58,7 @@
 
     <aside class="toc">
       <a href="#snapshot" class="active">Snapshot</a>
+      <a href="#security">Security</a>
       <a href="#challenge">01 The Challenge</a>
       <a href="#solution">02 Solution</a>
       <a href="#impact">03 Impact</a>
@@ -114,9 +115,167 @@
           This gap created a clear opportunity: move emotional expression out of text-based conversations and into
           something people can see, feel, and interact with.
         </p>
-        <div style="margin: 32px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-          <img src="image/Unimo/screens.png" alt="Community Feed showing multiple cards"
-            style="width: 100%; height: auto; display: block;" />
+      </div>
+      
+      <!-- =========================
+           TOP-NOTCH SECURITY SECTION
+      ========================== -->
+      <style>
+        .security-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: auto auto;
+          gap: 24px;
+          margin: 40px 0 80px 0;
+        }
+
+        .security-card {
+          background: #FFFFFF;
+          border-radius: 32px;
+          padding: 40px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .security-card.large {
+          grid-column: span 2;
+          flex-direction: row;
+          align-items: center;
+          gap: 40px;
+          background: #f9f9f9;
+        }
+
+        .security-card.dark {
+          background: #1e212b;
+          color: #FFFFFF;
+        }
+
+        .security-card h3 {
+          font-size: 24px;
+          margin-bottom: 16px;
+          line-height: 1.3;
+        }
+
+        .security-card.dark h3 {
+          color: #FFFFFF;
+        }
+
+        .security-card p {
+          font-size: 15px;
+          line-height: 1.6;
+          color: #666;
+          margin-bottom: 0;
+        }
+
+        .security-card.dark p {
+          color: #aaa;
+        }
+
+        .security-visual-large {
+          flex: 1;
+          position: relative;
+          display: flex;
+          justify-content: center;
+        }
+
+        .security-visual-large img {
+          width: 100%;
+          max-width: 320px;
+          border-radius: 20px;
+        }
+
+        .security-info {
+          flex: 1.2;
+        }
+
+        .security-badge {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          text-transform: uppercase;
+          color: #888;
+          margin-bottom: 12px;
+          display: block;
+        }
+
+        .security-card.small {
+          justify-content: space-between;
+          padding: 32px;
+        }
+
+        .security-visual-small {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 32px;
+        }
+
+        .security-visual-small img {
+          width: 100%;
+          max-width: 240px;
+          border-radius: 16px;
+        }
+
+        @media (max-width: 768px) {
+          .security-grid {
+            grid-template-columns: 1fr;
+          }
+          .security-card.large {
+            grid-column: span 1;
+            flex-direction: column;
+            text-align: center;
+            padding: 32px;
+          }
+          .security-card.large .security-visual-large {
+            margin-top: 24px;
+            order: 2;
+          }
+        }
+      </style>
+
+      <div id="security" class="section">
+        <div>
+          <span class="section-label" style="color: #6366f1; border-color: rgba(99, 102, 241, 0.2); background: rgba(99, 102, 241, 0.05);">TOP-NOTCH SECURITY</span>
+          <h2 style="margin-bottom: 24px;">Trust with every glance. Because security is everything.</h2>
+          <p class="lead-text">In today's world, protecting your identity is more important than ever. Our app uses the same FaceID technology trusted by millions of Apple users worldwide to keep your information safe.</p>
+        </div>
+
+        <div class="security-grid">
+          <!-- Card 1: FaceID -->
+          <div class="security-card large">
+            <div class="security-info">
+              <span class="security-badge">Biometric Precision 👀</span>
+              <h3>Your face is unique, and so is our security. FaceID ensures that only you can verify your identity.</h3>
+              <p>Your face is your password, and it's virtually unbreakable. Say goodbye to worrying about security breaches or unauthorized access — your data is in good hands (or should we say, faces?😅).</p>
+            </div>
+            <div class="security-visual-large">
+              <img src="image/Unimo/security/faceid.png" alt="Biometric FaceID Scanning Illustration">
+            </div>
+          </div>
+
+          <!-- Card 2: Peace of Mind -->
+          <div class="security-card small">
+            <div>
+              <h3>Peace of Mind</h3>
+              <p>Know exactly where your data is and who's accessing it. No surprises, no breaches — just complete control over your digital identity.</p>
+            </div>
+            <div class="security-visual-small">
+              <img src="image/Unimo/security/privacy.png" alt="Privacy Leaf Icon">
+            </div>
+          </div>
+
+          <!-- Card 3: Encrypted -->
+          <div class="security-card small dark">
+            <div>
+              <h3>Encrypted and Secure</h3>
+              <p>Your facial data never leaves your device. We use encrypted connections to make sure your identity stays locked down.</p>
+            </div>
+            <div class="security-visual-small">
+              <img src="image/Unimo/security/secure.png" alt="Futuristic Padlock Illustration">
+            </div>
+          </div>
         </div>
       </div>
 
