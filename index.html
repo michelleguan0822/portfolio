@@ -95,7 +95,7 @@
     </div>
 
     <!-- Top-Left Title -->
-    <div
+    <div id="hero-intro"
         class="fixed top-32 left-8 md:left-14 z-10 flex flex-col items-start justify-start pointer-events-none max-w-2xl transition-all duration-700">
         <style>
             html {
@@ -204,10 +204,66 @@
                 }
 
                 .project-text-layout {
-                    margin-top: 3rem;
+                    margin-top: 2rem;
                     text-align: left;
                     opacity: 1;
                     transition: all 0.5s ease;
+                }
+
+                /* Mobile Overrides */
+                @media (max-width: 767px) {
+                    #hero-intro {
+                        position: absolute !important;
+                        top: 140px !important;
+                        left: 20px !important;
+                        padding-right: 20px !important;
+                    }
+
+                    #project-section {
+                        position: relative !important;
+                        display: block !important;
+                        padding: 100px 20px 60px !important;
+                        margin-top: 80vh;
+                        height: auto !important;
+                        perspective: none !important;
+                        z-index: 10 !important;
+                        pointer-events: auto !important;
+                    }
+
+                    #project-section > div {
+                        width: 100% !important;
+                        height: auto !important;
+                        transform: none !important;
+                    }
+
+                    .project-card-container {
+                        position: relative !important;
+                        opacity: 1 !important;
+                        transform: none !important;
+                        margin-bottom: 80px !important;
+                        display: block !important; /* This was causing Impulse to show despite .hidden */
+                        visibility: visible !important;
+                        z-index: 1 !important;
+                        pointer-events: auto !important;
+                    }
+
+                    .project-card-container.hidden {
+                        display: none !important;
+                    }
+
+                    .floating-hero-image {
+                        width: 100% !important;
+                        aspect-ratio: 4/3;
+                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+                    }
+
+                    .snap-section {
+                        display: none;
+                    }
+
+                    .scroll-hint {
+                        display: none !important;
+                    }
                 }
             </style>
 
@@ -311,7 +367,7 @@
     </div>
 
     <!-- Scroll Down Hint -->
-    <div class="fixed bottom-12 right-12 z-30 flex flex-col items-center gap-3 animate-bounce text-zinc-400">
+    <div class="fixed bottom-12 right-12 z-30 flex flex-col items-center gap-3 animate-bounce text-zinc-400 scroll-hint">
         <span class="text-xs font-bold tracking-[0.2em] uppercase origin-right -rotate-90 mb-8 whitespace-nowrap">Scroll
             Down</span>
         <div class="w-px h-16 bg-gradient-to-b from-zinc-400 to-transparent"></div>
@@ -334,10 +390,35 @@
         ];
 
         window.addEventListener('scroll', () => {
+            if (window.innerWidth < 768) {
+                // Fade out hero intro on mobile scroll
+                const intro = document.getElementById('hero-intro');
+                if (intro) {
+                    const scrollY = window.scrollY;
+                    const fadeStart = 50;
+                    const fadeEnd = 300;
+                    const opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
+                    intro.style.opacity = opacity;
+                    intro.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
+                }
+
+                // Reset card styles for mobile in case they were stuck from a transition
+                cards.forEach(card => {
+                    if (card) {
+                        card.style.transform = '';
+                        card.style.opacity = '';
+                        card.style.zIndex = '';
+                        card.style.filter = '';
+                    }
+                });
+                return;
+            }
+
             const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
             const activeIndex = scrollPercent * (cards.length - 1);
 
             cards.forEach((card, index) => {
+                if (!card) return;
                 const distance = index - activeIndex;
 
                 // Active Project (Focal point)

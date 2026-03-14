@@ -1062,52 +1062,52 @@
 
     /* ---------------- RESPONSIVE ---------------- */
     @media (max-width: 800px) {
-      .intro-section {
-        grid-template-columns: 1fr;
+      .selection-container {
+        display: flex;
+        flex-direction: column-reverse; /* Put card at top, buttons at bottom */
         gap: 40px;
-        text-align: center;
+        align-items: center;
       }
 
-      .stats-row {
+      .card-root {
+        width: 100%;
+        display: flex;
         justify-content: center;
       }
 
-      .avatar-frame {
-        width: 200px;
-        margin: 0 auto;
-      }
-
-      .letter-scene {
-        height: auto;
-        min-height: 500px;
-        margin-bottom: 60px;
-      }
-
-      .envelope-wrapper {
+      .bg-card {
         width: 100%;
-        max-width: 320px;
-        margin: 0 auto;
+        max-width: 440px;
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
       }
 
-      .envelope-wrapper.is-open .env-letter {
-        left: 0;
+      .side-nav {
         width: 100%;
-        transform: translateY(-80px);
-        height: 520px;
       }
 
-      .envelope-wrapper.letter-up .env-letter {
-        transform: translateY(-200px);
+      .side-selectors {
+        flex-direction: column; /* Override 1000px media query */
+        overflow-x: visible;
+        gap: 12px;
       }
 
-      .folded-scene {
-        margin: 60px auto 100px;
-        height: auto;
+      .side-group-header {
+        margin: 24px 0 8px 0;
+        text-align: center;
       }
 
-      .folded-wrapper {
+      .side-group-header:first-child {
+        margin-top: 0;
+      }
+
+      .select-btn {
         width: 100%;
-        max-width: 320px;
+        justify-content: center;
+        transform: none !important; /* Prevent horizontal shift on mobile */
+      }
+
+      .select-btn.active {
+        transform: scale(1.02) !important; /* Subtle scale instead of shift */
       }
 
       body {
