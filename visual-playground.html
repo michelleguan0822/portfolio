@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Playground - Michelle's Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap"
+        rel="stylesheet">
+
+    <!-- Base Custom Styles for Nav and Cursor -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cursor-styles.css">
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Prevent global white gradient from styles.css from hiding content */
+        body::before {
+            display: none !important;
+        }
+
+        .graphic-header {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .work-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .work-item:hover {
+            transform: translateY(-20px);
+        }
+
+        .work-image-container {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: border-color 0.4s ease;
+        }
+
+        .work-item:hover .work-image-container {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .work-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: opacity 0.8s, transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .work-item:hover .work-image {
+            scale: 1.05;
+            opacity: 1;
+        }
+
+        .work-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .work-caption {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .work-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 90%;
+        }
+
+        .stagger-1 { margin-top: 14rem; }
+        .stagger-2 { margin-top: 8rem; }
+        .stagger-3 { margin-top: 18rem; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .work-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            .stagger-1, .stagger-2, .stagger-3 {
+                margin-top: 0;
+            }
+            .graphic-header {
+                font-size: 3rem;
+            }
+        }
+
+        /* Nav Override for Dark Page */
+        .nav-inner {
+            background: rgba(0, 0, 0, 0.5) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5) !important;
+        }
+        
+        .nav-inner a {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+        
+        .nav-inner a:hover {
+            color: #fff !important;
+        }
+
+        .nav-inner a.active {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+        }
+
+        /* Custom Cursor Sync */
+        .cursor-inner {
+            background-color: #fff !important;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+
+    <!-- Navigation Bar -->
+    <header class="nav-shell">
+        <nav class="nav-inner">
+            <a href="index.html" class="nav-logo-link"
+                style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
+                <img src="image/logo.png" alt="Michelle.Design Logo"
+                    style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
+                    onmouseout="this.style.opacity='0.8'">
+            </a>
+            <a href="index.html">Home</a>
+            <a href="visual-playground.html" class="active">Visual Playground</a>
+            <a href="about-me.html">About Me</a>
+        </nav>
+    </header>
+
+    <main class="relative z-10 max-w-6xl mx-auto px-10 pt-48 pb-40">
+        <!-- Title -->
+        <h1 class="graphic-header text-6xl md:text-8xl mb-32 max-w-5xl">
+            Visual Craft & <br><span class="text-gray-500">Graphic Exploration</span>
+        </h1>
+
+        <!-- Work Grid -->
+        <div class="work-grid">
+            <!-- Item 1 -->
+            <div class="work-item">
+                <div class="work-image-container">
+                    <img src="Visuals/app%20store%20campaign.png" alt="Unimo App Store Campaign" class="work-image">
+                </div>
+                <div class="work-info">
+                    <div class="work-caption"><span>01</span> BRAND IDENTITY &rarr;</div>
+                    <p class="work-description">A comprehensive visual identity system designed for the Unimo App Store launch, focusing on emotional resonance and brand clarity.</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="work-item stagger-1">
+                <div class="work-image-container">
+                    <img src="Visuals/chinese%20jieqi%20poster.png" alt="Cold Dew Poster" class="work-image">
+                </div>
+                <div class="work-info">
+                    <div class="work-caption"><span>02</span> EDITORIAL DESIGN &rarr;</div>
+                    <p class="work-description">A graphic exploration of Chinese solar terms, merging traditional cultural motifs with contemporary minimalist typography.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="work-item stagger-2">
+                <div class="work-image-container">
+                    <img src="Visuals/flyer%203.png" alt="Unimo Emotion Game" class="work-image">
+                </div>
+                <div class="work-info">
+                    <div class="work-caption"><span>03</span> KEY VISUAL &rarr;</div>
+                    <p class="work-description">Conceptual key visuals for an interactive emotional experience, using atmospheric 3D compositions to evoke deep digital immersion.</p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="work-item stagger-3">
+                <div class="work-image-container">
+                    <img src="Visuals/logo.png" alt="Unimo Mascot Character" class="work-image">
+                </div>
+                <div class="work-info">
+                    <div class="work-caption"><span>04</span> CHARACTER DESIGN &rarr;</div>
+                    <p class="work-description">The primary brand mascot for Unimo, developed through character design to provide a friendly and healing presence for users.</p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="work-item">
+                <div class="work-image-container">
+                    <img src="Visuals/poster%201.png" alt="Unimo MBTI Buddy" class="work-image">
+                </div>
+                <div class="work-info">
+                    <div class="work-caption"><span>05</span> SOCIAL CAMPAIGN &rarr;</div>
+                    <p class="work-description">A strategic social campaign series integrating personality psychology with digital aesthetics for user engagement.</p>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="work-item stagger-1">
+                <div class="work-image-container">
+                    <img src="Visuals/Screenshot%202026-03-16%20at%2019.36.42.png" alt="Mother's Day Illustration" class="work-image">
+                </div>
+                <div class="work-info">
+                    <div class="work-caption"><span>06</span> ILLUSTRATION &rarr;</div>
+                    <p class="work-description">A narrative-driven digital illustration centered on familial bonds, created for community-focused communication.</p>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="work-item stagger-2">
+                <div class="work-image-container">
+                    <img src="Visuals/CAD%20train.JPG" alt="CAD Train Model" class="work-image">
+                </div>
+                <div class="work-info">
+                    <div class="work-caption"><span>07</span> 3D MODELING &rarr;</div>
+                    <p class="work-description">A technical 3D modeling project demonstrating precision engineering and mechanical form in a virtual environment.</p>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="work-item stagger-3">
+                <div class="work-image-container">
+                    <img src="Visuals/pencil%20art.JPG" alt="Pencil Sketch" class="work-image">
+                </div>
+                <div class="work-info">
+                    <div class="work-caption"><span>08</span> SKETCHING &rarr;</div>
+                    <p class="work-description">A foundational study of light, texture, and form, exploring classical sketching principles to inform digital design workflows.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-24 px-10 border-t border-white/5 flex flex-col items-center gap-6">
+        <p class="text-sm font-medium text-gray-600">© 2026 Michelle.Design. All rights reserved.</p>
+        <div class="flex gap-8 text-xs font-mono text-gray-700 tracking-widest uppercase">
+            <a href="#" class="hover:text-white transition-colors">Behance</a>
+            <a href="#" class="hover:text-white transition-colors">Dribbble</a>
+            <a href="#" class="hover:text-white transition-colors">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="js/cursor.js"></script>
+</body>
+
+</html>
