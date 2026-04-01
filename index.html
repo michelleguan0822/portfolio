@@ -17,7 +17,7 @@
 
     <!-- Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,100..1000&display=swap"
         rel="stylesheet">
 
     <!-- Base Custom Styles for Nav and Cursor -->
@@ -30,7 +30,7 @@
             margin: 0;
             padding: 0;
             background-color: black;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
         }
 
@@ -70,411 +70,554 @@
             border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-4px) scale(1.05);
         }
+
+        /* Morph Loading Keyframes */
+        @keyframes morph-0 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+                border-radius: 0%;
+            }
+
+            25% {
+                transform: translate(20px, -20px) scale(1.2);
+                border-radius: 50%;
+            }
+
+            50% {
+                transform: translate(40px, 0) scale(0.8);
+                border-radius: 25%;
+            }
+
+            75% {
+                transform: translate(20px, 20px) scale(1.1);
+                border-radius: 75%;
+            }
+        }
+
+        @keyframes morph-1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                border-radius: 0%;
+            }
+
+            25% {
+                transform: translate(-20px, -20px) scale(1.3) rotate(90deg);
+                border-radius: 50%;
+            }
+
+            50% {
+                transform: translate(-40px, 0) scale(0.7) rotate(180deg);
+                border-radius: 25%;
+            }
+
+            75% {
+                transform: translate(-20px, 20px) scale(1.2) rotate(270deg);
+                border-radius: 75%;
+            }
+        }
+
+        @keyframes morph-2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+                border-radius: 0%;
+            }
+
+            25% {
+                transform: translate(-20px, 20px) scale(0.9);
+                border-radius: 100%;
+            }
+
+            50% {
+                transform: translate(0, 40px) scale(1.4);
+                border-radius: 0%;
+            }
+
+            75% {
+                transform: translate(20px, 20px) scale(0.8);
+                border-radius: 50%;
+            }
+        }
+
+        @keyframes morph-3 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+                border-radius: 0%;
+            }
+
+            25% {
+                transform: translate(20px, 20px) scale(1.1) rotate(-90deg);
+                border-radius: 25%;
+            }
+
+            50% {
+                transform: translate(0, -40px) scale(1.3) rotate(-180deg);
+                border-radius: 100%;
+            }
+
+            75% {
+                transform: translate(-20px, -20px) scale(0.9) rotate(-270deg);
+                border-radius: 75%;
+            }
+        }
+
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
     </style>
 </head>
 
 <body class="relative w-screen text-white font-sans bg-black">
 
-    <!-- Navigation Bar -->
-    <header class="nav-shell">
-        <nav class="nav-inner">
-            <a href="index.html" class="nav-logo-link"
-                style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
-                <img src="image/logo.png" alt="Michelle.Design Logo"
-                    style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
-                    onmouseout="this.style.opacity='0.8'">
-            </a>
-            <a href="index.html" class="active">Home</a>
-            <a href="visual-playground.html">Visual Playground</a>
-            <a href="about-me.html">About Me</a>
-        </nav>
-    </header>
-
-    <!-- Background Spline Scene -->
-    <div class="fixed inset-0 z-0 pointer-events-auto bg-black">
-        <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"></spline-viewer>
+    <!-- Morph Loading Screen -->
+    <div id="loading-page" class="loading-screen">
+        <div class="relative w-24 h-24">
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="absolute w-4 h-4 bg-white"
+                    style="animation: morph-0 2s infinite ease-in-out; animation-delay: 0s;"></div>
+                <div class="absolute w-4 h-4 bg-white"
+                    style="animation: morph-1 2s infinite ease-in-out; animation-delay: 0.2s;"></div>
+                <div class="absolute w-4 h-4 bg-white"
+                    style="animation: morph-2 2s infinite ease-in-out; animation-delay: 0.4s;"></div>
+                <div class="absolute w-4 h-4 bg-white"
+                    style="animation: morph-3 2s infinite ease-in-out; animation-delay: 0.6s;"></div>
+            </div>
+        </div>
     </div>
 
-    <!-- Top-Left Title -->
-    <div id="hero-intro"
-        class="fixed top-32 left-8 md:left-14 z-10 flex flex-col items-start justify-start pointer-events-none max-w-2xl transition-all duration-700">
-        <style>
-            html {
-                scroll-behavior: smooth;
-                scroll-snap-type: y proximity;
-                /* Proximity is gentler than mandatory for this layout */
-            }
+    <!-- Navigation Bar Placeholder -->
+    <div id="navbar-placeholder"></div>
+    <script src="js/navbar.js"></script>
+    <script>initNavbar('dark');</script>
 
-            .snap-section {
-                scroll-snap-align: start;
-                height: 100vh;
-            }
-
-            .hero-title-dark {
-                display: flex;
-                justify-content: flex-start;
-                margin: 0;
-                cursor: default;
-                z-index: 10;
-                pointer-events: auto;
-            }
-
-            .hero-title-dark span {
-                font-family: 'Roboto Flex', sans-serif;
-                font-size: 3.5rem;
-                font-variation-settings: "wdth" 25, "wght" 100;
-                letter-spacing: normal;
-                line-height: 0.95;
-                color: #ffffff;
-                transition: font-variation-settings 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
-            }
-
-            @media (min-width: 768px) {
-                .hero-title-dark span {
-                    font-size: 5rem;
-                }
-            }
-
-            .hero-title-dark span:hover {
-                font-variation-settings: "wdth" 120, "wght" 800;
-                color: #7D9CB8;
-            }
-
-            .hero-tags-dark {
-                display: flex;
-                gap: 12px;
-                margin-top: 16px;
-                margin-bottom: 12px;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                pointer-events: auto;
-            }
-
-            .hero-tag-dark {
-                padding: 6px 16px;
-                border: 1px solid rgba(255, 255, 255, 0.15);
-                border-radius: 999px;
-                font-family: 'Inter', sans-serif;
-                font-size: 13px;
-                font-weight: 500;
-                color: rgba(255, 255, 255, 0.8);
-                background: rgba(255, 255, 255, 0.05);
-                backdrop-filter: blur(8px);
-                transition: all 0.3s ease;
-            }
-
-            .hero-tag-dark:hover {
-                background: rgba(255, 255, 255, 0.1);
-                color: #ffffff;
-            }
-        </style>
-        <h1 class="hero-title-dark">
-            <span>M</span><span>I</span><span>C</span><span>H</span><span>E</span><span>L</span><span>L</span><span>E</span><span>.</span><span>D</span><span>E</span><span>S</span><span>I</span><span>G</span><span>N</span>
-        </h1>
-        <div class="hero-tags-dark">
-            <span class="hero-tag-dark">AI/Healthcare</span>
-            <span class="hero-tag-dark">Global Design Experience</span>
+    <!-- HERO SECTION -->
+    <section id="hero-section" class="relative h-screen w-full overflow-hidden">
+        <!-- Background Spline Scene -->
+        <div id="spline-wrapper"
+            class="absolute inset-0 h-screen z-0 pointer-events-auto bg-black transition-opacity duration-700">
+            <spline-viewer loading="lazy"
+                url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"></spline-viewer>
         </div>
-        <div class="hero-tags-dark !mt-0">
-            <span class="hero-tag-dark">4x App Store Launches</span>
-        </div>
-        <p class="text-[18px] text-white/70 max-w-[450px] text-left font-[Inter] pointer-events-auto">
-            Partnering with bold teams to design fast, ship smart.
-        </p>
-    </div>
 
-    <!-- Dynamic Project Section (Floating Hero Showcase) -->
-    <div id="project-section"
-        class="fixed inset-0 z-20 pointer-events-none flex items-center justify-end pr-[10vw] pt-[10vh]"
-        style="perspective: 2500px;">
-
-        <div class="relative w-[400px] h-[600px] transition-transform duration-700"
-            style="transform-style: preserve-3d;">
-
+        <!-- Top-Left Title -->
+        <div id="hero-intro"
+            class="absolute top-32 left-8 md:left-14 z-10 flex flex-col items-start justify-start pointer-events-none max-w-2xl transition-all duration-700">
             <style>
-                .floating-hero-image {
-                    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
-                    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-                    filter: brightness(1.05);
+                html {
+                    scroll-behavior: smooth;
+                    scroll-snap-type: y proximity;
+                    /* Proximity is gentler than mandatory for this layout */
                 }
 
-                .floating-hero-image:hover {
-                    transform: scale(1.03) translateY(-10px) rotateX(2deg) rotateY(1deg);
-                    box-shadow: 0 60px 160px rgba(0, 0, 0, 0.7);
-                    filter: brightness(1.1);
+                .snap-section {
+                    scroll-snap-align: start;
+                    height: 100vh;
                 }
 
-                .project-text-layout {
-                    margin-top: 2rem;
-                    text-align: left;
-                    opacity: 1;
-                    transition: all 0.5s ease;
+                #hero-section {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #000;
                 }
 
-                /* Mobile Overrides */
-                @media (max-width: 767px) {
+                #scattered-cards-root {
+                    position: absolute;
+                    inset: 0;
+                    z-index: 30;
+                    pointer-events: none;
+                }
+
+                @media (max-width: 768px) {
+                    #hero-section {
+                        height: auto !important;
+                        min-height: 100vh;
+                        flex-direction: column;
+                        padding: 100px 20px 60px;
+                        overflow: visible;
+                        display: block;
+                    }
+
+                    .hero-spline {
+                        position: fixed !important;
+                        height: 100lvh !important;
+                        width: 100% !important;
+                        top: 0 !important;
+                        inset: 0 !important;
+                        z-index: 0 !important;
+                    }
+
                     #hero-intro {
-                        position: absolute !important;
-                        top: 140px !important;
-                        left: 20px !important;
-                        padding-right: 20px !important;
-                    }
-
-                    #project-section {
                         position: relative !important;
-                        display: block !important;
-                        padding: 100px 20px 60px !important;
-                        margin-top: 80vh;
-                        height: auto !important;
-                        perspective: none !important;
-                        z-index: 10 !important;
-                        pointer-events: auto !important;
+                        top: 0 !important;
+                        left: 0 !important;
+                        transform: none !important;
+                        inset: auto !important;
+                        text-align: left;
+                        margin-bottom: 45vh;
+                        width: 100%;
+                        z-index: 10;
                     }
 
-                    #project-section > div {
+                    #scattered-cards-hero {
+                        position: relative !important;
+                        inset: auto !important;
                         width: 100% !important;
                         height: auto !important;
-                        transform: none !important;
+                        pointer-events: auto;
+                        z-index: 20;
                     }
+                }
 
-                    .project-card-container {
-                        position: relative !important;
-                        opacity: 1 !important;
-                        transform: none !important;
-                        margin-bottom: 80px !important;
-                        display: block !important; /* This was causing Impulse to show despite .hidden */
-                        visibility: visible !important;
-                        z-index: 1 !important;
-                        pointer-events: auto !important;
-                    }
+                .hero-spline {
+                    position: absolute;
+                    inset: 0;
+                    z-index: 10;
+                }
 
-                    .project-card-container.hidden {
-                        display: none !important;
-                    }
+                .hero-title-dark {
+                    display: flex;
+                    justify-content: flex-start;
+                    margin: 0;
+                    cursor: default;
+                    z-index: 10;
+                    pointer-events: auto;
+                }
 
-                    .floating-hero-image {
-                        width: 100% !important;
-                        aspect-ratio: 4/3;
-                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
-                    }
+                .hero-title-dark span {
+                    font-family: 'Roboto Flex', sans-serif;
+                    font-size: 3.5rem;
+                    font-variation-settings: "wdth" 25, "wght" 100;
+                    letter-spacing: normal;
+                    line-height: 0.95;
+                    color: #ffffff;
+                    transition: font-variation-settings 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+                }
 
-                    .snap-section {
-                        display: none;
+                @media (min-width: 768px) {
+                    .hero-title-dark span {
+                        font-size: 5rem;
                     }
+                }
 
-                    .scroll-hint {
-                        display: none !important;
-                    }
+                .hero-title-dark span:hover {
+                    font-variation-settings: "wdth" 120, "wght" 800;
+                    color: #7D9CB8;
+                }
+
+                .hero-tags-dark {
+                    display: flex;
+                    gap: 12px;
+                    margin-top: 16px;
+                    margin-bottom: 12px;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    pointer-events: auto;
+                }
+
+                .hero-tag-dark {
+                    padding: 6px 16px;
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                    border-radius: 999px;
+                    font-family: 'Plus Jakarta Sans', sans-serif;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: rgba(255, 255, 255, 0.8);
+                    background: rgba(255, 255, 255, 0.05);
+                    backdrop-filter: blur(8px);
+                    transition: all 0.3s ease;
+                }
+
+                .hero-tag-dark:hover {
+                    background: rgba(255, 255, 255, 0.1);
+                    color: #ffffff;
                 }
             </style>
-
-            <!-- UNIMO -->
-            <div id="card-unimo"
-                class="project-card-container absolute inset-0 pointer-events-none flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                <a href="unimo.html" class="pointer-events-auto block group">
-                    <img src="image/Unimo/hero.jpg"
-                        class="floating-hero-image w-[400px] object-cover rounded-[24px] md:rounded-[32px]">
-                    <div class="project-text-layout flex items-center justify-between w-full px-2">
-                        <div>
-                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-1 flex items-center gap-3">
-                                UNIMO
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="text-white/30 group-hover:text-white transition-colors duration-300">
-                                    <path d="M5 12h14" />
-                                    <path d="m12 5 7 7-7 7" />
-                                </svg>
-                            </h3>
-                            <p class="text-base text-zinc-500 font-medium">AI Companion & Emotional Expression</p>
-                        </div>
-                    </div>
-                </a>
+            <h1 class="hero-title-dark">
+                <span>M</span><span>I</span><span>C</span><span>H</span><span>E</span><span>L</span><span>L</span><span>E</span><span>.</span><span>D</span><span>E</span><span>S</span><span>I</span><span>G</span><span>N</span>
+            </h1>
+            <div class="hero-tags-dark">
+                <span class="hero-tag-dark">AI/Healthcare</span>
+                <span class="hero-tag-dark">Global Design Experience</span>
             </div>
-
-            <!-- TMS Dashboard -->
-            <div id="card-tms"
-                class="project-card-container absolute inset-0 pointer-events-none opacity-0 flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                <a href="TMS.html" class="pointer-events-auto block group">
-                    <img src="image/TMS/hero.png"
-                        class="floating-hero-image w-[400px] object-cover rounded-[24px] md:rounded-[32px]">
-                    <div class="project-text-layout flex items-center justify-between w-full px-2">
-                        <div>
-                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-1 flex items-center gap-3">
-                                TMS Dashboard
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="text-white/30 group-hover:text-white transition-colors duration-300">
-                                    <path d="M5 12h14" />
-                                    <path d="m12 5 7 7-7 7" />
-                                </svg>
-                            </h3>
-                            <p class="text-base text-zinc-500 font-medium">Clinical System & Data Visualization</p>
-                        </div>
-                    </div>
-                </a>
+            <div class="hero-tags-dark !mt-0">
+                <span class="hero-tag-dark">4x App Store Launches</span>
             </div>
-
-            <!-- Oltiva Insights -->
-            <div id="card-oltiva"
-                class="project-card-container absolute inset-0 pointer-events-none opacity-0 flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                <a href="oltiva.html" class="pointer-events-auto block group">
-                    <img src="image/avanade/hero_mockup.png"
-                        class="floating-hero-image w-[400px] object-cover rounded-[24px] md:rounded-[32px]">
-                    <div class="project-text-layout flex items-center justify-between w-full px-2">
-                        <div>
-                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-1 flex items-center gap-3">
-                                Oltiva Insights
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="text-white/30 group-hover:text-white transition-colors duration-300">
-                                    <path d="M5 12h14" />
-                                    <path d="m12 5 7 7-7 7" />
-                                </svg>
-                            </h3>
-                            <p class="text-base text-zinc-500 font-medium">Enterprise AI Workflow & Docs</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Impulse (Preserved but hidden) -->
-            <div id="card-impulse"
-                class="project-card-container absolute inset-0 pointer-events-none flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] hidden">
-                <a href="impulse.html" class="pointer-events-auto block group">
-                    <img src="image/TMS/background.png"
-                        class="floating-hero-image w-[400px] object-cover rounded-[24px] md:rounded-[32px]">
-                    <div class="project-text-layout flex items-center justify-between w-full px-2">
-                        <div>
-                            <h3 class="text-2xl md:text-3xl font-black tracking-tight mb-1 flex items-center gap-3">
-                                Impulse
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="text-white/30 group-hover:text-white transition-colors duration-300">
-                                    <path d="M5 12h14" />
-                                    <path d="m12 5 7 7-7 7" />
-                                </svg>
-                            </h3>
-                            <p class="text-base text-zinc-500 font-medium">Social Accountability & Habits</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <p class="text-[18px] text-white/70 max-w-[450px] text-left font-['Plus Jakarta Sans'] pointer-events-auto">
+                Partnering with bold teams to design fast, ship smart.
+            </p>
 
         </div>
-    </div>
 
-    <!-- Scroll Down Hint -->
-    <div class="fixed bottom-12 right-12 z-30 flex flex-col items-center gap-3 animate-bounce text-zinc-400 scroll-hint">
-        <span class="text-xs font-bold tracking-[0.2em] uppercase origin-right -rotate-90 mb-8 whitespace-nowrap">Scroll
-            Down</span>
-        <div class="w-px h-16 bg-gradient-to-b from-zinc-400 to-transparent"></div>
-    </div>
+        <!-- SCATTERED 3D CARDS (React Island) -->
+        <div id="scattered-cards-hero" class="absolute inset-0 pointer-events-none overflow-visible z-20"></div>
+        <script type="module">
+            import React, { useState, useEffect, useRef } from 'https://esm.sh/react@18';
+            import { createRoot } from 'https://esm.sh/react-dom@18/client';
+            import { motion, AnimatePresence } from 'https://esm.sh/framer-motion@10';
 
-    <!-- Spacer with Scroll Snap Targets -->
-    <div class="relative pointer-events-none">
-        <div class="snap-section"></div> <!-- Project 1 Focus -->
-        <div class="snap-section"></div> <!-- Project 2 Focus -->
-        <div class="snap-section"></div> <!-- Project 3 Focus -->
-    </div>
+            const cardData = [
+                {
+                    left: '39%', top: '65%', zIndex: 32, rotate: -2, scale: 1.4, color: '#55FFFF',
+                    title: 'UNIMO', subtitle: 'AI Companion & Emotional Expression', year: '2024',
+                    desc: 'Bridging the gap between human emotions and machine interfaces with advanced sentiment analysis and behavioral tracking.',
+                    tags: ['AI', 'DESIGN', 'EMOTION'],
+                    image: 'image/Unimo/hero.jpg',
+                    url: 'unimo.html'
+                },
+                {
+                    left: '14%', top: '64%', zIndex: 35, rotate: 8, scale: 1.2, color: '#00A2E8',
+                    title: 'TMS Dashboard', subtitle: 'Clinical System & Data Visualization', year: '2023',
+                    desc: 'A specialized dashboard for transportation management, optimizing logistics through data visualization and real-time tracking.',
+                    tags: ['LOGISTICS', 'DASHBOARD', 'REAL-TIME'],
+                    image: 'image/TMS/hero.png',
+                    url: 'TMS.html'
+                },
+                {
+                    left: '72%', top: '80%', zIndex: 30, rotate: 24, scale: 1.5, color: '#FF7F27',
+                    title: 'Oltiva Insights', subtitle: 'ENTERPRISE AI WORKFLOW & DOCS', year: '2024',
+                    desc: 'A comprehensive enterprise AI solution focusing on streamlining workflows and intelligently organizing documentation.',
+                    tags: ['INSIGHTS', 'WORKFLOW', 'AI DOCS'],
+                    image: 'image/avanade/hero_mockup.png',
+                    aspect: 'aspect-[16/9]',
+                    url: 'oltiva.html'
+                },
+            ];
 
-    <!-- Vertical Stack Carousel Scroll Script -->
-    <script>
-        const cards = [
-            document.getElementById('card-unimo'),
-            document.getElementById('card-tms'),
-            document.getElementById('card-oltiva')
-            // document.getElementById('card-impulse') // Hidden as requested
-        ];
+            const random = (min, max) => Math.random() * (max - min) + min;
 
-        window.addEventListener('scroll', () => {
-            if (window.innerWidth < 768) {
-                // Fade out hero intro on mobile scroll
-                const intro = document.getElementById('hero-intro');
-                if (intro) {
-                    const scrollY = window.scrollY;
-                    const fadeStart = 50;
-                    const fadeEnd = 300;
-                    const opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
-                    intro.style.opacity = opacity;
-                    intro.style.pointerEvents = opacity < 0.1 ? 'none' : 'auto';
+            function ScatteredCards() {
+                const [hoveredIndex, setHoveredIndex] = useState(null);
+                const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+                useEffect(() => {
+                    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+                    window.addEventListener('resize', handleResize);
+                    return () => window.removeEventListener('resize', handleResize);
+                }, []);
+
+                if (isMobile) {
+                    const mobileOrder = [...cardData].reverse(); // UNIMO, TMS, Oltiva
+                    return React.createElement('div', {
+                        className: "flex flex-col gap-16 w-full max-w-[400px] mx-auto pb-20 px-4"
+                    },
+                        mobileOrder.map((card, index) => React.createElement('div', {
+                            key: index,
+                            className: "flex flex-col gap-6"
+                        },
+                            // Image Card
+                            React.createElement('div', {
+                                onClick: () => window.open(card.url, '_blank'),
+                                className: `w-full ${card.aspect || 'aspect-[4/3]'} rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-2 overflow-hidden cursor-pointer`
+                            },
+                                React.createElement('div', {
+                                    className: "w-full h-full rounded-[2.2rem] overflow-hidden bg-zinc-900 border border-white/10 relative"
+                                },
+                                    React.createElement('img', {
+                                        src: card.image,
+                                        alt: card.title,
+                                        className: "w-full h-full object-cover"
+                                    })
+                                )
+                            ),
+                            // Text Block (Matching Screenshot)
+                            React.createElement('div', {
+                                className: "px-4"
+                            },
+                                React.createElement('div', {
+                                    className: "flex items-center gap-3 mb-1 cursor-pointer",
+                                    onClick: () => {
+                                        const originalIndex = cardData.findIndex(c => c.title === card.title);
+                                        window.openProjectPopup && window.openProjectPopup(originalIndex);
+                                    }
+                                },
+                                    React.createElement('h3', { className: "text-[28px] font-bold text-white tracking-tight" }, card.title),
+                                    React.createElement('span', { className: "text-white text-2xl" }, " →")
+                                ),
+                                React.createElement('p', { className: "text-[16px] text-white/50 font-medium" }, card.subtitle)
+                            )
+                        ))
+                    );
                 }
 
-                // Reset card styles for mobile in case they were stuck from a transition
-                cards.forEach(card => {
-                    if (card) {
-                        card.style.transform = '';
-                        card.style.opacity = '';
-                        card.style.zIndex = '';
-                        card.style.filter = '';
-                    }
-                });
-                return;
+                return React.createElement('div', {
+                    className: "relative w-full h-full max-w-[1400px] mx-auto overflow-visible",
+                    style: { transformStyle: 'preserve-3d', perspective: '1200px' }
+                },
+                    // The Detail Card (Floats in from right)
+                    React.createElement(AnimatePresence, {},
+                        hoveredIndex !== null && React.createElement(motion.div, {
+                            key: "detail-card",
+                            initial: { x: 50, opacity: 0, scale: 0.9 },
+                            animate: { x: 0, opacity: 1, scale: 1 },
+                            exit: { x: 30, opacity: 0, scale: 0.9 },
+                            transition: { type: 'spring', stiffness: 200, damping: 25 },
+                            className: "absolute top-[20%] right-[3%] md:right-[5%] w-[80%] max-w-[280px] z-[100] p-6 rounded-[1.8rem] bg-[#0c0c0c]/85 backdrop-blur-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] pointer-events-auto",
+                            style: { transformStyle: 'preserve-3d' }
+                        },
+                            // Year Badge
+                            React.createElement('div', { className: "absolute top-6 right-6 px-2.5 py-0.5 rounded-full border border-white/20 bg-white/5 text-[10px] font-mono text-white/50" }, cardData[hoveredIndex].year),
+
+                            // Subtitle & Status
+                            React.createElement('div', { className: "flex items-center gap-2 mb-3" },
+                                React.createElement('div', { className: "w-2 h-2 rounded-full", style: { backgroundColor: cardData[hoveredIndex].color, boxShadow: `0 0 10px ${cardData[hoveredIndex].color}` } }),
+                                React.createElement('span', { className: "text-[9px] font-mono text-white/40 uppercase tracking-[0.15em]" }, cardData[hoveredIndex].subtitle)
+                            ),
+
+                            // Title
+                            React.createElement('h3', { className: "text-2xl font-bold text-white mb-4 tracking-tight leading-tight" }, cardData[hoveredIndex].title),
+
+                            // Description
+                            React.createElement('p', { className: "text-[13px] text-white/50 leading-relaxed mb-6 font-['Plus Jakarta Sans']" }, cardData[hoveredIndex].desc),
+
+                            // Skill Tags
+                            React.createElement('div', { className: "flex flex-wrap gap-2" },
+                                cardData[hoveredIndex].tags.map(tag =>
+                                    React.createElement('div', {
+                                        key: tag,
+                                        className: "px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-[8px] font-bold text-white/60 tracking-widest uppercase"
+                                    }, tag)
+                                )
+                            )
+                        )
+                    ),
+
+                    // The 3D Cards
+                    cardData.map((card, index) => {
+                        const initialY = 1000 + random(0, 400);
+                        const initialRotate = card.rotate + random(-20, 20);
+                        const floatOffset = random(5, 10);
+                        const floatDuration = 3 + random(0, 2);
+                        const hoverRotateVariation = random(-5, 5);
+
+                        return React.createElement(motion.div, {
+                            key: index,
+                            initial: { opacity: 0, y: initialY, rotate: initialRotate, scale: card.scale },
+                            animate: { opacity: 1, y: 0, rotate: card.rotate, scale: card.scale },
+                            transition: { type: 'spring', stiffness: 45, damping: 16, mass: 1.1, delay: index * 0.15 },
+                            onMouseEnter: () => setHoveredIndex(index),
+                            onMouseLeave: () => setHoveredIndex(null),
+                            onClick: () => window.open(card.url, '_blank'),
+                            className: `absolute w-[220px] md:w-[280px] ${card.aspect || 'aspect-square'} pointer-events-auto cursor-pointer`,
+                            style: {
+                                left: card.left,
+                                top: card.top,
+                                zIndex: card.zIndex,
+                                transformStyle: 'preserve-3d',
+                                transform: `translateZ(-50px) translateX(-50%) translateY(-50%)`,
+                            }
+                        },
+                            React.createElement(motion.div, {
+                                animate: { y: [0, -floatOffset, 0] },
+                                transition: { duration: floatDuration, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' },
+                                className: "w-full h-full overflow-visible",
+                                style: { transformStyle: 'preserve-3d' }
+                            },
+                                React.createElement(motion.div, {
+                                    whileHover: { scale: 1.1, y: -60, rotate: card.rotate + hoverRotateVariation },
+                                    transition: { type: 'spring', stiffness: 300, damping: 20 },
+                                    className: "w-full h-full p-3 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center justify-center overflow-visible",
+                                    style: { transformStyle: 'preserve-3d' }
+                                },
+                                    React.createElement('div', {
+                                        className: "w-full h-full rounded-[2rem] overflow-hidden bg-zinc-900 border border-white/10 relative"
+                                    },
+                                        React.createElement('div', {
+                                            className: "w-full h-full relative overflow-hidden rounded-[2rem]"
+                                        },
+                                            React.createElement('img', {
+                                                src: card.image,
+                                                alt: card.title,
+                                                className: "w-full h-full object-cover"
+                                            })
+                                        ),
+                                        React.createElement('div', { className: "absolute top-[-100%] left-[-100%] w-[300%] h-[300%] bg-gradient-to-br from-white/20 via-transparent to-transparent rotate-[35deg] pointer-events-none opacity-30" })
+                                    ))))
+                    })
+                );
             }
 
-            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            const activeIndex = scrollPercent * (cards.length - 1);
+            const root = createRoot(document.getElementById('scattered-cards-hero'));
+            root.render(React.createElement(ScatteredCards));
+        </script>
+    </section>
 
-            cards.forEach((card, index) => {
-                if (!card) return;
-                const distance = index - activeIndex;
 
-                // Active Project (Focal point)
-                if (Math.abs(distance) < 0.2) {
-                    // Slight upward shift for active state
-                    card.style.transform = `translateX(0px) translateY(-50px) scale(1) translateZ(0px)`;
-                    card.style.opacity = '1';
-                    card.style.zIndex = '100';
-                    card.style.pointerEvents = 'auto';
-                    card.style.filter = 'blur(0px)';
-                }
-                // Transition Orbit (Slide in from Right)
-                else if (distance > 0) {
-                    const depth = distance;
-                    // Slide in from Right along a path
-                    const xOffset = depth * 400; // Tighter offset
-                    const yOffset = depth * 80;  // Subtle downward tilt
-                    const scale = Math.max(0.6, 1 - depth * 0.4);
-                    const opacity = Math.max(0, 1 - depth * 1.5);
-                    const zOffset = -(depth * 300);
 
-                    card.style.transform = `translateX(${xOffset}px) translateY(${yOffset}px) scale(${scale}) translateZ(${zOffset}px)`;
-                    card.style.opacity = opacity;
-                    card.style.zIndex = Math.floor(50 - depth * 10);
-                    card.style.pointerEvents = 'none';
-                    card.style.filter = `blur(${depth * 2}px)`;
-                }
-                // Previous Projects (Exit Up and Left)
-                else {
-                    const depth = Math.abs(distance);
-                    const xOffset = -depth * 200;
-                    const yOffset = -depth * 180;
-                    const opacity = Math.max(0, 1 - depth * 3); // Faster exit fade
 
-                    card.style.transform = `translateX(${xOffset}px) translateY(${yOffset}px) scale(0.9) translateZ(-200px)`;
-                    card.style.opacity = opacity;
-                    card.style.zIndex = '10';
-                    card.style.pointerEvents = 'none';
-                    card.style.filter = 'blur(4px)';
-                }
-            });
-        });
+    <!-- Footer Section -->
+    <footer class="relative z-40 bg-black pt-32 pb-16 flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center gap-6 pt-12 border-t border-white/10 w-full max-w-[800px] px-6">
+            <img src="image/logo.png" alt="Michelle.Design Logo"
+                class="h-8 opacity-60 grayscale hover:opacity-100 transition-opacity duration-300 cursor-pointer text-white mix-blend-screen"
+                onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+            <div class="flex gap-8">
+                <a href="mailto:michelleguan321@gmail.com"
+                    class="font-['Plus Jakarta Sans'] text-sm font-medium text-white/50 hover:text-white transition-colors duration-200">Email</a>
+                <a href="https://www.linkedin.com/in/michelleguanux/" target="_blank"
+                    class="font-['Plus Jakarta Sans'] text-sm font-medium text-white/50 hover:text-white transition-colors duration-200">LinkedIn</a>
+            </div>
+            <p class="font-mono text-xs text-white/30 tracking-wider m-0 mt-2">
+                © 2026 Michelle Guan. All rights reserved.
+            </p>
+        </div>
+    </footer>
 
-        // Initialize positions
-        window.dispatchEvent(new Event('scroll'));
-    </script>
+
+
 
     <!-- Initialize Lucide icons -->
     <script>
         lucide.createIcons();
     </script>
     <script>
-        // Remove Spline Watermark from Shadow DOM robustly
+        // Optimization: Intersection Observer to pause/hide Spline when not in view
+        const splineWrapper = document.getElementById('spline-wrapper');
+        const splineViewer = document.querySelector('spline-viewer');
+
+        if (splineWrapper && splineViewer) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // In view: Show and ensure it's rendering
+                        splineWrapper.style.opacity = '1';
+                        splineWrapper.style.pointerEvents = 'auto';
+                    } else {
+                        // Not in view: Hide to save GPU resources
+                        splineWrapper.style.opacity = '0';
+                        splineWrapper.style.pointerEvents = 'none';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            observer.observe(document.getElementById('hero-section'));
+        }
+
+        // Optimized Spline Watermark Removal
+        let watermarkChecks = 0;
         const hideSplineLogo = setInterval(() => {
             const viewer = document.querySelector('spline-viewer');
+            watermarkChecks++;
             if (viewer && viewer.shadowRoot) {
                 const logo = viewer.shadowRoot.querySelector('#logo');
                 if (logo) {
@@ -482,10 +625,19 @@
                     clearInterval(hideSplineLogo);
                 }
             }
+            if (watermarkChecks > 100) clearInterval(hideSplineLogo); // Max 10s
         }, 100);
-
-        // Safety fallback to clear interval after 10 seconds just in case
-        setTimeout(() => clearInterval(hideSplineLogo), 10000);
+    </script>
+    <script>
+        // Handle Loading Screen Dismissal
+        window.addEventListener('load', () => {
+            const loadingPage = document.getElementById('loading-page');
+            if (loadingPage) {
+                setTimeout(() => {
+                    loadingPage.classList.add('hidden');
+                }, 1500); 
+            }
+        });
     </script>
     <script src="js/cursor.js"></script>
 </body>

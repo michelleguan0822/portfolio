@@ -1,0 +1,10 @@
+# Ignore large video files to avoid GitHub's 100MB limit and LFS requirement
+*.mp4
+*.mov
+
+# Ignore node modules
+node_modules/
+portfolio-next/node_modules/
+
+# OS generated files
+.DS_Store

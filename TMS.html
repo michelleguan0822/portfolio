@@ -9,13 +9,38 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
     rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <link rel="stylesheet" href="case-study.css" />
   <style>
     :root {
       --primary: #3d8bfd;
+    }
+  </style>
+  <script>
+    if (window.location.search.includes('modal=true')) {
+        document.documentElement.setAttribute('data-modal', 'true');
+    }
+  </script>
+  <style>
+    [data-modal="true"] #main-header, 
+    [data-modal="true"] .footer, 
+    [data-modal="true"] #backToTop, 
+    [data-modal="true"] .other-work-section, 
+    [data-modal="true"] .bg-glow, 
+    [data-modal="true"] .scroll-progress { 
+        display: none !important; 
+    }
+    [data-modal="true"] body { 
+        background: var(--bg) !important; 
+        padding-bottom: 0 !important; 
+        border-radius: 32px; 
+    }
+    [data-modal="true"] .hero { 
+        padding-top: 60px !important; 
     }
   </style>
 </head>
@@ -24,19 +49,10 @@
   <div class="scroll-progress" id="bar"></div>
   <div class="bg-glow"></div>
 
-  <header class="nav-shell">
-    <nav class="nav-inner">
-      <a href="index.html" class="nav-logo-link"
-        style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
-        <img src="image/logo.png" alt="Michelle.Design Logo"
-          style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
-          onmouseout="this.style.opacity='0.8'">
-      </a>
-      <a href="index.html">Home</a>
-      <a href="visual-playground.html">Visual Playground</a>
-      <a href="about-me.html">About Me</a>
-    </nav>
-  </header>
+    <!-- Navigation Bar Placeholder -->
+    <div id="navbar-placeholder"></div>
+    <script src="js/navbar.js"></script>
+    <script>initNavbar('light');</script>
 
   <div class="container hero" style="text-align: center;">
     <div class="intro-callout" style="text-align: left;">
@@ -83,7 +99,7 @@
 
       <!-- Add View Full Case Study Button below metadata -->
       <div style="margin-bottom: 60px; margin-top: 20px;">
-        <a href="TMS-full.html" class="btn">
+        <a href="TMS-full.html" class="btn" target="_blank">
           <div class="btn-text">View Full Case Study</div>
           <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
             <path d="M11.6801 14.62L14.2401 12.06L11.6801 9.5" stroke="white" stroke-width="2" stroke-miterlimit="10"
@@ -100,8 +116,9 @@
       <!-- =========================
            TL;DR
       ========================== -->
-      <div id="tldr" class="section">
+      <div id="tldr" class="section border-t-0 pt-0">
         <span class="section-label">TL;DR</span>
+        <h2>Bridging the Trust Gap</h2>
         <p class="lead-text">
           I redesigned a <b>TMS (Transcranial Magnetic Stimulation)</b> dashboard that had been
           <b>rejected three times </b> due to a lack of visual credibility. When stakeholders
@@ -354,7 +371,8 @@
       const scrollTotal = doc.scrollHeight - doc.clientHeight;
       const scrollPos = doc.scrollTop;
       const progress = scrollTotal ? (scrollPos / scrollTotal) : 0;
-      document.getElementById('bar').style.transform = `scaleX(${progress})`;
+      const bar = document.getElementById('bar');
+      if (bar) bar.style.transform = `scaleX(${progress})`;
 
       // TOC Highlighter
       const sections = document.querySelectorAll('.section');
@@ -375,6 +393,8 @@
         }
       });
     });
+
+    // Redesigned Navbar Mobile Menu Logic (Removed - Now in navbar.js)
 
     // 3) Smooth Scroll (ONLY for hash links)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -462,6 +482,7 @@
       });
     })();
   </script>
+
 </body>
 
 </html>

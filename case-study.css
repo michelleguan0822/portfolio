@@ -20,8 +20,8 @@
   --text-dim: #9CA3AF;
 
   /* Typography */
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -88,13 +88,13 @@ p b,
   font-weight: 600;
 }
 
-/* Section Labels */
+/* Section Labels (Badges) */
 .section-label {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--text-body);
   letter-spacing: 2px;
-  margin-bottom: 24px;
+  margin-bottom: 32px; /* Increased from 24px */
   display: inline-block;
   text-transform: uppercase;
   padding: 6px 14px;
@@ -513,19 +513,22 @@ p b,
 }
 
 h2 {
-  font-size: 40px;
-  letter-spacing: -1px;
-  margin-bottom: 40px;
-  line-height: 1.2;
+  font-size: 38px !important; /* Forces size even if Tailwind preflight is active */
+  font-weight: 750 !important;
+  letter-spacing: -1.2px !important;
+  margin-bottom: 24px !important; /* Tighter gap to the lead text */
+  line-height: 1.15 !important;
+  color: var(--text-main) !important;
 }
 
-/* Lead Text (TL;DR) */
+/* Lead Text (Summary/TL;DR) */
 .lead-text {
-  font-size: 20px;
-  line-height: 1.6;
-  color: var(--text-body);
+  font-size: 20px !important;
+  line-height: 1.6 !important;
+  font-weight: 450 !important;
+  color: var(--text-body) !important;
   max-width: 800px;
-  margin-bottom: 0;
+  margin-bottom: 32px !important;
 }
 
 /* Insight Block */

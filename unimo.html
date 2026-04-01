@@ -9,12 +9,56 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
     rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="stylesheet" href="case-study.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#7983D9',
+              secondary: '#70C05B',
+              accent: '#FAE69E',
+              dark: '#1D1C5C',
+              lavender: '#D4A5F7',
+              sky: '#9BC8FA'
+            }
+          }
+        }
+      }
+    }
+  </script>
   <style>
     :root {
-      --primary: #A855F7;
+      --primary: #7983D9;
+    }
+  </style>
+  <script>
+    if (window.location.search.includes('modal=true')) {
+        document.documentElement.setAttribute('data-modal', 'true');
+    }
+  </script>
+  <style>
+    [data-modal="true"] #main-header, 
+    [data-modal="true"] .footer, 
+    [data-modal="true"] #backToTop, 
+    [data-modal="true"] .other-work-section, 
+    [data-modal="true"] .bg-glow, 
+    [data-modal="true"] #loading-page, 
+    [data-modal="true"] .scroll-progress { 
+        display: none !important; 
+    }
+    [data-modal="true"] body { 
+        background: #000000 !important; 
+        padding-bottom: 0 !important; 
+        border-radius: 32px; 
+    }
+    [data-modal="true"] .hero { 
+        padding-top: 60px !important; 
     }
   </style>
 </head>
@@ -23,789 +67,425 @@
   <div class="scroll-progress" id="bar"></div>
   <div class="bg-glow"></div>
 
-  <header class="nav-shell">
-    <nav class="nav-inner">
-      <a href="index.html" class="nav-logo-link"
-        style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
-        <img src="image/logo.png" alt="Michelle.Design Logo"
-          style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
-          onmouseout="this.style.opacity='0.8'">
-      </a>
-      <a href="index.html">Home</a>
-      <a href="visual-playground.html">Visual Playground</a>
-      <a href="about-me.html">About Me</a>
-    </nav>
-  </header>
+    <!-- Navigation Bar Placeholder -->
+    <div id="navbar-placeholder"></div>
+    <script src="js/navbar.js"></script>
+    <script>initNavbar('light');</script>
 
-  <div class="container hero">
-    <div class="intro-callout">
-      <img src="image/face/thumb_up.png" alt="Greeting">
-      <p>
-        Hey there! I know reviewing case studies can be exhausting. But stick with me — this isn't just another design
-        story. It's about how we turned emotion logging from a heavy journaling chore into a fun, visual collectible,
-        giving Gen Z a much lighter way to reflect on their feelings.
-      </p>
-    </div>
-    <span class="hero-kicker">Unimo</span>
-    <h1 class="hero-title">Turning Emotional Expression into a Playful Companion Experience</h1>
-
-
-    <div class="hero-visual">
-      <img src="image/Unimo/hero.jpg" alt="Unimo Hero UI">
-    </div>
-  </div>
-
-  <div class="container case-grid">
-
-    <aside class="toc">
-      <a href="#snapshot" class="active">Snapshot</a>
-      <a href="#security">Security</a>
-      <a href="#challenge">01 The Challenge</a>
-      <a href="#solution">02 Solution</a>
-      <a href="#impact">03 Impact</a>
-    </aside>
-
-    <main>
-
-      <!-- =========================
-           META DATA
-      ========================== -->
-      <div class="hero-meta">
-        <div class="meta-pill"><b>Role</b> <span>End-to-end Product Designer</span></div>
-        <div class="meta-pill"><b>Timeline</b> <span>Jun 2025 – Present</span></div>
-        <div class="meta-pill"><b>Team</b> <span>2 PMs, 4 Engineers, 1 Product Designer</span></div>
-        <div class="meta-pill"><b>Client</b> <span>Unimo Startup</span></div>
+    <div class="min-h-screen bg-[#fafafa] text-slate-900 selection:bg-brand-primary/10 selection:text-brand-primary" style="font-family: 'Plus Jakarta Sans', sans-serif">
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6">
+      <div class="max-w-6xl mx-auto text-center">
+        <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8 bg-clip-text text-transparent bg-gradient-to-b from-slate-900 via-brand-dark/80 to-slate-500">
+          A lighter way to <br/> 
+          <span class="italic font-serif text-brand-primary">express</span> emotions.
+        </h1>
+        <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-16 leading-relaxed font-medium">
+          Unimo moves emotional expression out of text-based conversations and into something people can see, feel, and interact with.
+        </p>
+        
+        <!-- Large Hero/Demo Video -->
+        <div class="max-w-5xl mx-auto group cursor-pointer">
+          <div class="relative aspect-video bg-white rounded-[3rem] shadow-2xl shadow-brand-primary/10 border border-slate-200 overflow-hidden transition-all duration-700 hover:scale-[1.01] hover:shadow-brand-primary/20">
+            <video autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover">
+              <source src="image/Unimo/hero_video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-primary/5 to-transparent pointer-events-none"></div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Add View Full Case Study Button below metadata -->
-      <div style="margin-bottom: 60px; margin-top: 20px;">
-        <a href="unimo-full.html" class="btn">
-          <div class="btn-text">View Full Case Study</div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
-            <path d="M11.6801 14.62L14.2401 12.06L11.6801 9.5" stroke="white" stroke-width="2" stroke-miterlimit="10"
-              stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M4 12.0601H14.17" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"
-              stroke-linejoin="round"></path>
-            <path d="M12 4C16.42 4 20 7 20 12C20 17 16.42 20 12 20" stroke="white" stroke-width="2"
-              stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </a>
-      </div>
-
-      <!-- =========================
-           SNAPSHOT
-      ========================== -->
-      <div id="snapshot" class="section">
+    <!-- 30-second Snapshot Section -->
+    <section id="snapshot" class="py-24 px-6 bg-white">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
         <div>
-          <span class="section-label">30-second Snapshot</span>
-          <h2 style="margin-bottom: 24px;">A lighter way to express emotions.</h2>
-        </div>
-        <p class="lead-text">
-          Unimo is an emotional companion app for Gen Z. It offers a lighter, more visual way to express
-          emotions—without heavy journaling or self-labeling.
-        </p>
-
-        <p>
-          Most mental health apps rely on closed, text-heavy conversations. They ask users to explain, label, or analyze
-          how they feel.
-          Meanwhile, Gen Z already treats emotions and identity as shareable signals through MBTI types, mood posts, and
-          memes.
-        </p>
-
-        <p>
-          This gap created a clear opportunity: move emotional expression out of text-based conversations and into
-          something people can see, feel, and interact with.
-        </p>
-      </div>
-      
-      <!-- =========================
-           TOP-NOTCH SECURITY SECTION
-      ========================== -->
-      <style>
-        .security-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          grid-template-rows: auto auto;
-          gap: 24px;
-          margin: 40px 0 80px 0;
-        }
-
-        .security-card {
-          background: #FFFFFF;
-          border-radius: 32px;
-          padding: 40px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .security-card.large {
-          grid-column: span 2;
-          flex-direction: row;
-          align-items: center;
-          gap: 40px;
-          background: #f9f9f9;
-        }
-
-        .security-card.dark {
-          background: #1e212b;
-          color: #FFFFFF;
-        }
-
-        .security-card h3 {
-          font-size: 24px;
-          margin-bottom: 16px;
-          line-height: 1.3;
-        }
-
-        .security-card.dark h3 {
-          color: #FFFFFF;
-        }
-
-        .security-card p {
-          font-size: 15px;
-          line-height: 1.6;
-          color: #666;
-          margin-bottom: 0;
-        }
-
-        .security-card.dark p {
-          color: #aaa;
-        }
-
-        .security-visual-large {
-          flex: 1;
-          position: relative;
-          display: flex;
-          justify-content: center;
-        }
-
-        .security-visual-large img {
-          width: 100%;
-          max-width: 320px;
-          border-radius: 20px;
-        }
-
-        .security-info {
-          flex: 1.2;
-        }
-
-        .security-badge {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          text-transform: uppercase;
-          color: #888;
-          margin-bottom: 12px;
-          display: block;
-        }
-
-        .security-card.small {
-          justify-content: space-between;
-          padding: 32px;
-        }
-
-        .security-visual-small {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          margin-top: 32px;
-        }
-
-        .security-visual-small img {
-          width: 100%;
-          max-width: 240px;
-          border-radius: 16px;
-        }
-
-        @media (max-width: 768px) {
-          .security-grid {
-            grid-template-columns: 1fr;
-          }
-          .security-card.large {
-            grid-column: span 1;
-            flex-direction: column;
-            text-align: center;
-            padding: 32px;
-          }
-          .security-card.large .security-visual-large {
-            margin-top: 24px;
-            order: 2;
-          }
-        }
-      </style>
-
-      <div id="security" class="section">
-        <div>
-          <span class="section-label" style="color: #A855F7; border-color: rgba(168, 85, 247, 0.2); background: rgba(168, 85, 247, 0.05);">EMOTIONAL MEMORY SYSTEM</span>
-          <h2 style="margin-bottom: 24px;">Hold onto the moments that matter. Because emotional support should leave a trace.</h2>
-          <p class="lead-text">Most emotional AI products focus on keeping conversations going. UNIMO goes a step further by helping users preserve the moments that feel meaningful. Through emotion cards, reflection, and playful interaction, support becomes something you can return to.</p>
-        </div>
-
-        <div class="security-grid">
-          <!-- Card 1: Emotion Card Collection -->
-          <div class="security-card large">
-            <div class="security-info">
-              <span class="security-badge">EMOTION CARD COLLECTION 💜</span>
-              <h3>A meaningful exchange can become something you keep.</h3>
-              <p>After an emotionally resonant chat, UNIMO turns the moment into a collectible card. What once lived inside a conversation thread becomes a visible emotional memory you can save and revisit.</p>
-            </div>
-            <div class="security-visual-large">
-              <img src="image/Unimo/collection_new.png" alt="Emotional Card Collection Illustration">
-            </div>
+          <div class="text-brand-primary mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+            <span class="w-8 h-[2px] bg-brand-primary"></span>
+            30-second Snapshot
           </div>
-
-          <!-- Card 2: Revisit Journey -->
-          <div class="security-card small">
-            <div>
-              <h3>Revisit your emotional journey</h3>
-              <p>Instead of losing meaningful moments in endless messages, users can return to past cards, reflect on how they felt, and see their emotional growth over time.</p>
-            </div>
-            <div class="security-visual-small">
-              <img src="image/Unimo/journey_new.png" alt="Emotional Journey Reflection Illustration">
-            </div>
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+            UNIMO is an emotional companion app designed for Gen Z.
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed mb-6">
+            We noticed that most AI emotional support products still treat feelings as <span class="text-brand-primary font-semibold">conversation data</span>, asking users to type, explain, and revisit long threads.
+          </p>
+          <p class="text-lg text-slate-600 leading-relaxed mb-12">
+            UNIMO reimagines emotional expression as something <span class="text-brand-primary font-semibold">visual and interactive</span>, turning meaningful moments into <span class="text-brand-primary font-semibold">collectible emotional artifacts</span> users can keep, feel, and return to.
+          </p>
+          
+          <!-- View Full Case Study Button -->
+          <div class="flex">
+            <a href="unimo-full.html" target="_blank" class="relative h-12 px-8 overflow-hidden bg-brand-dark rounded-full inline-flex items-center justify-center group transition-all duration-300 hover:shadow-xl hover:shadow-brand-primary/20">
+              <div class="absolute inset-0 bg-gradient-to-r from-brand-primary via-brand-lavender to-brand-sky opacity-40 group-hover:opacity-80 transition-opacity duration-300 blur-md"></div>
+              <div class="relative flex items-center gap-2 text-white font-semibold">
+                <span>View Full Case Study</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              </div>
+            </a>
           </div>
-
-          <!-- Card 3: Playful Mechanics -->
-          <div class="security-card small dark">
-            <div>
-              <h3>More than support, more fun to return to</h3>
-              <p>By combining companionship with playful mechanics, UNIMO makes emotional reflection feel lighter, more expressive, and more engaging in everyday life.</p>
-            </div>
-            <div class="security-visual-small">
-              <img src="image/Unimo/interaction_new.png" alt="Playful Interaction Illustration">
-            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-brand-primary/5 p-8 rounded-[2rem] space-y-4">
+            <i data-lucide="smile" class="text-brand-primary w-8 h-8"></i>
+            <h3 class="text-2xl font-bold tracking-tight">Lighter</h3>
+            <p class="text-slate-500 text-sm">No more forced paragraphs. Just signals.</p>
+          </div>
+          <div class="bg-brand-secondary/5 p-8 rounded-[2rem] translate-y-8 space-y-4 border border-brand-secondary/10">
+            <i data-lucide="layout-grid" class="text-brand-secondary w-8 h-8"></i>
+            <h3 class="text-2xl font-bold tracking-tight text-brand-secondary/80">Visual</h3>
+            <p class="text-slate-500 text-sm">See your mood, don't just describe it.</p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- =========================
-           THE CHALLENGE
-      ========================== -->
-      <div id="challenge" class="section">
-        <span class="section-label">01 // THE CHALLENGE</span>
-        <h2>Why Users Didn't Stay</h2>
-        <p>
-          Unimo started as a chat-based emotional companion. Early feedback was positive—users described it as cute,
-          comforting, and easy to talk to.
-          But two signals concerned us:
-        </p>
-
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-num">Early Signals</div>
-            <div class="stat-label">Users enjoyed the first interaction, but conversations felt short-lived. Many users
-              didn't return after the first few sessions.</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">Business Concern</div>
-            <div class="stat-label">Despite positive first impressions, long-term engagement remained weak. Nothing was
-              wrong with the product—yet nothing pulled users back. We needed to understand why.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- =========================
-           SOLUTION
-      ========================== -->
-      <div id="solution" class="section">
-        <span class="section-label">02 // SOLUTION</span>
-        <h2>Solution Overview</h2>
-        <p>
-          A playful emotional system that turns feelings into visible assets—allowing users to engage, revisit, and
-          resonate without explanation.
-        </p>
-        <p><b>Core loop: Interaction → Emotional Cards → Shared Moments → Community Resonance</b></p>
-
-        <h3 style="margin-top: 60px;">Key Feature 1: Emotional Card Generation</h3>
-        <p>
-          Turning emotional states into visible, collectible assets.
-        </p>
-        <p>
-          When users chat with Unimo, the conversation is distilled into an emotional card—a visual snapshot that
-          captures what this period feels like. Not a transcript. Not an analysis. Just a trace.
-        </p>
-
-        <!-- Design Evolution Comparison (Picture Section) -->
-        <h4 style="margin-top: 40px; margin-bottom: 24px;">Design Evolution</h4>
-        <div class="compare-grid">
-          <div class="compare-item">
-            <div class="compare-header">
-              <span class="badge old">Legacy V1</span>
-              <span style="font-size:12px; color:#666;">Cold Analysis</span>
-            </div>
-            <div class="compare-visual">
-              <img src="image/Unimo/Old.png" alt="Iteration 1 - Clinical Layout" style="height:80%; opacity:0.8;">
-            </div>
-            <div class="compare-text">
-              <p><b>Iteration 1 – Too clinical.</b> Listed data like a medical report. Users had no desire to collect or
-                share.</p>
-            </div>
-          </div>
-
-          <div class="compare-item" style="border-color:var(--primary);">
-            <div class="compare-header">
-              <span class="badge new">Obima Style V2</span>
-              <span style="font-size:12px; color:#fff;">Collectible Cards</span>
-            </div>
-            <div class="compare-visual">
-              <img src="image/Unimo/New.png" alt="Final Design - Visual Metaphor"
-                style="height:80%; filter:drop-shadow(0 0 20px var(--primary-glow));">
-            </div>
-            <div class="compare-text">
-              <p><b>Visual Metaphor First.</b> Transforming emotions into exquisite visual art pieces.</p>
-            </div>
-          </div>
-        </div>
-
-        <p style="margin-top: 24px;">
-          <b>Why this works:</b> Users don't need to explain their feelings. The card becomes a mirror they can look at,
-          save, and return to—without re-living the original conversation.
-        </p>
-        <div style="margin: 32px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-          <img src="image/Unimo/5-cards.png" alt="Community Feed showing multiple cards"
-            style="width: 100%; height: auto; display: block;" />
-        </div>
-
-        <h3 style="margin-top: 60px;">Key Feature 2: Card Interaction & Resonance</h3>
-        <p>
-          Making emotions shareable without over-exposure.
-        </p>
-        <p>
-          Once users collect cards, they can bring them into lightweight shared spaces. The primary mechanic is
-          Resonance Battle—a misdirection, because it's not a battle at all.
-        </p>
-        <p>
-          <b>User Flow:</b> See two cards side by side → tap the one that resonates more → receive gentle feedback ("You
-          resonated with this feeling")
-        </p>
-
-        <!-- Placeholder for Battle UI -->
-        <div style="margin: 32px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-          <img src="image/Unimo/card_interaction.png" alt="Community Feed showing multiple cards"
-            style="width: 100%; height: auto; display: block;" />
-        </div>
-
-        <div class="insight">
-          <span class="insight-label">Design Intention</span>
-          <p>
-            I deliberately avoided competitive language (win/lose, points, rankings). The goal isn't to determine which
-            emotion is "better"—it's to help users see their feelings reflected in others.
-            <br><br>
-            <b>"Not a fight. A mirror."</b>
+    <!-- Bento Grid Overview Section -->
+    <section id="overview" class="py-24 px-6 bg-brand-dark text-white overflow-hidden">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight !text-brand-sky">Overview</h2>
+          <p class="max-w-xl text-slate-400 text-lg leading-relaxed">
+            Experience an emotional world where feelings aren't just data—they're the foundation of a growing interactive universe.
           </p>
         </div>
 
-        <h3 style="margin-top: 60px;">Key Feature 3: Community Emergence</h3>
-        <p>
-          From individual expression to collective belonging.
-        </p>
-        <p>
-          Repeated shared moments accumulate into something larger. As users resonate with each other's cards, patterns
-          emerge—not forced by algorithms, but shaped by what people actually feel together.
-        </p>
-        <p>
-          I designed the community layer around cards rather than conversations for a specific reason: cards are
-          low-stakes. Sharing a card feels safer than sharing a personal story. This psychological safety lowers the
-          barrier to participation and creates a gentler on-ramp to connection.
-        </p>
-
-        <div style="margin: 32px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-          <img src="image/Unimo/community.png" alt="Community Feed showing multiple cards"
-            style="width: 100%; height: auto; display: block;" />
-        </div>
-      </div>
-
-      <!-- =========================
-           IMPACT
-      ========================== -->
-      <div id="impact" class="section">
-        <span class="section-label">03 // IMPACT</span>
-        <h2>Early Signals</h2>
-        <p>
-          The product is in early launch stage, so we're not optimizing for scale metrics yet. However, early behavioral
-          signals are encouraging:
-        </p>
-
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-num">62%</div>
-            <div class="stat-label">of daily active users return to view or share cards they generated in previous
-              sessions.</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">8 Cards</div>
-            <div class="stat-label">Average generated per user, with some users building collections of 20+.</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num">Organic Sharing</div>
-            <div class="stat-label">Users posting their Unimo cards to Instagram stories, signaling the format works as
-              a shareable emotional token.</div>
-          </div>
-        </div>
-
-        <h3 style="margin-top: 40px;">Stakeholder Buy-in</h3>
-        <p>
-          The redesigned concept secured leadership approval to pivot from the original chat-only MVP. The team is now
-          fully aligned around the "emotional assets" direction.
-        </p>
-
-        <div class="key-findings" style="margin-top: 40px;">
-          <h3>Design Principles</h3>
-          <ul class="findings-list">
-            <li><b>Foster Safety through Lightness & Warmth</b>: Use soft visual language, friendly IP characters, and a
-              non-judgmental tone. The goal is to create an emotionally safe "Unimo World".</li>
-            <li><b>Visual before Verbal</b>: Prioritize visual expression over words. Users should recognize and engage
-              with their emotions without needing to explain them.</li>
-            <li><b>Belonging through Shared Moments</b>: Enable lightweight interactions that create connection without
-              pressure or self-disclosure. Resonance, not competition.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- =========================
-           APP STORE LAUNCH
-      ========================== -->
-      <style>
-        .app-store-section {
-          padding: 80px 0 120px;
-          display: flex;
-          justify-content: center;
-        }
-
-        .download-card {
-          position: relative;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          max-width: 840px;
-          padding: 60px 80px;
-          background: rgba(255, 255, 255, 0.4);
-          backdrop-filter: blur(24px);
-          -webkit-backdrop-filter: blur(24px);
-          border-radius: 40px;
-          border: 1px solid rgba(255, 255, 255, 0.8);
-          box-shadow:
-            0 40px 80px rgba(0, 0, 0, 0.04),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-          overflow: hidden;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          text-align: left;
-          gap: 40px;
-        }
-
-        .download-card::before {
-          content: "";
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.08), transparent 60%);
-          z-index: 0;
-          pointer-events: none;
-        }
-
-        .download-card:hover {
-          transform: translateY(-8px);
-        }
-
-        .download-content {
-          flex: 1;
-          position: relative;
-          z-index: 1;
-        }
-
-        .download-visual {
-          flex: 1;
-          display: flex;
-          justify-content: flex-end;
-          position: relative;
-          z-index: 1;
-          animation: floatPhone 6s ease-in-out infinite;
-        }
-
-        @keyframes floatPhone {
-
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-
-          50% {
-            transform: translateY(-16px);
-          }
-        }
-
-        .mockup-phone {
-          width: 220px;
-          height: 440px;
-          background: #111;
-          border-radius: 36px;
-          padding: 10px;
-          box-shadow:
-            0 30px 60px -15px rgba(0, 0, 0, 0.6),
-            inset 0 0 0 2px #444;
-          position: relative;
-          transform: rotate(6deg);
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .download-card:hover .mockup-phone {
-          transform: rotate(2deg) scale(1.02);
-        }
-
-        .mockup-phone::before {
-          content: '';
-          position: absolute;
-          top: 10px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 90px;
-          height: 24px;
-          background: #111;
-          border-bottom-left-radius: 12px;
-          border-bottom-right-radius: 12px;
-          z-index: 2;
-        }
-
-        .mockup-screen {
-          width: 100%;
-          height: 100%;
-          background: #fff;
-          border-radius: 26px;
-          overflow: hidden;
-          position: relative;
-        }
-
-        .mockup-screen img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: top;
-          display: block;
-        }
-
-        .download-title {
-          position: relative;
-          z-index: 1;
-          font-family: var(--font-heading);
-          font-size: 36px;
-          font-weight: 800;
-          letter-spacing: -1px;
-          margin: 0 0 12px 0;
-          color: #ffffff;
-        }
-
-        .download-subtitle {
-          position: relative;
-          z-index: 1;
-          font-size: 16px;
-          color: var(--text-dim);
-          margin-bottom: 40px;
-        }
-
-        .app-store-button {
-          position: relative;
-          z-index: 1;
-          display: inline-flex;
-          background: #000;
-          border-radius: 100px;
-          text-decoration: none;
-          color: #fff;
-          padding: 3px;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .button-content {
-          position: relative;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          background: #000;
-          padding: 12px 28px;
-          border-radius: 100px;
-          z-index: 2;
-        }
-
-        .app-store-button svg {
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), fill 0.3s ease;
-        }
-
-        .app-store-button .text-group {
-          display: flex;
-          flex-direction: column;
-          text-align: left;
-        }
-
-        .app-store-button .small-text {
-          font-size: 10px;
-          font-weight: 500;
-          opacity: 0.8;
-          line-height: 1;
-          letter-spacing: 0.5px;
-        }
-
-        .app-store-button .large-text {
-          font-size: 20px;
-          font-weight: 600;
-          line-height: 1.1;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-          letter-spacing: -0.5px;
-        }
-
-        .glow-wrap {
-          position: absolute;
-          inset: 0;
-          border-radius: 100px;
-          overflow: hidden;
-          z-index: 1;
-          opacity: 0;
-          transition: opacity 0.4s ease;
-        }
-
-        .glow {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 150%;
-          height: 300%;
-          background: conic-gradient(from 0deg, transparent 0 320deg, #A855F7 360deg);
-          transform-origin: center;
-          transform: translate(-50%, -50%);
-          animation: app-spin 2.5s linear infinite;
-        }
-
-        @keyframes app-spin {
-          100% {
-            transform: translate(-50%, -50%) rotate(360deg);
-          }
-        }
-
-        .app-store-button:hover {
-          transform: translateY(-4px) scale(1.02);
-          box-shadow: 0 20px 40px rgba(168, 85, 247, 0.3);
-        }
-
-        .app-store-button:hover .glow-wrap {
-          opacity: 1;
-        }
-
-        .app-store-button:hover svg {
-          transform: scale(1.1) rotate(-4deg);
-          fill: #d8b4fe;
-          /* Light purple tint on hover */
-        }
-
-        @media (max-width: 768px) {
-          .download-card {
-            flex-direction: column;
-            text-align: center;
-            padding: 40px 24px;
-            gap: 48px;
-          }
-
-          .download-visual {
-            justify-content: center;
-          }
-        }
-      </style>
-
-      <div class="app-store-section">
-        <div class="download-card">
-          <div class="download-content">
-            <h2 class="download-title">Ready to Capture Your Resonance?</h2>
-            <p class="download-subtitle">Download Unimo today and
-              start saving the moments that matter.</p>
-
-            <a href="https://apps.apple.com/us/app/unimo-emotional-companion-ai/id6749435209" class="app-store-button"
-              target="_blank" rel="noopener noreferrer">
-              <span class="glow-wrap">
-                <span class="glow"></span>
-              </span>
-              <span class="button-content">
-                <svg viewBox="0 0 384 512" width="28" height="28" fill="currentColor">
-                  <path
-                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
-                </svg>
-                <div class="text-group">
-                  <span class="small-text">Download on the</span>
-                  <span class="large-text">App Store</span>
-                </div>
-              </span>
-            </a>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 h-full md:min-h-[800px]">
+          <div class="md:col-span-7 md:row-span-2 bg-[#121212] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group border border-white/5">
+            <div class="relative z-10">
+              <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">An Emotional AI Universe for Gen-Z</h3>
+              <p class="text-slate-400 max-w-sm mb-6">
+                UNIMO turns daily emotions into interactive moments through AI companionship, collectible cards, and a world users want to return to.
+              </p>
+            </div>
+            <div class="relative mt-4 flex justify-center items-end h-[450px]">
+              <div class="w-56 h-[400px] bg-gradient-to-b from-brand-primary/20 to-brand-dark/40 border-t border-x border-white/10 rounded-t-[3rem] p-4 translate-y-10 group-hover:translate-y-4 transition-transform duration-700 shadow-2xl">
+                  <div class="w-full h-full bg-[#1a1a1a] rounded-t-[2.5rem] overflow-hidden relative group/inner">
+                      <img src="image/Unimo/home.PNG" alt="App Preview" class="w-full h-full object-cover" loading="lazy">
+                      <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent flex flex-col items-center justify-end pb-8">
+                      </div>
+                  </div>
+              </div>
+            </div>
           </div>
 
-          <div class="download-visual">
-            <div class="mockup-phone">
-              <div class="mockup-screen">
-                <img src="image/Unimo/home.PNG" alt="Unimo App Interface">
+          <div class="md:col-span-12 lg:col-span-5 bg-gradient-to-br from-brand-primary to-brand-dark rounded-[2.5rem] p-8 relative overflow-hidden group min-h-[300px]">
+            <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">Emotions Become Collectible Assets</h3>
+            <p class="text-brand-lavender/70 mb-8">
+              Each meaningful interaction can be transformed into an Emotion Card, making feelings visible, memorable, and worth keeping.
+            </p>
+            <div class="absolute bottom-[-20px] right-[-20px] opacity-20 rotate-12 group-hover:rotate-0 transition-transform duration-500">
+              <div class="grid grid-cols-3 gap-2">
+                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="md:col-span-12 lg:col-span-5 bg-[#121212] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group border border-white/5">
+            <div class="flex flex-col gap-8 items-start">
+              <div class="flex-1">
+                  <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">Playful Systems That Keep Users Engaged</h3>
+                  <p class="text-slate-400 mb-0">
+                      From card pulls to battles, voting, upgrades, and revival, UNIMO uses game-like loops to make emotional support feel lighter and more engaging.
+                  </p>
+              </div>
+              <div class="flex -space-x-8 group-hover:space-x-2 transition-all duration-500">
+                  <div class="w-32 h-20 bg-slate-800 rounded-xl border border-white/10 flex items-center justify-center rotate-[-5deg] shadow-xl">
+                      <i data-lucide="trophy" class="text-yellow-500/50 w-6 h-6"></i>
+                  </div>
+                  <div class="w-32 h-20 bg-brand-primary rounded-xl border border-white/20 flex items-center justify-center rotate-[5deg] shadow-xl relative z-10">
+                      <i data-lucide="zap" class="text-white w-6 h-6 fill-white/20"></i>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="md:col-span-12 bg-[#121212] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group border border-white/5">
+            <div class="h-full flex flex-col md:flex-row items-center justify-between gap-12">
+              <div class="flex-1">
+                  <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">More Than an App, A Scalable IP World</h3>
+                  <p class="text-slate-400 max-w-2xl">
+                      With distinctive characters, emotional storytelling, and a growing universe, UNIMO is designed to expand into content, community, and branded experiences.
+                  </p>
+              </div>
+              <div class="shrink-0">
+                  <div class="w-40 h-40 bg-brand-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                      <i data-lucide="globe" class="text-brand-primary w-16 h-16"></i>
+                  </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- =========================
-           OTHER WORK
-      ========================== -->
-      <div class="other-work-section">
-        <h2 class="other-work-title">View Other Work</h2>
-        <div class="other-work-grid">
-          <a href="TMS.html" class="other-card">
-            <div class="other-card-img">
-              <img src="image/TMS/hero.png" alt="TMS Case Study">
+    </section>
+
+    <!-- Brand Guidelines Section -->
+    <section class="py-32 px-6 bg-[#f8f9fa] border-t border-slate-200">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-20 text-center md:text-left">
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-slate-900">Brand Guidelines</h2>
+          <p class="text-slate-500">The DNA of the Unimo Universe</p>
+        </div>
+
+        <div class="space-y-12">
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Logo Specs -->
+            <div class="md:col-span-2 bg-white rounded-3xl p-10 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12">
+              <div class="relative group">
+                  <div class="w-48 h-48 bg-white rounded-[2.5rem] flex items-center justify-center overflow-hidden shadow-2xl relative border border-slate-100 p-8">
+                      <img src="image/Unimo/unimo_logo.png" alt="Unimo Logo" class="w-full h-full object-contain" loading="lazy">
+                      <div class="absolute inset-0 border border-slate-200/20 grid grid-cols-4 grid-rows-4 pointer-events-none"></div>
+                  </div>
+              </div>
+              <div class="flex-1">
+                  <h3 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-800 mb-4">Unimo</h3>
+                  <p class="text-slate-400 font-mono text-xs font-bold uppercase tracking-widest">Brandmark Proportion</p>
+              </div>
             </div>
-            <div class="other-card-content">
-              <span class="other-card-tag">CLINICAL SYSTEM · DATA VISUALIZATION</span>
-              <h3 class="other-card-title">Visual Authority for Clinical Decisions</h3>
+
+            <!-- Color Palette -->
+            <div class="bg-white rounded-3xl p-10 shadow-sm border border-slate-100">
+              <h4 class="text-2xl font-bold tracking-tight mb-8 flex items-center gap-2 text-lg text-slate-800">
+                  <i data-lucide="palette" class="text-brand-primary w-[18px] h-[18px]"></i>
+                  Color Palette
+              </h4>
+              <div class="flex flex-wrap gap-6 justify-center">
+                  <div class="text-center group">
+                      <div class="bg-brand-primary w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform"></div>
+                      <p class="text-[10px] font-bold text-slate-800">Primary</p>
+                      <p class="text-[10px] font-mono text-slate-400">#7983D9</p>
+                  </div>
+                  <div class="text-center group">
+                      <div class="bg-brand-secondary w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform"></div>
+                      <p class="text-[10px] font-bold text-slate-800">Nature</p>
+                      <p class="text-[10px] font-mono text-slate-400">#70C05B</p>
+                  </div>
+                  <div class="text-center group">
+                      <div class="bg-brand-accent w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform"></div>
+                      <p class="text-[10px] font-bold text-slate-800">Joy</p>
+                      <p class="text-[10px] font-mono text-slate-400">#FAE69E</p>
+                  </div>
+                  <div class="text-center group">
+                      <div class="bg-brand-dark w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform"></div>
+                      <p class="text-[10px] font-bold text-slate-800">Deep</p>
+                      <p class="text-[10px] font-mono text-slate-400">#1D1C5C</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2: Typography & Audience -->
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Typography Card -->
+            <div class="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 relative overflow-hidden">
+              <h4 class="text-2xl font-bold tracking-tight mb-8 flex items-center gap-2 text-lg text-slate-800">
+                  <i data-lucide="type" class="text-brand-primary w-[18px] h-[18px]"></i>
+                  Typography
+              </h4>
+              <div class="space-y-6">
+                  <div>
+                      <p class="text-slate-400 mb-1 font-mono text-xs font-bold uppercase tracking-widest">Primary / Heading</p>
+                      <p class="text-4xl font-black text-slate-800 tracking-tighter">ABCDEFGHI</p>
+                  </div>
+                  <div class="pt-4 border-t border-slate-50">
+                      <p class="text-slate-400 mb-1 font-mono text-xs font-bold uppercase tracking-widest">Secondary / Plus Jakarta Sans</p>
+                      <p class="text-2xl font-medium text-slate-600 tracking-tight">0123456789</p>
+                  </div>
+              </div>
+              <div class="absolute -right-10 -bottom-10 text-[180px] font-black text-slate-50/80 leading-none select-none">Aa</div>
+            </div>
+
+            <!-- Target Audience -->
+            <div class="md:col-span-2 bg-white rounded-3xl p-10 shadow-sm border border-slate-100">
+              <div class="flex justify-between items-start mb-10">
+                  <div>
+                      <h4 class="text-2xl font-bold tracking-tight text-slate-800 mb-1">Target Audience</h4>
+                      <p class="text-slate-400 text-sm">Behavioral Analysis</p>
+                  </div>
+                  <i data-lucide="users" class="text-brand-primary opacity-20 w-10 h-10"></i>
+              </div>
+              <div class="grid grid-cols-2 gap-8">
+                  <div class="p-6 bg-brand-primary/5 border border-brand-primary/10 rounded-2xl group">
+                      <p class="text-5xl font-black text-brand-primary mb-2">54%</p>
+                      <p class="text-brand-primary/40 text-xs font-bold uppercase tracking-widest">Age 16 - 24</p>
+                  </div>
+                  <div class="p-6 bg-brand-secondary/5 border border-brand-secondary/10 rounded-2xl group">
+                      <p class="text-5xl font-black text-brand-secondary mb-2">61%</p>
+                      <p class="text-brand-secondary/40 text-xs font-bold uppercase tracking-widest">Visual First</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3: Mascot States -->
+          <div class="bg-slate-900 rounded-[3rem] p-12 text-white relative border border-white/5 shadow-2xl">
+              <div class="absolute top-0 right-0 p-8">
+                  <i data-lucide="box" class="text-white/10 w-[120px] h-[120px]"></i>
+              </div>
+              <div class="relative z-10">
+                  <h4 class="text-4xl md:text-5xl font-bold tracking-tight mb-10 text-white">Mascot States & Assets</h4>
+                  <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                      <div class="text-center group cursor-help">
+                          <div class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
+                              <img src="image/Unimo/Ip/Gigi.png" alt="Gigi" class="w-full h-full object-contain" loading="lazy">
+                          </div>
+                           <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Gigi</p>
+                      </div>
+                      <div class="text-center group cursor-help">
+                          <div class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
+                              <img src="image/Unimo/Ip/Lalalu.png" alt="Lalalu" class="w-full h-full object-contain" loading="lazy">
+                          </div>
+                           <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Lalalu</p>
+                      </div>
+                      <div class="text-center group cursor-help">
+                          <div class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
+                              <img src="image/Unimo/Ip/Nono.png" alt="Nono" class="w-full h-full object-contain" loading="lazy">
+                          </div>
+                           <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Nono</p>
+                      </div>
+                      <div class="text-center group cursor-help">
+                          <div class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
+                           <img src="image/Unimo/Ip/pink_owl.png" alt="Rico" class="w-full h-full object-contain" loading="lazy">
+                          </div>
+                          <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Rico</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience the App Section -->
+    <section class="py-32 px-6 bg-brand-dark text-white overflow-hidden">
+      <div class="max-w-6xl mx-auto relative z-10">
+          <div class="mb-20">
+              <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-2 !text-brand-sky">Experience the App</h2>
+              <p class="text-slate-500 text-lg leading-relaxed">A visual journey through the Unimo interface.</p>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              <div class="flex flex-col gap-6 ">
+                  <div class="flex items-center justify-center gap-3">
+                      <div class="p-2 bg-white/5 rounded-lg border border-white/10">
+                          <i data-lucide="smile" class="text-brand-primary w-5 h-5"></i>
+                      </div>
+                      <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Enter Your Emotional World</h4>
+                  </div>
+                  <div class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
+                      <img src="image/Unimo/home.PNG" alt="Home Screen" class="w-full h-full object-cover" loading="lazy">
+                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
+                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none"></div>
+                  </div>
+              </div>
+              <div class="flex flex-col gap-6 md:translate-y-12">
+                  <div class="flex items-center justify-center gap-3">
+                      <div class="p-2 bg-white/5 rounded-lg border border-white/10">
+                          <i data-lucide="message-square" class="text-brand-lavender w-5 h-5"></i>
+                      </div>
+                      <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Chat With Your AI Companion</h4>
+                  </div>
+                  <div class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
+                      <img src="image/Unimo/chat.PNG" alt="Chat Screen" class="w-full h-full object-cover" loading="lazy">
+                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
+                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none"></div>
+                  </div>
+              </div>
+              <div class="flex flex-col gap-6 ">
+                  <div class="flex items-center justify-center gap-3">
+                      <div class="p-2 bg-white/5 rounded-lg border border-white/10">
+                          <i data-lucide="layers" class="text-brand-sky w-5 h-5"></i>
+                      </div>
+                      <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Feelings Become Cards</h4>
+                  </div>
+                  <div class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
+                      <img src="image/Unimo/collection.png" alt="Collect Screen" class="w-full h-full object-cover" loading="lazy">
+                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
+                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none"></div>
+                  </div>
+              </div>
+              <div class="flex flex-col gap-6 md:translate-y-12">
+                  <div class="flex items-center justify-center gap-3">
+                      <div class="p-2 bg-white/5 rounded-lg border border-white/10">
+                          <i data-lucide="zap" class="text-brand-secondary w-5 h-5"></i>
+                      </div>
+                      <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Battle With Your Emotions for Fun</h4>
+                  </div>
+                  <div class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
+                      <img src="image/Unimo/battle.JPG" alt="Battle Screen" class="w-full h-full object-cover" loading="lazy">
+                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
+                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Other Work Section -->
+    <div class="other-work-section bg-white border-t border-slate-200">
+      <div class="max-w-6xl mx-auto py-24 px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-12">View Other Work</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <a href="TMS.html" class="group block text-left bg-white rounded-3xl overflow-hidden border border-slate-200 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-primary/10 hover:-translate-y-2">
+            <div class="aspect-video bg-slate-100 overflow-hidden">
+              <img src="image/TMS/hero.png" alt="TMS Case Study" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+            </div>
+            <div class="p-8">
+              <span class="text-xs font-bold uppercase tracking-widest text-brand-primary mb-2 block">CLINICAL SYSTEM · DATA VISUALIZATION</span>
+              <h3 class="text-2xl font-bold tracking-tight text-slate-900">Visual Authority for Clinical Decisions</h3>
             </div>
           </a>
-          <a href="oltiva.html" class="other-card">
-            <div class="other-card-img">
-              <img src="image/avanade/hero_mockup.png" alt="Oltiva Case Study">
+          <a href="oltiva.html" class="group block text-left bg-white rounded-3xl overflow-hidden border border-slate-200 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-primary/10 hover:-translate-y-2">
+            <div class="aspect-video bg-slate-100 overflow-hidden">
+              <img src="image/avanade/hero_mockup.png" alt="Oltiva Case Study" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
             </div>
-            <div class="other-card-content">
-              <span class="other-card-tag">AI WORKFLOW · B2B SYSTEM</span>
-              <h3 class="other-card-title">Oltiva - AI Document Insights</h3>
+            <div class="p-8">
+              <span class="text-xs font-bold uppercase tracking-widest text-brand-primary mb-2 block">AI WORKFLOW · B2B SYSTEM</span>
+              <h3 class="text-2xl font-bold tracking-tight text-slate-900">Oltiva - AI Document Insights</h3>
             </div>
           </a>
         </div>
       </div>
-    </main>
-  </div>
-
-  <footer class="footer"
-    style="padding-top: 80px; padding-bottom: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-
-
-    <div
-      style="display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 40px; border-top: 1px solid var(--surface-border); width: 100%; max-width: 800px;">
-      <img src="image/logo.png" alt="Michelle.Design Logo"
-        style="height: 32px; opacity: 0.8; filter: grayscale(100%) contrast(1.2); transition: opacity 0.3s; cursor: pointer;"
-        onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
-      <div style="display: flex; gap: 24px;">
-        <a href="mailto:michelleguan321@gmail.com" class="sfx-hover"
-          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
-          onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">Email</a>
-        <a href="#" class="sfx-hover"
-          style="font-family: var(--font-heading); font-size: 14px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s;"
-          onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-body)'">LinkedIn</a>
-      </div>
-      <p
-        style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); margin: 0; letter-spacing: 0.05em;">
-        © 2026 Michelle Guan. All rights reserved.</p>
     </div>
-  </footer>
 
-  </main>
+    <footer class="footer bg-white py-16 px-6 border-t border-slate-200 text-center">
+      <div class="max-w-6xl mx-auto flex flex-col items-center gap-8">
+        <img src="image/logo.png" alt="Michelle.Design Logo" class="h-8 opacity-60 grayscale hover:opacity-100 transition-opacity duration-300">
+        <div class="flex gap-8">
+          <a href="mailto:michelleguan321@gmail.com" class="text-slate-500 font-semibold hover:text-brand-primary transition-colors">Email</a>
+          <a href="#" class="text-slate-500 font-semibold hover:text-brand-primary transition-colors">LinkedIn</a>
+        </div>
+        <p class="font-mono text-xs text-slate-400 tracking-wider">
+          © 2026 Michelle Guan. All rights reserved.
+        </p>
+      </div>
+    </footer>
   </div>
+
+  <style>
+    @keyframes bounce-subtle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+  </style>
 
   <script>
-    // Scroll Progress & TOC Active State
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Redesigned Navbar Mobile Menu Logic (Removed - Now in navbar.js)
+
+    // Scroll Progress
     window.addEventListener('scroll', () => {
       const doc = document.documentElement;
       const scrollTotal = doc.scrollHeight - doc.clientHeight;
@@ -813,38 +493,23 @@
       const progress = scrollTotal ? (scrollPos / scrollTotal) : 0;
       const bar = document.getElementById('bar');
       if (bar) bar.style.transform = `scaleX(${progress})`;
-
-      // TOC Highlighter
-      const sections = document.querySelectorAll('.section');
-      const tocLinks = document.querySelectorAll('.toc a');
-
-      let currentId = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (window.scrollY >= (sectionTop - 300)) {
-          currentId = section.getAttribute('id');
-        }
-      });
-
-      tocLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentId}`) {
-          link.classList.add('active');
-        }
-      });
     });
+
+    // Custom Scroll Logic for the bento grid or other elements if needed
   </script>
   <script src="js/cursor.js"></script>
-  <button id="backToTop" class="back-to-top" title="Back to Top">↑</button>
+  <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-slate-900 opacity-0 pointer-events-none transition-all duration-300 z-50 hover:bg-brand-primary hover:text-white" title="Back to Top">↑</button>
 
   <script>
     (function () {
       const btn = document.getElementById('backToTop');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 500) {
-          btn.classList.add('visible');
+          btn.style.opacity = '1';
+          btn.style.pointerEvents = 'auto';
         } else {
-          btn.classList.remove('visible');
+          btn.style.opacity = '0';
+          btn.style.pointerEvents = 'none';
         }
       }, { passive: true });
       btn.addEventListener('click', () => {
@@ -852,6 +517,7 @@
       });
     })();
   </script>
+
 </body>
 
 </html>

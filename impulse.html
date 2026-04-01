@@ -9,8 +9,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
         rel="stylesheet">
+    <script>
+        if (window.location.search.includes('modal=true')) {
+            document.documentElement.setAttribute('data-modal', 'true');
+        }
+    </script>
+    <style>
+        [data-modal="true"] #main-header, 
+        [data-modal="true"] .case-footer { 
+            display: none !important; 
+        }
+    </style>
     <link rel="stylesheet" href="case-study.css">
 
     <style>
@@ -51,7 +62,7 @@
 
         .impulse-dark-card h4 {
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 600;
             font-size: 20px;
             color: #111827;
@@ -88,7 +99,7 @@
 
         .impulse-light-card h4 {
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 600;
             font-size: 18px;
             line-height: 1.4;
@@ -284,19 +295,10 @@
 
 <body>
     <div class="scroll-progress" id="bar"></div>
-    <header class="nav-shell">
-        <nav class="nav-inner">
-            <a href="index.html" class="nav-logo-link"
-                style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
-                <img src="image/logo.png" alt="Michelle.Design Logo"
-                    style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
-                    onmouseout="this.style.opacity='0.8'">
-            </a>
-            <a href="index.html">Home</a>
-            <a href="visual-playground.html">Visual Playground</a>
-            <a href="about-me.html">About Me</a>
-        </nav>
-    </header>
+    <!-- Navigation Bar Placeholder -->
+    <div id="navbar-placeholder"></div>
+    <script src="js/navbar.js"></script>
+    <script>initNavbar('light');</script>
 
     <div class="container hero" style="text-align: center; position: relative; overflow: hidden; padding-top: 80px;">
         <div class="ambient-glow"></div>
@@ -306,19 +308,19 @@
                 style="text-align: left; display: inline-flex; align-items: center; gap: 8px; background: #FFFFFF; border: transparent; padding: 6px 16px 6px 6px; border-radius: 999px;">
                 <img src="image/face/thumb_up.png" alt="Trusted" style="width: 24px; height: 24px; border-radius: 50%;">
                 <p
-                    style="margin: 0; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px; color: #4B5563; letter-spacing: 0.5px;">
+                    style="margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; font-size: 13px; color: #4B5563; letter-spacing: 0.5px;">
                     Trusted by 600+ users
                 </p>
             </div>
 
             <h1 class="hero-title delay-100"
-                style="max-width: 900px; margin: 24px auto 40px auto; font-size: 56px; line-height: 1.1; letter-spacing: -2px; font-family: 'Inter', sans-serif;">
+                style="max-width: 900px; margin: 24px auto 40px auto; font-size: 56px; line-height: 1.1; letter-spacing: -2px; font-family: 'Plus Jakarta Sans', sans-serif;">
                 Connect, Share, and Achieve with Impulse
             </h1>
 
             <div class="delay-200" style="margin-top: 40px; margin-bottom: 80px;">
                 <a href="#"
-                    style="display: inline-flex; align-items: center; justify-content: center; padding: 16px 40px; background: #111827; color: #ffffff; font-weight: 600; font-family: 'Inter', sans-serif; border-radius: 999px; text-decoration: none; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1); letter-spacing: -0.2px;"
+                    style="display: inline-flex; align-items: center; justify-content: center; padding: 16px 40px; background: #111827; color: #ffffff; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; border-radius: 999px; text-decoration: none; font-size: 16px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1); letter-spacing: -0.2px;"
                     onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.15)';"
                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';">
                     Get this App
@@ -457,9 +459,9 @@
             <!-- =========================
            SNAPSHOT
       ========================== -->
-            <div id="about" class="section">
+            <div id="about" class="section border-t-0 pt-0">
                 <span class="section-label">Snapshot</span>
-                <h2>About Impulse</h2>
+                <h2>Connecting for Shared Growth</h2>
                 <p class="lead-text">
                     Impulse is a B2C social accountability app designed for young professionals who want to build
                     healthier habits

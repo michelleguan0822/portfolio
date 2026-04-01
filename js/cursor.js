@@ -3,52 +3,69 @@
  * Matches the index.html cursor and expands on hover.
  */
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Inject CSS for the cursor
+  // 1. Inject CSS for the dot and ring cursor
   const style = document.createElement('style');
   style.innerHTML = `
       * {
         cursor: none !important;
       }
-      #cursor-spotlight {
+      #cursor-dot, #cursor-ring {
         position: fixed;
         top: 0;
         left: 0;
-        width: 50px;
-        height: 50px;
-        background: white;
-        border-radius: 50%;
         pointer-events: none;
         mix-blend-mode: difference;
         z-index: 999999;
-        /* Removed hardware acceleration to fix Safari mix-blend-mode bug over DOM text */
-        transform: translate(-50%, -50%) scale(0);
-        transition: opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
-        opacity: 0;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
-      body.has-cursor #cursor-spotlight {
+      #cursor-dot {
+        width: 6px;
+        height: 6px;
+        background: white;
+      }
+      #cursor-ring {
+        width: 32px;
+        height: 32px;
+        border: 1.5px solid white;
+        transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+      }
+      body.has-cursor #cursor-dot, body.has-cursor #cursor-ring {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
       }
-      #cursor-spotlight.active {
-        width: 80px;
-        height: 80px;
-        background: rgba(255, 255, 255, 0.8);
+      #cursor-ring.active {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.1);
       }
     `;
   document.head.appendChild(style);
 
-  // 2. Create cursor element
-  let spotlight = document.getElementById('cursor-spotlight');
-  if (!spotlight) {
-    spotlight = document.createElement('div');
-    spotlight.id = 'cursor-spotlight';
-    document.body.appendChild(spotlight);
+  // 2. Create cursor elements
+  let dot = document.getElementById('cursor-dot');
+  if (!dot) {
+    dot = document.createElement('div');
+    dot.id = 'cursor-dot';
+    document.body.appendChild(dot);
+  }
+  let ring = document.getElementById('cursor-ring');
+  if (!ring) {
+    ring = document.createElement('div');
+    ring.id = 'cursor-ring';
+    document.body.appendChild(ring);
   }
   document.body.classList.add("has-cursor");
 
   // 3. Mouse Move Listener via requestAnimationFrame
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
+  
+  // Coordinates for dot (precise)
+  let dotX = mouseX, dotY = mouseY;
+  // Coordinates for ring (smooth lag)
+  let ringX = mouseX, ringY = mouseY;
+  
   let targetX = mouseX;
   let targetY = mouseY;
   let isMoving = false;
@@ -63,15 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   function updateCursor() {
-    // Interpolation for slight smooth lag.
-    // 0.8 is extremely snappy and responsive, almost 1:1 with the mouse.
-    mouseX += (targetX - mouseX) * 0.8;
-    mouseY += (targetY - mouseY) * 0.8;
+    // Dot: Rapid response (0.55 - was 0.4)
+    dotX += (targetX - dotX) * 0.55;
+    dotY += (targetY - dotY) * 0.55;
 
-    spotlight.style.left = mouseX + 'px';
-    spotlight.style.top = mouseY + 'px';
+    // Ring: Smooth lag (0.2 - was 0.15)
+    ringX += (targetX - ringX) * 0.2;
+    ringY += (targetY - ringY) * 0.2;
 
-    if (Math.abs(targetX - mouseX) > 0.1 || Math.abs(targetY - mouseY) > 0.1) {
+    dot.style.left = dotX + 'px';
+    dot.style.top = dotY + 'px';
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+
+    const distDot = Math.abs(targetX - dotX) + Math.abs(targetY - dotY);
+    const distRing = Math.abs(targetX - ringX) + Math.abs(targetY - ringY);
+
+    if (distDot > 0.1 || distRing > 0.1) {
       requestAnimationFrame(updateCursor);
     } else {
       isMoving = false;
@@ -80,10 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. Hide cursor when leaving window
   document.addEventListener("mouseleave", () => {
-    spotlight.style.opacity = "0";
+    dot.style.opacity = "0";
+    ring.style.opacity = "0";
   });
   document.addEventListener("mouseenter", () => {
-    spotlight.style.opacity = "1";
+    dot.style.opacity = "1";
+    ring.style.opacity = "1";
   });
 
   // 5. Hover Effects
@@ -134,12 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const interactives = document.querySelectorAll(interactiveSelectors.join(','));
   interactives.forEach(el => {
     el.addEventListener('mouseenter', () => {
-      spotlight.classList.add('active');
+      ring.classList.add('active');
       // Hover tick: very fast, high pitch
       playUITick(1200, 'sine', 0.02, 0.015);
     });
     el.addEventListener('mouseleave', () => {
-      spotlight.classList.remove('active');
+      ring.classList.remove('active');
     });
     el.addEventListener('click', () => {
       // Click tick: slightly lower, sharper edge

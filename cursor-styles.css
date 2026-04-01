@@ -1,24 +1,4 @@
-/* Custom Cursor Spotlight */
-#cursor-spotlight {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 50px;
-    background: white;
-    border-radius: 50%;
-    pointer-events: none;
-    mix-blend-mode: difference;
-    z-index: 9999;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.15s ease-out;
-    opacity: 0;
-}
-
-body.has-cursor #cursor-spotlight {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
+/* Custom Cursor Spotlight - Handled in js/cursor.js */
 
 /* Hero Text Enhancement */
 .hero-title {

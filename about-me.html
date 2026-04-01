@@ -2,1409 +2,509 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Me | Zirong</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400&family=Press+Start+2P&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Three.js for 3D Interactions -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- Matter.js for 2D Physics -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-
-  <style>
-    :root {
-      --primary: #A855F7;
-      --bg: #000000;
-      --text: #ffffff;
-      --text-dim: #9ca3af;
-      --surface: rgba(255, 255, 255, 0.05);
-      --surface-border: rgba(255, 255, 255, 0.1);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      cursor: crosshair;
-      line-height: 1.6;
-    }
-
-    /* Background Gradients */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-      background:
-        radial-gradient(1000px 1000px at 50% 0%, rgba(168, 85, 247, 0.08), transparent 70%),
-        radial-gradient(800px 800px at 80% 80%, rgba(139, 92, 246, 0.05), transparent 70%),
-        #000000;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* ---------------- UTILITIES ---------------- */
-    .font-mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .font-pixel {
-      font-family: 'Press Start 2P', cursive;
-    }
-
-    .text-primary {
-      color: var(--primary);
-    }
-
-    /* Glows - Adjusted for Light Mode */
-    .top-glow {
-      background: conic-gradient(from 180deg at 50% 0%, #8b5cf6, transparent);
-      filter: blur(80px);
-      height: 500px;
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .mouse-follower {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 50;
-      transition: opacity 0.3s;
-    }
-
-    /* ---------------- NAV (Synced with Index) ---------------- */
-    /* Removed redundant nav CSS; using styles.css instead */
-
-
-    /* ---------------- STUDIO CONTAINER ---------------- */
-    .studio-showcase {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 140px 20px 80px;
-      position: relative;
-      z-index: 10;
-    }
-
-    /* ---------------- HERO PROFILE ---------------- */
-    /* ---------------- RPG CHARACTER SELECTION ---------------- */
-    /* ---------------- BOARD GAME ILLUSTRATIVE CARD ---------------- */
-    .bg-card-section {
-      --card-base: #f5f5f0;
-      --card-border: #333;
-    }
-
-    .selection-container {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 60px;
-      margin-bottom: 120px;
-      align-items: center;
-    }
-
-    /* Simplified Board Game Side Selectors */
-    .side-selectors {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .side-group-header {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--text-dim);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin: 24px 0 8px 12px;
-      opacity: 0.8;
-    }
-
-    .side-group-header:first-child {
-      margin-top: 0;
-    }
-
-    .select-btn {
-      padding: 14px 24px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 999px;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      color: #9ca3af;
-      text-align: left;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-transform: uppercase;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .select-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateX(4px);
-    }
-
-    .select-btn.active {
-      background: var(--role-color);
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateX(12px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-      font-weight: 800;
-    }
-
-    .select-btn .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--role-color, #333);
-      border: none;
-      transition: box-shadow 0.3s;
-    }
-
-    .select-btn.active .dot {
-      box-shadow: 0 0 10px var(--role-color);
-    }
-
-    /* Main Board Game Card */
-    .bg-card {
-      background: #111111;
-      border: 4px solid #333;
-      border-radius: 40px;
-      width: 440px;
-      height: auto;
-      min-height: 480px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      position: relative;
-      box-shadow: 12px 12px 0 rgba(168, 85, 247, 0.2);
-      margin: 0 auto;
-    }
-
-    .portrait-wrapper {
-      width: 100%;
-      height: 280px;
-      overflow: hidden;
-      border-radius: 20px;
-      flex-shrink: 0;
-    }
-
-    .bg-portrait {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Card Footer / Title */
-    .bg-footer {
-      padding: 24px 8px 8px;
-      text-align: center;
-    }
-
-    .bg-role-name {
-      font-family: 'Georgia', serif;
-      font-weight: 900;
-      font-size: 32px;
-      color: #ffffff;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-    }
-
-    .bg-role-desc {
-      font-size: 15px;
-      line-height: 1.4;
-      color: #9ca3af;
-      font-style: italic;
-    }
-
-    .content-pop {
-      animation: contentPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    @keyframes contentPop {
-      0% {
-        transform: scale(0.95);
-        opacity: 0;
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 1000px) {
-      .selection-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .side-selectors {
-        flex-direction: row;
-        overflow-x: auto;
-        padding: 10px;
-      }
-
-      .select-btn {
-        min-width: 200px;
-      }
-
-      .bg-card {
-        width: 100%;
-        max-width: 360px;
-        height: auto;
-        min-height: 400px;
-      }
-
-      .bg-rank {
-        display: none;
-      }
-    }
-
-    /* Stats Row */
-    .stats-row {
-      display: flex;
-      gap: 40px;
-      border-top: 1px solid var(--surface-border);
-      padding-top: 24px;
-    }
-
-    .stat-item b {
-      display: block;
-      font-size: 24px;
-      color: #ffffff;
-      /* White text */
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .stat-item span {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--text-dim);
-    }
-
-    /* Avatar - Glass Circle */
-    .avatar-frame {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-      cursor: pointer;
-      transform-style: preserve-3d;
-      perspective: 1000px;
-    }
-
-    .avatar-placeholder {
-      width: 100%;
-      height: 100%;
-      background: url('image/profile_pic.png') center/cover;
-      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .avatar-frame:hover .avatar-placeholder {
-      transform: scale(1.08);
-    }
-
-    /* Floating Icons */
-    .float-icon {
-      position: absolute;
-      font-size: 24px;
-      pointer-events: none;
-      animation: popUpFade 1s forwards;
-      z-index: 20;
-    }
-
-    @keyframes popUpFade {
-      0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 0;
-      }
-
-      50% {
-        opacity: 1;
-      }
-
-      100% {
-        transform: translate(-50%, -150%) scale(1.2);
-        opacity: 0;
-      }
-    }
-
-    /* ---------------- PANELS (Studio Card Style) ---------------- */
-    .studio-card {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-radius: 24px;
-      padding: 40px;
-      margin-bottom: 24px;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    }
-
-    .studio-card:hover {
-      border-color: rgba(139, 92, 246, 0.3);
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 20px 50px rgba(139, 92, 246, 0.1);
-    }
-
-    .profile-avatar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Avatar - Glass Circle */
-    .avatar-frame {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      background: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-      cursor: pointer;
-      transform-style: preserve-3d;
-      perspective: 1000px;
-    }
-
-    .avatar-placeholder {
-      width: 100%;
-      height: 100%;
-      background: url('image/profile_pic.png') center/cover;
-      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .avatar-frame:hover .avatar-placeholder {
-      transform: scale(1.08);
-    }
-
-    /* Floating Icons */
-    .float-icon {
-      position: absolute;
-      font-size: 24px;
-      pointer-events: none;
-      animation: popUpFade 1s forwards;
-      z-index: 20;
-    }
-
-    @keyframes popUpFade {
-      0% {
-        transform: translate(-50%, -50%) scale(0.5);
-        opacity: 0;
-      }
-
-      50% {
-        opacity: 1;
-      }
-
-      100% {
-        transform: translate(-50%, -150%) scale(1.2);
-        opacity: 0;
-      }
-    }
-
-    /* ---------------- PANELS (Studio Card Style) ---------------- */
-    .studio-card {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-radius: 24px;
-      padding: 40px;
-      margin-bottom: 24px;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    }
-
-    .studio-card:hover {
-      border-color: rgba(139, 92, 246, 0.3);
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 20px 50px rgba(139, 92, 246, 0.1);
-    }
-
-    /* Skills Pill */
-    .skills-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 80px;
-    }
-
-    .skill-tag {
-      padding: 8px 16px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 100px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: #9ca3af;
-      cursor: pointer;
-      transition: 0.2s;
-      user-select: none;
-    }
-
-    .skill-tag:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .skill-tag.equipped {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
-    }
-
-    /* ---------------- LETTER ---------------- */
-    .letter-scene {
-      width: 100%;
-      max-width: 600px;
-      height: 440px;
-      margin: 0 auto 120px;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .envelope-wrapper {
-      position: relative;
-      width: 360px;
-      height: 240px;
-      cursor: pointer;
-      transition: transform 0.4s ease;
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      z-index: 10;
-    }
-
-    .envelope-wrapper:hover {
-      transform: translateY(-5px);
-    }
-
-    .envelope-wrapper.is-open,
-    .envelope-wrapper.flap-open,
-    .envelope-wrapper.letter-up {
-      cursor: default;
-      transform: none;
-    }
-
-    .env-back {
-      position: absolute;
-      inset: 0;
-      background: #1e1e1e;
-      border-radius: 8px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      z-index: 1;
-    }
-
-    .env-letter {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      width: calc(100% - 20px);
-      height: 220px;
-      background: #fdfbf7;
-      /* subtle paper texture feel */
-      background-image: repeating-linear-gradient(translate, #fdfbf7, #fdfbf7 26px, #e5e7eb 27px, #fdfbf7 28px);
-      border-radius: 4px;
-      z-index: 2;
-      padding: 30px 40px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow: hidden;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .env-letter-title {
-      position: absolute;
-      top: 40px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--primary);
-      opacity: 1;
-      transition: opacity 0.3s;
-      z-index: 10;
-    }
-
-    .env-letter-content {
-      position: relative;
-      opacity: 0;
-      transition: opacity 0.4s;
-      font-size: 13px;
-      color: #374151;
-      line-height: 28px;
-      /* Match repeating gradient size */
-      height: 100%;
-      overflow-y: auto;
-      pointer-events: none;
-    }
-
-    .env-letter-content p {
-      margin-top: 0;
-      margin-bottom: 28px;
-    }
-
-    .env-letter-content b {
-      color: #111827;
-      background: rgba(255, 255, 255, 0.5);
-      /* subtle highlight on text so lines don't distract */
-    }
-
-    .env-front-left {
-      position: absolute;
-      inset: 0;
-      background: #2a2a2a;
-      border-radius: 8px;
-      clip-path: polygon(0 0, 50% 50%, 0 100%);
-      z-index: 3;
-    }
-
-    .env-front-right {
-      position: absolute;
-      inset: 0;
-      background: #2a2a2a;
-      border-radius: 8px;
-      clip-path: polygon(100% 0, 50% 50%, 100% 100%);
-      z-index: 3;
-    }
-
-    .env-front-bottom {
-      position: absolute;
-      inset: 0;
-      background: #333333;
-      border-radius: 8px;
-      clip-path: polygon(0 100%, 50% 50%, 100% 100%);
-      z-index: 4;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      padding-bottom: 24px;
-    }
-
-    .env-stamp {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 44px;
-      height: 54px;
-      background: #fff;
-      border: 2px dashed #d1d5db;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 5;
-      opacity: 1;
-      transition: opacity 0.3s;
-    }
-
-    .env-flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 60%;
-      background: #1e1e1e;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      border-radius: 8px 8px 0 0;
-      transform-origin: top;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 6;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      pointer-events: none;
-      /* Let clicks pass through when folded */
-    }
-
-    .env-flap-seal {
-      width: 40px;
-      height: 40px;
-      background: var(--primary);
-      border-radius: 50%;
-      margin-bottom: -15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      box-shadow: 0 4px 10px rgba(168, 85, 247, 0.4);
-    }
-
-    /* STATES */
-    .envelope-wrapper.flap-open .env-flap {
-      transform: rotateX(180deg);
-      z-index: 1;
-    }
-
-    .envelope-wrapper.flap-open .env-back {
-      z-index: 0;
-    }
-
-    .envelope-wrapper.flap-open .env-letter {
-      z-index: 2;
-      /* Put letter above the open flap but under the front panels */
-    }
-
-    .envelope-wrapper.letter-up .env-letter {
-      transform: translateY(-240px);
-      z-index: 2;
-    }
-
-    .envelope-wrapper.is-open .env-letter {
-      transform: translateY(-80px);
-      left: -40px;
-      width: calc(100% + 80px);
-      height: 480px;
-      border-radius: 12px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-      pointer-events: auto;
-      user-select: auto;
-      z-index: 50;
-      /* Bring fully to front when open */
-    }
-
-    .envelope-wrapper.is-open .env-letter-title {
-      opacity: 0;
-    }
-
-    .envelope-wrapper.is-open .env-letter-content {
-      opacity: 1;
-      pointer-events: auto;
-      transition-delay: 0.3s;
-    }
-
-    .btn-close-letter {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: rgba(0, 0, 0, 0.05);
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      cursor: pointer;
-      color: #9ca3af;
-      opacity: 0;
-      transition: opacity 0.3s, background 0.2s;
-      pointer-events: none;
-      z-index: 20;
-    }
-
-    .envelope-wrapper.is-open .btn-close-letter {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* ---------------- FOLDED LETTER ---------------- */
-    .folded-scene {
-      width: 100%;
-      height: 160px;
-      position: relative;
-      margin: 100px auto 160px;
-    }
-
-    .folded-wrapper {
-      perspective: 1500px;
-      width: 320px;
-      height: 160px;
-      margin: 0 auto;
-      position: relative;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .fold-panel {
-      position: absolute;
-      width: 100%;
-      height: 160px;
-      transform-style: preserve-3d;
-      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .fold-middle {
-      top: 0;
-      left: 0;
-      z-index: 2;
-    }
-
-    .fold-top {
-      top: -160px;
-      left: 0;
-      transform-origin: bottom;
-      transform: rotateX(-179.9deg);
-      /* Folded DOWN over the middle */
-      z-index: 4;
-    }
-
-    .fold-bottom {
-      bottom: -160px;
-      left: 0;
-      transform-origin: top;
-      transform: rotateX(179.9deg);
-      /* Folded UP over the middle */
-      z-index: 3;
-    }
-
-    .fold-face {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-      background: #fdfbf7;
-      /* Grid paper lines */
-      background-image: linear-gradient(0deg, transparent 24%, rgba(139, 92, 246, 0.08) 25%, rgba(139, 92, 246, 0.08) 26%, transparent 27%, transparent 74%, rgba(139, 92, 246, 0.08) 75%, rgba(139, 92, 246, 0.08) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(139, 92, 246, 0.08) 25%, rgba(139, 92, 246, 0.08) 26%, transparent 27%, transparent 74%, rgba(139, 92, 246, 0.08) 75%, rgba(139, 92, 246, 0.08) 76%, transparent 77%, transparent);
-      background-size: 20px 20px;
-      padding: 24px 30px;
-      color: #374151;
-      font-size: 13px;
-      line-height: 1.6;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.01) inset;
-    }
-
-    /* Back faces are visible when folded */
-    .fold-face.back {
-      transform: rotateX(180deg);
-      background: #111827;
-      /* Dark elegant fold */
-      background-image: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 60%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .fold-top .fold-face.back {
-      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.25);
-    }
-
-    .fold-seal {
-      position: absolute;
-      top: -24px;
-      /* Hangs over the visible bottom edge of the folded top block */
-      left: 50%;
-      transform: translateX(-50%) rotate(45deg);
-      width: 48px;
-      height: 48px;
-      background: #8b5cf6;
-      border: 2px solid white;
-      border-radius: 8px;
-      /* Diamond shape */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      transition: opacity 0.3s 0.2s, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .fold-seal svg {
-      transform: rotate(-45deg);
-    }
-
-    .folded-hint {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* OPEN STATES */
-    .folded-wrapper.is-open {
-      cursor: default;
-    }
-
-    .folded-wrapper.is-open .fold-top {
-      transform: rotateX(0deg);
-    }
-
-    .folded-wrapper.is-open .fold-bottom {
-      transform: rotateX(0deg);
-    }
-
-    .folded-wrapper.is-open .fold-seal {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateX(-50%) rotate(45deg) scale(0);
-    }
-
-    .fold-content-inner {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.4s 0.4s, transform 0.4s 0.4s;
-    }
-
-    .folded-wrapper.is-open .fold-content-inner {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .fold-btn-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(139, 92, 246, 0.1);
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      cursor: pointer;
-      color: var(--primary);
-      transition: 0.3s;
-      z-index: 20;
-    }
-
-    .fold-btn-close:hover {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    /* Subtle creases on the unfolded paper */
-    .fold-middle .fold-face.front {
-      border-top: 1px dashed rgba(139, 92, 246, 0.2);
-      border-bottom: 1px dashed rgba(139, 92, 246, 0.2);
-    }
-
-    /* ---------------- GAME ---------------- */
-    .game-section-wrapper {
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-radius: 24px;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      margin-bottom: 120px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-    }
-
-    canvas#game-board {
-      background: #f3f4f6;
-      border-radius: 12px;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      max-width: 100%;
-    }
-
-    .game-btn {
-      background: rgba(139, 92, 246, 0.1);
-      color: var(--primary);
-      border: 1px solid var(--primary);
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .game-btn:hover {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    /* ---------------- PHOTOGRAPHY GRID ---------------- */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-bottom: 120px;
-    }
-
-    .photo-card {
-      position: relative;
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 20px;
-      padding: 16px;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      cursor: pointer;
-    }
-
-    .photo-card.wide {
-      grid-column: span 2;
-    }
-
-    .photo-card:hover {
-      background: rgba(255, 255, 255, 0.8);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
-      border-color: rgba(139, 92, 246, 0.3);
-    }
-
-    .photo-img-wrapper {
-      width: 100%;
-      height: 240px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 16px;
-      background: #f3f4f6;
-    }
-
-    .photo-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .photo-card:hover .photo-img-wrapper img {
-      transform: scale(1.05);
-    }
-
-    .photo-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 4px;
-    }
-
-    .photo-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      color: #8b5cf6;
-      background: rgba(139, 92, 246, 0.1);
-      padding: 4px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    .photo-loc {
-      font-size: 12px;
-      font-weight: 500;
-      color: #6b7280;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    @media (max-width: 768px) {
-      .photo-card.wide {
-        grid-column: span 1;
-      }
-    }
-
-    /* ---------------- FOOTER ---------------- */
-    .contact-footer {
-      border-top: 1px solid var(--surface-border);
-      padding: 80px 0;
-      text-align: center;
-      margin-top: 80px;
-    }
-
-    .contact-link {
-      font-size: 32px;
-      font-weight: 700;
-      color: #111827;
-      transition: 0.3s;
-    }
-
-    .contact-link:hover {
-      color: var(--primary);
-    }
-
-    /* ---------------- RESPONSIVE ---------------- */
-    @media (max-width: 800px) {
-      .selection-container {
-        display: flex;
-        flex-direction: column-reverse; /* Put card at top, buttons at bottom */
-        gap: 40px;
-        align-items: center;
-      }
-
-      .card-root {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
-
-      .bg-card {
-        width: 100%;
-        max-width: 440px;
-        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
-      }
-
-      .side-nav {
-        width: 100%;
-      }
-
-      .side-selectors {
-        flex-direction: column; /* Override 1000px media query */
-        overflow-x: visible;
-        gap: 12px;
-      }
-
-      .side-group-header {
-        margin: 24px 0 8px 0;
-        text-align: center;
-      }
-
-      .side-group-header:first-child {
-        margin-top: 0;
-      }
-
-      .select-btn {
-        width: 100%;
-        justify-content: center;
-        transform: none !important; /* Prevent horizontal shift on mobile */
-      }
-
-      .select-btn.active {
-        transform: scale(1.02) !important; /* Subtle scale instead of shift */
-      }
-
-      body {
-        cursor: auto !important;
-      }
-
-      a,
-      button,
-      input,
-      textarea,
-      select,
-      .studio-card,
-      .project-item,
-      .other-card,
-      .sfx-hover,
-      .sfx-click {
-        cursor: auto !important;
-      }
-
-      #cursor-spotlight,
-      body.has-cursor #cursor-spotlight {
-        display: none !important;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Michelle Guan</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --pill-radius: 9999px;
+            --card-radius: 48px;
+            --primary: #8b5cf6;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Profile Layout */
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 160px 24px 80px;
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 80px;
+            gap: 40px;
+        }
+
+        .profile-left {
+            flex-shrink: 0;
+        }
+
+        .profile-name {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .profile-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--primary);
+            margin-top: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .profile-bio-box {
+            max-width: 550px;
+        }
+
+        .profile-bio {
+            font-size: 18px;
+            color: var(--text-main);
+            line-height: 1.6;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .tag-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag-pill {
+            padding: 6px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            transition: all 0.2s ease;
+        }
+
+        /* Bento Grid of Pills */
+        .bento-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .pill-row {
+            display: flex;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .expanding-pill {
+            position: relative;
+            background: #f3f4f6;
+            border-radius: var(--pill-radius);
+            height: 120px;
+            overflow: hidden;
+            transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            flex-grow: 1;
+        }
+
+        .expanding-pill:hover {
+            height: 480px;
+            border-radius: var(--card-radius);
+        }
+
+        .pill-image-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .pill-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: grayscale(10%) contrast(1.1);
+        }
+
+        .expanding-pill:hover .pill-image {
+            transform: scale(1.05);
+            filter: grayscale(0%) contrast(1);
+        }
+
+        /* Rich Content revealed at the bottom */
+        .pill-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 48px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.2s;
+            pointer-events: none;
+        }
+
+        .expanding-pill:hover .pill-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .pill-title {
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .pill-desc {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+        }
+
+        .pill-tags-inner {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pill-tag-lite {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        /* Avatar Square Row 2 */
+        .icon-square {
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+            border-radius: 40px;
+            background: #121212;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            align-self: flex-start;
+        }
+
+        .icon-square img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .pill-row {
+                flex-direction: column;
+            }
+
+            .icon-square {
+                width: 100%;
+                height: 140px;
+                border-radius: var(--pill-radius);
+            }
+
+            .expanding-pill:hover {
+                height: 420px;
+            }
+        }
+
+        /* Letter Section */
+        .letter-container {
+            background: #fdfaf6;
+            background-image: repeating-linear-gradient(transparent, transparent 31px, #e2e8f0 31px, #e2e8f0 32px);
+            border: 1px solid #e5e5e5;
+            border-radius: 2px 16px 2px 2px;
+            padding: 48px 48px 64px 48px;
+            max-width: 600px;
+            margin: 80px auto 120px;
+            box-shadow: 2px 14px 28px rgba(0, 0, 0, 0.06), inset 0 0 60px rgba(0, 0, 0, 0.03);
+            transform: rotate(-1.5deg);
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .letter-title {
+            font-family: 'Caveat', cursive;
+            font-size: 42px;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .letter-body {
+            font-family: 'Caveat', cursive;
+            font-size: 26px;
+            line-height: 32px;
+            font-weight: 500;
+        }
+
+        .letter-body p {
+            margin-bottom: 32px;
+        }
+
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .morph-box {
+            width: 40px;
+            height: 40px;
+            background: #000;
+            animation: morph 2s infinite ease-in-out;
+        }
+
+        @keyframes morph {
+
+            0%,
+            100% {
+                border-radius: 0%;
+                transform: rotate(0deg);
+            }
+
+            50% {
+                border-radius: 50%;
+                transform: rotate(180deg);
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div id="loading-page" class="loading-screen">
+        <div class="morph-box"></div>
+    </div>
 
-  <!-- Background Elements -->
+    <div id="navbar-placeholder"></div>
+    <script src="js/navbar.js"></script>
+    <script>initNavbar('light');</script>
 
-  <div class="top-glow"></div>
-  <div class="fixed bottom-0 left-0 w-full h-1"
-    style="background: linear-gradient(90deg, transparent, #8b5cf6, transparent); opacity: 0.2;"></div>
-
-  <!-- Navigation Bar -->
-  <header class="nav-shell">
-    <nav class="nav-inner">
-      <a href="index.html" class="nav-logo-link "
-        style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
-        <img src="image/logo.png" alt="Michelle.Design Logo"
-          style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
-          onmouseout="this.style.opacity='0.8'">
-      </a>
-      <a href="index.html">Home</a>
-      <a href="visual-playground.html">Visual Playground</a>
-      <a href="about-me.html" class="active">About Me</a>
-    </nav>
-  </header>
-
-  <!-- Main Content -->
-  <main class="studio-showcase">
-
-    <!-- INTRO -->
-    <!-- BOARD GAME ILLUSTRATIVE SECTION -->
-    <div class="selection-container bg-card-section">
-      <!-- LEFTSIDE: Character Select Aside -->
-      <aside class="side-nav">
-        <div class="side-selectors">
-          <div class="side-group-header">Profile</div>
-          <!-- Player Profile -->
-          <button class="select-btn active" data-role="player_profile" onclick="selectCharacter('player_profile')" style="--role-color: #8b5cf6;">
-            <span class="dot"></span>
-            <span>Player Profile</span>
-          </button>
-
-          <div class="side-group-header">Skills</div>
-          <!-- Design Manager -->
-          <button class="select-btn" data-role="design_manager" onclick="selectCharacter('design_manager')" style="--role-color: #60a5fa;">
-            <span class="dot"></span>
-            <span>Design Manager</span>
-          </button>
-          <!-- AI Vibe Coder -->
-          <button class="select-btn" data-role="ai_vibe_coder" onclick="selectCharacter('ai_vibe_coder')" style="--role-color: #f87171;">
-            <span class="dot"></span>
-            <span>AI Vibe Coder</span>
-          </button>
-
-          <div class="side-group-header">Traits</div>
-          <!-- LEGO Collector -->
-          <button class="select-btn" data-role="lego_collector" onclick="selectCharacter('lego_collector')" style="--role-color: #fbbf24;">
-            <span class="dot"></span>
-            <span>LEGO Collector</span>
-          </button>
-          <!-- Golfer -->
-          <button class="select-btn" data-role="golfer" onclick="selectCharacter('golfer')" style="--role-color: #34d399;">
-            <span class="dot"></span>
-            <span>Golfer</span>
-          </button>
-          <!-- Hamster Parent -->
-          <button class="select-btn" data-role="hamster_parent" onclick="selectCharacter('hamster_parent')" style="--role-color: #fb923c;">
-            <span class="dot"></span>
-            <span>Hamster Parent</span>
-          </button>
-        </div>
-      </aside>
-
-      <!-- RIGHTSIDE: Illustrative Board Game Card -->
-      <div class="card-root">
-        <div class="bg-card" id="bg-card">
-          <!-- Portrait -->
-          <div class="portrait-wrapper">
-            <img src="image/about_me/profile_pic.png" alt="Michelle Guan" class="bg-portrait" id="bg-portrait">
-          </div>
-
-          <!-- Bottom Footer -->
-          <div class="bg-footer">
-            <div class="bg-role-name" id="bg-role-name">Michelle Guan</div>
-            <div class="bg-role-desc" id="bg-role-desc">"Product designer exploring AI, interaction design, and playful
-              digital experiences. I enjoy building thoughtful products, experimenting with new ideas, and learning
-              through making.
-              <br>"Think Different" — Apple has always been one of my favorite quotes. It inspires me
-              not just to think differently, but to be the different one. To rethink how things work, and never let the
-              box define my work."
+    <main class="profile-container">
+        <!-- Header Section -->
+        <section class="profile-header">
+            <div class="profile-left">
+                <h1 class="profile-name">Michelle<br>Guan</h1>
+                <p class="profile-subtitle">Product Designer / AI Explorer</p>
             </div>
-          </div>
+            <div class="profile-bio-box">
+                <p class="profile-bio">
+                    I’m Michelle, a Product Designer obsessed with the intersection of complex systems and human
+                    emotion. I don't just design screens; I design the rules of play for digital products, and learning
+                    through making.
+                    <br><br>
+                    "Think Different" — Apple has always been one of my favorite quotes. It inspires me not just to
+                    think differently, but to be the different one. To rethink how things work, and never let the box
+                    define my work.
+                </p>
+                <div class="tag-list">
+                    <span class="tag-pill">UI/UX Design</span>
+                    <span class="tag-pill">Systems Thinking</span>
+                    <span class="tag-pill">AI Prototyping</span>
+                    <span class="tag-pill">Human Factors</span>
+                    <span class="tag-pill">Interactive Art</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Grid Section -->
+        <section class="bento-grid">
+            <!-- Row 1 -->
+            <div class="pill-row">
+                <div class="expanding-pill">
+                    <div class="pill-image-container">
+                        <img src="image/about_me/design.jpg" alt="Design Strategy" class="pill-image">
+                    </div>
+                    <div class="pill-content">
+                        <div class="pill-header">
+                            <h2 class="pill-title">DESIGN MANAGER</h2>
+                        </div>
+                        <p class="pill-desc">"I enjoy bringing ideas and people together to move a product forward. Good
+                            design management, to me, is helping teams make clearer and better decisions."</p>
+                        <div class="pill-tags-inner">
+                            <span class="pill-tag-lite">Team Leadership</span>
+                            <span class="pill-tag-lite">Product Strategy</span>
+                            <span class="pill-tag-lite">Decision Making</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="pill-row">
+                <div class="icon-square">
+                    <img src="image/about_me/michelle.png" alt="Michelle Avatar">
+                </div>
+                <div class="expanding-pill">
+                    <div class="pill-image-container">
+                        <img src="image/about_me/vibe_coding.png" alt="AI Experiments" class="pill-image">
+                    </div>
+                    <div class="pill-content">
+                        <div class="pill-header">
+                            <h2 class="pill-title">AI VIBE CODER</h2>
+                        </div>
+                        <p class="pill-desc">"I like experimenting with AI tools and turning rough ideas into working
+                            prototypes. It's fun to see how quickly something can go from a vibe to a real
+                            product."</p>
+                        <div class="pill-tags-inner">
+                            <span class="pill-tag-lite">Rapid Prototyping</span>
+                            <span class="pill-tag-lite">LLM Experiments</span>
+                            <span class="pill-tag-lite">Vibe Coding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="pill-row">
+                <div class="expanding-pill">
+                    <div class="pill-image-container">
+                        <img src="image/about_me/lego.jpg" alt="Systems Detail" class="pill-image">
+                    </div>
+                    <div class="pill-content">
+                        <div class="pill-header">
+                            <h2 class="pill-title">LEGO COLLECTOR</h2>
+                        </div>
+                        <p class="pill-desc">"I love building tiny worlds with LEGO and seeing how small pieces come
+                            together into something bigger. It's probably why I enjoy systems and structure in design
+                            so much."</p>
+                        <div class="pill-tags-inner">
+                            <span class="pill-tag-lite">Structured Systems</span>
+                            <span class="pill-tag-lite">Detail Oriented</span>
+                            <span class="pill-tag-lite">Modular Logic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="pill-row">
+                <div class="expanding-pill">
+                    <div class="pill-image-container">
+                        <img src="image/about_me/golf.jpg" alt="Patience & Precision" class="pill-image">
+                    </div>
+                    <div class="pill-content">
+                        <div class="pill-header">
+                            <h2 class="pill-title">GOLFER</h2>
+                        </div>
+                        <p class="pill-desc">"Golf is where I practice patience and focus outside of work. It's a quiet
+                            reminder that improvement comes from consistency."</p>
+                        <div class="pill-tags-inner">
+                            <span class="pill-tag-lite">Patience</span>
+                            <span class="pill-tag-lite">Mental Focus</span>
+                            <span class="pill-tag-lite">Consistency</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="expanding-pill">
+                    <div class="pill-image-container">
+                        <img src="image/about_me/hamster.jpg" alt="Curiosity & Empathy" class="pill-image">
+                    </div>
+                    <div class="pill-content">
+                        <div class="pill-header">
+                            <h2 class="pill-title">HAMSTER PARENT</h2>
+                        </div>
+                        <p class="pill-desc">"Life with a tiny hamster is surprisingly entertaining. They're small,
+                            curious, and somehow always in charge."</p>
+                        <div class="pill-tags-inner">
+                            <span class="pill-tag-lite">Curiosity</span>
+                            <span class="pill-tag-lite">Empathy</span>
+                            <span class="pill-tag-lite">Observation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Letter Section -->
+        <section class="mt-32">
+            <div class="letter-container">
+                <div
+                    style="position: absolute; top: -14px; left: 50%; width: 120px; height: 30px; background: rgba(255,255,255,0.6); transform: translateX(-50%) rotate(2deg); box-shadow: 0 1px 3px rgba(0,0,0,0.1); backdrop-filter: blur(2px);">
+                </div>
+
+                <h3 class="letter-title">A Letter from Michelle,</h3>
+                <div class="letter-body">
+                    <p>Like most kids, I grew up wondering what I wanted to be when I got older.</p>
+                    <p>At one point or another, I dreamed of being a 3D animator, an engineer, an illustrator, even
+                        starting my own fashion brand. Looking back, all these dreams had one thing in common: <b
+                            style="font-weight: 600; color: #111;">I wanted to create things that made people feel
+                            something.</b></p>
+                    <p>But when it came time to choose a major in college, I found myself... stuck. I didn’t know
+                        exactly what I wanted to do, I just knew I wanted to build things that mattered.</p>
+                    <p>That clarity didn’t come until my first year at the University of Washington, when I managed to
+                        land one of the last two spots in an Informatics class. That class changed everything.</p>
+                    <p>For the first time, I learned that design isn’t just about aesthetics, it’s everywhere. It’s in
+                        the shape of a door handle; the way subtitles appear on a screen. Suddenly, I started seeing
+                        design all around me, not just as art, but as systems created for people.</p>
+                    <p>That’s when I found UX. It was the perfect blend of creativity and logic, research, systems
+                        thinking, and problem-solving all in one. I was hooked.</p>
+                    <p>Since then, I’ve thrown myself into every design project I could find. This portfolio is a
+                        reflection of my journey. Thanks for being here.</p>
+                    <div style="margin-top: 60px; text-align: right; transform: rotate(-3deg);">- Michelle</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-20 border-t border-gray-50 text-center">
+        <img src="image/logo.png" alt="Logo" class="h-6 mx-auto mb-6 invert opacity-30">
+        <div class="flex justify-center gap-8 mb-8 text-sm font-semibold text-gray-500">
+            <a href="mailto:michelleguan321@gmail.com" class="hover:text-black transition-colors">Email</a>
+            <a href="https://www.linkedin.com/in/michelleguanux/" target="_blank" class="hover:text-black transition-colors">LinkedIn</a>
+            <a href="#" class="hover:text-black transition-colors">Twitter</a>
         </div>
-      </div>
-    </div>
-
-
-    <!-- LETTER SECTION -->
-    <div
-      style="background: #fdfaf6; background-image: repeating-linear-gradient(transparent, transparent 31px, #e2e8f0 31px, #e2e8f0 32px); border: 1px solid #e5e5e5; border-radius: 2px 16px 2px 2px; padding: 48px 48px 64px 48px; max-width: 600px; margin: 20px auto 120px auto; box-shadow: 2px 14px 28px rgba(0,0,0,0.06), inset 0 0 60px rgba(0,0,0,0.03); transform: rotate(-1.5deg); text-align: left; color: #2c3e50; position: relative; cursor: text;">
-
-      <!-- A piece of tape at the top -->
-      <div
-        style="position: absolute; top: -14px; left: 50%; width: 120px; height: 30px; background: rgba(255,255,255,0.6); transform: translateX(-50%) rotate(2deg); box-shadow: 0 1px 3px rgba(0,0,0,0.1); backdrop-filter: opacity(70%);">
-      </div>
-
-      <h3
-        style="font-family: 'Caveat', cursive; font-size: 42px; color: #000; margin-bottom: 20px; font-weight: 600; line-height: 1;">
-        A Letter from Michelle,</h3>
-
-      <div
-        style="font-family: 'Caveat', cursive; font-size: 26px; line-height: 32px; display: flex; flex-direction: column; gap: 0px; font-weight: 500; letter-spacing: 0.02em;">
-        <p style="margin: 0 0 32px 0;">Like most kids, I grew up wondering what I wanted to be when I got older.</p>
-        <p style="margin: 0 0 32px 0;">At one point or another, I dreamed of being a 3D animator, an engineer, an
-          illustrator, an influencer, an
-          architect, even starting my own fashion brand. Looking back, all these dreams had one thing in common: <b
-            style="font-weight: 600; color: #111;">I
-            wanted to create things that made people feel something.</b></p>
-        <p style="margin: 0 0 32px 0;">But when it came time to choose a major in college, I found myself... stuck.</p>
-        <p style="margin: 0 0 32px 0;">I didn’t know exactly what I wanted to do, I just knew I wanted to build things
-          that mattered.</p>
-        <p style="margin: 0 0 32px 0;">That clarity didn’t come until my first year at the University of Washington,
-          when I managed to land one of
-          the last two spots in an Informatics class.</p>
-        <p style="margin: 0 0 32px 0;">That class changed everything.</p>
-        <p style="margin: 0 0 32px 0;">For the first time, I learned that design isn’t just about aesthetics, it’s
-          everywhere. It’s in the shape of
-          a door handle; the order of buttons in an elevator; the way subtitles appear on a screen.</p>
-        <p style="margin: 0 0 32px 0;">Suddenly, I started seeing design all around me, not just as art, but as systems
-          created for (and sometimes
-          against) people.</p>
-        <p style="margin: 0 0 32px 0;">That’s when I found UX.</p>
-        <p style="margin: 0 0 32px 0;">It was the perfect blend of creativity and logic, research, systems thinking,
-          storytelling, and
-          problem-solving all in one. I was hooked.</p>
-        <p style="margin: 0 0 32px 0;">Since then, I’ve thrown myself into every design project I could find.</p>
-        <p style="margin: 0;">This portfolio is a reflection of my journey. Thanks for being here.</p>
-      </div>
-
-      <div
-        style="margin-top: 60px; font-family:'Caveat', cursive; font-size: 32px; font-weight: 600; text-align: right; color:#111; transform: rotate(-3deg);">
-        - Michelle
-      </div>
-    </div>
-
-
-
-
-
-    <footer class="contact-footer"
-      style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;">
-
-      <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
-        <img src="image/logo.png" alt="Michelle.Design Logo"
-          style="height: 32px; opacity: 0.8; filter: none; transition: opacity 0.3s; cursor: pointer;"
-          onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
-        <p
-          style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); margin: 0; letter-spacing: 0.05em;">
-          © 2026 Michelle Guan. All rights reserved.</p>
-      </div>
+        <p class="text-[11px] text-gray-300 font-mono tracking-widest uppercase">© 2026 Michelle Guan • Seattle, WA</p>
     </footer>
 
-    <!-- Background Script -->
-    <script src="js/cursor.js"></script>
-
     <script>
-      const roleData = {
-        player_profile: {
-          label: "Michelle Guan",
-          rank: "00",
-          icon: "👤",
-          color: "#8b5cf6",
-          image: "image/about_me/profile_pic.png",
-          desc: "Product designer exploring AI, interaction design, and playful digital experiences. I enjoy building thoughtful products, experimenting with new ideas, and learning through making.<br><br>\"Think Different\" — Apple has always been one of my favorite quotes. It inspires me not just to think differently, but to be the different one. To rethink how things work, and never let the box define my work."
-        },
-        design_manager: {
-          label: "Design Manager",
-          rank: "10",
-          icon: "★",
-          color: "#60a5fa",
-          image: "image/about_me/design.jpg",
-          desc: "I enjoy bringing ideas and people together to move a product forward. Good design management, to me, is helping teams make clearer and better decisions."
-        },
-        ai_vibe_coder: {
-          label: "AI Vibe Coder",
-          rank: "01",
-          icon: "⚡",
-          color: "#f87171",
-          image: "image/about_me/vibe_coding.png",
-          desc: "I like experimenting with AI tools and turning rough ideas into working prototypes. It’s fun to see how quickly something can go from a vibe to a real product."
-        },
-        lego_collector: {
-          label: "LEGO Collector",
-          rank: "∞",
-          icon: "⬚",
-          color: "#fbbf24",
-          image: "image/about_me/lego.jpg",
-          desc: "I love building tiny worlds with LEGO and seeing how small pieces come together into something bigger. It’s probably why I enjoy systems and structure in design so much."
-        },
-        golfer: {
-          label: "Golfer",
-          rank: "18",
-          icon: "⛳",
-          color: "#34d399",
-          image: "image/about_me/golf.jpg",
-          desc: "Golf is where I practice patience and focus outside of work. It’s a quiet reminder that improvement comes from consistency."
-        },
-        hamster_parent: {
-          label: "Hamster Parent",
-          rank: "03",
-          icon: "🐹",
-          color: "#fb923c",
-          image: "image/about_me/hamster.jpg",
-          desc: "Life with a tiny hamster is surprisingly entertaining. They’re small, curious, and somehow always in charge."
-        }
-      };
-
-      function selectCharacter(key) {
-        const active = roleData[key];
-        if (!active) return;
-
-        // Update Buttons
-        document.querySelectorAll('.select-btn').forEach(btn => {
-          btn.classList.toggle('active', btn.getAttribute('data-role') === key);
+        window.addEventListener('load', () => {
+            const loadingPage = document.getElementById('loading-page');
+            setTimeout(() => {
+                loadingPage.classList.add('hidden');
+            }, 600);
         });
-
-        const card = document.getElementById('bg-card');
-        const name = document.getElementById('bg-role-name');
-        const desc = document.getElementById('bg-role-desc');
-
-        if (!card) return;
-
-        // Animation Pop
-        card.classList.remove('content-pop');
-        void card.offsetWidth; // Force reflow
-        card.classList.add('content-pop');
-
-        setTimeout(() => {
-          if (name) name.innerText = active.label;
-          if (desc) desc.innerText = `"${active.desc}"`;
-          if (document.getElementById('bg-portrait')) {
-            document.getElementById('bg-portrait').src = active.image;
-          }
-        }, 50);
-      }
-
-      // 1. Audio Engine (Simple Beeps)
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      let audioEnabled = false;
-      window.addEventListener('click', () => {
-        if (!audioEnabled && audioCtx.state !== 'running') {
-          audioCtx.resume();
-          audioEnabled = true;
-        }
-      }, { once: true });
-
-      function playTone(freq, type = 'sine', duration = 0.1) {
-        if (audioCtx.state !== 'running') return;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
-      }
-
-      // SFX Listeners
-      document.querySelectorAll('.select-btn').forEach(el => {
-        el.addEventListener('mouseenter', () => playTone(800, 'triangle', 0.05));
-        el.addEventListener('click', () => playTone(400, 'square', 0.1));
-      });
-    </script>
     </script>
 </body>
 

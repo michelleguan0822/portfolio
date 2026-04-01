@@ -9,12 +9,58 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="case-study.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
       --primary: #A855F7;
+    }
+
+    /* Morph Loading Keyframes */
+    @keyframes morph-0 {
+        0%, 100% { transform: translate(0, 0) scale(1); border-radius: 0%; }
+        25% { transform: translate(20px, -20px) scale(1.2); border-radius: 50%; }
+        50% { transform: translate(40px, 0) scale(0.8); border-radius: 25%; }
+        75% { transform: translate(20px, 20px) scale(1.1); border-radius: 75%; }
+    }
+    @keyframes morph-1 {
+        0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 0%; }
+        25% { transform: translate(-20px, -20px) scale(1.3) rotate(90deg); border-radius: 50%; }
+        50% { transform: translate(-40px, 0) scale(0.7) rotate(180deg); border-radius: 25%; }
+        75% { transform: translate(-20px, 20px) scale(1.2) rotate(270deg); border-radius: 75%; }
+    }
+    @keyframes morph-2 {
+        0%, 100% { transform: translate(0, 0) scale(1); border-radius: 0%; }
+        25% { transform: translate(-20px, -20px) scale(0.9); border-radius: 100%; }
+        50% { transform: translate(0, 40px) scale(1.4); border-radius: 0%; }
+        75% { transform: translate(20px, 20px) scale(0.8); border-radius: 50%; }
+    }
+    @keyframes morph-3 {
+        0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 0%; }
+        25% { transform: translate(20px, 20px) scale(1.1) rotate(-90deg); border-radius: 25%; }
+        50% { transform: translate(0, -40px) scale(1.3) rotate(-180deg); border-radius: 100%; }
+        75% { transform: translate(-20px, -20px) scale(0.9) rotate(-270deg); border-radius: 75%; }
+    }
+
+    .loading-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.8s ease, visibility 0.8s;
+        color: white;
+    }
+
+    .loading-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
     }
   </style>
 </head>
@@ -23,19 +69,22 @@
   <div class="scroll-progress" id="bar"></div>
   <div class="bg-glow"></div>
 
-  <header class="nav-shell">
-    <nav class="nav-inner">
-      <a href="index.html" class="nav-logo-link"
-        style="padding: 0 8px; display: flex; align-items: center; border-radius: 999px; background: transparent !important;">
-        <img src="image/logo.png" alt="Michelle.Design Logo"
-          style="height: 16px; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'"
-          onmouseout="this.style.opacity='0.8'">
-      </a>
-      <a href="index.html">Home</a>
-      <a href="visual-playground.html">Visual Playground</a>
-      <a href="about-me.html">About Me</a>
-    </nav>
-  </header>
+  <!-- Morph Loading Screen -->
+  <div id="loading-page" class="loading-screen">
+    <div class="relative w-24 h-24">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="absolute w-4 h-4 bg-white" style="animation: morph-0 2s infinite ease-in-out; animation-delay: 0s;"></div>
+        <div class="absolute w-4 h-4 bg-white" style="animation: morph-1 2s infinite ease-in-out; animation-delay: 0.2s;"></div>
+        <div class="absolute w-4 h-4 bg-white" style="animation: morph-2 2s infinite ease-in-out; animation-delay: 0.4s;"></div>
+        <div class="absolute w-4 h-4 bg-white" style="animation: morph-3 2s infinite ease-in-out; animation-delay: 0.6s;"></div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Navigation Bar Placeholder -->
+    <div id="navbar-placeholder"></div>
+    <script src="js/navbar.js"></script>
+    <script>initNavbar('dark');</script>
 
   <div class="container hero" style="text-align: center;">
     <span class="hero-kicker">Oltiva AI Document Insights</span>
@@ -91,7 +140,7 @@
       <!-- =========================
            SNAPSHOT
       ========================== -->
-      <div id="snapshot" class="section">
+      <div id="snapshot" class="section border-t-0 pt-0">
         <span class="section-label">30-second Snapshot</span>
         <h2>From confusion to confidence.</h2>
         <p class="lead-text">
@@ -367,7 +416,7 @@
       <div class="other-work-section">
         <h2 class="other-work-title">View Other Work</h2>
         <div class="other-work-grid">
-          <a href="unimo.html" class="other-card">
+          <a href="unimo-full.html" class="other-card">
             <div class="other-card-img">
               <img src="image/Unimo/hero.jpg" alt="Unimo Case Study">
             </div>
@@ -376,7 +425,7 @@
               <h3 class="other-card-title">UNIMO — Make Emotions Visible</h3>
             </div>
           </a>
-          <a href="TMS.html" class="other-card">
+          <a href="TMS-full.html" class="other-card">
             <div class="other-card-img">
               <img src="image/TMS/hero.png" alt="TMS Case Study">
             </div>
@@ -444,24 +493,18 @@
       });
     });
   </script>
-  <script src="js/cursor.js"></script>
-  <button id="backToTop" class="back-to-top" title="Back to Top">↑</button>
-
   <script>
-    (function () {
-      const btn = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-          btn.classList.add('visible');
-        } else {
-          btn.classList.remove('visible');
-        }
-      }, { passive: true });
-      btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    })();
+    // Handle Loading Screen Dismissal
+    window.addEventListener('load', () => {
+      const loadingPage = document.getElementById('loading-page');
+      if (loadingPage) {
+        setTimeout(() => {
+          loadingPage.classList.add('hidden');
+        }, 1500); 
+      }
+    });
   </script>
+  <script src="js/cursor.js"></script>
 </body>
 
 </html>
