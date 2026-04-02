@@ -39,26 +39,28 @@
   </style>
   <script>
     if (window.location.search.includes('modal=true')) {
-        document.documentElement.setAttribute('data-modal', 'true');
+      document.documentElement.setAttribute('data-modal', 'true');
     }
   </script>
   <style>
-    [data-modal="true"] #main-header, 
-    [data-modal="true"] .footer, 
-    [data-modal="true"] #backToTop, 
-    [data-modal="true"] .other-work-section, 
-    [data-modal="true"] .bg-glow, 
-    [data-modal="true"] #loading-page, 
-    [data-modal="true"] .scroll-progress { 
-        display: none !important; 
+    [data-modal="true"] #main-header,
+    [data-modal="true"] .footer,
+    [data-modal="true"] #backToTop,
+    [data-modal="true"] .other-work-section,
+    [data-modal="true"] .bg-glow,
+    [data-modal="true"] #loading-page,
+    [data-modal="true"] .scroll-progress {
+      display: none !important;
     }
-    [data-modal="true"] body { 
-        background: #000000 !important; 
-        padding-bottom: 0 !important; 
-        border-radius: 32px; 
+
+    [data-modal="true"] body {
+      background: #000000 !important;
+      padding-bottom: 0 !important;
+      border-radius: 32px;
     }
-    [data-modal="true"] .hero { 
-        padding-top: 60px !important; 
+
+    [data-modal="true"] .hero {
+      padding-top: 60px !important;
     }
   </style>
 </head>
@@ -67,32 +69,37 @@
   <div class="scroll-progress" id="bar"></div>
   <div class="bg-glow"></div>
 
-    <!-- Navigation Bar Placeholder -->
-    <div id="navbar-placeholder"></div>
-    <script src="js/navbar.js"></script>
-    <script>initNavbar('light');</script>
+  <!-- Navigation Bar Placeholder -->
+  <div id="navbar-placeholder"></div>
+  <script src="js/navbar.js"></script>
+  <script>initNavbar('light');</script>
 
-    <div class="min-h-screen bg-[#fafafa] text-slate-900 selection:bg-brand-primary/10 selection:text-brand-primary" style="font-family: 'Plus Jakarta Sans', sans-serif">
-    
+  <div class="min-h-screen bg-[#fafafa] text-slate-900 selection:bg-brand-primary/10 selection:text-brand-primary"
+    style="font-family: 'Plus Jakarta Sans', sans-serif">
+
     <!-- Hero Section -->
     <section class="pt-32 pb-20 px-6">
       <div class="max-w-6xl mx-auto text-center">
-        <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8 bg-clip-text text-transparent bg-gradient-to-b from-slate-900 via-brand-dark/80 to-slate-500">
-          A lighter way to <br/> 
+        <h1
+          class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8 bg-clip-text text-transparent bg-gradient-to-b from-slate-900 via-brand-dark/80 to-slate-500">
+          A lighter way to <br />
           <span class="italic font-serif text-brand-primary">express</span> emotions.
         </h1>
         <p class="text-xl text-slate-500 max-w-2xl mx-auto mb-16 leading-relaxed font-medium">
-          Unimo moves emotional expression out of text-based conversations and into something people can see, feel, and interact with.
+          Unimo moves emotional expression out of text-based conversations and into something people can see, feel, and
+          interact with.
         </p>
-        
+
         <!-- Large Hero/Demo Video -->
         <div class="max-w-5xl mx-auto group cursor-pointer">
-          <div class="relative aspect-video bg-white rounded-[3rem] shadow-2xl shadow-brand-primary/10 border border-slate-200 overflow-hidden transition-all duration-700 hover:scale-[1.01] hover:shadow-brand-primary/20">
+          <div
+            class="relative aspect-video bg-white rounded-[3rem] shadow-2xl shadow-brand-primary/10 border border-slate-200 overflow-hidden transition-all duration-700 hover:scale-[1.01] hover:shadow-brand-primary/20">
             <video autoplay muted loop playsinline preload="metadata" class="w-full h-full object-cover">
-              <source src="image/Unimo/hero_video.mp4" type="video/mp4">
+              <source src="image/Unimo/battle.mov" type="video/mp4">
               Your browser does not support the video tag.
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-primary/5 to-transparent pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-primary/5 to-transparent pointer-events-none">
+            </div>
           </div>
         </div>
       </div>
@@ -110,16 +117,24 @@
             UNIMO is an emotional companion app designed for Gen Z.
           </h2>
           <p class="text-lg text-slate-600 leading-relaxed mb-6">
-            We noticed that most AI emotional support products still treat feelings as <span class="text-brand-primary font-semibold">conversation data</span>, asking users to type, explain, and revisit long threads.
+            We noticed that most AI emotional support products still treat feelings as <span
+              class="text-brand-primary font-semibold">conversation data</span>, asking users to type, explain, and
+            revisit long threads.
           </p>
           <p class="text-lg text-slate-600 leading-relaxed mb-12">
-            UNIMO reimagines emotional expression as something <span class="text-brand-primary font-semibold">visual and interactive</span>, turning meaningful moments into <span class="text-brand-primary font-semibold">collectible emotional artifacts</span> users can keep, feel, and return to.
+            UNIMO reimagines emotional expression as something <span class="text-brand-primary font-semibold">visual and
+              interactive</span>, turning meaningful moments into <span
+              class="text-brand-primary font-semibold">collectible emotional artifacts</span> users can keep, feel, and
+            return to.
           </p>
-          
+
           <!-- View Full Case Study Button -->
           <div class="flex">
-            <a href="unimo-full.html" target="_blank" class="relative h-12 px-8 overflow-hidden bg-brand-dark rounded-full inline-flex items-center justify-center group transition-all duration-300 hover:shadow-xl hover:shadow-brand-primary/20">
-              <div class="absolute inset-0 bg-gradient-to-r from-brand-primary via-brand-lavender to-brand-sky opacity-40 group-hover:opacity-80 transition-opacity duration-300 blur-md"></div>
+            <a href="unimo-full.html" target="_blank"
+              class="relative h-12 px-8 overflow-hidden bg-brand-dark rounded-full inline-flex items-center justify-center group transition-all duration-300 hover:shadow-xl hover:shadow-brand-primary/20">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-brand-primary via-brand-lavender to-brand-sky opacity-40 group-hover:opacity-80 transition-opacity duration-300 blur-md">
+              </div>
               <div class="relative flex items-center gap-2 text-white font-semibold">
                 <span>View Full Case Study</span>
                 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
@@ -148,80 +163,105 @@
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
           <h2 class="text-4xl md:text-5xl font-bold tracking-tight !text-brand-sky">Overview</h2>
           <p class="max-w-xl text-slate-400 text-lg leading-relaxed">
-            Experience an emotional world where feelings aren't just data—they're the foundation of a growing interactive universe.
+            Experience an emotional world where feelings aren't just data—they're the foundation of a growing
+            interactive universe.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-12 gap-4 h-full md:min-h-[800px]">
-          <div class="md:col-span-7 md:row-span-2 bg-[#121212] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group border border-white/5">
+          <div
+            class="md:col-span-7 md:row-span-2 bg-[#121212] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group border border-white/5">
             <div class="relative z-10">
               <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">An Emotional AI Universe for Gen-Z</h3>
               <p class="text-slate-400 max-w-sm mb-6">
-                UNIMO turns daily emotions into interactive moments through AI companionship, collectible cards, and a world users want to return to.
+                UNIMO turns daily emotions into interactive moments through AI companionship, collectible cards, and a
+                world users want to return to.
               </p>
             </div>
             <div class="relative mt-4 flex justify-center items-end h-[450px]">
-              <div class="w-56 h-[400px] bg-gradient-to-b from-brand-primary/20 to-brand-dark/40 border-t border-x border-white/10 rounded-t-[3rem] p-4 translate-y-10 group-hover:translate-y-4 transition-transform duration-700 shadow-2xl">
-                  <div class="w-full h-full bg-[#1a1a1a] rounded-t-[2.5rem] overflow-hidden relative group/inner">
-                      <img src="image/Unimo/home.PNG" alt="App Preview" class="w-full h-full object-cover" loading="lazy">
-                      <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent flex flex-col items-center justify-end pb-8">
-                      </div>
+              <div
+                class="w-56 h-[400px] bg-gradient-to-b from-brand-primary/20 to-brand-dark/40 border-t border-x border-white/10 rounded-t-[3rem] p-4 translate-y-10 group-hover:translate-y-4 transition-transform duration-700 shadow-2xl">
+                <div class="w-full h-full bg-[#1a1a1a] rounded-t-[2.5rem] overflow-hidden relative group/inner">
+                  <img src="image/Unimo/home.PNG" alt="App Preview" class="w-full h-full object-cover" loading="lazy">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent flex flex-col items-center justify-end pb-8">
                   </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="md:col-span-12 lg:col-span-5 bg-gradient-to-br from-brand-primary to-brand-dark rounded-[2.5rem] p-8 relative overflow-hidden group min-h-[300px]">
+          <div
+            class="md:col-span-12 lg:col-span-5 bg-gradient-to-br from-brand-primary to-brand-dark rounded-[2.5rem] p-8 relative overflow-hidden group min-h-[300px]">
             <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">Emotions Become Collectible Assets</h3>
             <p class="text-brand-lavender/70 mb-8">
-              Each meaningful interaction can be transformed into an Emotion Card, making feelings visible, memorable, and worth keeping.
+              Each meaningful interaction can be transformed into an Emotion Card, making feelings visible, memorable,
+              and worth keeping.
             </p>
-            <div class="absolute bottom-[-20px] right-[-20px] opacity-20 rotate-12 group-hover:rotate-0 transition-transform duration-500">
+            <div
+              class="absolute bottom-[-20px] right-[-20px] opacity-20 rotate-12 group-hover:rotate-0 transition-transform duration-500">
               <div class="grid grid-cols-3 gap-2">
-                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
-                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
-                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
-                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
-                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
-                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
-                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
-                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
-                  <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i
+                    data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i
+                    data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i
+                    data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i
+                    data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i
+                    data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i
+                    data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i
+                    data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i
+                    data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
+                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center"><i
+                    data-lucide="credit-card" class="text-brand-primary w-8 h-8"></i></div>
               </div>
             </div>
           </div>
 
-          <div class="md:col-span-12 lg:col-span-5 bg-[#121212] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group border border-white/5">
+          <div
+            class="md:col-span-12 lg:col-span-5 bg-[#121212] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group border border-white/5">
             <div class="flex flex-col gap-8 items-start">
               <div class="flex-1">
-                  <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">Playful Systems That Keep Users Engaged</h3>
-                  <p class="text-slate-400 mb-0">
-                      From card pulls to battles, voting, upgrades, and revival, UNIMO uses game-like loops to make emotional support feel lighter and more engaging.
-                  </p>
+                <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">Playful Systems That Keep Users Engaged
+                </h3>
+                <p class="text-slate-400 mb-0">
+                  From card pulls to battles, voting, upgrades, and revival, UNIMO uses game-like loops to make
+                  emotional support feel lighter and more engaging.
+                </p>
               </div>
               <div class="flex -space-x-8 group-hover:space-x-2 transition-all duration-500">
-                  <div class="w-32 h-20 bg-slate-800 rounded-xl border border-white/10 flex items-center justify-center rotate-[-5deg] shadow-xl">
-                      <i data-lucide="trophy" class="text-yellow-500/50 w-6 h-6"></i>
-                  </div>
-                  <div class="w-32 h-20 bg-brand-primary rounded-xl border border-white/20 flex items-center justify-center rotate-[5deg] shadow-xl relative z-10">
-                      <i data-lucide="zap" class="text-white w-6 h-6 fill-white/20"></i>
-                  </div>
+                <div
+                  class="w-32 h-20 bg-slate-800 rounded-xl border border-white/10 flex items-center justify-center rotate-[-5deg] shadow-xl">
+                  <i data-lucide="trophy" class="text-yellow-500/50 w-6 h-6"></i>
+                </div>
+                <div
+                  class="w-32 h-20 bg-brand-primary rounded-xl border border-white/20 flex items-center justify-center rotate-[5deg] shadow-xl relative z-10">
+                  <i data-lucide="zap" class="text-white w-6 h-6 fill-white/20"></i>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="md:col-span-12 bg-[#121212] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group border border-white/5">
+          <div
+            class="md:col-span-12 bg-[#121212] rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group border border-white/5">
             <div class="h-full flex flex-col md:flex-row items-center justify-between gap-12">
               <div class="flex-1">
-                  <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">More Than an App, A Scalable IP World</h3>
-                  <p class="text-slate-400 max-w-2xl">
-                      With distinctive characters, emotional storytelling, and a growing universe, UNIMO is designed to expand into content, community, and branded experiences.
-                  </p>
+                <h3 class="text-2xl font-bold tracking-tight mb-4 text-white">More Than an App, A Scalable IP World</h3>
+                <p class="text-slate-400 max-w-2xl">
+                  With distinctive characters, emotional storytelling, and a growing universe, UNIMO is designed to
+                  expand into content, community, and branded experiences.
+                </p>
               </div>
               <div class="shrink-0">
-                  <div class="w-40 h-40 bg-brand-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                      <i data-lucide="globe" class="text-brand-primary w-16 h-16"></i>
-                  </div>
+                <div
+                  class="w-40 h-40 bg-brand-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                  <i data-lucide="globe" class="text-brand-primary w-16 h-16"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -240,46 +280,59 @@
         <div class="space-y-12">
           <div class="grid md:grid-cols-3 gap-8">
             <!-- Logo Specs -->
-            <div class="md:col-span-2 bg-white rounded-3xl p-10 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12">
+            <div
+              class="md:col-span-2 bg-white rounded-3xl p-10 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12">
               <div class="relative group">
-                  <div class="w-48 h-48 bg-white rounded-[2.5rem] flex items-center justify-center overflow-hidden shadow-2xl relative border border-slate-100 p-8">
-                      <img src="image/Unimo/unimo_logo.png" alt="Unimo Logo" class="w-full h-full object-contain" loading="lazy">
-                      <div class="absolute inset-0 border border-slate-200/20 grid grid-cols-4 grid-rows-4 pointer-events-none"></div>
+                <div
+                  class="w-48 h-48 bg-white rounded-[2.5rem] flex items-center justify-center overflow-hidden shadow-2xl relative border border-slate-100 p-8">
+                  <img src="image/Unimo/unimo_logo.png" alt="Unimo Logo" class="w-full h-full object-contain"
+                    loading="lazy">
+                  <div
+                    class="absolute inset-0 border border-slate-200/20 grid grid-cols-4 grid-rows-4 pointer-events-none">
                   </div>
+                </div>
               </div>
               <div class="flex-1">
-                  <h3 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-800 mb-4">Unimo</h3>
-                  <p class="text-slate-400 font-mono text-xs font-bold uppercase tracking-widest">Brandmark Proportion</p>
+                <h3 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-800 mb-4">Unimo</h3>
+                <p class="text-slate-400 font-mono text-xs font-bold uppercase tracking-widest">Brandmark Proportion</p>
               </div>
             </div>
 
             <!-- Color Palette -->
             <div class="bg-white rounded-3xl p-10 shadow-sm border border-slate-100">
               <h4 class="text-2xl font-bold tracking-tight mb-8 flex items-center gap-2 text-lg text-slate-800">
-                  <i data-lucide="palette" class="text-brand-primary w-[18px] h-[18px]"></i>
-                  Color Palette
+                <i data-lucide="palette" class="text-brand-primary w-[18px] h-[18px]"></i>
+                Color Palette
               </h4>
               <div class="flex flex-wrap gap-6 justify-center">
-                  <div class="text-center group">
-                      <div class="bg-brand-primary w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform"></div>
-                      <p class="text-[10px] font-bold text-slate-800">Primary</p>
-                      <p class="text-[10px] font-mono text-slate-400">#7983D9</p>
+                <div class="text-center group">
+                  <div
+                    class="bg-brand-primary w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform">
                   </div>
-                  <div class="text-center group">
-                      <div class="bg-brand-secondary w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform"></div>
-                      <p class="text-[10px] font-bold text-slate-800">Nature</p>
-                      <p class="text-[10px] font-mono text-slate-400">#70C05B</p>
+                  <p class="text-[10px] font-bold text-slate-800">Primary</p>
+                  <p class="text-[10px] font-mono text-slate-400">#7983D9</p>
+                </div>
+                <div class="text-center group">
+                  <div
+                    class="bg-brand-secondary w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform">
                   </div>
-                  <div class="text-center group">
-                      <div class="bg-brand-accent w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform"></div>
-                      <p class="text-[10px] font-bold text-slate-800">Joy</p>
-                      <p class="text-[10px] font-mono text-slate-400">#FAE69E</p>
+                  <p class="text-[10px] font-bold text-slate-800">Nature</p>
+                  <p class="text-[10px] font-mono text-slate-400">#70C05B</p>
+                </div>
+                <div class="text-center group">
+                  <div
+                    class="bg-brand-accent w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform">
                   </div>
-                  <div class="text-center group">
-                      <div class="bg-brand-dark w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform"></div>
-                      <p class="text-[10px] font-bold text-slate-800">Deep</p>
-                      <p class="text-[10px] font-mono text-slate-400">#1D1C5C</p>
+                  <p class="text-[10px] font-bold text-slate-800">Joy</p>
+                  <p class="text-[10px] font-mono text-slate-400">#FAE69E</p>
+                </div>
+                <div class="text-center group">
+                  <div
+                    class="bg-brand-dark w-14 h-14 rounded-full shadow-inner border border-slate-100 mb-3 group-hover:scale-110 transition-transform">
                   </div>
+                  <p class="text-[10px] font-bold text-slate-800">Deep</p>
+                  <p class="text-[10px] font-mono text-slate-400">#1D1C5C</p>
+                </div>
               </div>
             </div>
           </div>
@@ -289,78 +342,88 @@
             <!-- Typography Card -->
             <div class="bg-white rounded-3xl p-10 shadow-sm border border-slate-100 relative overflow-hidden">
               <h4 class="text-2xl font-bold tracking-tight mb-8 flex items-center gap-2 text-lg text-slate-800">
-                  <i data-lucide="type" class="text-brand-primary w-[18px] h-[18px]"></i>
-                  Typography
+                <i data-lucide="type" class="text-brand-primary w-[18px] h-[18px]"></i>
+                Typography
               </h4>
               <div class="space-y-6">
-                  <div>
-                      <p class="text-slate-400 mb-1 font-mono text-xs font-bold uppercase tracking-widest">Primary / Heading</p>
-                      <p class="text-4xl font-black text-slate-800 tracking-tighter">ABCDEFGHI</p>
-                  </div>
-                  <div class="pt-4 border-t border-slate-50">
-                      <p class="text-slate-400 mb-1 font-mono text-xs font-bold uppercase tracking-widest">Secondary / Plus Jakarta Sans</p>
-                      <p class="text-2xl font-medium text-slate-600 tracking-tight">0123456789</p>
-                  </div>
+                <div>
+                  <p class="text-slate-400 mb-1 font-mono text-xs font-bold uppercase tracking-widest">Primary / Heading
+                  </p>
+                  <p class="text-4xl font-black text-slate-800 tracking-tighter">ABCDEFGHI</p>
+                </div>
+                <div class="pt-4 border-t border-slate-50">
+                  <p class="text-slate-400 mb-1 font-mono text-xs font-bold uppercase tracking-widest">Secondary / Plus
+                    Jakarta Sans</p>
+                  <p class="text-2xl font-medium text-slate-600 tracking-tight">0123456789</p>
+                </div>
               </div>
-              <div class="absolute -right-10 -bottom-10 text-[180px] font-black text-slate-50/80 leading-none select-none">Aa</div>
+              <div
+                class="absolute -right-10 -bottom-10 text-[180px] font-black text-slate-50/80 leading-none select-none">
+                Aa</div>
             </div>
 
             <!-- Target Audience -->
             <div class="md:col-span-2 bg-white rounded-3xl p-10 shadow-sm border border-slate-100">
               <div class="flex justify-between items-start mb-10">
-                  <div>
-                      <h4 class="text-2xl font-bold tracking-tight text-slate-800 mb-1">Target Audience</h4>
-                      <p class="text-slate-400 text-sm">Behavioral Analysis</p>
-                  </div>
-                  <i data-lucide="users" class="text-brand-primary opacity-20 w-10 h-10"></i>
+                <div>
+                  <h4 class="text-2xl font-bold tracking-tight text-slate-800 mb-1">Target Audience</h4>
+                  <p class="text-slate-400 text-sm">Behavioral Analysis</p>
+                </div>
+                <i data-lucide="users" class="text-brand-primary opacity-20 w-10 h-10"></i>
               </div>
               <div class="grid grid-cols-2 gap-8">
-                  <div class="p-6 bg-brand-primary/5 border border-brand-primary/10 rounded-2xl group">
-                      <p class="text-5xl font-black text-brand-primary mb-2">54%</p>
-                      <p class="text-brand-primary/40 text-xs font-bold uppercase tracking-widest">Age 16 - 24</p>
-                  </div>
-                  <div class="p-6 bg-brand-secondary/5 border border-brand-secondary/10 rounded-2xl group">
-                      <p class="text-5xl font-black text-brand-secondary mb-2">61%</p>
-                      <p class="text-brand-secondary/40 text-xs font-bold uppercase tracking-widest">Visual First</p>
-                  </div>
+                <div class="p-6 bg-brand-primary/5 border border-brand-primary/10 rounded-2xl group">
+                  <p class="text-5xl font-black text-brand-primary mb-2">54%</p>
+                  <p class="text-brand-primary/40 text-xs font-bold uppercase tracking-widest">Age 16 - 24</p>
+                </div>
+                <div class="p-6 bg-brand-secondary/5 border border-brand-secondary/10 rounded-2xl group">
+                  <p class="text-5xl font-black text-brand-secondary mb-2">61%</p>
+                  <p class="text-brand-secondary/40 text-xs font-bold uppercase tracking-widest">Visual First</p>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Row 3: Mascot States -->
           <div class="bg-slate-900 rounded-[3rem] p-12 text-white relative border border-white/5 shadow-2xl">
-              <div class="absolute top-0 right-0 p-8">
-                  <i data-lucide="box" class="text-white/10 w-[120px] h-[120px]"></i>
-              </div>
-              <div class="relative z-10">
-                  <h4 class="text-4xl md:text-5xl font-bold tracking-tight mb-10 text-white">Mascot States & Assets</h4>
-                  <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                      <div class="text-center group cursor-help">
-                          <div class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
-                              <img src="image/Unimo/Ip/Gigi.png" alt="Gigi" class="w-full h-full object-contain" loading="lazy">
-                          </div>
-                           <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Gigi</p>
-                      </div>
-                      <div class="text-center group cursor-help">
-                          <div class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
-                              <img src="image/Unimo/Ip/Lalalu.png" alt="Lalalu" class="w-full h-full object-contain" loading="lazy">
-                          </div>
-                           <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Lalalu</p>
-                      </div>
-                      <div class="text-center group cursor-help">
-                          <div class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
-                              <img src="image/Unimo/Ip/Nono.png" alt="Nono" class="w-full h-full object-contain" loading="lazy">
-                          </div>
-                           <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Nono</p>
-                      </div>
-                      <div class="text-center group cursor-help">
-                          <div class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
-                           <img src="image/Unimo/Ip/pink_owl.png" alt="Rico" class="w-full h-full object-contain" loading="lazy">
-                          </div>
-                          <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Rico</p>
-                      </div>
+            <div class="absolute top-0 right-0 p-8">
+              <i data-lucide="box" class="text-white/10 w-[120px] h-[120px]"></i>
+            </div>
+            <div class="relative z-10">
+              <h4 class="text-4xl md:text-5xl font-bold tracking-tight mb-10 text-white">Mascot States & Assets</h4>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center group cursor-help">
+                  <div
+                    class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
+                    <img src="image/Unimo/Ip/Gigi.png" alt="Gigi" class="w-full h-full object-contain" loading="lazy">
                   </div>
+                  <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Gigi</p>
+                </div>
+                <div class="text-center group cursor-help">
+                  <div
+                    class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
+                    <img src="image/Unimo/Ip/Lalalu.png" alt="Lalalu" class="w-full h-full object-contain"
+                      loading="lazy">
+                  </div>
+                  <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Lalalu</p>
+                </div>
+                <div class="text-center group cursor-help">
+                  <div
+                    class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
+                    <img src="image/Unimo/Ip/Nono.png" alt="Nono" class="w-full h-full object-contain" loading="lazy">
+                  </div>
+                  <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Nono</p>
+                </div>
+                <div class="text-center group cursor-help">
+                  <div
+                    class="aspect-square bg-white/5 rounded-[2.5rem] flex flex-col items-center justify-center mb-4 border border-white/5 group-hover:scale-105 group-hover:bg-white/10 transition-all duration-300 overflow-hidden p-6">
+                    <img src="image/Unimo/Ip/pink_owl.png" alt="Rico" class="w-full h-full object-contain"
+                      loading="lazy">
+                  </div>
+                  <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">Rico</p>
+                </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
@@ -369,65 +432,78 @@
     <!-- Experience the App Section -->
     <section class="py-32 px-6 bg-brand-dark text-white overflow-hidden">
       <div class="max-w-6xl mx-auto relative z-10">
-          <div class="mb-20">
-              <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-2 !text-brand-sky">Experience the App</h2>
-              <p class="text-slate-500 text-lg leading-relaxed">A visual journey through the Unimo interface.</p>
-          </div>
+        <div class="mb-20">
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-2 !text-brand-sky">Experience the App</h2>
+          <p class="text-slate-500 text-lg leading-relaxed">A visual journey through the Unimo interface.</p>
+        </div>
 
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-              <div class="flex flex-col gap-6 ">
-                  <div class="flex items-center justify-center gap-3">
-                      <div class="p-2 bg-white/5 rounded-lg border border-white/10">
-                          <i data-lucide="smile" class="text-brand-primary w-5 h-5"></i>
-                      </div>
-                      <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Enter Your Emotional World</h4>
-                  </div>
-                  <div class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
-                      <img src="image/Unimo/home.PNG" alt="Home Screen" class="w-full h-full object-cover" loading="lazy">
-                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
-                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none"></div>
-                  </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <div class="flex flex-col gap-6 ">
+            <div class="flex items-center justify-center gap-3">
+              <div class="p-2 bg-white/5 rounded-lg border border-white/10">
+                <i data-lucide="smile" class="text-brand-primary w-5 h-5"></i>
               </div>
-              <div class="flex flex-col gap-6 md:translate-y-12">
-                  <div class="flex items-center justify-center gap-3">
-                      <div class="p-2 bg-white/5 rounded-lg border border-white/10">
-                          <i data-lucide="message-square" class="text-brand-lavender w-5 h-5"></i>
-                      </div>
-                      <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Chat With Your AI Companion</h4>
-                  </div>
-                  <div class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
-                      <img src="image/Unimo/chat.PNG" alt="Chat Screen" class="w-full h-full object-cover" loading="lazy">
-                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
-                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none"></div>
-                  </div>
+              <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Enter Your Emotional World</h4>
+            </div>
+            <div
+              class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
+              <img src="image/Unimo/home.PNG" alt="Home Screen" class="w-full h-full object-cover" loading="lazy">
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none">
               </div>
-              <div class="flex flex-col gap-6 ">
-                  <div class="flex items-center justify-center gap-3">
-                      <div class="p-2 bg-white/5 rounded-lg border border-white/10">
-                          <i data-lucide="layers" class="text-brand-sky w-5 h-5"></i>
-                      </div>
-                      <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Feelings Become Cards</h4>
-                  </div>
-                  <div class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
-                      <img src="image/Unimo/collection.png" alt="Collect Screen" class="w-full h-full object-cover" loading="lazy">
-                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
-                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none"></div>
-                  </div>
-              </div>
-              <div class="flex flex-col gap-6 md:translate-y-12">
-                  <div class="flex items-center justify-center gap-3">
-                      <div class="p-2 bg-white/5 rounded-lg border border-white/10">
-                          <i data-lucide="zap" class="text-brand-secondary w-5 h-5"></i>
-                      </div>
-                      <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Battle With Your Emotions for Fun</h4>
-                  </div>
-                  <div class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
-                      <img src="image/Unimo/battle.JPG" alt="Battle Screen" class="w-full h-full object-cover" loading="lazy">
-                      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
-                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none"></div>
-                  </div>
-              </div>
+            </div>
           </div>
+          <div class="flex flex-col gap-6 md:translate-y-12">
+            <div class="flex items-center justify-center gap-3">
+              <div class="p-2 bg-white/5 rounded-lg border border-white/10">
+                <i data-lucide="message-square" class="text-brand-lavender w-5 h-5"></i>
+              </div>
+              <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Chat With Your AI Companion</h4>
+            </div>
+            <div
+              class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
+              <img src="image/Unimo/chat.PNG" alt="Chat Screen" class="w-full h-full object-cover" loading="lazy">
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none">
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-6 ">
+            <div class="flex items-center justify-center gap-3">
+              <div class="p-2 bg-white/5 rounded-lg border border-white/10">
+                <i data-lucide="layers" class="text-brand-sky w-5 h-5"></i>
+              </div>
+              <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Feelings Become Cards</h4>
+            </div>
+            <div
+              class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
+              <img src="image/Unimo/collection.png" alt="Collect Screen" class="w-full h-full object-cover"
+                loading="lazy">
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none">
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-6 md:translate-y-12">
+            <div class="flex items-center justify-center gap-3">
+              <div class="p-2 bg-white/5 rounded-lg border border-white/10">
+                <i data-lucide="zap" class="text-brand-secondary w-5 h-5"></i>
+              </div>
+              <h4 class="text-2xl font-bold tracking-tight text-white text-lg">Battle With Your Emotions for Fun</h4>
+            </div>
+            <div
+              class="w-full aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-2xl overflow-hidden relative group hover:border-brand-primary/30 transition-all duration-500">
+              <img src="image/Unimo/battle.JPG" alt="Battle Screen" class="w-full h-full object-cover" loading="lazy">
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-b-2xl"></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-30 pointer-events-none">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -436,21 +512,29 @@
       <div class="max-w-6xl mx-auto py-24 px-6 text-center">
         <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-12">View Other Work</h2>
         <div class="grid md:grid-cols-2 gap-8">
-          <a href="TMS.html" class="group block text-left bg-white rounded-3xl overflow-hidden border border-slate-200 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-primary/10 hover:-translate-y-2">
+          <a href="TMS.html"
+            class="group block text-left bg-white rounded-3xl overflow-hidden border border-slate-200 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-primary/10 hover:-translate-y-2">
             <div class="aspect-video bg-slate-100 overflow-hidden">
-              <img src="image/TMS/hero.png" alt="TMS Case Study" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+              <img src="image/TMS/hero.png" alt="TMS Case Study"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy">
             </div>
             <div class="p-8">
-              <span class="text-xs font-bold uppercase tracking-widest text-brand-primary mb-2 block">CLINICAL SYSTEM · DATA VISUALIZATION</span>
+              <span class="text-xs font-bold uppercase tracking-widest text-brand-primary mb-2 block">CLINICAL SYSTEM ·
+                DATA VISUALIZATION</span>
               <h3 class="text-2xl font-bold tracking-tight text-slate-900">Visual Authority for Clinical Decisions</h3>
             </div>
           </a>
-          <a href="oltiva.html" class="group block text-left bg-white rounded-3xl overflow-hidden border border-slate-200 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-primary/10 hover:-translate-y-2">
+          <a href="oltiva.html"
+            class="group block text-left bg-white rounded-3xl overflow-hidden border border-slate-200 transition-all duration-500 hover:shadow-2xl hover:shadow-brand-primary/10 hover:-translate-y-2">
             <div class="aspect-video bg-slate-100 overflow-hidden">
-              <img src="image/avanade/hero_mockup.png" alt="Oltiva Case Study" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+              <img src="image/avanade/hero_mockup.png" alt="Oltiva Case Study"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy">
             </div>
             <div class="p-8">
-              <span class="text-xs font-bold uppercase tracking-widest text-brand-primary mb-2 block">AI WORKFLOW · B2B SYSTEM</span>
+              <span class="text-xs font-bold uppercase tracking-widest text-brand-primary mb-2 block">AI WORKFLOW · B2B
+                SYSTEM</span>
               <h3 class="text-2xl font-bold tracking-tight text-slate-900">Oltiva - AI Document Insights</h3>
             </div>
           </a>
@@ -460,9 +544,11 @@
 
     <footer class="footer bg-white py-16 px-6 border-t border-slate-200 text-center">
       <div class="max-w-6xl mx-auto flex flex-col items-center gap-8">
-        <img src="image/logo.png" alt="Michelle.Design Logo" class="h-8 opacity-60 grayscale hover:opacity-100 transition-opacity duration-300">
+        <img src="image/logo.png" alt="Michelle.Design Logo"
+          class="h-8 opacity-60 grayscale hover:opacity-100 transition-opacity duration-300">
         <div class="flex gap-8">
-          <a href="mailto:michelleguan321@gmail.com" class="text-slate-500 font-semibold hover:text-brand-primary transition-colors">Email</a>
+          <a href="mailto:michelleguan321@gmail.com"
+            class="text-slate-500 font-semibold hover:text-brand-primary transition-colors">Email</a>
           <a href="#" class="text-slate-500 font-semibold hover:text-brand-primary transition-colors">LinkedIn</a>
         </div>
         <p class="font-mono text-xs text-slate-400 tracking-wider">
@@ -474,8 +560,15 @@
 
   <style>
     @keyframes bounce-subtle {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
     }
   </style>
 
@@ -498,7 +591,9 @@
     // Custom Scroll Logic for the bento grid or other elements if needed
   </script>
   <script src="js/cursor.js"></script>
-  <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-slate-900 opacity-0 pointer-events-none transition-all duration-300 z-50 hover:bg-brand-primary hover:text-white" title="Back to Top">↑</button>
+  <button id="backToTop"
+    class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-slate-900 opacity-0 pointer-events-none transition-all duration-300 z-50 hover:bg-brand-primary hover:text-white"
+    title="Back to Top">↑</button>
 
   <script>
     (function () {
