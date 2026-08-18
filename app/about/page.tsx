@@ -62,7 +62,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
-            "I pressed a key and the screen changed. I was hooked."
+            "Think Differently."
           </motion.h1>
         </div>
 
