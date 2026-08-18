@@ -66,35 +66,7 @@ export default function AboutPage() {
           </motion.h1>
         </div>
 
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-start relative z-10 pointer-events-none">
-          <div className="order-2 md:order-1 pt-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 uppercase mb-8">
-              First touch
-            </h2>
-            <p className="text-xl font-medium text-neutral-600 leading-relaxed max-w-md">
-              A fun thing that became a passion and then a dream job: she already knew what she was going to be when she was still in kindergarten. She seized her destiny years later exploring the boundaries of interaction.
-            </p>
-          </div>
-          <div className="order-1 md:order-2">
-            <motion.div 
-              className="relative w-full aspect-[4/3] bg-neutral-200 overflow-hidden border border-black/5"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
-            >
-              <MouseParallaxImage
-                src="/images/about/michelle.png"
-                alt="Michelle Guan"
-                containerClassName="w-full h-full"
-                className="grayscale hover:grayscale-0 transition-all duration-700"
-                priority={true}
-              />
-              <div className="absolute bottom-4 left-4 mix-blend-difference text-white">
-                <p className="text-[10px] font-bold tracking-widest uppercase">Young Michelle at a computer</p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+
       </section>
 
       {/* 02 // ORIGIN (Added Section) */}
