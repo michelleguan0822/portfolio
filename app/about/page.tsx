@@ -57,7 +57,7 @@ export default function AboutPage() {
             01 // Beginnings
           </p>
           <motion.h1 
-            className="text-6xl md:text-8xl lg:text-[8rem] font-bold tracking-tighter leading-[0.9] text-neutral-900 uppercase max-w-6xl"
+            className="text-2xl font-bold tracking-tighter leading-[0.9] text-neutral-900 uppercase max-w-6xl"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
@@ -68,10 +68,10 @@ export default function AboutPage() {
 
         <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-start relative z-10 pointer-events-none">
           <div className="order-2 md:order-1 pt-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-neutral-900 uppercase mb-8">
+            <h2 className="text-2xl font-bold tracking-tight text-neutral-900 uppercase mb-8">
               First touch
             </h2>
-            <p className="text-xl font-medium text-neutral-600 leading-relaxed max-w-md">
+            <p className="text-lg font-medium text-neutral-500 leading-relaxed max-w-md">
               A fun thing that became a passion and then a dream job: she already knew what she was going to be when she was still in kindergarten. She seized her destiny years later exploring the boundaries of interaction.
             </p>
           </div>
@@ -103,7 +103,7 @@ export default function AboutPage() {
           <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-8">
             02 // Where I learned to build
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-neutral-900 uppercase leading-[1.1] max-w-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-neutral-900 uppercase leading-[1.1] max-w-4xl">
             Not every role changed my title.<br/>
             Some changed the way I see systems, people, and possibilities.
           </h2>
@@ -119,15 +119,15 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="md:col-span-5">
-              <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 uppercase mb-2">
+              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
                 Design Engineer
               </h3>
-              <p className="text-lg font-bold text-neutral-400 uppercase tracking-wide">
+              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
                 Omnireflex
               </p>
             </div>
             <div className="md:col-span-4 space-y-4">
-              <p className="text-lg font-medium text-neutral-600 leading-relaxed">
+              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
                 Architected conversational AI experiences and owned the SwiftUI design system from concept to production.
               </p>
             </div>
@@ -141,15 +141,15 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="md:col-span-5">
-              <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 uppercase mb-2">
+              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
                 Independent Creator
               </h3>
-              <p className="text-lg font-bold text-neutral-400 uppercase tracking-wide">
+              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
                 Body Interaction Web Experiments
               </p>
             </div>
             <div className="md:col-span-4 space-y-4">
-              <p className="text-lg font-medium text-neutral-600 leading-relaxed">
+              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
                 Engineered gesture-driven browser interactions using MediaPipe and WebGL, growing a community around camera-based UI.
               </p>
             </div>
@@ -163,15 +163,15 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="md:col-span-5">
-              <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 uppercase mb-2">
+              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
                 Product Designer
               </h3>
-              <p className="text-lg font-bold text-neutral-400 uppercase tracking-wide">
+              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
                 Bestmylife
               </p>
             </div>
             <div className="md:col-span-4 space-y-4">
-              <p className="text-lg font-medium text-neutral-600 leading-relaxed">
+              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
                 Translated ambiguous clinical requirements into a coded React prototype, aligning stakeholders to secure Phase 2 funding.
               </p>
             </div>
@@ -185,15 +185,15 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="md:col-span-5">
-              <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 uppercase mb-2">
+              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
                 Product Designer
               </h3>
-              <p className="text-lg font-bold text-neutral-400 uppercase tracking-wide">
+              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
                 Impulse
               </p>
             </div>
             <div className="md:col-span-4">
-              <p className="text-lg font-medium text-neutral-600 leading-relaxed">
+              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
                 Redesigned core daily habit loops and interaction patterns to significantly reduce completion time and boost engagement.
               </p>
             </div>
@@ -207,15 +207,15 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="md:col-span-5">
-              <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 uppercase mb-2">
+              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
                 AI Product Design Intern
               </h3>
-              <p className="text-lg font-bold text-neutral-400 uppercase tracking-wide">
+              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
                 Avanade Inc
               </p>
             </div>
             <div className="md:col-span-4 space-y-4">
-              <p className="text-lg font-medium text-neutral-600 leading-relaxed">
+              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
                 Streamlined AI-driven document workflows and delivered comprehensive cross-platform design specifications.
               </p>
             </div>
@@ -233,10 +233,10 @@ export default function AboutPage() {
               <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-8">
                 03 // Letter
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 uppercase leading-[1.1] mb-8">
+              <h2 className="text-2xl font-bold tracking-tight text-neutral-900 uppercase leading-[1.1] mb-8">
                 A note on<br/>purpose
               </h2>
-              <p className="text-2xl font-medium text-neutral-600 leading-relaxed">
+              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
                 Some of the clearest moments in my life started as questions. This is one of them.
               </p>
             </div>
