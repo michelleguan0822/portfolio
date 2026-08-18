@@ -4,22 +4,14 @@ import React, { useRef } from 'react'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import MouseParallaxImage from '@/components/MouseParallaxImage'
 import MagneticButton from '@/components/MagneticButton'
 import PixelCanvasFeature from '@/components/PixelCanvasFeature'
-import FallingBlocksFeature from '@/components/FallingBlocksFeature'
+import PixelEraser from '@/components/PixelEraser'
+import PixelPlayground from '@/components/PixelPlayground'
 import FooterSection from '@/components/FooterSection'
-import { Caveat } from 'next/font/google'
-
-const caveat = Caveat({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
 
 export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null)
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
 
   return (
     <main ref={containerRef} className="relative min-h-screen bg-[#FAFAFA]">
@@ -37,264 +29,158 @@ export default function AboutPage() {
         </div>
       </nav>
 
-      {/* 01 // BEGINNINGS */}
-      <section 
-        className="relative pt-48 pb-24 px-6 md:px-12 lg:px-24 border-b border-black/10 overflow-hidden"
-        style={{
-          backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }}
-      >
-        <FallingBlocksFeature id="about-blocks" className="opacity-90" />
+      {/* HERO SECTION: Interactive Pixel Landscape */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b border-black/10">
+        <PixelCanvasFeature 
+          id="hero-pixel-bg" 
+          className="absolute inset-0 z-0" 
+          showControls={false} 
+          initialCellSize="M" 
+        />
         
-        {/* HUD Tech Spec */}
-        <div className="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-10 pointer-events-none mix-blend-difference text-white text-right">
-          <p className="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 text-white/50">Physics Engine</p>
-          <p className="text-xs font-mono font-bold tracking-wider">MATTER.JS // RIGID BODY DYNAMICS</p>
-        </div>
-        <div className="max-w-[90vw] relative z-10 pointer-events-none">
-          <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-12">
-            01 // Beginnings
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="relative z-10 bg-white/95 backdrop-blur-md p-12 md:p-20 border border-black/10 shadow-2xl rounded-[2rem] text-center max-w-4xl mx-6"
+        >
+          <div className="absolute -top-12 -right-12 w-24 h-24 hidden md:block">
+             <img src="/images/about/vibe_coding.png" alt="Avatar" className="w-full h-full object-contain" />
+          </div>
+          <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-8">
+            01 // Manifesto
           </p>
-          <motion.h1 
-            className="text-2xl font-bold tracking-tighter leading-[0.9] text-neutral-900 uppercase max-w-6xl"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-          >
-            "I pressed a key and the screen changed. I was hooked."
-          </motion.h1>
+          <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-bold tracking-tighter text-neutral-900 uppercase leading-[1.1]">
+            I build things that make people feel something.
+          </h1>
+          <p className="mt-8 text-lg font-medium text-neutral-500 max-w-2xl mx-auto">
+            A Product Designer and Creative Engineer blending empathy, systems thinking, and playful interactions.
+          </p>
+        </motion.div>
+      </section>
+
+      {/* BENTO GRID: Life & Inspiration */}
+      <section className="px-6 md:px-12 lg:px-24 py-32 bg-[#FAFAFA]">
+        <div className="mb-16">
+          <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-4">
+            02 // The Maker
+          </p>
+          <h2 className="text-2xl font-bold tracking-tight text-neutral-900 uppercase">
+            Beyond the screen
+          </h2>
         </div>
 
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-start relative z-10 pointer-events-none">
-          <div className="order-2 md:order-1 pt-12">
-            <h2 className="text-2xl font-bold tracking-tight text-neutral-900 uppercase mb-8">
-              First touch
-            </h2>
-            <p className="text-lg font-medium text-neutral-500 leading-relaxed max-w-md">
-              A fun thing that became a passion and then a dream job: she already knew what she was going to be when she was still in kindergarten. She seized her destiny years later exploring the boundaries of interaction.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
+          
+          {/* Origin Story */}
+          <div className="col-span-1 md:col-span-2 bg-white border border-black/5 rounded-[2rem] p-12 flex flex-col justify-between group overflow-hidden relative">
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-6">Origin Story</h3>
+              <p className="text-lg text-neutral-500 font-medium leading-relaxed max-w-xl">
+                I grew up wanting to be an animator, an engineer, and even a fashion designer. 
+                When I found UX, it was the perfect blend of creativity, logic, and systems thinking. 
+                Now, I seize my destiny by pushing the boundaries of what a browser can do.
+              </p>
+            </div>
+            <div className="flex justify-end relative z-10">
+               <img src="/images/about/michelle.png" alt="Young Michelle" className="w-48 grayscale group-hover:grayscale-0 transition-all duration-700" />
+            </div>
+            {/* Decorative background grid */}
+            <div className="absolute inset-0 pointer-events-none opacity-5 group-hover:opacity-10 transition-opacity" style={{
+              backgroundImage: 'linear-gradient(to right, black 1px, transparent 1px), linear-gradient(to bottom, black 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }} />
           </div>
-          <div className="order-1 md:order-2">
-            <motion.div 
-              className="relative w-full aspect-[4/3] bg-neutral-200 overflow-hidden border border-black/5"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2, ease: 'easeOut' }}
-            >
-              <MouseParallaxImage
-                src="/images/about/michelle.png"
-                alt="Michelle Guan"
-                containerClassName="w-full h-full"
-                className="grayscale hover:grayscale-0 transition-all duration-700"
-                priority={true}
-              />
-              <div className="absolute bottom-4 left-4 mix-blend-difference text-white">
-                <p className="text-[10px] font-bold tracking-widest uppercase">Young Michelle at a computer</p>
+
+          {/* Interactive Lego - Pixel Eraser */}
+          <div className="col-span-1 bg-white border border-black/5 rounded-[2rem] overflow-hidden relative shadow-sm hover:shadow-md transition-shadow">
+            <PixelEraser>
+              <div className="absolute inset-0 w-full h-full flex flex-col">
+                <img src="/images/about/lego.jpg" alt="Lego" className="w-full h-[80%] object-cover" />
+                <div className="h-[20%] bg-white flex items-center justify-center border-t border-black/5">
+                  <p className="text-sm font-bold text-neutral-900 uppercase tracking-widest">Builder at heart</p>
+                </div>
               </div>
-            </motion.div>
+            </PixelEraser>
           </div>
+
+          {/* Hobbies Split */}
+          <div className="col-span-1 flex flex-col gap-6 h-full">
+            <div className="flex-1 bg-white border border-black/5 rounded-[2rem] overflow-hidden p-8 flex flex-col items-center justify-center relative shadow-sm group">
+              <img src="/images/about/hamster.jpg" alt="Hamster" className="w-24 h-24 object-cover rounded-full shadow-lg z-10 group-hover:scale-110 transition-transform duration-500" />
+              <p className="mt-4 text-sm font-bold text-neutral-400 uppercase tracking-widest z-10">Chief Morale Officer</p>
+            </div>
+            <div className="flex-1 bg-white border border-black/5 rounded-[2rem] overflow-hidden relative shadow-sm">
+              <PixelEraser>
+                <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+                  <img src="/images/about/golf.jpg" alt="Golf" className="w-full h-full object-cover" />
+                </div>
+              </PixelEraser>
+            </div>
+          </div>
+
+          {/* Interactive Tech Stack */}
+          <div className="col-span-1 md:col-span-2 border border-black/5 rounded-[2rem] overflow-hidden bg-white shadow-sm flex flex-col">
+            <div className="px-8 py-6 border-b border-black/5 flex items-center justify-between">
+               <h3 className="text-lg font-bold text-neutral-900 uppercase">Skill Matrix</h3>
+               <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest">Physics Playground</span>
+            </div>
+            <div className="flex-grow relative h-full">
+               <div className="absolute inset-0 -mt-[40px]">
+                 <PixelPlayground />
+               </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* 02 // WHERE I LEARNED TO BUILD */}
-      <section className="px-6 md:px-12 lg:px-24 py-32">
-        <div className="mb-24">
-          <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-8">
-            02 // Where I learned to build
+      {/* TIMELINE */}
+      <section className="px-6 md:px-12 lg:px-24 py-32 border-t border-black/10 bg-white">
+        <div className="mb-16">
+          <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-4">
+            03 // The Journey
           </p>
-          <h2 className="text-2xl font-bold tracking-tight text-neutral-900 uppercase leading-[1.1] max-w-4xl">
-            Not every role changed my title.<br/>
-            Some changed the way I see systems, people, and possibilities.
+          <h2 className="text-2xl font-bold tracking-tight text-neutral-900 uppercase">
+            Where I learned to build
           </h2>
         </div>
 
         <div className="flex flex-col border-t border-black/10">
           
-          {/* Experience 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-black/10 hover:bg-neutral-50 transition-colors group">
-            <div className="md:col-span-3">
-              <p className="text-sm font-bold tracking-widest text-neutral-400 uppercase group-hover:text-neutral-900 transition-colors">
-                Jun 2025 — Present
-              </p>
-            </div>
-            <div className="md:col-span-5">
-              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
-                Design Engineer
-              </h3>
-              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
-                Omnireflex
-              </p>
-            </div>
-            <div className="md:col-span-4 space-y-4">
-              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
-                Architected conversational AI experiences and owned the SwiftUI design system from concept to production.
-              </p>
-            </div>
-          </div>
-
-          {/* Experience 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-black/10 hover:bg-neutral-50 transition-colors group">
-            <div className="md:col-span-3">
-              <p className="text-sm font-bold tracking-widest text-neutral-400 uppercase group-hover:text-neutral-900 transition-colors">
-                May 2026 — Present
-              </p>
-            </div>
-            <div className="md:col-span-5">
-              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
-                Independent Creator
-              </h3>
-              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
-                Body Interaction Web Experiments
-              </p>
-            </div>
-            <div className="md:col-span-4 space-y-4">
-              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
-                Engineered gesture-driven browser interactions using MediaPipe and WebGL, growing a community around camera-based UI.
-              </p>
-            </div>
-          </div>
-
-          {/* Experience 3 */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-black/10 hover:bg-neutral-50 transition-colors group">
-            <div className="md:col-span-3">
-              <p className="text-sm font-bold tracking-widest text-neutral-400 uppercase group-hover:text-neutral-900 transition-colors">
-                Feb 2025 — Jun 2025
-              </p>
-            </div>
-            <div className="md:col-span-5">
-              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
-                Product Designer
-              </h3>
-              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
-                Bestmylife
-              </p>
-            </div>
-            <div className="md:col-span-4 space-y-4">
-              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
-                Translated ambiguous clinical requirements into a coded React prototype, aligning stakeholders to secure Phase 2 funding.
-              </p>
-            </div>
-          </div>
-
-          {/* Experience 4 */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-black/10 hover:bg-neutral-50 transition-colors group">
-            <div className="md:col-span-3">
-              <p className="text-sm font-bold tracking-widest text-neutral-400 uppercase group-hover:text-neutral-900 transition-colors">
-                Sep 2024 — Feb 2025
-              </p>
-            </div>
-            <div className="md:col-span-5">
-              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
-                Product Designer
-              </h3>
-              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
-                Impulse
-              </p>
-            </div>
-            <div className="md:col-span-4">
-              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
-                Redesigned core daily habit loops and interaction patterns to significantly reduce completion time and boost engagement.
-              </p>
-            </div>
-          </div>
-
-          {/* Experience 5 */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-black/10 hover:bg-neutral-50 transition-colors group">
-            <div className="md:col-span-3">
-              <p className="text-sm font-bold tracking-widest text-neutral-400 uppercase group-hover:text-neutral-900 transition-colors">
-                Jun 2023 — Aug 2023
-              </p>
-            </div>
-            <div className="md:col-span-5">
-              <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-2">
-                AI Product Design Intern
-              </h3>
-              <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide">
-                Avanade Inc
-              </p>
-            </div>
-            <div className="md:col-span-4 space-y-4">
-              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
-                Streamlined AI-driven document workflows and delivered comprehensive cross-platform design specifications.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 03 // LETTER */}
-      <section className="px-6 md:px-12 lg:px-24 py-32 bg-[#F3F3F3]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-          
-          <div className="lg:col-span-5">
-            <div className="sticky top-32">
-              <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-8">
-                03 // Letter
-              </p>
-              <h2 className="text-2xl font-bold tracking-tight text-neutral-900 uppercase leading-[1.1] mb-8">
-                A note on<br/>purpose
-              </h2>
-              <p className="text-lg font-medium text-neutral-500 leading-relaxed">
-                Some of the clearest moments in my life started as questions. This is one of them.
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7 flex justify-center pb-12">
-            <div className="relative w-full max-w-2xl bg-[#FDFBF7] shadow-xl p-8 md:p-12 lg:p-16 transform -rotate-1 transition-transform hover:rotate-0">
-              
-              {/* Tape */}
-              <div className="absolute top-[-15px] left-1/2 -translate-x-1/2 w-24 h-8 bg-white/60 backdrop-blur-sm shadow-sm rotate-2 z-20" />
-              <div className="absolute top-[-12px] left-1/2 -translate-x-1/2 w-24 h-8 bg-neutral-200/20 backdrop-blur-sm shadow-sm -rotate-1 z-20" />
-              
-              {/* Red Margin Line */}
-              <div className="absolute top-0 bottom-0 left-[12%] w-[1px] bg-red-400/40 z-0" />
-              <div className="absolute top-0 bottom-0 left-[12.5%] w-[1px] bg-red-400/20 z-0" />
-
-              {/* Ruled Lines Background */}
-              <div className="absolute inset-0 z-0 pointer-events-none" style={{
-                backgroundImage: 'repeating-linear-gradient(transparent, transparent 39px, rgba(0,0,0,0.06) 39px, rgba(0,0,0,0.06) 40px)',
-                backgroundPosition: '0 40px'
-              }} />
-
-              {/* Letter Content */}
-              <div className={`relative z-10 text-[1.4rem] md:text-[1.75rem] text-[#2a2a2a] ${caveat.className} leading-[40px] pl-[15%] pt-2`}>
-                <p className="mb-[40px] font-bold">
-                  A Letter from Michelle,
+          {[
+            { date: "Jun 2025 — Present", title: "Design Engineer", company: "Omnireflex", desc: "Architected conversational AI experiences and owned the SwiftUI design system." },
+            { date: "May 2026 — Present", title: "Independent Creator", company: "Body Interaction", desc: "Engineered gesture-driven browser interactions using MediaPipe and WebGL." },
+            { date: "Feb 2025 — Jun 2025", title: "Product Designer", company: "Bestmylife", desc: "Translated ambiguous clinical requirements into coded React prototypes." },
+            { date: "Sep 2024 — Feb 2025", title: "Product Designer", company: "Impulse", desc: "Redesigned core daily habit loops to significantly boost engagement." },
+            { date: "Jun 2023 — Aug 2023", title: "AI Product Design Intern", company: "Avanade", desc: "Streamlined AI-driven document workflows with cross-platform specs." }
+          ].map((job, i) => (
+            <div key={i} className="grid grid-cols-1 md:grid-cols-12 gap-6 py-10 border-b border-black/10 hover:bg-neutral-50 transition-colors group">
+              <div className="md:col-span-3 flex items-center">
+                <p className="text-sm font-bold tracking-widest text-neutral-400 uppercase group-hover:text-neutral-900 transition-colors">
+                  {job.date}
                 </p>
-                <p className="mb-[40px]">
-                  Like most kids, I grew up wondering what I wanted to be when I got older.
+              </div>
+              <div className="md:col-span-4 flex flex-col justify-center">
+                <h3 className="text-2xl font-bold text-neutral-900 uppercase">
+                  {job.title}
+                </h3>
+                <p className="text-lg font-bold text-neutral-500 uppercase tracking-wide mt-1">
+                  {job.company}
                 </p>
-                <p className="mb-[40px]">
-                  At one point or another, I dreamed of being a 3D animator, an engineer, an illustrator, even starting my own fashion brand. Looking back, all these dreams had one thing in common: I wanted to create things that made people feel something.
-                </p>
-                <p className="mb-[40px]">
-                  But when it came time to choose a major in college, I found myself... stuck. I didn't know exactly what I wanted to do, I just knew I wanted to build things that mattered.
-                </p>
-                <p className="mb-[40px]">
-                  That clarity didn't come until my first year at the University of Washington, when I managed to land one of the last two spots in an Informatics class. That class changed everything.
-                </p>
-                <p className="mb-[40px]">
-                  For the first time, I learned that design isn't just about aesthetics, it's everywhere. It's in the shape of a door handle; the way subtitles appear on a screen. Suddenly, I started seeing design all around me, not just as art, but as systems created for people.
-                </p>
-                <p className="mb-[40px]">
-                  That's when I found UX. It was the perfect blend of creativity and logic, research, systems thinking, and problem-solving all in one. I was hooked.
-                </p>
-                <p className="mb-[40px]">
-                  Since then, I've thrown myself into every design project I could find. This portfolio is a reflection of my journey. Thanks for being here.
+              </div>
+              <div className="md:col-span-5 flex items-center">
+                <p className="text-lg font-medium text-neutral-500 leading-relaxed">
+                  {job.desc}
                 </p>
               </div>
             </div>
-          </div>
+          ))}
 
         </div>
       </section>
 
-      {/* Footer / Toy */}
       <FooterSection />
-
     </main>
   )
 }
