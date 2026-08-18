@@ -7,7 +7,7 @@ import MagneticButton from '@/components/MagneticButton'
 
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen w-full bg-[#FAFAFA] overflow-hidden flex flex-col items-center justify-start text-neutral-900">
+    <main className="relative min-h-screen w-full bg-[#FAFAFA] overflow-hidden flex flex-col justify-between text-neutral-900">
       
       {/* Navigation (Floating) */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 md:p-12 mix-blend-difference text-white pointer-events-none">
@@ -25,87 +25,69 @@ export default function AboutPage() {
 
       {/* --- The Room Structure --- */}
       
-      {/* Bottom Floor (Pixel Art Image) */}
+      {/* Top Ceiling Perspective */}
       <div 
-        className="absolute inset-x-0 bottom-0 h-[45vh] lg:h-[45vh] z-0 opacity-100" 
-        style={{ 
-          backgroundImage: "url('/images/about/pixel_room.jpg')", 
-          backgroundSize: "cover", 
-          backgroundPosition: "center 80%" // Adjusted to show the desk and bed better
-        }} 
+        className="absolute top-0 left-0 w-full h-[15vh] bg-[#F9F9F9] border-b border-black/5 z-10" 
+        style={{ clipPath: 'polygon(0 0, 100% 0, 85vw 100%, 15vw 100%)' }} 
       />
 
       {/* Left Wall Perspective */}
       <div 
-        className="absolute top-0 left-0 w-[10vw] lg:w-[15vw] h-[75vh] bg-[#F0F0F0] border-r border-black/5 z-10" 
-        style={{ clipPath: 'polygon(0 0, 100% 8%, 100% 100%, 0 100%)' }} 
+        className="absolute top-0 left-0 w-[15vw] h-full bg-[#F0F0F0] border-r border-black/5 z-10" 
+        style={{ clipPath: 'polygon(0 0, 100% 15vh, 100% 70vh, 0 100%)' }} 
       />
 
       {/* Right Wall Perspective */}
       <div 
-        className="absolute top-0 right-0 w-[10vw] lg:w-[15vw] h-[75vh] bg-[#F5F5F5] border-l border-black/5 z-10" 
-        style={{ clipPath: 'polygon(0 8%, 100% 0, 100% 100%, 0 100%)' }} 
+        className="absolute top-0 right-0 w-[15vw] h-full bg-[#F5F5F5] border-l border-black/5 z-10" 
+        style={{ clipPath: 'polygon(0 15vh, 100% 0, 100% 100%, 0 70vh)' }} 
+      />
+
+      {/* Bottom Floor (Pixel Art Image) */}
+      <div 
+        className="absolute inset-x-0 bottom-0 h-[45vh] z-0" 
+        style={{ 
+          backgroundImage: "url('/images/about/pixel_room.jpg')", 
+          backgroundSize: "cover", 
+          backgroundPosition: "center 70%" 
+        }} 
       />
 
       {/* --- The White Screen (Canvas) --- */}
-      <div className="relative z-20 w-[80vw] lg:w-[70vw] h-[75vh] mt-0 bg-white border-x border-b border-black/10 shadow-xl flex">
+      {/* Positioned perfectly in the center "back wall" of the room */}
+      <div className="absolute top-[15vh] left-[15vw] w-[70vw] h-[55vh] bg-white border border-black/5 shadow-2xl z-20 flex flex-col justify-center items-center px-12 md:px-24 text-center">
         
-        {/* Left Column: Avatar & Vibe */}
-        <div className="hidden md:flex w-1/3 border-r border-black/10 p-12 flex-col justify-between bg-neutral-50/50">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2">
-              Status
-            </p>
-            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse mb-8" />
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tighter uppercase leading-[0.9] text-neutral-300 break-all">
-              DESIGN<br/>ENGINEER<br/>MAKER
-            </h2>
-          </div>
-          <div className="w-full">
-            <img src="/images/about/vibe_coding.png" alt="Avatar" className="w-full max-w-[180px] grayscale opacity-80 mix-blend-multiply" />
-          </div>
-        </div>
+        {/* Elegant Centered Typography Layout */}
+        <p className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-6">
+          Product Designer & Creative Engineer
+        </p>
+        
+        <h1 className="text-5xl md:text-6xl lg:text-[5rem] font-bold text-neutral-900 tracking-tighter uppercase leading-[0.9] mb-8">
+          MICHELLE GUAN.
+        </h1>
+        
+        <p className="text-base md:text-lg text-neutral-500 font-medium max-w-2xl leading-relaxed mb-12">
+          I spend my days designing more intuitive (and less rage-inducing) digital experiences for people to live, work, and interact with others.
+        </p>
 
-        {/* Right Column: Main Content */}
-        <div className="w-full md:w-2/3 p-12 md:p-16 lg:p-20 flex flex-col justify-between">
-          
-          {/* Top: Manifesto */}
-          <div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-neutral-900 tracking-tighter uppercase leading-[1.0] mb-8">
-              Building things that make people feel something.
-            </h1>
-            <p className="text-base md:text-lg text-neutral-500 font-medium leading-relaxed max-w-xl">
-              I grew up wanting to be an illustrator and an engineer. When I found UX, it was the perfect blend of creativity and systems thinking. Now, I spend my days designing more intuitive (and less rage-inducing) digital spaces for people to live and work.
-            </p>
-          </div>
-
-          {/* Bottom: Experience Grid */}
-          <div className="mt-12 pt-12 border-t border-black/10">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              
-              <div className="flex flex-col gap-1">
-                <span className="text-xl font-black tracking-tighter uppercase">Omnireflex</span>
-                <span className="text-[10px] font-bold tracking-widest text-neutral-400 uppercase">Design Engineer</span>
-              </div>
-              
-              <div className="flex flex-col gap-1">
-                <span className="text-xl font-black tracking-tighter uppercase">Bestmylife</span>
-                <span className="text-[10px] font-bold tracking-widest text-neutral-400 uppercase">Product Designer</span>
-              </div>
-              
-              <div className="flex flex-col gap-1">
-                <span className="text-xl font-black tracking-tighter uppercase">Avanade</span>
-                <span className="text-[10px] font-bold tracking-widest text-neutral-400 uppercase">AI Design Intern</span>
-              </div>
-
-              <div className="flex flex-col gap-1">
-                <span className="text-xl font-serif font-black tracking-tight text-neutral-900">UW</span>
-                <span className="text-[10px] font-bold tracking-widest text-neutral-400 uppercase">Informatics</span>
-              </div>
-
-            </div>
+        {/* Minimalist Logo Row */}
+        <div className="flex flex-wrap justify-center gap-10 lg:gap-16 items-center text-neutral-900 pt-8 border-t border-black/5">
+          <div className="flex flex-col text-left">
+             <span className="text-4xl lg:text-5xl font-bold tracking-tighter leading-none">3+</span>
+             <span className="text-[9px] font-bold uppercase tracking-widest text-neutral-400 mt-1">Years UX</span>
           </div>
           
+          <div className="flex flex-col gap-1 opacity-70 hover:opacity-100 transition-opacity text-center">
+            <span className="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none">Omnireflex</span>
+          </div>
+          
+          <div className="flex flex-col gap-1 opacity-70 hover:opacity-100 transition-opacity text-center">
+            <span className="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none">Bestmylife</span>
+          </div>
+          
+          <div className="flex flex-col gap-1 opacity-70 hover:opacity-100 transition-opacity text-center">
+            <span className="text-xl md:text-2xl font-black tracking-tighter uppercase leading-none">Avanade</span>
+          </div>
         </div>
 
       </div>
