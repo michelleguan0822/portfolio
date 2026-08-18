@@ -5,9 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import MagneticButton from '@/components/MagneticButton'
-import PixelCanvasFeature from '@/components/PixelCanvasFeature'
-import PixelEraser from '@/components/PixelEraser'
-import PixelPlayground from '@/components/PixelPlayground'
+import MouseParallaxImage from '@/components/MouseParallaxImage'
 import FooterSection from '@/components/FooterSection'
 
 export default function AboutPage() {
@@ -29,37 +27,32 @@ export default function AboutPage() {
         </div>
       </nav>
 
-      {/* HERO SECTION: Interactive Pixel Landscape */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden border-b border-black/10">
-        <PixelCanvasFeature 
-          id="hero-pixel-bg" 
-          className="absolute inset-0 z-0" 
-          showControls={false} 
-          initialCellSize="M" 
-        />
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 bg-white/95 backdrop-blur-md p-12 md:p-20 border border-black/10 shadow-2xl rounded-[2rem] text-center max-w-4xl mx-6"
-        >
-          <div className="absolute -top-12 -right-12 w-24 h-24 hidden md:block">
-             <img src="/images/about/vibe_coding.png" alt="Avatar" className="w-full h-full object-contain" />
-          </div>
-          <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-8">
+      {/* HERO SECTION: Minimalist & Clean */}
+      <section className="relative pt-48 pb-24 px-6 md:px-12 lg:px-24 border-b border-black/10">
+        <div className="max-w-[90vw] relative z-10">
+          <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-12">
             01 // Manifesto
           </p>
-          <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-bold tracking-tighter text-neutral-900 uppercase leading-[1.1]">
+          <motion.h1 
+            className="text-4xl md:text-5xl font-bold tracking-tighter leading-[1.1] text-neutral-900 uppercase max-w-6xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
             I build things that make people feel something.
-          </h1>
-          <p className="mt-8 text-lg font-medium text-neutral-500 max-w-2xl mx-auto">
-            A Product Designer and Creative Engineer blending empathy, systems thinking, and playful interactions.
-          </p>
-        </motion.div>
+          </motion.h1>
+          <motion.p 
+            className="mt-8 text-lg font-medium text-neutral-500 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+          >
+            A Product Designer blending empathy, systems thinking, and elegant interaction to solve complex human problems.
+          </motion.p>
+        </div>
       </section>
 
-      {/* BENTO GRID: Life & Inspiration */}
+      {/* BENTO GRID: Elegant Structure */}
       <section className="px-6 md:px-12 lg:px-24 py-32 bg-[#FAFAFA]">
         <div className="mb-16">
           <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-4">
@@ -70,66 +63,73 @@ export default function AboutPage() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[300px] md:auto-rows-[400px]">
           
           {/* Origin Story */}
-          <div className="col-span-1 md:col-span-2 bg-white border border-black/5 rounded-[2rem] p-12 flex flex-col justify-between group overflow-hidden relative">
-            <div className="relative z-10">
+          <div className="col-span-1 md:col-span-8 bg-white border border-black/5 rounded-[2rem] p-12 flex flex-col justify-between group shadow-sm hover:shadow-md transition-shadow">
+            <div>
               <h3 className="text-2xl font-bold text-neutral-900 uppercase mb-6">Origin Story</h3>
-              <p className="text-lg text-neutral-500 font-medium leading-relaxed max-w-xl">
-                I grew up wanting to be an animator, an engineer, and even a fashion designer. 
+              <p className="text-lg text-neutral-500 font-medium leading-relaxed max-w-2xl">
+                I grew up wanting to be an illustrator, an engineer, and even a fashion designer. 
                 When I found UX, it was the perfect blend of creativity, logic, and systems thinking. 
-                Now, I seize my destiny by pushing the boundaries of what a browser can do.
+                Today, I seize my destiny by pushing the boundaries of interaction design and emotional AI.
               </p>
             </div>
-            <div className="flex justify-end relative z-10">
-               <img src="/images/about/michelle.png" alt="Young Michelle" className="w-48 grayscale group-hover:grayscale-0 transition-all duration-700" />
-            </div>
-            {/* Decorative background grid */}
-            <div className="absolute inset-0 pointer-events-none opacity-5 group-hover:opacity-10 transition-opacity" style={{
-              backgroundImage: 'linear-gradient(to right, black 1px, transparent 1px), linear-gradient(to bottom, black 1px, transparent 1px)',
-              backgroundSize: '40px 40px'
-            }} />
-          </div>
-
-          {/* Interactive Lego - Pixel Eraser */}
-          <div className="col-span-1 bg-white border border-black/5 rounded-[2rem] overflow-hidden relative shadow-sm hover:shadow-md transition-shadow">
-            <PixelEraser>
-              <div className="absolute inset-0 w-full h-full flex flex-col">
-                <img src="/images/about/lego.jpg" alt="Lego" className="w-full h-[80%] object-cover" />
-                <div className="h-[20%] bg-white flex items-center justify-center border-t border-black/5">
-                  <p className="text-sm font-bold text-neutral-900 uppercase tracking-widest">Builder at heart</p>
-                </div>
-              </div>
-            </PixelEraser>
-          </div>
-
-          {/* Hobbies Split */}
-          <div className="col-span-1 flex flex-col gap-6 h-full">
-            <div className="flex-1 bg-white border border-black/5 rounded-[2rem] overflow-hidden p-8 flex flex-col items-center justify-center relative shadow-sm group">
-              <img src="/images/about/hamster.jpg" alt="Hamster" className="w-24 h-24 object-cover rounded-full shadow-lg z-10 group-hover:scale-110 transition-transform duration-500" />
-              <p className="mt-4 text-sm font-bold text-neutral-400 uppercase tracking-widest z-10">Chief Morale Officer</p>
-            </div>
-            <div className="flex-1 bg-white border border-black/5 rounded-[2rem] overflow-hidden relative shadow-sm">
-              <PixelEraser>
-                <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-                  <img src="/images/about/golf.jpg" alt="Golf" className="w-full h-full object-cover" />
-                </div>
-              </PixelEraser>
+            <div className="flex justify-end">
+               <img src="/images/about/vibe_coding.png" alt="Michelle Avatar" className="w-40 opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
             </div>
           </div>
 
-          {/* Interactive Tech Stack */}
-          <div className="col-span-1 md:col-span-2 border border-black/5 rounded-[2rem] overflow-hidden bg-white shadow-sm flex flex-col">
-            <div className="px-8 py-6 border-b border-black/5 flex items-center justify-between">
-               <h3 className="text-lg font-bold text-neutral-900 uppercase">Skill Matrix</h3>
-               <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest">Physics Playground</span>
+          {/* Inspiration: Design */}
+          <div className="col-span-1 md:col-span-4 bg-white border border-black/5 rounded-[2rem] overflow-hidden relative shadow-sm group">
+            <div className="absolute inset-0 w-full h-full">
+              <MouseParallaxImage
+                src="/images/about/design.jpg"
+                alt="Design Inspiration"
+                containerClassName="w-full h-full"
+                className="grayscale group-hover:grayscale-0 transition-all duration-700"
+              />
             </div>
-            <div className="flex-grow relative h-full">
-               <div className="absolute inset-0 -mt-[40px]">
-                 <PixelPlayground />
-               </div>
+            <div className="absolute bottom-6 left-6 mix-blend-difference text-white">
+              <p className="text-[10px] font-bold tracking-widest uppercase">Visual Crafts</p>
             </div>
+          </div>
+
+          {/* Hobbies: Lego */}
+          <div className="col-span-1 md:col-span-4 bg-white border border-black/5 rounded-[2rem] overflow-hidden relative shadow-sm group">
+             <div className="absolute inset-0 w-full h-full">
+              <MouseParallaxImage
+                src="/images/about/lego.jpg"
+                alt="Lego"
+                containerClassName="w-full h-full"
+                className="grayscale group-hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+            <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+              <p className="text-[10px] font-bold text-neutral-900 tracking-widest uppercase">Builder at heart</p>
+            </div>
+          </div>
+
+          {/* Hobbies: Golf */}
+          <div className="col-span-1 md:col-span-4 bg-white border border-black/5 rounded-[2rem] overflow-hidden relative shadow-sm group">
+             <div className="absolute inset-0 w-full h-full">
+              <MouseParallaxImage
+                src="/images/about/golf.jpg"
+                alt="Golf"
+                containerClassName="w-full h-full"
+                className="grayscale group-hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+            <div className="absolute bottom-6 left-6 mix-blend-difference text-white">
+              <p className="text-[10px] font-bold tracking-widest uppercase">Weekend Routine</p>
+            </div>
+          </div>
+          
+          {/* Pet */}
+          <div className="col-span-1 md:col-span-4 bg-white border border-black/5 rounded-[2rem] p-8 flex flex-col items-center justify-center relative shadow-sm">
+             <img src="/images/about/hamster.jpg" alt="Hamster" className="w-32 h-32 object-cover rounded-full shadow-lg mb-6 hover:scale-110 transition-transform duration-500" />
+             <p className="text-sm font-bold text-neutral-900 uppercase tracking-widest text-center">Chief Morale Officer</p>
+             <p className="text-xs text-neutral-400 mt-2">Always inspecting the code</p>
           </div>
 
         </div>
@@ -147,7 +147,6 @@ export default function AboutPage() {
         </div>
 
         <div className="flex flex-col border-t border-black/10">
-          
           {[
             { date: "Jun 2025 — Present", title: "Design Engineer", company: "Omnireflex", desc: "Architected conversational AI experiences and owned the SwiftUI design system." },
             { date: "May 2026 — Present", title: "Independent Creator", company: "Body Interaction", desc: "Engineered gesture-driven browser interactions using MediaPipe and WebGL." },
@@ -176,7 +175,6 @@ export default function AboutPage() {
               </div>
             </div>
           ))}
-
         </div>
       </section>
 
