@@ -47,15 +47,9 @@ export default function AboutPage() {
       >
         <FallingBlocksFeature id="about-blocks" className="opacity-90" />
         
-        {/* HUD Tech Spec */}
-        <div className="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-10 pointer-events-none mix-blend-difference text-white text-right">
-          <p className="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 text-white/50">Physics Engine</p>
-          <p className="text-xs font-mono font-bold tracking-wider">MATTER.JS // RIGID BODY DYNAMICS</p>
-        </div>
+
         <div className="max-w-[90vw] relative z-10 pointer-events-none">
-          <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-12">
-            01 // Beginnings
-          </p>
+
           <motion.h1 
             className="text-6xl md:text-8xl lg:text-[8rem] font-bold tracking-tighter leading-[0.9] text-neutral-900 uppercase max-w-6xl"
             initial={{ opacity: 0, y: 50 }}
@@ -74,9 +68,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           
           <div className="md:col-span-3 lg:col-span-4">
-             <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 sticky top-32">
-               02 // Origin
-             </p>
+
           </div>
 
           <div className="md:col-span-9 lg:col-span-8">
@@ -105,9 +97,7 @@ export default function AboutPage() {
       {/* 03 // WHERE I LEARNED TO BUILD */}
       <section className="px-6 md:px-12 lg:px-24 py-32">
         <div className="mb-24">
-          <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-8">
-            03 // Where I learned to build
-          </p>
+
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-neutral-900 uppercase leading-[1.1] max-w-4xl">
             Not every role changed my title.<br/>
             Some changed the way I see systems, people, and possibilities.
@@ -235,9 +225,7 @@ export default function AboutPage() {
           
           <div className="lg:col-span-5">
             <div className="sticky top-32">
-              <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-8">
-                04 // Letter
-              </p>
+
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 uppercase leading-[1.1] mb-8">
                 A note on<br/>purpose
               </h2>
