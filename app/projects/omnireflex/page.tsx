@@ -128,6 +128,9 @@ export default function OmnireflexPage() {
  <a href="#overview" className="hover:text-neutral-900 transition-colors">Overview</a>
  </li>
  <li>
+ <a href="#engineering" className="hover:text-neutral-900 transition-colors">Engineering</a>
+ </li>
+ <li>
  <a href="#brand" className="hover:text-neutral-900 transition-colors">Brand Guidelines</a>
  </li>
  <li>
@@ -135,6 +138,9 @@ export default function OmnireflexPage() {
  </li>
  <li>
  <a href="#experience" className="hover:text-neutral-900 transition-colors">Experience</a>
+ </li>
+ <li>
+ <a href="#validation" className="hover:text-neutral-900 transition-colors">Validation</a>
  </li>
  </ul>
  </div>
@@ -216,6 +222,28 @@ export default function OmnireflexPage() {
       </div>
     </div>
   </div>
+
+ <div id="engineering" className="mb-20">
+ <h2 className="text-2xl font-medium text-neutral-900 mb-6">Engineering the Magic
+ </h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p className="text-lg font-medium text-neutral-900">
+ Bridging the gap between Figma and Code.
+ </p>
+ <p>
+ As a Product Engineer, my responsibility didn't end at designing the UI—it extended to ensuring the emotional interactions felt just as fluid on a device as they did in the prototype. We built the frontend using <strong>React Native</strong> and managed the complex animations using <strong>Reanimated / Lottie</strong>.
+ </p>
+ <div className="bg-[#FAFAFA] border border-black/10 p-8 mt-8">
+ <h3 className="text-lg font-medium text-neutral-900 mb-2">Technical Challenge: Frame Drops</h3>
+ <p className="mb-4">
+ The Gen-Z target audience demands highly fluid, game-like interactions. Initially, rendering the dynamic mascot states and card-pulling animations simultaneously caused significant frame drops on older devices.
+ </p>
+ <p>
+ <strong>The Compromise:</strong> Instead of insisting on heavy runtime vector calculations, I worked closely with the team to bake the most complex mascot transitions into pre-rendered Lottie files, while keeping the UI shell lightweight. This engineering compromise saved our 60fps target without sacrificing the "feel" of the design.
+ </p>
+ </div>
+ </div>
+ </div>
 
  <div id="brand" className="mb-20">
  <h2 className="text-2xl font-medium text-neutral-900 mb-6">Brand Guidelines
@@ -314,6 +342,35 @@ export default function OmnireflexPage() {
  {/* iPhone Notch */}
  <div className="absolute top-0 z-20 h-5 md:h-6 w-1/2 bg-neutral-900 rounded-b-2xl md:rounded-b-3xl"></div>
  <img src="/images/unimo/card.png" alt="Feelings Become Cards" className="w-full h-auto object-cover" />
+ </div>
+ </div>
+ </div>
+ 
+ <div id="validation" className="mb-20">
+ <h2 className="text-2xl font-medium text-neutral-900 mb-6">Reality Check & Validation
+ </h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p className="text-lg font-medium text-neutral-900">
+ What happens when real people use it?
+ </p>
+ <p>
+ A beautiful UI means nothing if it doesn't solve the core problem. We deployed a beta build via TestFlight to ~25 college students to test if our "Visual-First" emotional expression hypothesis actually held up.
+ </p>
+ 
+ <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8">
+ <div className="border-l-4 border-red-500/20 pl-6 py-2">
+ <h4 className="font-bold text-neutral-900 text-lg mb-2">Failure 01</h4>
+ <p>Users found the initial chat interface too rigid and "robotic", despite the cute avatars.</p>
+ </div>
+ <div className="border-l-4 border-emerald-500/20 pl-6 py-2">
+ <h4 className="font-bold text-neutral-900 text-lg mb-2">The Pivot</h4>
+ <p>This directly led to the introduction of the gamified <strong>Card Pulling</strong> system, which reduced the friction of typing by 40%.</p>
+ </div>
+ </div>
+ 
+ <div className="border-l-4 border-neutral-900 pl-6 py-4 my-12 bg-neutral-50">
+ <p className="text-2xl italic text-neutral-900 mb-2">"I didn't want to type a journal entry, but swiping the emotion cards actually made me stop and think about how I felt."</p>
+ <p className="text-lg font-medium text-neutral-500">— Beta Tester, 19</p>
  </div>
  </div>
  </div>
