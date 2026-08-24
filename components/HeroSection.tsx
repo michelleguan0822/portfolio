@@ -140,60 +140,32 @@ export default function HeroSection() {
     const cols = Math.ceil(width / currentCellSize)
     const rows = Math.ceil(height / currentCellSize)
 
-    // For Bauhaus Generative Layout
-    const rects: { x: number, y: number, w: number, h: number, color: string }[] = []
-    
-    // Recursive function to split the grid into asymmetric large blocks
-    function splitRect(x: number, y: number, w: number, h: number, depth: number) {
-      if (depth === 0 || w < 4 || h < 4) {
-        const randVal = Math.random()
-        let color = COLORS[0] // Navy
-        if (randVal > 0.85) color = COLORS[4] // Peach
-        else if (randVal > 0.65) color = COLORS[3] // Sky blue
-        else if (randVal > 0.45) color = COLORS[1] // Steel blue
-        else if (randVal > 0.25) color = COLORS[2] // Periwinkle
-        else color = 'transparent' // Negative space (no pixels)
-        
-        rects.push({ x, y, w, h, color })
-        return
-      }
-
-      // Decide whether to split horizontally or vertically
-      const splitVertically = w > h * 1.5 ? true : (h > w * 1.5 ? false : Math.random() > 0.5)
-      
-      if (splitVertically) {
-        // Split between 30% and 70%
-        const splitPoint = Math.floor(w * (0.3 + Math.random() * 0.4))
-        splitRect(x, y, splitPoint, h, depth - 1)
-        splitRect(x + splitPoint, y, w - splitPoint, h, depth - 1)
-      } else {
-        const splitPoint = Math.floor(h * (0.3 + Math.random() * 0.4))
-        splitRect(x, y, w, splitPoint, depth - 1)
-        splitRect(x, y + splitPoint, w, h - splitPoint, depth - 1)
-      }
-    }
-
-    if (!isMirror) {
-      // 5 levels of depth = up to 32 large blocks
-      splitRect(0, 0, cols, rows, 5)
-    }
-
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         if (isMirror) {
           pixels.push(new Pixel(i * currentCellSize, j * currentCellSize, COLORS[0]))
         } else {
-          // Find which rect this cell belongs to
-          let color = COLORS[0]
-          for (let k = 0; k < rects.length; k++) {
-            const r = rects[k]
-            if (i >= r.x && i < r.x + r.w && j >= r.y && j < r.y + r.h) {
-              color = r.color
-              break
-            }
-          }
-          // Only create a pixel if it's not in a negative space block
-          if (color !== 'transparent') {
+          // Topographic Contour Lines Logic
+          // Smooth low-frequency noise for sweeping geographical lines
+          const nx = i * 0.035
+          const ny = j * 0.035
+          const n = Math.sin(nx) * Math.cos(ny) + Math.sin(nx * 0.5 + ny * 0.5) + Math.sin(nx * 0.2 - ny * 0.2) * 0.5
+          
+          // Map noise to "elevation" layers
+          const elevation = (n + 2) * 2.5 
+          const distanceToContour = Math.abs(elevation - Math.round(elevation))
+          
+          // Draw pixel if it falls on a contour line (thickness threshold)
+          if (distanceToContour < 0.15) {
+            let color = COLORS[0]
+            const layerIndex = Math.abs(Math.round(elevation)) % 5
+            
+            if (layerIndex === 0) color = COLORS[0] // Navy
+            else if (layerIndex === 1) color = COLORS[1] // Steel blue
+            else if (layerIndex === 2) color = COLORS[2] // Periwinkle
+            else if (layerIndex === 3) color = COLORS[3] // Sky blue
+            else if (layerIndex === 4) color = COLORS[4] // Peach
+            
             pixels.push(new Pixel(i * currentCellSize, j * currentCellSize, color))
           }
         }
