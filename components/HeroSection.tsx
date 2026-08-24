@@ -137,8 +137,8 @@ export default function HeroSection() {
 
   const initPixels = useCallback((width: number, height: number, isMirror: boolean) => {
     const pixels: Pixel[] = []
-    const cols = Math.floor(width / currentCellSize)
-    const rows = Math.floor(height / currentCellSize)
+    const cols = Math.ceil(width / currentCellSize)
+    const rows = Math.ceil(height / currentCellSize)
 
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
@@ -210,8 +210,8 @@ export default function HeroSection() {
 
     // Process Video Frame if Mirror Mode is ON
     if (mirrorMode && videoRef.current && offscreenCanvasRef.current && videoRef.current.readyState >= 2) {
-      const cols = Math.floor(width / currentCellSize)
-      const rows = Math.floor(height / currentCellSize)
+      const cols = Math.ceil(width / currentCellSize)
+      const rows = Math.ceil(height / currentCellSize)
       
       offscreenCanvasRef.current.width = cols
       offscreenCanvasRef.current.height = rows
@@ -256,7 +256,11 @@ export default function HeroSection() {
     })
   }, [currentBrushRadius, currentCellSize, mirrorMode, prefersReducedMotion])
 
-  const canvasRef = usePixelCanvas({ onDraw, onInit })
+  const canvasRef = usePixelCanvas({ 
+    onDraw, 
+    onInit,
+    onResize: (width, height) => initPixels(width, height, mirrorMode)
+  })
 
   const toggleMirror = async () => {
     if (mirrorMode) {
@@ -282,7 +286,7 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="relative w-full min-h-screen pt-24 pb-12 flex flex-col border-b border-black/10">
+    <section className="relative w-full min-h-screen pt-24 pb-0 flex flex-col border-b border-black/10">
       
       {/* Editorial Split Header */}
       <div className="px-6 md:px-12 lg:px-24 flex flex-col md:flex-row justify-between items-start gap-12 z-10 mb-12">
