@@ -103,8 +103,8 @@ class Pixel {
 
 export default function HeroSection() {
   const prefersReducedMotion = useReducedMotion()
-  const [cellSize, setCellSize] = useState<'S' | 'M' | 'L'>('M')
-  const [brushSize, setBrushSize] = useState<'S' | 'M' | 'L'>('M')
+  const [cellSize, setCellSize] = useState<'S' | 'M' | 'L'>('S')
+  const [brushSize, setBrushSize] = useState<'S' | 'M' | 'L'>('S')
   
   const pixelsRef = useRef<Pixel[]>([])
   const mouseRef = useRef({ x: -1000, y: -1000 })
