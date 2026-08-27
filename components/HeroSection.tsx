@@ -145,26 +145,14 @@ export default function HeroSection() {
         if (isMirror) {
           pixels.push(new Pixel(i * currentCellSize, j * currentCellSize, COLORS[0]))
         } else {
-          // Topographic Contour Lines Logic
-          // Smooth low-frequency noise for sweeping geographical lines
-          const nx = i * 0.035
-          const ny = j * 0.035
-          const n = Math.sin(nx) * Math.cos(ny) + Math.sin(nx * 0.5 + ny * 0.5) + Math.sin(nx * 0.2 - ny * 0.2) * 0.5
-          
-          // Map noise to "elevation" layers
-          const elevation = (n + 2) * 2.5 
-          const distanceToContour = Math.abs(elevation - Math.round(elevation))
-          
-          // Draw pixel if it falls on a contour line (thickness threshold)
-          if (distanceToContour < 0.15) {
+          // Landscape logic: only fill some areas based on noise
+          const n = pseudoNoise(i, j)
+          if (n > -0.5) {
             let color = COLORS[0]
-            const layerIndex = Math.abs(Math.round(elevation)) % 5
-            
-            if (layerIndex === 0) color = COLORS[0] // Navy
-            else if (layerIndex === 1) color = COLORS[1] // Steel blue
-            else if (layerIndex === 2) color = COLORS[2] // Periwinkle
-            else if (layerIndex === 3) color = COLORS[3] // Sky blue
-            else if (layerIndex === 4) color = COLORS[4] // Peach
+            if (n > 1.2) color = COLORS[4]
+            else if (n > 0.8) color = COLORS[3]
+            else if (n > 0.4) color = COLORS[2]
+            else if (n > 0.0) color = COLORS[1]
             
             pixels.push(new Pixel(i * currentCellSize, j * currentCellSize, color))
           }
