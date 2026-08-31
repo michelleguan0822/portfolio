@@ -72,11 +72,9 @@ export default function ProjectsSection() {
       
       {/* Editorial Introduction */}
       <div className="px-6 md:px-12 lg:px-24 mb-12 lg:mb-16">
-        <p className="text-sm font-bold uppercase tracking-widest text-neutral-400 mb-8">
-          Featured Projects
-        </p>
+
         <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.1] max-w-4xl uppercase">
-          Combining product thinking, interaction design and frontend engineering.
+          Featured Projects
         </h2>
       </div>
 
