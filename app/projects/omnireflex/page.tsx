@@ -33,8 +33,8 @@ export default function OmnireflexPage() {
  animate={{ opacity: 1, y: 0 }}
  transition={{ duration: 0.8, ease: 'easeOut' }}
  >
- <p className="text-lg font-medium text-neutral-500 mb-8">
- Product Design
+ <p className="text-lg font-medium text-neutral-500 mb-8 uppercase tracking-widest text-xs">
+ Product Design + Engineering
  </p>
  <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-neutral-900">
  UNIMO
@@ -43,7 +43,7 @@ export default function OmnireflexPage() {
  A lighter way to express emotions.
  </h2>
     <p className="mt-6 text-lg text-neutral-500 font-normal max-w-2xl leading-relaxed">
- Unimo moves emotional expression out of text-lgd conversations and into something people can see, feel, and interact with.
+ UNIMO is an AI emotional companion that transforms meaningful conversations into collectible Emotion Cards—helping people see, keep, and return to moments that matter.
  </p>
  </motion.div>
  </header>
@@ -80,24 +80,12 @@ export default function OmnireflexPage() {
  </motion.div>
  </section>
 
-  {/* Greeting */}
-  <section className="px-6 md:px-12 lg:px-24 mb-16 flex justify-center">
-    <div className="max-w-4xl flex flex-col md:flex-row items-center md:items-start gap-8">
-      <div className="flex-shrink-0">
-        <img src="/images/about/vibe_coding.png" alt="Avatar" className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border border-black/5" />
-      </div>
-      <p className="text-lg font-normal text-neutral-500 leading-relaxed md:pt-4 text-center md:text-left">
-        Hey there! I know reviewing case studies can be exhausting. But stick with me — this isn't just another design story. It's about how we reimagined emotional expression as something visual and interactive, turning meaningful moments into collectible emotional artifacts that users can actually feel.
-      </p>
-    </div>
-  </section>
-
  {/* Metadata Grid */}
  <section className="px-6 md:px-12 lg:px-24 mb-32">
  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-b border-black/5 py-12">
  <div>
  <h3 className="text-lg font-medium text-neutral-500 mb-2">Role</h3>
- <p className="text-lg font-normal text-neutral-900">End-to-end Product Engineer</p>
+ <p className="text-lg font-normal text-neutral-900">Design Engineer</p>
  </div>
  <div>
  <h3 className="text-lg font-medium text-neutral-500 mb-2">Timeline</h3>
@@ -105,11 +93,11 @@ export default function OmnireflexPage() {
  </div>
  <div>
  <h3 className="text-lg font-medium text-neutral-500 mb-2">Team</h3>
- <p className="text-lg font-normal text-neutral-900">2 PMs, 4 Engineers<br/>1 Visual Designer</p>
+ <p className="text-lg font-normal text-neutral-900">2 Product Managers<br/>4 Engineers<br/>1 Visual Designer</p>
  </div>
  <div>
- <h3 className="text-lg font-medium text-neutral-500 mb-2">Client</h3>
- <p className="text-lg font-normal text-neutral-900">Startup / Independent</p>
+ <h3 className="text-lg font-medium text-neutral-500 mb-2">Responsibilities</h3>
+ <p className="text-lg font-normal text-neutral-900">Product Strategy<br/>Interaction Design<br/>SwiftUI Design System<br/>API Integration</p>
  </div>
  </div>
  </section>
@@ -119,191 +107,284 @@ export default function OmnireflexPage() {
  {/* Table of Contents (Sticky) */}
  <aside className="lg:w-1/4 hidden lg:block">
  <div className="sticky top-32">
- <h4 className="text-lg font-medium text-neutral-900 mb-4">Contents</h4>
+ <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-6">Contents</h4>
  <ul className="space-y-3 text-lg font-normal text-neutral-500">
- <li>
- <a href="#snapshot" className="hover:text-neutral-900 transition-colors">Snapshot</a>
- </li>
- <li>
- <a href="#overview" className="hover:text-neutral-900 transition-colors">Overview</a>
- </li>
- <li>
- <a href="#engineering" className="hover:text-neutral-900 transition-colors">Engineering</a>
- </li>
- <li>
- <a href="#brand" className="hover:text-neutral-900 transition-colors">Brand Guidelines</a>
- </li>
- <li>
- <a href="#mascots" className="hover:text-neutral-900 transition-colors">Mascot States</a>
- </li>
- <li>
- <a href="#experience" className="hover:text-neutral-900 transition-colors">Experience</a>
- </li>
- <li>
- <a href="#validation" className="hover:text-neutral-900 transition-colors">Validation</a>
- </li>
+ <li><a href="#snapshot" className="hover:text-neutral-900 transition-colors">Snapshot</a></li>
+ <li><a href="#context" className="hover:text-neutral-900 transition-colors">Context</a></li>
+ <li><a href="#product-idea" className="hover:text-neutral-900 transition-colors">The Product Idea</a></li>
+ <li><a href="#challenge" className="hover:text-neutral-900 transition-colors">The Challenge</a></li>
+ <li><a href="#product-goal" className="hover:text-neutral-900 transition-colors">Product Goal</a></li>
+ <li><a href="#core-decision" className="hover:text-neutral-900 transition-colors">Core Product Decision</a></li>
+ <li><a href="#final-experience" className="hover:text-neutral-900 transition-colors">Final Experience</a></li>
+ <li><a href="#emotion-card" className="hover:text-neutral-900 transition-colors">Emotion Card</a></li>
+ <li><a href="#engineering" className="hover:text-neutral-900 transition-colors">Engineering</a></li>
+ <li><a href="#design-system" className="hover:text-neutral-900 transition-colors">Design System</a></li>
+ <li><a href="#api-states" className="hover:text-neutral-900 transition-colors">API & States</a></li>
+ <li><a href="#error-recovery" className="hover:text-neutral-900 transition-colors">Error Recovery</a></li>
+ <li><a href="#visual-system" className="hover:text-neutral-900 transition-colors">Visual System</a></li>
+ <li><a href="#validation" className="hover:text-neutral-900 transition-colors">Validation</a></li>
+ <li><a href="#impact" className="hover:text-neutral-900 transition-colors">Impact</a></li>
+ <li><a href="#reflection" className="hover:text-neutral-900 transition-colors">Reflection</a></li>
  </ul>
  </div>
  </aside>
 
  {/* Main Content */}
- <div className="lg:w-3/4 max-w-4xl">
+ <div className="lg:w-3/4 max-w-4xl space-y-32">
  
- <div id="snapshot" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">
- 30-second Snapshot
- </h2>
+ {/* SNAPSHOT */}
+ <div id="snapshot">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">30-Second Snapshot</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Turning meaningful conversations into something people can keep.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p>
- UNIMO is an emotional companion app designed for Gen Z.
- <br/>
- We noticed that most AI emotional support products still treat feelings as conversation data, asking users to type, explain, and revisit long threads.
- </p>
- <p>
- UNIMO reimagines emotional expression as something visual and interactive, turning meaningful moments into collectible emotional artifacts users can keep, feel, and return to.
- </p>
+ <p>Most AI emotional-support products leave users with long conversations that are difficult to revisit. At UNIMO, we explored a more visual approach: identifying meaningful moments from a conversation and transforming them into collectible emotional artifacts.</p>
+ <p>I redesigned the core card-generation experience from a randomized five-step process into a guided three-step flow. I also translated the experience into production SwiftUI, built a 26-component design system, and worked directly with engineers to define API behavior, loading states, streaming feedback, and error recovery.</p>
+ <p>The redesigned experience increased completion by 18%. Across 442 beta users, more than 267 people created over 800 Emotion Cards.</p>
  
- <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8">
- <div className="bg-[#FAFAFA] border border-black/10 p-8">
- <h3 className="text-lg font-medium text-neutral-900 mb-2">Lighter</h3>
- <p className="text-lg text-neutral-500">No more forced paragraphs. Just signals.</p>
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-black/10 my-8">
+ <div>
+ <p className="text-3xl font-bold text-neutral-900 mb-1">442</p>
+ <p className="text-sm font-medium text-neutral-500">Beta Users</p>
  </div>
- <div className="bg-[#FAFAFA] border border-black/10 p-8">
- <h3 className="text-lg font-medium text-neutral-900 mb-2">Visual</h3>
- <p className="text-lg text-neutral-500">See your mood, don't just describe it.</p>
+ <div>
+ <p className="text-3xl font-bold text-neutral-900 mb-1">+18%</p>
+ <p className="text-sm font-medium text-neutral-500">Completion Rate</p>
+ </div>
+ <div>
+ <p className="text-3xl font-bold text-neutral-900 mb-1">800+</p>
+ <p className="text-sm font-medium text-neutral-500">Cards Created</p>
+ </div>
+ <div>
+ <p className="text-3xl font-bold text-neutral-900 mb-1">26</p>
+ <p className="text-sm font-medium text-neutral-500">SwiftUI Components</p>
  </div>
  </div>
  </div>
  </div>
 
- <div id="overview" className="mb-20">
-    <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-12 gap-6">
-      <h2 className="text-2xl font-medium text-neutral-900 md:w-1/3">
-        Overview
-      </h2>
-      <p className="text-lg font-normal text-neutral-500 leading-relaxed md:w-2/3">
-        Experience an emotional world where feelings aren't just data—they're the foundation of a growing interactive universe.
-      </p>
-    </div>
-    
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg font-normal text-neutral-500 leading-relaxed">
-      {/* Box 1 (Full Width text-focused) */}
-      <div className="md:col-span-2 bg-white border border-black/5 rounded-[2rem] p-10 md:p-12 flex flex-col justify-center">
-        <h3 className="text-2xl font-medium text-neutral-900 tracking-tight mb-4">An Emotional AI Universe for Gen-Z</h3>
-        <p className="max-w-2xl">UNIMO turns daily emotions into interactive moments through AI companionship, collectible cards, and a world users want to return to.</p>
-      </div>
-      
-      {/* Box 2 (Half Width with Image) */}
-      <div className="md:col-span-1 bg-white border border-black/5 rounded-[2rem] p-8 flex flex-col justify-between overflow-hidden relative">
-        <div className="mb-12 relative z-10">
-          <h3 className="text-2xl font-medium text-neutral-900 tracking-tight mb-4">Emotions Become Collectible Assets</h3>
-          <p>Each meaningful interaction can be transformed into an Emotion Card, making feelings visible, memorable, and worth keeping.</p>
-        </div>
-        <div className="relative w-full h-48 mt-auto rounded-xl overflow-hidden shadow-sm border border-black/5">
-          <img src="/images/unimo/card_interaction.png" alt="Cards" className="object-cover w-full h-full" />
-        </div>
-      </div>
-
-      {/* Box 3 (Half Width with Image) */}
-      <div className="md:col-span-1 bg-white border border-black/5 rounded-[2rem] p-8 flex flex-col justify-between overflow-hidden relative">
-        <div className="mb-12 relative z-10">
-          <h3 className="text-2xl font-medium text-neutral-900 tracking-tight mb-4">Playful Systems That Keep Users Engaged</h3>
-          <p>From card pulls to battles, voting, upgrades, and revival, UNIMO uses game-like loops to make emotional support feel lighter and more engaging.</p>
-        </div>
-        <div className="relative w-full h-48 mt-auto rounded-xl overflow-hidden shadow-sm border border-black/5">
-          <img src="/images/unimo/battle.JPG" alt="Engagement loops" className="object-cover w-full h-full" />
-        </div>
-      </div>
-
-      {/* Box 4 (Full Width) */}
-      <div className="md:col-span-2 bg-white border border-black/5 rounded-[2rem] p-10 md:p-12 flex flex-col justify-center">
-        <h3 className="text-2xl font-medium text-neutral-900 tracking-tight mb-4">More Than an App, A Scalable IP World</h3>
-        <p className="max-w-2xl">With distinctive characters, emotional storytelling, and a growing universe, UNIMO is designed to expand into content, community, and branded experiences.</p>
-      </div>
-    </div>
-  </div>
-
- <div id="engineering" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">Engineering the Magic
- </h2>
+ {/* CONTEXT */}
+ <div id="context">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Context</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Conversations help in the moment—but meaningful moments are easily lost.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p className="text-lg font-medium text-neutral-900">
- Bridging the gap between Figma and Code.
- </p>
- <p>
- As a Product Engineer, my responsibility didn't end at designing the UI—it extended to ensuring the emotional interactions felt just as fluid on a device as they did in the prototype. We built the frontend using <strong>React Native</strong> and managed the complex animations using <strong>Reanimated / Lottie</strong>.
- </p>
- <div className="bg-[#FAFAFA] border border-black/10 p-8 mt-8">
- <h3 className="text-lg font-medium text-neutral-900 mb-2">Technical Challenge: Frame Drops</h3>
- <p className="mb-4">
- The Gen-Z target audience demands highly fluid, game-like interactions. Initially, rendering the dynamic mascot states and card-pulling animations simultaneously caused significant frame drops on older devices.
- </p>
- <p>
- <strong>The Compromise:</strong> Instead of insisting on heavy runtime vector calculations, I worked closely with the team to bake the most complex mascot transitions into pre-rendered Lottie files, while keeping the UI shell lightweight. This engineering compromise saved our 60fps target without sacrificing the "feel" of the design.
- </p>
- </div>
+ <p>AI companions are good at listening, but the experience usually ends when the conversation ends. Users may share something important, receive a helpful response, and then lose that moment inside a long chat history.</p>
+ <p>Returning to it requires scrolling through old conversations and rereading paragraphs of text. For users who already find emotional reflection difficult, that creates even more friction.</p>
+ <p>We saw an opportunity to make emotional reflection feel lighter and more tangible.</p>
+ <p>Instead of treating every conversation as another thread, UNIMO helps users turn meaningful moments into visual objects they can collect, revisit, and understand over time.</p>
  </div>
  </div>
 
- <div id="brand" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">Brand Guidelines
- </h2>
+ {/* THE PRODUCT IDEA */}
+ <div id="product-idea">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Product Idea</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">What if an AI companion could remember what mattered—not just what was said?</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>UNIMO listens for meaningful moments within a conversation and helps users transform them into Emotion Cards.</p>
+ <p>Each card captures one important emotional insight. The front gives the moment a visual identity, while the back provides a concise summary and an emotional wheel that helps users understand the feelings connected to it.</p>
+ <p>The goal was not to replace conversation. It was to give meaningful conversations a lasting form.</p>
+ </div>
+ </div>
+
+ {/* THE CHALLENGE */}
+ <div id="challenge">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Challenge</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">The original experience made card creation feel random and difficult to trust.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>The first version used a five-step flow with limited guidance. Content appeared randomly, and users had little control over which part of the conversation became a card.</p>
+ <p>This created three problems:</p>
+ <div className="bg-[#FAFAFA] border border-black/10 p-8 space-y-6 my-8">
+ <div>
+ <h3 className="text-lg font-bold text-neutral-900 mb-2">Too much uncertainty</h3>
+ <p>Users could not understand how the system selected content or what the final card would represent.</p>
+ </div>
+ <div>
+ <h3 className="text-lg font-bold text-neutral-900 mb-2">Too many decisions</h3>
+ <p>The experience asked users to make several choices without first helping them identify what was meaningful.</p>
+ </div>
+ <div>
+ <h3 className="text-lg font-bold text-neutral-900 mb-2">Too little emotional ownership</h3>
+ <p>Because the result felt randomly generated, the finished card did not always feel personal or worth keeping.</p>
+ </div>
+ </div>
+ <p>The interface worked, but the experience did not yet create the sense of intention and emotional ownership we wanted.</p>
+ </div>
+ </div>
+
+ {/* PRODUCT GOAL */}
+ <div id="product-goal">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Product Goal</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Give users enough guidance to make the card meaningful—without turning reflection into work.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>We wanted the AI to do most of the processing while keeping the user in control of the final meaning.</p>
+ <p>The redesigned experience needed to:</p>
+ <ul className="list-disc pl-6 space-y-2">
+ <li>Reduce the number of steps</li>
+ <li>Make the AI's decision-making easier to understand</li>
+ <li>Give users control without overwhelming them</li>
+ <li>Preserve the emotional context of the conversation</li>
+ <li>Make the final card feel personal and collectible</li>
+ </ul>
+ </div>
+ </div>
+
+ {/* CORE PRODUCT DECISION */}
+ <div id="core-decision">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Core Product Decision</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">From five random steps to one guided narrowing process.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>I redesigned the experience around a simple progressive-selection model.</p>
+ <p>Instead of immediately generating a card, the system helps users move from a broad conversation toward one meaningful takeaway.</p>
  
- <div className="mb-16">
- <h3 className="text-lg font-medium text-neutral-500 mb-2">The DNA of the Unimo Universe</h3>
- <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
- <div className="aspect-square bg-[#7983D9] p-4 flex flex-col justify-between">
- <p className="text-white font-bold tracking-widest text-lg ">Primary</p>
- <p className="text-white font-medium">#7983D9</p>
+ <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+ <div className="border border-black/10 p-6 rounded-xl">
+ <h3 className="text-xl font-bold text-neutral-900 mb-2">Step 1: Review</h3>
+ <p className="text-base">The AI identifies 10 meaningful sentences from the conversation. Users begin with recognizable moments from something they already said, making the process feel grounded in their own experience.</p>
  </div>
- <div className="aspect-square bg-[#70C05B] p-4 flex flex-col justify-between">
- <p className="text-white font-bold tracking-widest text-lg ">Nature</p>
- <p className="text-white font-medium">#70C05B</p>
+ <div className="border border-black/10 p-6 rounded-xl">
+ <h3 className="text-xl font-bold text-neutral-900 mb-2">Step 2: Refine</h3>
+ <p className="text-base">The system narrows those moments to five stronger emotional signals. This reduces cognitive load while allowing users to compare the moments that matter most.</p>
  </div>
- <div className="aspect-square bg-[#FAE69E] p-4 flex flex-col justify-between">
- <p className="text-neutral-900 font-bold tracking-widest text-lg ">Joy</p>
- <p className="text-neutral-900 font-medium">#FAE69E</p>
+ <div className="border border-black/10 p-6 rounded-xl">
+ <h3 className="text-xl font-bold text-neutral-900 mb-2">Step 3: Keep</h3>
+ <p className="text-base">The user selects one final moment. UNIMO turns it into a concise summary and generates the visual token used to create the Emotion Card.</p>
  </div>
- <div className="aspect-square bg-[#1D1C5C] p-4 flex flex-col justify-between">
- <p className="text-white font-bold tracking-widest text-lg ">Deep</p>
- <p className="text-white font-medium">#1D1C5C</p>
  </div>
+ <p>This approach made the AI feel less random. Users could understand how the final result was created and still feel ownership over what they chose to preserve.</p>
  </div>
  </div>
 
- <div className="mb-16">
- <h3 className="text-lg font-medium text-neutral-500 mb-2">Typography</h3>
- <div className="bg-[#FAFAFA] border border-black/10 p-8 space-y-8">
+ {/* FINAL EXPERIENCE */}
+ <div id="final-experience">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Final Experience</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">A conversation becomes a card in three guided steps.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>The completed experience moves through a clear emotional arc:</p>
+ 
+ <div className="bg-[#FAFAFA] border border-black/10 p-8 space-y-6 my-8">
  <div>
- <p className="text-lg font-medium text-neutral-500 mb-2">Primary / Heading</p>
- <p className="text-4xl md:text-5xl font-bold text-neutral-900 tracking-tight">ABCDEFGHI</p>
+ <h3 className="text-lg font-bold text-neutral-900 mb-2">Listen</h3>
+ <p>The user talks naturally with UNIMO without having to structure the conversation like a journal entry.</p>
  </div>
  <div>
- <p className="text-lg font-medium text-neutral-500 mb-2">Secondary / Plus Jakarta Sans</p>
- <p className="text-2xl font-medium text-neutral-500">0123456789</p>
+ <h3 className="text-lg font-bold text-neutral-900 mb-2">Distill</h3>
+ <p>The AI identifies meaningful moments and guides the user from 10 sentences to five, then to one final takeaway.</p>
  </div>
+ <div>
+ <h3 className="text-lg font-bold text-neutral-900 mb-2">Create</h3>
+ <p>The selected moment becomes an Emotion Card with a visual identity, emotional summary, and interactive reflection.</p>
+ </div>
+ </div>
+ <p>The experience remains lightweight, but the final artifact feels considered and personal.</p>
  </div>
  </div>
 
- <div>
- <h3 className="text-lg font-medium text-neutral-500 mb-2">Target Audience</h3>
- <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
- <div className="border-l-2 border-black/10 pl-6 py-2">
- <p className="text-2xl font-medium text-neutral-900 mb-2">54%</p>
- <p className="text-lg font-normal text-neutral-500">Age 16 - 24</p>
+ {/* EMOTION CARD */}
+ <div id="emotion-card">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Designing the Emotion Card</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Making an AI-generated result feel tangible and worth keeping.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>The card needed to feel different from a chat summary or generated report. It had to feel like an object users could form an emotional connection with.</p>
+ <p>I focused on spacing, contrast, hierarchy, and restrained visual detail to make each card feel collectible without becoming visually overwhelming.</p>
+ 
+ <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-8">
+ <div className="relative mx-auto w-full max-w-[320px] border-[12px] border-neutral-900 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl overflow-hidden bg-neutral-900 flex justify-center">
+ <div className="absolute top-0 z-20 h-5 md:h-6 w-1/2 bg-neutral-900 rounded-b-2xl md:rounded-b-3xl"></div>
+ <img src="/images/unimo/home.PNG" alt="Home Screen" className="w-full h-auto object-cover" />
  </div>
- <div className="border-l-2 border-black/10 pl-6 py-2">
- <p className="text-2xl font-medium text-neutral-900 mb-2">61%</p>
- <p className="text-lg font-normal text-neutral-500">Visual First</p>
+ <div className="relative mx-auto w-full max-w-[320px] border-[12px] border-neutral-900 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl overflow-hidden bg-neutral-900 flex justify-center">
+ <div className="absolute top-0 z-20 h-5 md:h-6 w-1/2 bg-neutral-900 rounded-b-2xl md:rounded-b-3xl"></div>
+ <img src="/images/unimo/chat.PNG" alt="Chat Screen" className="w-full h-auto object-cover" />
+ </div>
+ <div className="relative mx-auto w-full max-w-[320px] border-[12px] border-neutral-900 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl overflow-hidden bg-neutral-900 flex justify-center">
+ <div className="absolute top-0 z-20 h-5 md:h-6 w-1/2 bg-neutral-900 rounded-b-2xl md:rounded-b-3xl"></div>
+ <img src="/images/unimo/card.png" alt="Card Generation" className="w-full h-auto object-cover" />
  </div>
  </div>
+ 
+ <ul className="list-disc pl-6 space-y-4">
+ <li><strong>The Front:</strong> Gives each emotional moment a distinct visual identity. Color, composition, and generated graphics make the result feel personal and recognizable within a growing collection.</li>
+ <li><strong>The Back:</strong> Provides context through a concise summary and an emotional wheel. Users can understand what the card represents without rereading the original conversation.</li>
+ <li><strong>The Collection:</strong> Together, the cards create a visual record of the user's emotional experiences. Over time, the collection becomes more than saved content—it becomes a personal emotional archive.</li>
+ </ul>
  </div>
  </div>
 
- <div id="mascots" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">Mascot States & Assets
- </h2>
- <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+ {/* ENGINEERING */}
+ <div id="engineering">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Engineering the Experience</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Making a 30-second AI workflow feel responsive and trustworthy.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>My responsibility extended beyond designing the interface. I translated the experience into production SwiftUI, built the shared component system, and worked directly with engineers to define how the frontend should respond throughout the generation process.</p>
+ <p>The core engineering challenge was latency.</p>
+ <p>Generating an Emotion Card could take approximately 30 seconds as the system analyzed the conversation, selected meaningful moments, created a summary, and generated the final visual.</p>
+ <p>Without clear feedback, users could not tell whether the product was thinking, frozen, or had failed.</p>
+ <p>I designed the experience as a sequence of visible system states rather than a single loading screen. Users receive progressive feedback while the card is being generated, clear messaging when a step takes longer than expected, and a recovery path when the request fails.</p>
+ </div>
+ </div>
+
+ {/* DESIGN SYSTEM */}
+ <div id="design-system">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Production Design System</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">A SwiftUI system designed to scale.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>I translated the visual language from Figma into a production SwiftUI design system containing 26 reusable components.</p>
+ <p>The system covered:</p>
+ <ul className="list-disc pl-6 space-y-2">
+ <li>Foundational interface elements</li>
+ <li>Conversational patterns</li>
+ <li>Emotion Card components</li>
+ <li>Selection and confirmation controls</li>
+ <li>Loading and generation states</li>
+ <li>Empty, timeout, and error states</li>
+ <li>Feedback and recovery patterns</li>
+ </ul>
+ <p>Creating these patterns as reusable production components helped the team maintain consistency while shipping approximately one new feature each week.</p>
+ <p>It also reduced the gap between design and implementation. Instead of handing off static screens, I could define how each component behaved across real product states.</p>
+ </div>
+ </div>
+
+ {/* API & AI STATES */}
+ <div id="api-states">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">API and AI States</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Designing the moments between request and response.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>AI experiences are defined not only by the final output, but by what happens while the user is waiting.</p>
+ <p>I worked with engineers to define the API behavior behind the card-generation flow and designed the interface around the full response lifecycle:</p>
+ <ul className="list-disc pl-6 space-y-2">
+ <li>Request initiated</li>
+ <li>Content analysis</li>
+ <li>Streaming response</li>
+ <li>Summary generation</li>
+ <li>Visual generation</li>
+ <li>Success</li>
+ <li>Empty response</li>
+ <li>Timeout</li>
+ <li>Failure and retry</li>
+ </ul>
+ <p>Instead of hiding the system behind an indefinite spinner, the interface communicates what is happening and gives users confidence that their request is still progressing.</p>
+ </div>
+ </div>
+
+ {/* ERROR RECOVERY */}
+ <div id="error-recovery">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Error Recovery</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">A failed request should not erase an emotional moment.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>Failure is especially sensitive in an emotional product. If a user has just shared something personal, asking them to start over can make the experience feel careless.</p>
+ <p>I designed recovery patterns that preserve the user's existing conversation and selected content. Error messages explain the problem in plain language and provide a clear retry path without forcing the user to repeat the entire flow.</p>
+ <p>These states became part of the shared design system so the same behavior could be reused across future AI-powered features.</p>
+ </div>
+ </div>
+
+ {/* VISUAL SYSTEM */}
+ <div id="visual-system">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Visual System</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Playful enough to feel approachable. Structured enough to feel safe.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>UNIMO's visual system balances emotional warmth with predictable interaction patterns.</p>
+ <p>Soft colors and expressive character states make the experience feel approachable, while consistent spacing, hierarchy, and interaction feedback keep the product understandable.</p>
+ 
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 mb-12">
  <div className="border border-black/10 bg-[#FAFAFA] aspect-square flex flex-col items-center justify-center text-center overflow-hidden">
  <img src="/images/unimo/mascots/Dodo.png" alt="Dodo" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
  </div>
@@ -317,61 +398,89 @@ export default function OmnireflexPage() {
  <img src="/images/unimo/mascots/Pip.png" alt="Pip" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
  </div>
  </div>
+
+ <p>The visual system was designed around three principles:</p>
+ <ul className="list-disc pl-6 space-y-4">
+ <li><strong>Emotion should be visible:</strong> Color, character states, and card graphics help users recognize emotional shifts without relying only on text.</li>
+ <li><strong>Interaction should be predictable:</strong> Playful motion never replaces functional feedback. Every state still communicates what happened and what the user can do next.</li>
+ <li><strong>Generated content should feel intentional:</strong> The system gives each card its own personality while preserving enough consistency for the collection to feel cohesive.</li>
+ </ul>
+ </div>
  </div>
 
- <div id="experience" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">Experience the App
- </h2>
- <p className="text-lg font-medium text-neutral-500 mb-12">
- A visual journey through the Unimo interface.
- </p>
- <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
- <div className="relative mx-auto w-full max-w-[320px] border-[12px] border-neutral-900 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl overflow-hidden bg-neutral-900 flex justify-center">
- {/* iPhone Notch */}
- <div className="absolute top-0 z-20 h-5 md:h-6 w-1/2 bg-neutral-900 rounded-b-2xl md:rounded-b-3xl"></div>
- <img src="/images/unimo/home.PNG" alt="Home Screen" className="w-full h-auto object-cover" />
- </div>
- 
- <div className="relative mx-auto w-full max-w-[320px] border-[12px] border-neutral-900 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl overflow-hidden bg-neutral-900 flex justify-center">
- {/* iPhone Notch */}
- <div className="absolute top-0 z-20 h-5 md:h-6 w-1/2 bg-neutral-900 rounded-b-2xl md:rounded-b-3xl"></div>
- <img src="/images/unimo/chat.PNG" alt="Chat Screen" className="w-full h-auto object-cover" />
- </div>
-
- <div className="relative mx-auto w-full max-w-[320px] border-[12px] border-neutral-900 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl overflow-hidden bg-neutral-900 flex justify-center">
- {/* iPhone Notch */}
- <div className="absolute top-0 z-20 h-5 md:h-6 w-1/2 bg-neutral-900 rounded-b-2xl md:rounded-b-3xl"></div>
- <img src="/images/unimo/card.png" alt="Feelings Become Cards" className="w-full h-auto object-cover" />
- </div>
- </div>
- </div>
- 
- <div id="validation" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">Reality Check & Validation
- </h2>
+ {/* VALIDATION */}
+ <div id="validation">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Validation</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Did users actually want to keep the cards?</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p className="text-lg font-medium text-neutral-900">
- What happens when real people use it?
- </p>
- <p>
- A beautiful UI means nothing if it doesn't solve the core problem. We deployed a beta build via TestFlight to ~25 college students to test if our "Visual-First" emotional expression hypothesis actually held up.
- </p>
+ <p>We evaluated the experience through beta usage and completion behavior.</p>
+ <p>The main question was not simply whether users could finish the flow. We wanted to know whether the final artifact felt meaningful enough to create and keep.</p>
+ <p>The results showed that users were willing to return to the experience and build personal collections:</p>
  
- <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8">
- <div className="border-l-4 border-red-500/20 pl-6 py-2">
- <h4 className="font-bold text-neutral-900 text-lg mb-2">Failure 01</h4>
- <p>Users found the initial chat interface too rigid and "robotic", despite the cute avatars.</p>
+ <div className="grid grid-cols-2 gap-8 my-8 border-y border-black/10 py-8">
+ <div>
+ <p className="text-4xl font-bold text-neutral-900 mb-2">442</p>
+ <p className="text-base text-neutral-500">Beta users experienced the product.</p>
  </div>
- <div className="border-l-4 border-emerald-500/20 pl-6 py-2">
- <h4 className="font-bold text-neutral-900 text-lg mb-2">The Pivot</h4>
- <p>This directly led to the introduction of the gamified <strong>Card Pulling</strong> system, which reduced the friction of typing by 40%.</p>
+ <div>
+ <p className="text-4xl font-bold text-neutral-900 mb-2">267+</p>
+ <p className="text-base text-neutral-500">Users created at least one Emotion Card.</p>
+ </div>
+ <div>
+ <p className="text-4xl font-bold text-neutral-900 mb-2">800+</p>
+ <p className="text-base text-neutral-500">Emotion Cards were generated and saved.</p>
+ </div>
+ <div>
+ <p className="text-4xl font-bold text-neutral-900 mb-2">+18%</p>
+ <p className="text-base text-neutral-500">Increase in card-generation completion after redesigning the flow.</p>
  </div>
  </div>
  
- <div className="border-l-4 border-neutral-900 pl-6 py-4 my-12 bg-neutral-50">
- <p className="text-2xl italic text-neutral-900 mb-2">"I didn't want to type a journal entry, but swiping the emotion cards actually made me stop and think about how I felt."</p>
- <p className="text-lg font-medium text-neutral-500">— Beta Tester, 19</p>
+ <p>The results validated the core product direction: users were more likely to complete the experience when the AI guided them toward one meaningful moment instead of generating an unexplained result.</p>
  </div>
+ </div>
+
+ {/* IMPACT */}
+ <div id="impact">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Impact</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">From a randomized feature to a repeatable product experience.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>The redesign gave the card-generation feature a clear structure and made the relationship between conversation, emotional meaning, and the final artifact easier to understand.</p>
+ <p>It also created a technical and visual foundation for future features.</p>
+ 
+ <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+ <div className="bg-[#FAFAFA] border border-black/10 p-8">
+ <h3 className="text-xl font-bold text-neutral-900 mb-4">For Users</h3>
+ <ul className="list-disc pl-5 space-y-2">
+ <li>Less effort required to identify a meaningful moment</li>
+ <li>More control over what becomes a card</li>
+ <li>Clearer feedback during AI generation</li>
+ <li>A personal artifact that can be revisited later</li>
+ </ul>
+ </div>
+ <div className="bg-[#FAFAFA] border border-black/10 p-8">
+ <h3 className="text-xl font-bold text-neutral-900 mb-4">For The Product</h3>
+ <ul className="list-disc pl-5 space-y-2">
+ <li>Completion increased by 18%</li>
+ <li>More than 800 cards were created</li>
+ <li>The experience gained a reusable SwiftUI foundation</li>
+ <li>New features could be shipped more consistently</li>
+ <li>AI loading and recovery patterns could be reused across the app</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ {/* REFLECTION */}
+ <div id="reflection">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Reflection</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">The best AI experience does not always feel like more AI.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
+ <p>The biggest lesson from UNIMO was that users did not need more generated content. They needed help finding meaning within what they had already shared.</p>
+ <p>The most important design decision was not the final visual style of the card. It was giving users visibility and control over how one emotional moment became that card.</p>
+ <p>Building the experience in SwiftUI also changed how I approached the design. Loading behavior, API limitations, reusable components, and failure states were not implementation details to solve after handoff. They were part of the product experience from the beginning.</p>
+ <p>UNIMO reinforced the kind of work I want to continue doing: turning ambiguous AI capabilities into clear, emotionally thoughtful, production-ready interfaces.</p>
  </div>
  </div>
 
