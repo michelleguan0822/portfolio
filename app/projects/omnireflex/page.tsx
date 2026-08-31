@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -9,6 +9,30 @@ import MagneticButton from '@/components/MagneticButton'
 
 export default function OmnireflexPage() {
  const containerRef = useRef<HTMLDivElement>(null)
+
+  const [activeSection, setActiveSection] = useState('overview')
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-20% 0px -80% 0px' }
+    )
+
+    const sections = ['overview', 'problem', 'solution', 'build', 'results']
+    sections.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
 
  return (
  <main ref={containerRef} className="relative min-h-screen bg-[#FAFAFA] pb-32">
@@ -105,33 +129,30 @@ export default function OmnireflexPage() {
  {/* Long-form Content with TOC */}
  <section className="px-6 md:px-12 lg:px-24 mb-32 flex flex-col lg:flex-row gap-12 lg:gap-24 relative">
  {/* Table of Contents (Sticky) */}
+ 
  <aside className="lg:w-1/4 hidden lg:block">
  <div className="sticky top-32">
  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-6">Contents</h4>
- <ul className="space-y-3 text-lg font-normal text-neutral-500">
- <li><a href="#snapshot" className="hover:text-neutral-900 transition-colors">Snapshot</a></li>
- <li><a href="#context" className="hover:text-neutral-900 transition-colors">Context</a></li>
- <li><a href="#product-idea" className="hover:text-neutral-900 transition-colors">The Product Idea</a></li>
- <li><a href="#challenge" className="hover:text-neutral-900 transition-colors">The Challenge</a></li>
- <li><a href="#product-goal" className="hover:text-neutral-900 transition-colors">Product Goal</a></li>
- <li><a href="#core-decision" className="hover:text-neutral-900 transition-colors">Core Product Decision</a></li>
- <li><a href="#final-experience" className="hover:text-neutral-900 transition-colors">Final Experience</a></li>
- <li><a href="#emotion-card" className="hover:text-neutral-900 transition-colors">Emotion Card</a></li>
- <li><a href="#engineering" className="hover:text-neutral-900 transition-colors">Engineering</a></li>
- <li><a href="#design-system" className="hover:text-neutral-900 transition-colors">Design System</a></li>
- <li><a href="#api-states" className="hover:text-neutral-900 transition-colors">API & States</a></li>
- <li><a href="#error-recovery" className="hover:text-neutral-900 transition-colors">Error Recovery</a></li>
- <li><a href="#visual-system" className="hover:text-neutral-900 transition-colors">Visual System</a></li>
- <li><a href="#validation" className="hover:text-neutral-900 transition-colors">Validation</a></li>
- <li><a href="#impact" className="hover:text-neutral-900 transition-colors">Impact</a></li>
- <li><a href="#reflection" className="hover:text-neutral-900 transition-colors">Reflection</a></li>
+ <ul className="space-y-4 text-lg font-medium">
+ {['overview', 'problem', 'solution', 'build', 'results'].map((section) => (
+ <li key={section}>
+ <a 
+ href={`#${section}`}
+ className={`transition-colors capitalize ${activeSection === section ? 'text-black' : 'text-neutral-400 hover:text-neutral-600'}`}
+ >
+ {section}
+ </a>
+ </li>
+ ))}
  </ul>
  </div>
  </aside>
 
+
  {/* Main Content */}
  <div className="lg:w-3/4 max-w-4xl space-y-32">
  
+ <div id="overview" className="space-y-32 scroll-mt-32">
  {/* SNAPSHOT */}
  <div id="snapshot">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">30-Second Snapshot</div>
@@ -185,6 +206,9 @@ export default function OmnireflexPage() {
  </div>
  </div>
 
+ </div>
+
+ <div id="problem" className="space-y-32 scroll-mt-32">
  {/* THE CHALLENGE */}
  <div id="challenge">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Challenge</div>
@@ -227,6 +251,9 @@ export default function OmnireflexPage() {
  </div>
  </div>
 
+ </div>
+
+ <div id="solution" className="space-y-32 scroll-mt-32">
  {/* CORE PRODUCT DECISION */}
  <div id="core-decision">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Core Product Decision</div>
@@ -309,6 +336,9 @@ export default function OmnireflexPage() {
  </div>
  </div>
 
+ </div>
+
+ <div id="build" className="space-y-32 scroll-mt-32">
  {/* ENGINEERING */}
  <div id="engineering">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Engineering the Experience</div>
@@ -408,6 +438,9 @@ export default function OmnireflexPage() {
  </div>
  </div>
 
+ </div>
+
+ <div id="results" className="space-y-32 scroll-mt-32">
  {/* VALIDATION */}
  <div id="validation">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Validation</div>
@@ -484,6 +517,7 @@ export default function OmnireflexPage() {
  </div>
  </div>
 
+ </div>
  </div>
  </section>
 
