@@ -105,7 +105,7 @@ export default function AvanadePage() {
  {/* Table of Contents (Sticky) */}
  <aside className="lg:w-1/4 hidden lg:block">
  <div className="sticky top-32">
- <h4 className="text-lg font-medium text-neutral-900 mb-4">Contents</h4>
+ <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-6">Contents</h4>
  <ul className="space-y-3 text-lg font-normal text-neutral-500">
  <li>
  <a href="#snapshot" className="hover:text-neutral-900 transition-colors">Snapshot</a>
@@ -127,11 +127,9 @@ export default function AvanadePage() {
  <div className="lg:w-3/4 max-w-4xl">
  
  <div id="snapshot" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">
- 30-second Snapshot
- </h2>
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">OVERVIEW</div>
+ <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">From confusion to confidence.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p className="text-lg font-medium text-neutral-900">From confusion to confidence.</p>
  <p>
  Oltiva AI helps Avanade's global sales team extract insights from complex documents—proposals, SOWs, RFPs, and contracts.
  </p>
@@ -167,12 +165,9 @@ export default function AvanadePage() {
  </div>
 
  <div id="challenge" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">The Challenge
- </h2>
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">CORE PROBLEMS</div>
+ <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">An MVP that looked like AI, but didn't work like one.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p className="text-lg font-medium text-neutral-900">
- An MVP That Looked Like AI, But Didn't Work Like One
- </p>
  <p>
  Avanade's sales team relies on dense, complex documents to close deals. Oltiva AI was built to help them surface insights instantly—but the initial demo created more confusion than clarity.
  </p>
@@ -207,12 +202,9 @@ export default function AvanadePage() {
  </div>
 
  <div id="solution" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">Solution
- </h2>
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">THE SOLUTION</div>
+ <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">A guided, predictable experience that builds trust.</h2>
  <div className="space-y-8 text-lg text-neutral-500 leading-relaxed font-normal">
- <p className="text-lg font-medium text-neutral-900">
- Final Design: A Guided AI Experience
- </p>
  <p>
  The final design feels less like "using a tool" and more like working with a knowledgeable assistant. Every decision ties back to the four issues uncovered in testing.
  </p>
@@ -261,12 +253,9 @@ export default function AvanadePage() {
  </div>
 
  <div id="impact" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">Impact
- </h2>
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">IMPACT</div>
+ <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Unlocking the next phase of development.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p className="text-lg font-medium text-neutral-900">
- From Confusion to Confidence
- </p>
  <p>
  The redesign transformed both user behavior and stakeholder confidence.
  </p>
