@@ -177,26 +177,25 @@ export default function OmnireflexPage() {
  <p>Most AI companions keep important moments inside long chat histories.</p>
  <p>We wanted to create a more visual experience that helps users identify one meaningful moment, understand why it mattered, and turn it into something they can keep.</p>
  <p>The product also needed to make emotional reflection feel simple and approachable for users who did not want to write a long journal entry.</p>
- <ProcessDiagram />
  </div>
  </div>
 
  {/* CORE PROBLEMS */}
  <div id="core-problems" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Core Problems</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">The original card creation experience felt random and difficult to understand.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Users did not understand how conversations became Emotion Cards.</h2>
  <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
  <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Meaningful moments get lost</h3>
- <p>Users have to search through old conversations to find something important again.</p>
+ <h3 className="text-xl font-bold text-neutral-900 mb-2">The card entry point was unclear</h3>
+ <p>Many users did not know when or how they could create a card after a conversation.</p>
  </div>
  <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">The selection process was unclear</h3>
- <p>Users could not understand why certain content was selected for the card.</p>
+ <h3 className="text-xl font-bold text-neutral-900 mb-2">Card access depended on chance</h3>
+ <p>Users first had to receive a random opportunity to roll the dice. The result then determined whether they could enter the card lottery.</p>
  </div>
  <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">The flow required too many decisions</h3>
- <p>The original five step process asked users to make several choices before they understood what was meaningful.</p>
+ <h3 className="text-xl font-bold text-neutral-900 mb-2">Users had no control</h3>
+ <p>Even after unlocking a card, users could not choose which part of the conversation the card would represent.</p>
  </div>
  </div>
  </div>
@@ -231,45 +230,48 @@ export default function OmnireflexPage() {
  {/* DESIGN CHALLENGE 01 */}
  <div id="design-challenge-01" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Design Challenge 01</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">HMW help users find one meaningful moment with fewer decisions?</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">HMW replace a random reward flow with a clear and controllable card creation experience?</h2>
  <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
  <div>
- <p>The original flow used five steps with limited guidance. Content appeared randomly, and users had little control over what became a card.</p>
- <p className="mt-4">The interface worked, but the final result did not always feel personal or worth keeping.</p>
+ <p>The original experience treated Emotion Cards as random rewards.</p>
+ <p className="mt-4">After chatting with UNIMO, users occasionally received an opportunity to roll the dice. The result gave them a chance to enter a lottery and unlock a card. Only then could the card be generated.</p>
  </div>
 
  <div>
  <h3 className="text-xl font-bold text-neutral-900 mb-2">Initial Flow</h3>
- <p>The first version asked users to make several disconnected choices.</p>
- <p className="mt-4">Users had to decide what to include before the system helped them understand which moments were meaningful.</p>
- <p className="mt-4">This added friction and made the AI selection process difficult to trust.</p>
+ <p>A conversation did not clearly lead to a card.</p>
+ <p className="mt-4">User testing showed that many users did not understand how this flow worked. They could not tell when the dice would appear, what affected the result, or how the final card related to their conversation.</p>
+ <p className="mt-4">The experience was playful, but it made the core value of the card difficult to discover.</p>
+ <ProcessDiagram flow="initial" />
  </div>
 
  <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Simplify the Selection Process</h3>
- <p>I redesigned the experience as a guided three step flow.</p>
+ <h3 className="text-xl font-bold text-neutral-900 mb-2">Simplify the Experience</h3>
+ <p>Give users a clear path from conversation to card.</p>
+ <p className="mt-4">I removed the random dice and lottery flow and replaced it with a guided selection process.</p>
  <ul className="list-disc pl-5 space-y-2 mt-4">
  <li>The AI first identifies 10 meaningful sentences from the conversation.</li>
- <li>It then narrows them to five stronger emotional signals.</li>
- <li>The user selects one final moment for the card.</li>
+ <li>It then helps the user narrow them to five stronger moments.</li>
+ <li>The user selects one final moment for the Emotion Card.</li>
  </ul>
- <p className="mt-4">This gave the AI more responsibility while keeping the final decision with the user.</p>
+ <p className="mt-4">This made the relationship between the conversation and the final card easier to understand.</p>
  </div>
 
  <div>
  <h3 className="text-xl font-bold text-neutral-900 mb-2">Final Design</h3>
- <p>The final experience moves from conversation to selection to card creation.</p>
- <p className="mt-4">Each step has one clear decision and one clear outcome.</p>
- <p className="mt-4">Users can understand where the content came from and why it was selected.</p>
- </div>
-
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Make the Card Worth Keeping</h3>
- <p>After the user selects one moment, UNIMO creates a short summary and generates the visual token for the Emotion Card.</p>
- <p className="mt-4">The front gives the moment a visual identity.</p>
- <p className="mt-4">The back includes an emotional wheel and summary that help users understand the meaning behind the card.</p>
- <p className="mt-4">Consistent spacing, contrast, and hierarchy make the card feel like a collectible object instead of another AI response.</p>
+ <p>Give the AI responsibility while keeping the final choice with the user.</p>
+ <p className="mt-4">The redesigned experience guides users through three clear steps:</p>
+ <ul className="list-disc pl-5 space-y-2 mt-4">
+ <li>Review 10 meaningful sentences.</li>
+ <li>Refine them to five emotional moments.</li>
+ <li>Select one final moment and generate the card.</li>
+ </ul>
+ <p className="mt-4">Users now understand how a conversation becomes a card and can control what the final card represents.</p>
  <p className="mt-6 font-bold text-neutral-900">The redesigned flow increased completion by 18%.</p>
+ <ProcessDiagram flow="final" />
+ 
+ 
+
  </div>
  </div>
  </div>

@@ -1,96 +1,131 @@
 import React from 'react'
 
-export default function ProcessDiagram() {
-  return (
-    <div className="w-full bg-white border border-black/5 rounded-2xl p-8 md:p-12 lg:p-16 flex flex-col items-center my-16 shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
-      <h3 className="text-lg md:text-xl font-bold text-neutral-900 mb-16 text-center">From Conversation to Emotion Card</h3>
+const Arrow = ({ color = "#D4D4D8", opacity = "1" }) => (
+  <>
+    <div className="hidden md:flex flex-col items-center justify-center w-8" style={{ opacity }}>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </div>
+    <div className="flex md:hidden items-center justify-center h-8" style={{ opacity }}>
+       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="rotate-90">
+        <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </div>
+  </>
+)
+
+export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | 'final' | 'both' }) {
+  const renderInitial = () => (
+    <div className="w-full bg-white border border-black/5 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.02)] mt-8 mb-4">
+      <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-8 md:mb-12 text-center">Initial Flow: Random Reward</h4>
       
-      <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
-        
-        {/* Step 1: Conversation */}
-        <div className="flex flex-col items-center w-full md:w-1/3 group">
-          <div className="w-48 h-64 border border-black/10 rounded-3xl bg-[#FAFAFA] flex flex-col p-4 gap-4 relative mb-8 group-hover:-translate-y-1 transition-transform duration-500">
-            {/* Nav bar mock */}
-            <div className="w-full flex justify-between items-center px-1 mb-2">
-              <div className="w-3 h-3 rounded-full bg-neutral-200"></div>
-              <div className="w-8 h-1.5 rounded-full bg-neutral-300"></div>
-              <div className="w-3 h-3 rounded-full bg-neutral-200"></div>
-            </div>
-            {/* Bubbles */}
-            <div className="w-3/4 h-10 bg-white border border-black/5 rounded-2xl rounded-tl-sm self-start"></div>
-            <div className="w-2/3 h-12 bg-[#7983D9]/10 border border-[#7983D9]/20 rounded-2xl rounded-tr-sm self-end"></div>
-            <div className="w-5/6 h-10 bg-white border border-black/5 rounded-2xl rounded-tl-sm self-start"></div>
-          </div>
-          <div className="text-center space-y-2">
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-900">1. Conversation</h4>
-            <p className="text-sm text-neutral-500 max-w-[200px] mx-auto">Users talk naturally with UNIMO.</p>
-          </div>
-        </div>
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+         {/* Step 1 */}
+         <div className="flex flex-col items-center w-full md:w-1/4 group">
+           <div className="w-24 h-24 rounded-2xl bg-[#FAFAFA] border border-black/5 flex flex-col items-center justify-center p-3 gap-2 mb-4 group-hover:-translate-y-1 transition-transform">
+              <div className="w-full h-2 bg-neutral-200 rounded-full"></div>
+              <div className="w-3/4 h-2 bg-neutral-200 rounded-full self-start"></div>
+              <div className="w-1/2 h-2 bg-neutral-200 rounded-full self-end mt-2"></div>
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Conversation</p>
+         </div>
+         <Arrow />
+         
+         {/* Step 2 */}
+         <div className="flex flex-col items-center w-full md:w-1/4 group">
+           <div className="w-24 h-24 rounded-2xl bg-[#FAFAFA] border border-black/5 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform">
+              <div className="w-10 h-10 bg-white border border-black/10 rounded-xl shadow-sm flex flex-wrap p-2 gap-1 justify-center items-center">
+                  <div className="w-1.5 h-1.5 bg-neutral-300 rounded-full"></div>
+                  <div className="w-1.5 h-1.5 bg-neutral-300 rounded-full"></div>
+                  <div className="w-1.5 h-1.5 bg-neutral-300 rounded-full"></div>
+              </div>
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Random Dice</p>
+         </div>
+         <Arrow />
+         
+         {/* Step 3 */}
+         <div className="flex flex-col items-center w-full md:w-1/4 group">
+           <div className="w-24 h-24 rounded-2xl bg-[#FAFAFA] border border-black/5 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform">
+              <div className="w-12 h-6 bg-white border border-black/10 shadow-sm rounded-full flex items-center px-1">
+                  <div className="w-4 h-4 bg-neutral-200 rounded-full"></div>
+              </div>
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Card Lottery</p>
+         </div>
+         <Arrow />
 
-        {/* Arrow */}
-        <div className="hidden md:flex flex-col items-center justify-center w-12">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#D4D4D8" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-        <div className="flex md:hidden items-center justify-center h-12">
-           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="rotate-90">
-            <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#D4D4D8" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-
-        {/* Step 2: Meaningful Moment */}
-        <div className="flex flex-col items-center w-full md:w-1/3 group">
-          <div className="w-48 h-64 border border-black/10 rounded-3xl bg-[#FAFAFA] flex flex-col items-center justify-center p-4 relative mb-8 group-hover:-translate-y-1 transition-transform duration-500">
-             {/* Ghost UI */}
-             <div className="absolute top-16 left-8 w-2/3 h-3 bg-neutral-200/50 rounded-full"></div>
-             <div className="absolute top-24 right-8 w-1/2 h-3 bg-neutral-200/50 rounded-full"></div>
-             
-             {/* Highlighted extraction */}
-             <div className="w-full h-20 bg-white border border-[#7983D9]/30 rounded-2xl flex flex-col justify-center px-4 relative z-10 shadow-sm">
-                <div className="w-4/5 h-2 bg-[#7983D9] rounded-full opacity-80 mb-3"></div>
-                <div className="w-1/2 h-2 bg-[#7983D9] rounded-full opacity-40"></div>
-             </div>
-
-             <div className="absolute bottom-20 left-8 w-3/4 h-3 bg-neutral-200/50 rounded-full"></div>
-          </div>
-          <div className="text-center space-y-2">
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#7983D9]">2. Meaningful Moment</h4>
-            <p className="text-sm text-neutral-500 max-w-[200px] mx-auto">AI identifies what matters.</p>
-          </div>
-        </div>
-
-        {/* Arrow */}
-        <div className="hidden md:flex flex-col items-center justify-center w-12">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#D4D4D8" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-        <div className="flex md:hidden items-center justify-center h-12">
-           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="rotate-90">
-            <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="#D4D4D8" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-
-        {/* Step 3: Emotion Card */}
-        <div className="flex flex-col items-center w-full md:w-1/3 group">
-          <div className="w-48 h-64 border border-black/10 rounded-2xl bg-white flex flex-col p-3 mb-8 relative shadow-sm group-hover:-translate-y-1 transition-transform duration-500">
-             {/* Abstract Visual Area */}
-             <div className="w-full aspect-[4/5] bg-[#FAFAFA] border border-black/5 rounded-xl flex items-center justify-center mb-4 overflow-hidden relative">
-                {/* Simple geometric shapes for the abstract visual */}
-                <div className="w-20 h-20 rounded-full bg-[#7983D9]/20 mix-blend-multiply absolute -top-4 -right-4"></div>
-                <div className="w-16 h-16 rounded-full bg-[#7983D9]/40 mix-blend-multiply absolute top-8 left-4"></div>
-             </div>
-             <div className="w-3/4 h-2 bg-neutral-200 rounded-full mx-1 mb-2.5"></div>
-             <div className="w-1/2 h-2 bg-neutral-100 rounded-full mx-1"></div>
-          </div>
-          <div className="text-center space-y-2">
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-900">3. Emotion Card</h4>
-            <p className="text-sm text-neutral-500 max-w-[200px] mx-auto">Users can save and revisit it.</p>
-          </div>
-        </div>
-
+         {/* Step 4 */}
+         <div className="flex flex-col items-center w-full md:w-1/4 group">
+           <div className="w-24 h-24 rounded-2xl bg-[#FAFAFA] border border-black/5 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform relative overflow-hidden">
+              <div className="w-10 h-14 bg-white border border-black/10 shadow-sm rounded-lg"></div>
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Card Gen.</p>
+         </div>
       </div>
+    </div>
+  )
+
+  const renderFinal = () => (
+    <div className="w-full bg-white border border-[#7983D9]/20 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(121,131,217,0.05)] relative overflow-hidden mt-8 mb-4">
+      {/* Subtle accent glow */}
+      <div className="absolute top-[-50%] left-1/2 -translate-x-1/2 w-[80%] aspect-square rounded-full bg-[#7983D9] blur-3xl opacity-5 pointer-events-none" />
+      
+      <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#7983D9] mb-8 md:mb-12 text-center relative z-10">Final Flow: Guided Selection</h4>
+      
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
+         {/* Step 1 */}
+         <div className="flex flex-col items-center w-full md:w-1/4 group">
+           <div className="w-24 h-24 rounded-2xl bg-white border border-[#7983D9]/20 shadow-sm flex flex-col items-center justify-center p-3 gap-2 mb-4 group-hover:-translate-y-1 transition-transform">
+              <div className="w-full h-2 bg-neutral-100 rounded-full"></div>
+              <div className="w-3/4 h-2 bg-neutral-100 rounded-full self-start"></div>
+              <div className="w-1/2 h-2 bg-neutral-100 rounded-full self-end mt-2"></div>
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Conversation</p>
+         </div>
+         <Arrow color="#7983D9" opacity="0.4" />
+         
+         {/* Step 2 */}
+         <div className="flex flex-col items-center w-full md:w-1/4 group">
+           <div className="w-24 h-24 rounded-2xl bg-white border border-[#7983D9]/20 shadow-sm flex flex-col gap-2 items-center justify-center p-4 mb-4 group-hover:-translate-y-1 transition-transform">
+              {[...Array(4)].map((_, i) => <div key={i} className="w-full h-1.5 bg-[#7983D9]/20 rounded-full"></div>)}
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">10 Sentences</p>
+         </div>
+         <Arrow color="#7983D9" opacity="0.4" />
+         
+         {/* Step 3 */}
+         <div className="flex flex-col items-center w-full md:w-1/4 group">
+           <div className="w-24 h-24 rounded-2xl bg-[#7983D9]/5 border border-[#7983D9]/30 shadow-sm flex flex-col gap-2.5 items-center justify-center p-4 mb-4 group-hover:-translate-y-1 transition-transform">
+              <div className="w-full h-2 bg-[#7983D9]/60 rounded-full"></div>
+              <div className="w-3/4 h-2 bg-[#7983D9]/60 rounded-full"></div>
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">5 Moments</p>
+         </div>
+         <Arrow color="#7983D9" opacity="0.4" />
+
+         {/* Step 4 */}
+         <div className="flex flex-col items-center w-full md:w-1/4 group">
+           <div className="w-24 h-24 rounded-2xl bg-[#7983D9]/10 border border-[#7983D9]/40 shadow-sm flex items-center justify-center mb-4 relative overflow-hidden group-hover:-translate-y-1 transition-transform">
+              <div className="w-12 h-16 bg-white border border-[#7983D9]/20 shadow-md rounded-lg flex items-center justify-center overflow-hidden relative">
+                 <div className="w-6 h-6 rounded-full bg-[#7983D9]/20 mix-blend-multiply absolute -top-1 -right-1"></div>
+                 <div className="w-4 h-4 rounded-full bg-[#7983D9]/40 mix-blend-multiply absolute top-4 left-2"></div>
+              </div>
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#7983D9] text-center">1 Emotion Card</p>
+         </div>
+      </div>
+    </div>
+  )
+
+  if (flow === 'initial') return renderInitial();
+  if (flow === 'final') return renderFinal();
+  
+  return (
+    <div className="w-full flex flex-col gap-8 my-16">
+      {renderInitial()}
+      {renderFinal()}
     </div>
   )
 }
