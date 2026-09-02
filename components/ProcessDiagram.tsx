@@ -17,30 +17,42 @@ const Arrow = ({ color = "#D4D4D8", opacity = "1" }) => (
 
 export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | 'final' | 'both' }) {
   const renderInitial = () => (
-    <div className="w-full bg-[#FAFAFA] border border-black/5 rounded-3xl p-8 md:p-16 my-8 overflow-x-auto shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
+    <div className="w-full bg-[#FAFAFA] border border-black/5 rounded-3xl p-8 md:p-12 shadow-sm my-8 overflow-x-auto">
       
-      <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 min-w-max mx-auto">
-         
-         <div className="w-full md:w-36 h-16 bg-white border border-black/10 rounded-xl shadow-sm flex items-center justify-center px-4">
-           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-600">Chatting</p>
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 min-w-max mx-auto">
+         {/* Step 1 */}
+         <div className="flex flex-col items-center w-full md:w-40 group">
+           <div className="w-24 md:w-32 lg:w-40 rounded-2xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+              <img src="/images/unimo/old_flow/Chat.png" alt="Conversation UI" className="w-full h-auto object-cover" />
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Conversation</p>
          </div>
-         
          <Arrow />
          
-         <div className="w-full md:w-36 h-16 bg-white border border-black/10 rounded-xl shadow-sm flex items-center justify-center px-4">
-           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-600">Roll Dice</p>
+         {/* Step 2 */}
+         <div className="flex flex-col items-center w-full md:w-40 group">
+           <div className="w-24 md:w-32 lg:w-40 rounded-2xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+              <img src="/images/unimo/old_flow/random%20dice.png" alt="Random Dice UI" className="w-full h-auto object-cover" />
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Random Dice</p>
          </div>
-         
          <Arrow />
          
-         <div className="w-full md:w-36 h-16 bg-white border border-black/10 rounded-xl shadow-sm flex items-center justify-center px-4">
-           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-600">Card Lottery</p>
+         {/* Step 3 */}
+         <div className="flex flex-col items-center w-full md:w-40 group">
+           <div className="w-24 md:w-32 lg:w-40 rounded-2xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+              <img src="/images/unimo/old_flow/Card%20Lottery.png" alt="Card Lottery UI" className="w-full h-auto object-cover" />
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Card Lottery</p>
          </div>
-         
          <Arrow />
 
-         <div className="w-full md:w-36 h-16 bg-white border border-black/10 rounded-xl shadow-sm flex items-center justify-center px-4">
-           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-600">Emotion Card</p>
+         {/* Step 4 */}
+         <div className="flex flex-col items-center w-full md:w-40 group">
+           <div className="w-24 md:w-32 lg:w-40 rounded-2xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+              <img src="/images/unimo/old_flow/Card%20Gen..png" alt="Card Generation UI" className="w-full h-auto object-cover" />
+           </div>
+           <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Card Selection</p>
          </div>
       </div>
     </div>
