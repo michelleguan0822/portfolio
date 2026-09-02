@@ -169,7 +169,7 @@ export default function BestmylifePage() {
  </div>
  </div>
 
- <div id="context" className="scroll-mt-32 mt-20">
+ <div id="context" className="scroll-mt-32 mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Context</div>
  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Dashboards represent credibility.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
@@ -182,7 +182,7 @@ export default function BestmylifePage() {
  </div>
  </div>
 
- <div id="challenge" className="scroll-mt-32 mt-20">
+ <div id="challenge" className="scroll-mt-32 mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Challenge</div>
  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">The demo worked, but didn't feel safe.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
@@ -192,15 +192,14 @@ export default function BestmylifePage() {
  <p>
  They hesitated to approve it for live patient data because the visual design failed to inspire clinical confidence.
  </p>
- <div className="mt-12 border border-black/5 bg-neutral-100 overflow-hidden rounded-2xl">
+ <div className="mt-8 border border-black/5 bg-neutral-100 overflow-hidden rounded-2xl">
  <div className="bg-red-500/10 text-red-700 text-sm font-bold uppercase tracking-wider p-4 border-b border-red-500/20">Before: Original Rejected Demo</div>
  <img src="/images/tms/old_demo.png" alt="Original Demo" className="w-full h-auto" />
  </div>
  </div>
  </div>
- </div>
 
- <div id="solution" className="scroll-mt-32 mt-20">
+ <div id="solution" className="scroll-mt-32 mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Solution</div>
  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">The "Dark Cockpit" Authority System.</h2>
  <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
@@ -230,20 +229,8 @@ export default function BestmylifePage() {
  </div>
  </div>
  </div>
- </div>
 
- <div>
- <h3 className="text-lg font-medium text-neutral-900 mb-4">Visual Hierarchy for Rapid Scanning</h3>
- <ul className="list-disc pl-6 space-y-2">
- <li>Data density increased, but cognitive load decreased — By grouping related information and using consistent spacing, clinicians can now parse the screen in seconds.</li>
- <li>Active states are unmistakable — When a parameter is selected or stimulation is running, the Electric Blue highlight leaves no ambiguity.</li>
- <li>Progressive disclosure — Advanced settings are available but tucked away, reducing noise for the primary workflow.</li>
- </ul>
- </div>
- </div>
- </div>
-
- <div id="impact" className="scroll-mt-32 mt-20">
+ <div id="impact" className="scroll-mt-32 mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Impact</div>
  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Unblocking the future.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
@@ -267,9 +254,6 @@ export default function BestmylifePage() {
      <h4 className="font-bold text-neutral-900 text-2xl mb-2">Credible</h4>
      <p className="text-sm text-neutral-500">Mentors felt authoritative presenting the system.</p>
    </div>
- </div>
- </div>
- </div>
  </div>
  </div>
  </div>
