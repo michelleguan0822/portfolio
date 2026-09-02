@@ -169,73 +169,65 @@ export default function BestmylifePage() {
  </div>
  </div>
 
- <div id="context" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">Context
- </h2>
+ <div id="context" className="scroll-mt-32 mt-20">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Context</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Dashboards represent credibility.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p className="text-lg font-medium text-neutral-900">
- Clinical dashboards aren’t just “screens”—they represent credibility.
+ <p>
+ Shenzhen People's Hospital runs national TMS training programs where clinicians rely on real-time data to verify stimulation targets.
  </p>
  <p>
- Shenzhen People’s Hospital, in collaboration with Stanford mentors, runs national TMS (Transcranial Magnetic Stimulation) training programs. In these workshops, clinicians rely on a dashboard to verify stimulation targets and interpret brain responses—often in real time. This means the interface is part of the clinical decision workflow where clarity and credibility directly affect adoption.
+ This interface is part of a critical medical workflow—clarity and credibility directly dictate user adoption and safety.
  </p>
  </div>
  </div>
 
- <div id="challenge" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">The Challenge
- </h2>
+ <div id="challenge" className="scroll-mt-32 mt-20">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Challenge</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">The demo worked, but didn't feel safe.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p className="text-lg font-medium text-neutral-900">
- The demo worked—but it didn’t feel safe.
+ <p>
+ Over two months, the functional prototype was rejected three times by stakeholders who found it "cluttered" and "unprofessional."
  </p>
  <p>
- Despite functional backend logic, the project was stalled. Over two months, the demo had been rejected three times. Stakeholders hesitated to approve it for live patient data because the interface felt “cluttered” and “unprofessional.”
+ They hesitated to approve it for live patient data because the visual design failed to inspire clinical confidence.
  </p>
- <div className="mt-8 border border-black/5 bg-neutral-100 overflow-hidden">
- <div className="bg-red-500/10 text-red-700 text-lg font-medium p-4 border-b border-red-500/20">Before: Original Rejected Demo</div>
+ <div className="mt-12 border border-black/5 bg-neutral-100 overflow-hidden rounded-2xl">
+ <div className="bg-red-500/10 text-red-700 text-sm font-bold uppercase tracking-wider p-4 border-b border-red-500/20">Before: Original Rejected Demo</div>
  <img src="/images/tms/old_demo.png" alt="Original Demo" className="w-full h-auto" />
  </div>
  </div>
  </div>
-
- <div id="solution" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">The Solution
- </h2>
- <div className="space-y-8 text-lg text-neutral-500 leading-relaxed font-normal">
- <div>
- <h3 className="text-lg font-medium text-neutral-900 mb-4">The “Dark Cockpit” Authority System</h3>
- <p className="mb-4">
- I shifted from a generic light theme to a dark, controlled palette—directly inspired by medical imaging software and cockpit interfaces.
- </p>
- <div className="my-8 border border-black/10 bg-[#0A1A2F] p-2 md:p-4 rounded-xl shadow-2xl overflow-hidden">
- <div className="bg-emerald-500/20 text-emerald-400 text-lg font-medium p-4 mb-4 border-b border-emerald-500/20 rounded-t">After: Final Approved Cockpit</div>
- <img src="/images/tms/final_demo.png" alt="Final Demo" className="w-full h-auto rounded" />
- </div>
- <ul className="list-disc pl-6 space-y-2">
- <li><strong>Deep Navy (#0A1A2F):</strong> The foundation. Creates focus, reduces glare, and signals "advanced technology." In professional medical contexts, dark = serious, precise, trustworthy.</li>
- <li><strong>Electric Blue (#2A8CFF):</strong> Reserved for active states, interactive elements, and critical data. High contrast ensures key information is instantly scannable.</li>
- <li><strong>Neutral Grays:</strong> For secondary information and structural elements—present but never competing with active data.</li>
- </ul>
  </div>
 
+ <div id="solution" className="scroll-mt-32 mt-20">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Solution</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">The "Dark Cockpit" Authority System.</h2>
+ <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
  <div>
- <h3 className="text-lg font-medium text-neutral-900 mb-4">Workflow-Driven Layout</h3>
- <p className="mb-4">
- Instead of a generic information layout, I restructured the dashboard to mirror the clinical decision flow:
+ <p>
+ I shifted from a generic light theme to a controlled dark palette, directly inspired by medical imaging software and cockpit interfaces.
  </p>
- <div className="space-y-6">
- <div className="flex gap-4">
- <span className="font-bold text-neutral-900">01</span>
- <p><strong>SCAN — Center Stage:</strong> The 3D brain model dominates the central area. This is what clinicians look at first—verifying target accuracy is the primary task.</p>
+ <div className="my-12 border border-black/10 bg-[#0A1A2F] p-4 rounded-3xl shadow-2xl overflow-hidden">
+ <div className="bg-emerald-500/20 text-emerald-400 text-sm font-bold uppercase tracking-wider p-4 mb-4 border-b border-emerald-500/20 rounded-xl">After: Final Approved Cockpit</div>
+ <img src="/images/tms/final_demo.png" alt="Final Demo" className="w-full h-auto rounded-xl" />
  </div>
- <div className="flex gap-4">
- <span className="font-bold text-neutral-900">02</span>
- <p><strong>VERIFY — Left Panel:</strong> Stimulation parameters live here, organized to match protocol checklists. Clinicians scan left after confirming the visual target.</p>
  </div>
- <div className="flex gap-4">
- <span className="font-bold text-neutral-900">03</span>
- <p><strong>ACT — Right/Bottom Controls:</strong> Execution controls are consolidated in a dedicated zone, with clear active states and confirmation feedback.</p>
+
+ <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+   <div>
+     <h3 className="text-base font-bold text-neutral-900 mb-3">Deep Navy Core</h3>
+     <p className="text-sm text-neutral-500 leading-relaxed font-normal">Creates focus, reduces glare, and signals precise technology. Dark environments communicate serious medical authority.</p>
+   </div>
+   <div>
+     <h3 className="text-base font-bold text-neutral-900 mb-3">Workflow-Driven Layout</h3>
+     <p className="text-sm text-neutral-500 leading-relaxed font-normal">Restructured the dashboard to mirror clinical flow: scan 3D brain, verify parameters, and execute controls.</p>
+   </div>
+   <div>
+     <h3 className="text-base font-bold text-neutral-900 mb-3">Rapid Scanning Hierarchy</h3>
+     <p className="text-sm text-neutral-500 leading-relaxed font-normal">Electric blue active states and progressive disclosure reduced cognitive load, allowing clinicians to parse data in seconds.</p>
+   </div>
+ </div>
  </div>
  </div>
  </div>
@@ -251,37 +243,31 @@ export default function BestmylifePage() {
  </div>
  </div>
 
- <div id="impact" className="mb-20">
- <h2 className="text-2xl font-medium text-neutral-900 mb-6">Impact & Outcome
- </h2>
+ <div id="impact" className="scroll-mt-32 mt-20">
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Impact</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Unblocking the future.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p className="text-lg font-medium text-neutral-900">
- The redesign unblocked the future.
+ <p>
+ The redesign shifted stakeholder perception from skepticism to confidence, doing what code alone couldn't.
  </p>
  <p>
- The redesign did what code alone couldn’t: it shifted stakeholder perception from skepticism to confidence—and cleared the path for real-world adoption.
+ It successfully cleared the path for real-world adoption in national training workshops.
  </p>
  
- <div className="grid grid-cols-1 gap-6 pt-4">
- <div className="flex gap-4 items-start border-b border-black/10 pb-6">
- <div className="w-8 h-8 rounded-full bg-[#4D7298] text-white flex items-center justify-center flex-shrink-0 mt-1">✓</div>
- <div>
- <h4 className="font-bold text-neutral-900 text-lg mb-2">Unblocked</h4>
- <p>Approved for Phase 2 (Live-Data Integration) after 3 months of stagnation.</p>
+ <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+   <div className="border-t border-black/10 pt-6">
+     <h4 className="font-bold text-neutral-900 text-2xl mb-2">Phase 2</h4>
+     <p className="text-sm text-neutral-500">Unblocked and approved for live-data integration funding.</p>
+   </div>
+   <div className="border-t border-black/10 pt-6">
+     <h4 className="font-bold text-neutral-900 text-2xl mb-2">Adopted</h4>
+     <p className="text-sm text-neutral-500">Passed vote for use in national training workshops.</p>
+   </div>
+   <div className="border-t border-black/10 pt-6">
+     <h4 className="font-bold text-neutral-900 text-2xl mb-2">Credible</h4>
+     <p className="text-sm text-neutral-500">Mentors felt authoritative presenting the system.</p>
+   </div>
  </div>
- </div>
- <div className="flex gap-4 items-start border-b border-black/10 pb-6">
- <div className="w-8 h-8 rounded-full bg-[#4D7298] text-white flex items-center justify-center flex-shrink-0 mt-1">✓</div>
- <div>
- <h4 className="font-bold text-neutral-900 text-lg mb-2">Passed Vote</h4>
- <p>Adopted in national training workshops with visiting clinicians.</p>
- </div>
- </div>
- <div className="flex gap-4 items-start border-b border-black/10 pb-6">
- <div className="w-8 h-8 rounded-full bg-[#4D7298] text-white flex items-center justify-center flex-shrink-0 mt-1">✓</div>
- <div>
- <h4 className="font-bold text-neutral-900 text-lg mb-2">Credible</h4>
- <p>Mentors felt more authoritative presenting the system to trainees.</p>
  </div>
  </div>
  </div>
