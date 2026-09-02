@@ -242,6 +242,7 @@ export default function OmnireflexPage() {
  <p>A conversation did not clearly lead to a card.</p>
  <p className="mt-4">User testing showed that many users did not understand how this flow worked. They could not tell when the dice would appear, what affected the result, or how the final card related to their conversation.</p>
  <p className="mt-4">The experience was playful, but it made the core value of the card difficult to discover.</p>
+ <img src="/images/unimo/Old.png" alt="Initial Flow UI" className="w-full h-auto rounded-3xl border border-black/5 shadow-[0_20px_50px_rgba(0,0,0,0.05)] my-12" />
  <ProcessDiagram flow="initial" />
  </div>
 
@@ -268,6 +269,7 @@ export default function OmnireflexPage() {
  </ul>
  <p className="mt-4">Users now understand how a conversation becomes a card and can control what the final card represents.</p>
  <p className="mt-6 font-bold text-neutral-900">The redesigned flow increased completion by 18%.</p>
+ <img src="/images/unimo/New.png" alt="Final Flow UI" className="w-full h-auto rounded-3xl border border-black/5 shadow-[0_20px_50px_rgba(0,0,0,0.05)] my-12" />
  <ProcessDiagram flow="final" />
  
  
