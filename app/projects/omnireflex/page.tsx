@@ -6,7 +6,8 @@ import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import MouseParallaxImage from '@/components/MouseParallaxImage'
 import MagneticButton from '@/components/MagneticButton'
-import ProcessDiagram from '@/components/ProcessDiagram'
+import ProcessDiagram from "@/components/ProcessDiagram"
+import GoalDiagram from "@/components/GoalDiagram"
 
 export default function OmnireflexPage() {
  const containerRef = useRef<HTMLDivElement>(null)
@@ -178,6 +179,7 @@ export default function OmnireflexPage() {
  <p>We wanted to create a more visual experience that helps users identify one meaningful moment, understand why it mattered, and turn it into something they can keep.</p>
  <p>The product also needed to make emotional reflection feel simple and approachable for users who did not want to write a long journal entry.</p>
  </div>
+ <GoalDiagram />
  </div>
 
  {/* CORE PROBLEMS */}
