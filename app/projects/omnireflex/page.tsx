@@ -6,7 +6,6 @@ import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import MouseParallaxImage from '@/components/MouseParallaxImage'
 import MagneticButton from '@/components/MagneticButton'
-import ProcessDiagram from "@/components/ProcessDiagram"
 import GoalDiagram from "@/components/GoalDiagram"
 import SystemStateFlow from "@/components/SystemStateFlow"
 import TextFlowDiagram from "@/components/TextFlowDiagram"
@@ -242,61 +241,24 @@ export default function OmnireflexPage() {
  {/* DESIGN CHALLENGE 01 */}
  <div id="design-challenge-01" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Design Challenge 01</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">HMW replace a random reward flow with a clear and controllable card creation experience?</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">Give users control over what becomes a card.</h2>
  <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
  <div>
  <p>The original experience treated Emotion Cards as random rewards.</p>
  <p className="mt-4">After chatting with UNIMO, users occasionally received an opportunity to roll the dice. The result gave them a chance to enter a lottery and unlock a card. Only then could the card be generated.</p>
  </div>
-
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Initial Flow</h3>
- <p>A conversation did not clearly lead to a card.</p>
- <p className="mt-4">User testing showed that many users did not understand how this flow worked. They could not tell when the dice would appear, what affected the result, or how the final card related to their conversation.</p>
- <p className="mt-4">The experience was playful, but it made the core value of the card difficult to discover.</p>
- <ProcessDiagram flow="initial" />
- </div>
-
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Simplify the Experience</h3>
- <p>Give users a clear path from conversation to card.</p>
- <p className="mt-4">I removed the random dice and lottery flow and replaced it with a guided selection process.</p>
- <ul className="list-disc pl-5 space-y-2 mt-4">
- <li>The AI first identifies 10 meaningful sentences from the conversation.</li>
- <li>It then helps the user narrow them to five stronger moments.</li>
- <li>The user selects one final moment for the Emotion Card.</li>
- </ul>
- <p className="mt-4">This made the relationship between the conversation and the final card easier to understand.</p>
- </div>
-
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Final Design</h3>
- <p>Give the AI responsibility while keeping the final choice with the user.</p>
- <p className="mt-4">The redesigned experience guides users through three clear steps:</p>
- <ul className="list-disc pl-5 space-y-2 mt-4">
- <li>Review 10 meaningful sentences.</li>
- <li>Refine them to five emotional moments.</li>
- <li>Select one final moment and generate the card.</li>
- </ul>
- <p className="mt-4">Users now understand how a conversation becomes a card and can control what the final card represents.</p>
- <p className="mt-6 font-bold text-neutral-900">The redesigned flow increased completion by 18%.</p>
- <ProcessDiagram flow="final" />
  
- 
-
- </div>
+ <GenerationFlowComparison />
  </div>
  </div>
 
  {/* DESIGN CHALLENGE 02 */}
  <div id="design-challenge-02" className="scroll-mt-32 mb-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Design Challenge 02</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">How might we make card creation feel clear and trustworthy?</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">Make a 30-second AI process feel transparent and recoverable.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal mb-12">
- <p>We replaced a random reward loop with an intentional flow that gives users control and keeps generation visible.</p>
+ <p>Card generation could take up to 30 seconds. I designed the full response lifecycle so users could understand the system's progress, recover from failures, and keep their selected moment.</p>
  </div>
-
- <GenerationFlowComparison />
 
  <h3 className="text-xl font-bold text-neutral-900 mb-4">Define the Full Response Flow</h3>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal mb-8">
