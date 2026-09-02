@@ -128,7 +128,7 @@ export default function AvanadePage() {
  
  <div id="snapshot" className="mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">OVERVIEW</div>
- <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">From confusion to confidence.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-4xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">From confusion to confidence.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>
  Oltiva AI helps Avanade's global sales team extract insights from complex documents—proposals, SOWs, RFPs, and contracts.
@@ -166,7 +166,7 @@ export default function AvanadePage() {
 
  <div id="challenge" className="mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">CORE PROBLEMS</div>
- <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">An MVP that looked like AI, but didn't work like one.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-4xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">An MVP that looked like AI, but didn't work like one.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>
  Avanade's sales team relies on dense, complex documents to close deals. Oltiva AI was built to help them surface insights instantly—but the initial demo created more confusion than clarity.
@@ -203,7 +203,7 @@ export default function AvanadePage() {
 
  <div id="solution" className="mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">THE SOLUTION</div>
- <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">A guided, predictable experience that builds trust.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-4xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">A guided, predictable experience that builds trust.</h2>
  <div className="space-y-8 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>
  The final design feels less like "using a tool" and more like working with a knowledgeable assistant. Every decision ties back to the four issues uncovered in testing.
@@ -254,7 +254,7 @@ export default function AvanadePage() {
 
  <div id="impact" className="mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">IMPACT</div>
- <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Unlocking the next phase of development.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-4xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">Unlocking the next phase of development.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>
  The redesign transformed both user behavior and stakeholder confidence.

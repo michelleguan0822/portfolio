@@ -149,7 +149,7 @@ export default function OmnireflexPage() {
  {/* OVERVIEW */}
  <div id="overview" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Overview</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">An AI emotional companion that helps users keep the moments that matter.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">An AI emotional companion that helps users keep the moments that matter.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>UNIMO identifies meaningful moments from a conversation and transforms them into visual cards that users can save and revisit.</p>
  <p>I contributed to the product from experience design to production implementation, including the card creation flow, SwiftUI design system, API integration, and system states.</p>
@@ -179,7 +179,7 @@ export default function OmnireflexPage() {
  {/* PRODUCT GOAL */}
  <div id="product-goal" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Product Goal</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Make emotional reflection easier to revisit.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">Make emotional reflection easier to revisit.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>Most AI companions bury important moments inside endless chat logs.</p>
  <p>We designed a highly visual experience that captures single meaningful interactions and turns them into collectible Emotion Cards.</p>
@@ -190,7 +190,7 @@ export default function OmnireflexPage() {
  {/* CORE PROBLEMS */}
  <div id="core-problems" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Core Problems</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Users did not understand how conversations became Emotion Cards.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">Users did not understand how conversations became Emotion Cards.</h2>
  
  <TextFlowDiagram />
  
@@ -215,7 +215,7 @@ export default function OmnireflexPage() {
  {/* IMPACT */}
  <div id="impact" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Impact</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Results in four metrics.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">Results in four metrics.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-8 border-y border-black/10 my-8">
  <div>
@@ -242,7 +242,7 @@ export default function OmnireflexPage() {
  {/* DESIGN CHALLENGE 01 */}
  <div id="design-challenge-01" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Design Challenge 01</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">HMW replace a random reward flow with a clear and controllable card creation experience?</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">HMW replace a random reward flow with a clear and controllable card creation experience?</h2>
  <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
  <div>
  <p>The original experience treated Emotion Cards as random rewards.</p>
@@ -291,7 +291,7 @@ export default function OmnireflexPage() {
  {/* DESIGN CHALLENGE 02 */}
  <div id="design-challenge-02" className="scroll-mt-32 mb-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Design Challenge 02</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">How might we make card creation feel clear and trustworthy?</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">How might we make card creation feel clear and trustworthy?</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal mb-12">
  <p>We replaced a random reward loop with an intentional flow that gives users control and keeps generation visible.</p>
  </div>
@@ -324,7 +324,7 @@ export default function OmnireflexPage() {
  {/* DESIGN SYSTEM */}
  <div id="design-system" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Design System</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Build a scalable SwiftUI design system.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">Build a scalable SwiftUI design system.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>As UNIMO added more conversational and card based features, we needed a reusable system that could support both design and development.</p>
  <p>I translated the visual language from Figma into 26 production SwiftUI components.</p>
@@ -337,7 +337,7 @@ export default function OmnireflexPage() {
  {/* NEXT STEPS */}
  <div id="next-steps" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Next Steps</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Opportunities I see.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">Opportunities I see.</h2>
  <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
  <div>
  <h3 className="text-xl font-bold text-neutral-900 mb-2">A Richer Card Collection</h3>

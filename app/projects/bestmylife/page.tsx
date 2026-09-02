@@ -171,7 +171,7 @@ export default function BestmylifePage() {
 
  <div id="context" className="scroll-mt-32 mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Context</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Dashboards represent credibility.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">Dashboards represent credibility.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>
  Shenzhen People's Hospital runs national TMS training programs where clinicians rely on real-time data to verify stimulation targets.
@@ -184,7 +184,7 @@ export default function BestmylifePage() {
 
  <div id="challenge" className="scroll-mt-32 mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Challenge</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">The demo worked, but didn't feel safe.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">The demo worked, but didn't feel safe.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>
  Over two months, the functional prototype was rejected three times by stakeholders who found it "cluttered" and "unprofessional."
@@ -201,7 +201,7 @@ export default function BestmylifePage() {
 
  <div id="solution" className="scroll-mt-32 mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Solution</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">The "Dark Cockpit" Authority System.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">The "Dark Cockpit" Authority System.</h2>
  <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
  <div>
  <p>
@@ -232,7 +232,7 @@ export default function BestmylifePage() {
 
  <div id="impact" className="scroll-mt-32 mb-20">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Impact</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Unblocking the future.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">Unblocking the future.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>
  The redesign shifted stakeholder perception from skepticism to confidence, doing what code alone couldn't.
