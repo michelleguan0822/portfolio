@@ -198,23 +198,7 @@ export default function OmnireflexPage() {
  
  <TextFlowDiagram />
  
- <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-   <div>
-     <h3 className="text-base font-bold text-neutral-900 mb-3">The card entry point was unclear</h3>
-     <p className="text-sm text-neutral-500 leading-relaxed font-normal">Many users did not know when or how they could create a card after a conversation.</p>
-   </div>
-   
-   <div>
-     <h3 className="text-base font-bold text-neutral-900 mb-3">Card access depended on chance</h3>
-     <p className="text-sm text-neutral-500 leading-relaxed font-normal">Users first had to receive a random opportunity to roll the dice. The result then determined whether they could enter the card lottery.</p>
-   </div>
-   
-   <div>
-     <h3 className="text-base font-bold text-neutral-900 mb-3">Users had no control</h3>
-     <p className="text-sm text-neutral-500 leading-relaxed font-normal">Even after unlocking a card, users could not choose which part of the conversation the card would represent.</p>
-   </div>
- </div>
- </div>
+  </div>
 
  {/* IMPACT */}
  <div id="impact" className="scroll-mt-32">
