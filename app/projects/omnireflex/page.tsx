@@ -187,19 +187,24 @@ export default function OmnireflexPage() {
  <div id="core-problems" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Core Problems</div>
  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Users did not understand how conversations became Emotion Cards.</h2>
- <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">The card entry point was unclear</h3>
- <p>Many users did not know when or how they could create a card after a conversation.</p>
- </div>
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Card access depended on chance</h3>
- <p>Users first had to receive a random opportunity to roll the dice. The result then determined whether they could enter the card lottery.</p>
- </div>
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Users had no control</h3>
- <p>Even after unlocking a card, users could not choose which part of the conversation the card would represent.</p>
- </div>
+ 
+ <ProcessDiagram flow="initial" />
+ 
+ <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+   <div>
+     <h3 className="text-base font-bold text-neutral-900 mb-3">The card entry point was unclear</h3>
+     <p className="text-sm text-neutral-500 leading-relaxed font-normal">Many users did not know when or how they could create a card after a conversation.</p>
+   </div>
+   
+   <div>
+     <h3 className="text-base font-bold text-neutral-900 mb-3">Card access depended on chance</h3>
+     <p className="text-sm text-neutral-500 leading-relaxed font-normal">Users first had to receive a random opportunity to roll the dice. The result then determined whether they could enter the card lottery.</p>
+   </div>
+   
+   <div>
+     <h3 className="text-base font-bold text-neutral-900 mb-3">Users had no control</h3>
+     <p className="text-sm text-neutral-500 leading-relaxed font-normal">Even after unlocking a card, users could not choose which part of the conversation the card would represent.</p>
+   </div>
  </div>
  </div>
 

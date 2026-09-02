@@ -18,7 +18,7 @@ const Arrow = ({ color = "#D4D4D8", opacity = "1" }) => (
 export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | 'final' | 'both' }) {
   const renderInitial = () => (
     <div className="w-full bg-white border border-black/5 rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.02)] mt-8 mb-4">
-      <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-8 md:mb-12 text-center">Initial Flow: Random Reward</h4>
+      
       
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
          {/* Step 1 */}
