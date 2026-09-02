@@ -23,7 +23,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
          {/* Step 1 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-16 sm:w-20 rounded-xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+           <div className="w-24 md:w-32 lg:w-40 rounded-2xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
               <img src="/images/unimo/old_flow/Chat.png" alt="Conversation UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Conversation</p>
@@ -32,7 +32,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
          
          {/* Step 2 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-16 sm:w-20 rounded-xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+           <div className="w-24 md:w-32 lg:w-40 rounded-2xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
               <img src="/images/unimo/old_flow/random%20dice.png" alt="Random Dice UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Random Dice</p>
@@ -41,7 +41,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
          
          {/* Step 3 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-16 sm:w-20 rounded-xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+           <div className="w-24 md:w-32 lg:w-40 rounded-2xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
               <img src="/images/unimo/old_flow/Card%20Lottery.png" alt="Card Lottery UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Card Lottery</p>
@@ -50,7 +50,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
 
          {/* Step 4 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-16 sm:w-20 rounded-xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+           <div className="w-24 md:w-32 lg:w-40 rounded-2xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
               <img src="/images/unimo/old_flow/Card%20Gen..png" alt="Card Generation UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Card Gen.</p>
@@ -69,7 +69,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
          {/* Step 1 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-24 h-24 rounded-2xl bg-white border border-[#7983D9]/20 shadow-sm flex flex-col items-center justify-center p-3 gap-2 mb-4 group-hover:-translate-y-1 transition-transform">
+           <div className="w-24 md:w-32 lg:w-40 aspect-square rounded-2xl lg:rounded-3xl bg-white border border-[#7983D9]/20 shadow-sm flex flex-col items-center justify-center p-3 gap-2 mb-4 group-hover:-translate-y-1 transition-transform">
               <div className="w-full h-2 bg-neutral-100 rounded-full"></div>
               <div className="w-3/4 h-2 bg-neutral-100 rounded-full self-start"></div>
               <div className="w-1/2 h-2 bg-neutral-100 rounded-full self-end mt-2"></div>
@@ -80,7 +80,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
          
          {/* Step 2 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-24 h-24 rounded-2xl bg-white border border-[#7983D9]/20 shadow-sm flex flex-col gap-2 items-center justify-center p-4 mb-4 group-hover:-translate-y-1 transition-transform">
+           <div className="w-24 md:w-32 lg:w-40 aspect-square rounded-2xl lg:rounded-3xl bg-white border border-[#7983D9]/20 shadow-sm flex flex-col gap-2 items-center justify-center p-4 mb-4 group-hover:-translate-y-1 transition-transform">
               {[...Array(4)].map((_, i) => <div key={i} className="w-full h-1.5 bg-[#7983D9]/20 rounded-full"></div>)}
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">10 Sentences</p>
@@ -89,7 +89,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
          
          {/* Step 3 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-24 h-24 rounded-2xl bg-[#7983D9]/5 border border-[#7983D9]/30 shadow-sm flex flex-col gap-2.5 items-center justify-center p-4 mb-4 group-hover:-translate-y-1 transition-transform">
+           <div className="w-24 md:w-32 lg:w-40 aspect-square rounded-2xl lg:rounded-3xl bg-[#7983D9]/5 border border-[#7983D9]/30 shadow-sm flex flex-col gap-2.5 items-center justify-center p-4 mb-4 group-hover:-translate-y-1 transition-transform">
               <div className="w-full h-2 bg-[#7983D9]/60 rounded-full"></div>
               <div className="w-3/4 h-2 bg-[#7983D9]/60 rounded-full"></div>
            </div>
@@ -99,7 +99,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
 
          {/* Step 4 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-24 h-24 rounded-2xl bg-[#7983D9]/10 border border-[#7983D9]/40 shadow-sm flex items-center justify-center mb-4 relative overflow-hidden group-hover:-translate-y-1 transition-transform">
+           <div className="w-24 md:w-32 lg:w-40 aspect-square rounded-2xl lg:rounded-3xl bg-[#7983D9]/10 border border-[#7983D9]/40 shadow-sm flex items-center justify-center mb-4 relative overflow-hidden group-hover:-translate-y-1 transition-transform">
               <div className="w-12 h-16 bg-white border border-[#7983D9]/20 shadow-md rounded-lg flex items-center justify-center overflow-hidden relative">
                  <div className="w-6 h-6 rounded-full bg-[#7983D9]/20 mix-blend-multiply absolute -top-1 -right-1"></div>
                  <div className="w-4 h-4 rounded-full bg-[#7983D9]/40 mix-blend-multiply absolute top-4 left-2"></div>
