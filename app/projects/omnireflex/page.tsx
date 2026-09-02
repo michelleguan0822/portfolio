@@ -176,9 +176,8 @@ export default function OmnireflexPage() {
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Product Goal</div>
  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">Make emotional reflection easier to revisit.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
- <p>Most AI companions keep important moments inside long chat histories.</p>
- <p>We wanted to create a more visual experience that helps users identify one meaningful moment, understand why it mattered, and turn it into something they can keep.</p>
- <p>The product also needed to make emotional reflection feel simple and approachable for users who did not want to write a long journal entry.</p>
+ <p>Most AI companions bury important moments inside endless chat logs.</p>
+ <p>We designed a highly visual experience that captures single meaningful interactions and turns them into collectible Emotion Cards.</p>
  </div>
  <GoalDiagram />
  </div>
