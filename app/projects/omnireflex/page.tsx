@@ -188,8 +188,13 @@ export default function OmnireflexPage() {
 
  {/* CORE PROBLEMS */}
  <div id="core-problems" className="scroll-mt-32">
- <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Core Problems</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">Users did not understand how conversations became Emotion Cards.</h2>
+ <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">The Problem</div>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-12 leading-[1.15]">We made reflection feel like a game of chance.</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal mb-16">
+ <p>Our original assumption was that randomness would make Emotion Cards feel more collectible. After a conversation, some users received an unexpected opportunity to roll the dice. The result determined whether they could enter a card lottery, and the system then decided which part of the conversation became the card.</p>
+ <p>Testing showed that the surprise was masking the product's core value.</p>
+ <p>Users did not know when or how to create a card. Even after unlocking one, they could not understand why the system chose a particular moment. A long loading state then left them waiting without feedback.</p>
+ </div>
  
  <TextFlowDiagram />
  
