@@ -79,7 +79,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
          {/* Step 2 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
            <div className="w-24 md:w-32 lg:w-40 rounded-2xl lg:rounded-3xl bg-white border border-[#7983D9]/20 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
-              <img src="/images/unimo/new_flow/card%20gen.jpg" alt="10 Sentences UI" className="w-full h-auto object-cover" />
+              <img src="/images/unimo/new_flow/forge%20card.png" alt="10 Sentences UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">10 Sentences</p>
          </div>
@@ -88,7 +88,7 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
          {/* Step 3 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
            <div className="w-24 md:w-32 lg:w-40 rounded-2xl lg:rounded-3xl bg-white border border-[#7983D9]/20 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
-              <img src="/images/unimo/new_flow/forge%20card.png" alt="5 Moments UI" className="w-full h-auto object-cover" />
+              <img src="/images/unimo/new_flow/card%20gen.jpg" alt="5 Moments UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">5 Moments</p>
          </div>
