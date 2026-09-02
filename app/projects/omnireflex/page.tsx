@@ -178,7 +178,7 @@ export default function OmnireflexPage() {
  {/* PRODUCT GOAL */}
  <div id="product-goal" className="scroll-mt-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Product Goal</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">Make emotional reflection easier to revisit.</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 mb-8 leading-[1.15]">Turn one meaningful moment from a conversation into something users can keep.</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal">
  <p>Most AI companions bury important moments inside endless chat logs.</p>
  <p>We designed a highly visual experience that captures single meaningful interactions and turns them into collectible Emotion Cards.</p>
