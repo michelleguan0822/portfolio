@@ -9,6 +9,7 @@ import MagneticButton from '@/components/MagneticButton'
 import ProcessDiagram from "@/components/ProcessDiagram"
 import GoalDiagram from "@/components/GoalDiagram"
 import SystemStateFlow from "@/components/SystemStateFlow"
+import TextFlowDiagram from "@/components/TextFlowDiagram"
 
 export default function OmnireflexPage() {
  const containerRef = useRef<HTMLDivElement>(null)
@@ -187,7 +188,7 @@ export default function OmnireflexPage() {
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Core Problems</div>
  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">Users did not understand how conversations became Emotion Cards.</h2>
  
- <ProcessDiagram flow="initial" />
+ <TextFlowDiagram />
  
  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
    <div>
