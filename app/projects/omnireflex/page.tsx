@@ -8,6 +8,7 @@ import MouseParallaxImage from '@/components/MouseParallaxImage'
 import MagneticButton from '@/components/MagneticButton'
 import ProcessDiagram from "@/components/ProcessDiagram"
 import GoalDiagram from "@/components/GoalDiagram"
+import SystemStateFlow from "@/components/SystemStateFlow"
 
 export default function OmnireflexPage() {
  const containerRef = useRef<HTMLDivElement>(null)
@@ -279,43 +280,49 @@ export default function OmnireflexPage() {
  </div>
 
  {/* DESIGN CHALLENGE 02 */}
- <div id="design-challenge-02" className="scroll-mt-32">
+ <div id="design-challenge-02" className="scroll-mt-32 mb-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Design Challenge 02</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-12 leading-[1.15]">HMW keep users informed and protect their progress during AI generation?</h2>
- <div className="space-y-12 text-lg text-neutral-500 leading-relaxed font-normal">
- <div>
- <p>Creating an Emotion Card could take about 30 seconds.</p>
- <p className="mt-4">During this time, the system analyzed the conversation, selected important content, created a summary, and generated the final visual.</p>
- <p className="mt-4">The original experience used one loading state for the entire process. Users could not tell whether the request was progressing, frozen, or had failed.</p>
+ <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900 mb-6">HMW design an AI generation experience that feels transparent and secure?</h2>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal mb-12">
+ <p>Generative AI often takes 15 to 30 seconds to return a result. A standard loading spinner makes this wait feel much longer and provides no visibility into the process.</p>
+ <p>Furthermore, if generation fails, users risk losing their context and having to restart the entire chat process.</p>
  </div>
 
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Define the Full Response Flow</h3>
- <p>I worked with engineers to define the API behavior for each part of the experience.</p>
- <p className="mt-4">The interface needed to support loading, streaming, success, empty responses, timeouts, and failures.</p>
- <p className="mt-4">This helped us treat the waiting experience as part of the product instead of a technical state added after the design was complete.</p>
+ {/* Placeholder for Before and After loading screens */}
+ <div className="w-full bg-[#FAFAFA] border border-black/5 rounded-3xl p-12 text-center text-neutral-400 mb-16 shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
+    <p className="text-sm font-bold uppercase tracking-widest mb-2">Before & After UI Images Will Go Here</p>
+    <p className="text-xs">Provide screenshots for the old spinner vs the new 4-stage loading UI</p>
  </div>
 
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Communicate Progress</h3>
- <p>I divided the generation process into visible stages.</p>
- <p className="mt-4">The interface explains what the system is doing and gives users feedback as the request progresses.</p>
- <p className="mt-4">This makes the experience feel more responsive even when the total generation time remains the same.</p>
+ <h3 className="text-xl font-bold text-neutral-900 mb-4">Define the Full Response Flow</h3>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal mb-8">
+ <p>Before designing the interface, I mapped out the complete AI response lifecycle, accounting for both the happy path and edge cases.</p>
  </div>
 
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Protect User Progress</h3>
- <p>A failed request should not force users to repeat a personal conversation.</p>
- <p className="mt-4">I designed recovery patterns that preserve the conversation and selected content.</p>
- <p className="mt-4">The interface explains what happened and provides a clear way to try again.</p>
+ <SystemStateFlow />
+
+ <h3 className="text-xl font-bold text-neutral-900 mt-16 mb-4">Communicate Progress</h3>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal mb-12">
+ <p>I broke the generation process into smaller steps—identifying, analyzing, and formatting—and displayed these steps sequentially. This provided continuous feedback and made the wait feel intentional rather than broken.</p>
  </div>
 
- <div>
- <h3 className="text-xl font-bold text-neutral-900 mb-2">Final Design</h3>
- <p>The final experience communicates progress throughout generation and provides a recovery path when something goes wrong.</p>
- <p className="mt-4">Users can understand the current state without losing the emotional moment they selected.</p>
+ {/* Placeholder for 4 loading UI screens */}
+ <div className="w-full bg-[#FAFAFA] border border-black/5 rounded-3xl p-12 text-center text-neutral-400 mb-16 shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
+    <p className="text-sm font-bold uppercase tracking-widest mb-2">4 Loading UI Screens Will Go Here</p>
+    <p className="text-xs">Provide screenshots of the 4 individual loading states</p>
  </div>
+
+ <h3 className="text-xl font-bold text-neutral-900 mb-4">Protect User Progress</h3>
+ <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal mb-12">
+ <p>If a request times out or fails, the interface preserves the user's selected context. Instead of forcing them to restart the conversation, a simple error state allows them to retry generation immediately.</p>
  </div>
+
+ {/* Placeholder for Error Recovery Flow */}
+ <div className="w-full bg-[#FAFAFA] border border-black/5 rounded-3xl p-12 text-center text-neutral-400 mb-12 shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
+    <p className="text-sm font-bold uppercase tracking-widest mb-2">Error Recovery UI Flow Will Go Here</p>
+    <p className="text-xs">Provide screenshots of the generation failure and retry process</p>
+ </div>
+
  </div>
 
  {/* DESIGN SYSTEM */}
