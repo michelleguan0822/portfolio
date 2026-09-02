@@ -291,10 +291,9 @@ export default function OmnireflexPage() {
  {/* DESIGN CHALLENGE 02 */}
  <div id="design-challenge-02" className="scroll-mt-32 mb-32">
  <div className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-400 mb-4">Design Challenge 02</div>
- <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">HMW make AI card generation feel clear and trustworthy?</h2>
+ <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900 mb-8 leading-[1.15]">How might we make card creation feel clear and trustworthy?</h2>
  <div className="space-y-6 text-lg text-neutral-500 leading-relaxed font-normal mb-12">
- <p>Card generation takes 15 to 30 seconds. A single spinner made the wait feel longer and gave users no idea what was happening.</p>
- <p>If generation failed, users also risked losing their selected moment and having to restart.</p>
+ <p>We replaced a random reward loop with an intentional flow that gives users control and keeps generation visible.</p>
  </div>
 
  <GenerationFlowComparison />

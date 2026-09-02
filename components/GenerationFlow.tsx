@@ -34,21 +34,21 @@ const initialSteps: FlowStep[] = [
   {
     number: '02',
     title: 'Random chance',
-    description: 'A dice event appeared without a clear trigger.',
+    description: 'Card creation depended on an unexpected dice event.',
     image: '/images/unimo/old_flow/random%20dice.png',
     alt: 'Original random dice screen',
   },
   {
     number: '03',
     title: 'Unlock',
-    description: 'The system decided whether a card could be created.',
+    description: 'The system randomly decided what the card would become.',
     image: '/images/unimo/old_flow/got%20a%20card.png',
     alt: 'Original card unlock screen',
   },
   {
     number: '04',
     title: 'Wait',
-    description: 'A single loading state provided no sense of progress.',
+    description: 'A long loading state gave users no sense of progress.',
     image: '/images/unimo/loading.png',
     alt: 'Original card loading state',
   },
@@ -175,7 +175,7 @@ export default function GenerationFlowComparison() {
             <h3 id="final-generation-flow" className="text-xl font-bold text-neutral-900">A guided flow built around user intent</h3>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-neutral-500 md:text-right">
-            Users choose what matters while clear states make generation easy to follow.
+            Users choose what matters, while clear system states make generation easy to follow.
           </p>
         </div>
         <FlowRow steps={finalSteps} accent />
