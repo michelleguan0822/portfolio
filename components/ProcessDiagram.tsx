@@ -23,10 +23,8 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
          {/* Step 1 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-24 h-24 rounded-2xl bg-[#FAFAFA] border border-black/5 flex flex-col items-center justify-center p-3 gap-2 mb-4 group-hover:-translate-y-1 transition-transform">
-              <div className="w-full h-2 bg-neutral-200 rounded-full"></div>
-              <div className="w-3/4 h-2 bg-neutral-200 rounded-full self-start"></div>
-              <div className="w-1/2 h-2 bg-neutral-200 rounded-full self-end mt-2"></div>
+           <div className="w-16 sm:w-20 rounded-xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+              <img src="/images/unimo/old_flow/Chat.png" alt="Conversation UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Conversation</p>
          </div>
@@ -34,12 +32,8 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
          
          {/* Step 2 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-24 h-24 rounded-2xl bg-[#FAFAFA] border border-black/5 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform">
-              <div className="w-10 h-10 bg-white border border-black/10 rounded-xl shadow-sm flex flex-wrap p-2 gap-1 justify-center items-center">
-                  <div className="w-1.5 h-1.5 bg-neutral-300 rounded-full"></div>
-                  <div className="w-1.5 h-1.5 bg-neutral-300 rounded-full"></div>
-                  <div className="w-1.5 h-1.5 bg-neutral-300 rounded-full"></div>
-              </div>
+           <div className="w-16 sm:w-20 rounded-xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+              <img src="/images/unimo/old_flow/random%20dice.png" alt="Random Dice UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Random Dice</p>
          </div>
@@ -47,10 +41,8 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
          
          {/* Step 3 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-24 h-24 rounded-2xl bg-[#FAFAFA] border border-black/5 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform">
-              <div className="w-12 h-6 bg-white border border-black/10 shadow-sm rounded-full flex items-center px-1">
-                  <div className="w-4 h-4 bg-neutral-200 rounded-full"></div>
-              </div>
+           <div className="w-16 sm:w-20 rounded-xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+              <img src="/images/unimo/old_flow/Card%20Lottery.png" alt="Card Lottery UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Card Lottery</p>
          </div>
@@ -58,8 +50,8 @@ export default function ProcessDiagram({ flow = 'both' }: { flow?: 'initial' | '
 
          {/* Step 4 */}
          <div className="flex flex-col items-center w-full md:w-1/4 group">
-           <div className="w-24 h-24 rounded-2xl bg-[#FAFAFA] border border-black/5 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform relative overflow-hidden">
-              <div className="w-10 h-14 bg-white border border-black/10 shadow-sm rounded-lg"></div>
+           <div className="w-16 sm:w-20 rounded-xl bg-white border border-black/10 flex items-center justify-center mb-4 group-hover:-translate-y-1 transition-transform shadow-sm overflow-hidden">
+              <img src="/images/unimo/old_flow/Card%20Gen..png" alt="Card Generation UI" className="w-full h-auto object-cover" />
            </div>
            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-neutral-900 text-center">Card Gen.</p>
          </div>
